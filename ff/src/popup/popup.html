@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Chat UI Research Probe (FF)</title>
+  </head>
+  <body>
+    <h1>Chat Probe <span id="build" class="build"></span></h1>
+
+    <section class="card">
+      <div class="label">Providers</div>
+      <div id="providers" class="checks"></div>
+    </section>
+
+    <section class="card">
+      <div class="row spread"><span class="label">Repetitions / question</span><input id="reps" type="number" min="1" value="1" /></div>
+      <div class="row spread"><span class="label">Items per provider</span><span id="preview" class="value">—</span></div>
+      <div class="row"><label><input type="checkbox" id="private" checked /> Private/incognito chats</label></div>
+    </section>
+
+    <section class="card">
+      <div class="row spread"><span class="label">Questions</span><span id="qcount" class="value">0</span></div>
+      <textarea id="questions" rows="5" spellcheck="false"></textarea>
+    </section>
+
+    <section class="card">
+      <div class="row spread"><span class="label">Personas (empty = neutral)</span><span id="pcount" class="value">0</span></div>
+      <textarea id="personas" rows="2" spellcheck="false"></textarea>
+    </section>
+
+    <div class="buttons">
+      <button id="run" class="primary">Run</button>
+      <button id="pause">Pause</button>
+      <button id="stop" class="danger">Stop</button>
+    </div>
+
+    <section class="card">
+      <div class="row spread"><span class="label">Status</span><span id="status" class="value">idle</span></div>
+      <div class="row spread"><span class="label">Records</span><span id="rcount" class="value">0</span></div>
+      <div id="provlist"></div>
+    </section>
+
+    <div class="buttons">
+      <button id="export" class="primary">Export JSONL + summary</button>
+      <button id="clear" class="danger">Clear all</button>
+    </div>
+    <div class="buttons">
+      <button id="capture">Capture DOM (active tab)</button>
+      <button id="record">⏺ Record interaction</button>
+    </div>
+
+    <pre id="log"></pre>
+
+    <script src="../shared/ext.js"></script>
+    <script src="../shared/namespace.js"></script>
+    <script src="../shared/logger.js"></script>
+    <script src="../shared/providers.js"></script>
+    <script src="../shared/messages.js"></script>
+    <script src="../shared/run-plan.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

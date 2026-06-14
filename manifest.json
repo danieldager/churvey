@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "Chat UI Research Probe",
+  "version": "0.1.0",
+  "description": "Research tool: asks a question set to AI chat web UIs in a real logged-in session and saves the responses as JSONL.",
+  "permissions": ["storage", "unlimitedStorage", "downloads", "alarms", "tabs"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://gemini.google.com/*",
+    "https://grok.com/*",
+    "https://claude.ai/*",
+    "https://chat.deepseek.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://grok.com/*",
+        "https://claude.ai/*",
+        "https://chat.deepseek.com/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "src/shared/namespace.js",
+        "src/shared/messages.js",
+        "src/shared/logger.js",
+        "src/shared/record.js",
+        "src/shared/storage.js",
+        "src/shared/providers.js",
+        "src/shared/run-plan.js",
+        "src/shared/cadence.js",
+        "src/shared/prompt-template.js",
+        "src/shared/diagnostics.js",
+        "src/content/input-injector.js",
+        "src/content/response-watcher.js",
+        "src/adapters/adapter-base.js",
+        "src/adapters/chatgpt.js",
+        "src/adapters/gemini.js",
+        "src/adapters/grok.js",
+        "src/adapters/claude.js",
+        "src/adapters/deepseek.js",
+        "src/adapters/registry.js",
+        "src/content/orchestrator.js",
+        "src/content/content-script.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Chat UI Research Probe"
+  }
+}

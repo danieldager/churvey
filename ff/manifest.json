@@ -1,0 +1,70 @@
+{
+  "manifest_version": 2,
+  "name": "Chat UI Research Probe (Firefox)",
+  "version": "0.2.0",
+  "description": "Captures AI chat responses at the network layer (webRequest) in a real logged-in Firefox session, with automated asking. Research tool.",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "downloads",
+    "webRequest",
+    "webRequestBlocking",
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://gemini.google.com/*",
+    "https://grok.com/*",
+    "https://claude.ai/*",
+    "https://chat.deepseek.com/*"
+  ],
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "src/shared/ext.js",
+      "src/shared/namespace.js",
+      "src/shared/logger.js",
+      "src/shared/storage.js",
+      "src/shared/providers.js",
+      "src/shared/messages.js",
+      "src/shared/cadence.js",
+      "src/shared/run-plan.js",
+      "src/shared/prompt-template.js",
+      "src/shared/record.js",
+      "src/shared/summary.js",
+      "src/background/capture.js",
+      "src/background/runner.js",
+      "src/background/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://grok.com/*",
+        "https://claude.ai/*",
+        "https://chat.deepseek.com/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "src/shared/ext.js",
+        "src/shared/namespace.js",
+        "src/shared/logger.js",
+        "src/shared/cadence.js",
+        "src/shared/messages.js",
+        "src/shared/providers.js",
+        "src/content/injector.js",
+        "src/content/drivers.js",
+        "src/content/driver.js"
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Chat UI Research Probe"
+  },
+  "browser_specific_settings": {
+    "gecko": { "id": "chat-probe@research.local", "strict_min_version": "115.0" }
+  }
+}

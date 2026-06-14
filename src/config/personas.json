@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "_note": "Future phase. A persona's `preamble` is prepended to each question. Interview-style and name-based framings produce less caricatured, better-aligned persona effects than bare 'You are...' statements (see plan). Leave `items` empty to run neutral.",
+  "items": []
+}
