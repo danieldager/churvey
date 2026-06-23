@@ -1,6 +1,8 @@
 # Captured research data AND interaction recordings (recordings contain auth
 # tokens + cookies) — never commit.
 data/
+# devsync symlink (data lives in iCloud via devlink) — don't commit the symlink
+/data
 
 # Claude Code session data
 .claude/

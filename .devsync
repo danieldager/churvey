@@ -1,0 +1,4 @@
+# name: tools
+# claude-sync: yes   # sync ~/.claude memory + conversation history across machines
+# Gitignored files synced across machines via iCloud (code stays in git). Run `devlink` per machine.
+data    # captured research data + interaction recordings (contain auth tokens/cookies) — local-only
