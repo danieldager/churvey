@@ -57,6 +57,13 @@
     if (msg.type === Probe.MSG.CAPTURE_DOM) {
       return Promise.resolve({ ok: true, dom: dumpDom() });
     }
+    if (msg.type === Probe.MSG.SCRAPE_SOURCES) {
+      return (async () => {
+        if (!driver || typeof driver.scrapeSources !== "function") return { ok: false, error: "no scraper" };
+        try { return { ok: true, citations: (await driver.scrapeSources()) || [] }; }
+        catch (e) { return { ok: false, error: String(e?.message || e) }; }
+      })();
+    }
     if (msg.type === Probe.MSG.REC_ON) { startRec(); return Promise.resolve({ ok: true }); }
     if (msg.type === Probe.MSG.REC_OFF) { stopRec(); return Promise.resolve({ ok: true }); }
     if (msg.type === Probe.MSG.PURGE) {

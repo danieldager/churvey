@@ -53,6 +53,18 @@
     if (best) { realClick(best); return true; }
     return false;
   }
+  // Close the top-most modal. DeepSeek's Settings close is an icon button in the
+  // modal header with no aria-label, so target that; fall back to a labelled close.
+  function closeModal() {
+    const dlg = pick([".ds-modal-content", '[role="dialog"]', '[aria-modal="true"]']);
+    if (!dlg) return false;
+    const hdr = dlg.querySelector(".ds-modal-content__header-wrapper") || dlg;
+    const btn = hdr.querySelector('[aria-label*="close" i]')
+      || hdr.querySelector(".ds-button--iconLabelPrimary")
+      || [...hdr.querySelectorAll('.ds-button,button,[role="button"]')].filter((x) => x.offsetParent !== null).pop();
+    if (btn) { realClick(btn); return true; }
+    return false;
+  }
   function dismissConsent() {
     for (const s of ["#onetrust-accept-btn-handler", "#accept-recommended-btn-handler", ".onetrust-close-btn-handler"]) {
       const el = document.querySelector(s); if (el && el.offsetParent !== null) { realClick(el); return true; }
@@ -113,20 +125,56 @@
     gemini: {
       composer: ['rich-textarea div.ql-editor[contenteditable="true"]', 'div.ql-editor[contenteditable="true"]', 'div[contenteditable="true"][role="textbox"]'],
       send: ['button[aria-label*="Send" i]', "button.send-button"],
-      newChat: ['expandable-button[data-test-id="new-chat-button"] button', 'button[aria-label*="New chat" i]'],
-      temporary: ['button[aria-label="Temporary chat"]', 'button[aria-label*="temporary" i]', '[role="button"][aria-label*="temporary" i]'],
+      // Temp-chat lives behind the sidebar: (open sidebar) -> Gemini "sparkle" icon
+      // -> temp-chat button. Custom-element selectors (stable), not ng-* classes.
+      sidebar: ['button[aria-label="Open sidebar" i]'],
+      sparkle: ['a.side-nav-sparkle-button', 'side-nav-sparkle-button a', 'side-nav-sparkle-button'],
+      tempChat: ['temp-chat-button button', 'temp-chat-button gem-icon-button button', 'temp-chat-button'],
+      newChat: ['a[aria-label*="New chat" i]', 'side-nav-action-button a', 'a[href="/app"]'],
+      // Anything that only exists once the conversation has a turn in it. Used to
+      // prove the chat is actually EMPTY before we submit (see the guard below).
+      turns: ['user-query', 'model-response', 'button[aria-label*="Copy prompt" i]'],
       isReady() { return !!pick(this.composer); },
-      async startChat({ private: priv }) {
+      hasTurns() { return this.turns.some((s) => document.querySelector(s)); },
+      async startChat() {
         dismissConsent(); dismissNotice();
-        if (priv) {
-          // SINGLE plain click — a full pointer sequence (realClick) appears to
-          // double-toggle Gemini's "Temporary chat" control (it regressed when we
-          // switched global clicks to pointer events).
-          const tb = pick(this.temporary);
-          if (tb) tb.click();
-          else { Probe.log.make("gemini").warn("temporary control not found; NON-private"); if (!clickFirst(this.newChat) && location.pathname !== "/app") location.assign("/app"); }
-        } else if (!clickFirst(this.newChat)) { if (location.pathname !== "/app") location.assign("/app"); }
+        const log = Probe.log.make("gemini");
+        // Fresh TEMPORARY chat per question. ORDER MATTERS:
+        //   1. NEW CHAT   (Shift+Cmd/Ctrl+O, or the sidebar "New chat" button)
+        //   2. THEN the temp-chat button -> a new *temporary* chat
+        // Clicking temp-chat on its own does NOT start a new conversation when you are
+        // already inside one — it only toggles the mode. That is how the entire Gemini
+        // set ended up as ONE long chat, silently carrying context between questions.
+        const newChatShortcut = () => {
+          const ev = (extra) => new KeyboardEvent("keydown", {
+            key: "o", code: "KeyO", keyCode: 79, which: 79,
+            shiftKey: true, bubbles: true, cancelable: true, ...extra,
+          });
+          for (const t of [document, document.body]) {
+            t.dispatchEvent(ev({ metaKey: true }));   // macOS
+            t.dispatchEvent(ev({ ctrlKey: true }));   // other platforms
+          }
+        };
+        newChatShortcut();
         await sleep(900);
+        if (this.hasTurns()) {   // shortcut didn't take — use the sidebar button
+          if (!pick(this.newChat)) { clickFirst(this.sidebar); await sleep(600); }
+          if (!clickFirst(this.newChat)) clickByText(/^\s*new chat\s*$/i);
+          await sleep(1100);
+        }
+        // Now convert the fresh chat to a TEMPORARY one (nested behind the sparkle).
+        if (!pick(this.sparkle) && !pick(this.tempChat)) { clickFirst(this.sidebar); await sleep(600); }
+        clickFirst(this.sparkle);
+        await sleep(700);
+        if (!clickFirst(this.tempChat)) log.warn("temp-chat button not found; chat will NOT be temporary");
+        await sleep(1300);
+        // HARD GUARD. Submitting into a chat that still holds previous turns silently
+        // contaminates the answer with earlier context (exactly how the Gemini set got
+        // polluted). Fail loudly instead: the runner records an ERROR and re-asks,
+        // rather than banking a dirty answer.
+        if (this.hasTurns()) {
+          throw new Error("gemini: previous turns still present after reset — refusing to ask in a dirty chat");
+        }
         const el = await waitFor(this.composer); if ((el.innerText || "").trim()) Probe.injector.clear(el);
       },
       locateInput() { return waitFor(this.composer); },
@@ -136,6 +184,24 @@
       async submit() {
         await submitViaButtonOrEnter(this.send, this.composer);
         await sleep(4500);
+      },
+      // Citations render as chips that expand into <a href> source cards; the URLs
+      // are NOT reliably in the response stream, so scrape them from the DOM. The
+      // background calls this after the answer is captured. Returns [{title,url}].
+      async scrapeSources() {
+        const chips = [...document.querySelectorAll("source-inline-chip button, sources-carousel-inline button")];
+        for (const c of chips.slice(0, 15)) { try { c.click(); await sleep(120); } catch (_) {} }
+        await sleep(600);
+        const out = [], seen = new Set();
+        for (const a of document.querySelectorAll("sources-carousel-inline a[href], inline-source-card a[href], .stacked-cards-container a[href], mat-dialog-container a[href]")) {
+          const href = a.getAttribute("href") || "";
+          if (/^(javascript:|#|mailto:)/.test(href)) continue;
+          const url = a.href; if (!url || seen.has(url)) continue; seen.add(url);
+          out.push({ title: (a.innerText || "").trim().slice(0, 200) || null, url });
+        }
+        // Close any sources panel/dialog we expanded so it doesn't cover the composer.
+        document.body.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", code: "Escape", keyCode: 27, bubbles: true }));
+        return out;
       },
     },
     grok: {
@@ -164,20 +230,25 @@
       composer: ['div[contenteditable="true"].ProseMirror', 'div[contenteditable="true"]'],
       send: ['button[aria-label="Send message"]', 'button[aria-label*="Send" i]'],
       newChat: ['a[href="/new"]', 'button[aria-label*="New chat" i]'],
-      incognito: ['button[aria-label*="incognito" i]', 'a[aria-label*="incognito" i]'],
+      // The SAME button toggles: aria-label is "Use incognito" when OFF and
+      // "Exit incognito" when ON. Match only the ENTER label so we never click
+      // "Exit" (which drops the question into a saved, non-private chat).
+      incognitoOn: ['button[aria-label*="Use incognito" i]', 'a[aria-label*="Use incognito" i]'],
+      incognitoOff: ['button[aria-label*="Exit incognito" i]'],
       isReady() { return !!pick(this.composer); },
       async startChat({ private: priv }) {
         dismissConsent(); dismissNotice();
         if (priv) {
-          // Reset to a new chat, then click the incognito ghost — this starts a
-          // FRESH incognito chat each item (navigating to the same /new?incognito=
-          // URL is a no-op, which is why it kept reusing the first chat).
-          clickFirst(this.newChat);
-          await sleep(600);
-          if (!clickFirst(this.incognito) && !clickByText(/incognito/i)) {
+          // Start a FRESH incognito chat each item. Claude keeps ONE incognito
+          // session and "New chat" does NOT reset it (it just kept appending). The
+          // reliable reset is to EXIT incognito if we're in it, then re-ENTER —
+          // entering always spawns a new empty incognito chat. Entering is the LAST
+          // step, so the prompt lands in the fresh incognito chat, never a saved one.
+          if (pick(this.incognitoOff)) { clickFirst(this.incognitoOff); await sleep(700); }
+          if (!clickFirst(this.incognitoOn) && !clickByText(/^use incognito$/i)) {
             location.assign("/new?incognito="); await sleep(2500); return; // URL fallback
           }
-          await sleep(700);
+          await sleep(800);
           const el2 = await waitFor(this.composer); if ((el2.innerText || "").trim()) Probe.injector.clear(el2);
           return;
         } else if (!clickFirst(this.newChat)) {
@@ -247,8 +318,14 @@
           clickExact("Delete all chats") || clickByText(/^(delete all chats|delete all|confirm|delete|yes|ok)$/i);
           await sleep(1000); ok = true; log.info("deleted all chats (UI)");
         } else log.warn("UI: 'Delete all' not found under Data");
-        document.body.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-        await sleep(400);
+        // Close the Settings modal so it doesn't sit over the composer. DeepSeek's
+        // close is an unlabelled icon button in the modal header — click it; only
+        // fall back to Escape (which alone did not dismiss it) if that fails.
+        if (!closeModal()) {
+          for (const t of [document, document.body, document.activeElement].filter(Boolean))
+            t.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", code: "Escape", keyCode: 27, bubbles: true }));
+        }
+        await sleep(500);
         return ok;
       },
       locateInput() { return waitFor(this.composer); },

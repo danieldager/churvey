@@ -59,6 +59,23 @@
       .then((id) => { setTimeout(() => URL.revokeObjectURL(url), 5000); return { ok: true, count: events.length }; });
   }
 
+  // Full cookie clear for the given domains (subdomains included) — fixes ChatGPT's
+  // 431 "header too large" from accumulated cookie bloat. Logs you out, so it's a
+  // manual between-run action (you re-login after).
+  async function clearCookies(domains) {
+    let n = 0;
+    for (const domain of domains) {
+      let all = [];
+      try { all = await ext.cookies.getAll({ domain }); } catch (_) {}
+      for (const c of all) {
+        const host = c.domain.replace(/^\./, "");
+        const url = `http${c.secure ? "s" : ""}://${host}${c.path || "/"}`;
+        try { await ext.cookies.remove({ url, name: c.name, storeId: c.storeId }); n++; } catch (_) {}
+      }
+    }
+    return n;
+  }
+
   ext.runtime.onMessage.addListener((msg, sender) => {
     if (!msg) return;
     switch (msg.type) {
@@ -69,13 +86,28 @@
       case Probe.MSG.PAUSE_RUN:
         Probe.runner.pause(); return Promise.resolve({ ok: true });
       case Probe.MSG.RESUME_RUN:
+        // Paused run -> just restart the ticker. No live run -> reconstruct the
+        // stored run under its original runId and fill whatever is missing.
+        if (msg.fromStorage) {
+          return Probe.runner.resumeFromStorage(msg.windowId).then((r) => ({ ok: true, ...r })).catch((e) => ({ ok: false, error: String(e.message || e) }));
+        }
         Probe.runner.resume(); return Promise.resolve({ ok: true });
       case Probe.MSG.STOP_RUN:
         Probe.runner.stop(); return Promise.resolve({ ok: true });
+      case Probe.MSG.PAUSE_PROVIDER:
+        Probe.runner.pauseProvider(msg.provider); return Promise.resolve({ ok: true });
+      case Probe.MSG.RESUME_PROVIDER:
+        Probe.runner.resumeProvider(msg.provider); return Promise.resolve({ ok: true });
       case Probe.MSG.GET_OVERVIEW:
         return Probe.runner.overview().then((o) => ({ ok: true, ...o }));
       case Probe.MSG.EXPORT_RUN:
         return Probe.runner.exportRun().then((r) => ({ ok: true, ...r })).catch((e) => ({ ok: false, error: String(e.message || e) }));
+      case Probe.MSG.IMPORT_RUN:
+        return Probe.runner.importRun(msg.manifest).then((r) => ({ ok: true, ...r })).catch((e) => ({ ok: false, error: String(e.message || e) }));
+      case Probe.MSG.LIST_RUNS:
+        return Probe.runner.listRuns().then((runs) => ({ ok: true, runs })).catch((e) => ({ ok: false, error: String(e.message || e) }));
+      case Probe.MSG.SELECT_RUN:
+        return Probe.runner.selectRun(msg.runId).then((r) => ({ ok: true, ...r })).catch((e) => ({ ok: false, error: String(e.message || e) }));
       case Probe.MSG.CLEAR_RUN:
         return Probe.runner.clear().then(() => ({ ok: true }));
       case Probe.MSG.REC_START:
@@ -89,6 +121,8 @@
         return Promise.resolve({ recording });
       case Probe.MSG.REC_EXPORT:
         return recExport().catch((e) => ({ ok: false, error: String(e.message || e) }));
+      case Probe.MSG.CLEAR_COOKIES:
+        return clearCookies(msg.domains || ["chatgpt.com", "openai.com"]).then((n) => ({ ok: true, count: n })).catch((e) => ({ ok: false, error: String(e.message || e) }));
     }
   });
 

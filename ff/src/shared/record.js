@@ -3,7 +3,7 @@
 (() => {
   const Probe = (globalThis.Probe ||= {});
   const ext = globalThis.ext;
-  const SCHEMA_VERSION = 2;
+  const SCHEMA_VERSION = 3; // +citations[]
 
   const extVersion = () => { try { return ext.runtime.getManifest().version; } catch (_) { return null; } };
   const uuid = () => (globalThis.crypto && crypto.randomUUID ? crypto.randomUUID() : "id-" + Date.now() + "-" + Math.floor(Math.random() * 1e9));
@@ -31,6 +31,7 @@
       latencyMs: f.latencyMs ?? (start && end ? end - start : null),
       private: f.private ?? null,
       captureUrl: f.captureUrl ?? null,
+      citations: Array.isArray(f.citations) ? f.citations : [],
       userAgent: (globalThis.navigator && navigator.userAgent) || null,
       extensionVersion: extVersion(),
     };

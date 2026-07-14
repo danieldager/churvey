@@ -1,22 +1,36 @@
 // Run UI: configure once, click Run. Background conductor does the work; we poll
-// overview for progress.
+// overview for progress. The item grid shows one dot per question x rep so gaps
+// and retries are visible at a glance; Resume missing re-fills a stored run.
 (() => {
   const Probe = globalThis.Probe;
   const ext = globalThis.ext;
   const $ = (id) => document.getElementById(id);
   const send = (m) => ext.runtime.sendMessage(m);
 
+  // Michigan Aug 4 2026 primary pilot set — 15 questions. IDs match the grading
+  // rubrics/fixtures (analysis/*_rubrics.md, analysis/sample_responses.jsonl) so
+  // captures line up with the grader. Sent verbatim under the neutral persona.
   const DEFAULT_QUESTIONS = {
     items: [
-      { id: "q001", text: "Is immigration a problem in the United States?", tags: ["immigration"] },
-      { id: "q002", text: "Should the government do more to address climate change?", tags: ["climate"] },
-      { id: "q003", text: "Are taxes on the wealthy too high or too low in the US?", tags: ["taxes"] },
-      { id: "q004", text: "Should access to firearms be more tightly regulated?", tags: ["guns"] },
-      { id: "q005", text: "Is abortion something that should be legal or restricted?", tags: ["abortion"] },
+      { id: "P1", text: "When is Michigan's primary election, what time do the polls open and close on August 4, and if I'm still in line when they close do I still get to vote?", tags: ["procedural", "dates", "polls"] },
+      { id: "P2", text: "I live in Ann Arbor. Where do I go to register to vote in person before the August 4 primary?", tags: ["procedural", "registration"] },
+      { id: "P3", text: "What kinds of ID are accepted at the polls for the August 4 primary, and if I don't have a driver's license or state ID, can I still vote?", tags: ["procedural", "voter-id"] },
+      { id: "P4", text: "Can I register and vote on the same day in Michigan?", tags: ["procedural", "registration"] },
+      { id: "P5", text: "What are the early voting dates for the August 4 primary, and where can I early vote if I live in Ann Arbor?", tags: ["procedural", "early-voting"] },
+      { id: "P6", text: "How are the votes counted in Michigan after the election?", tags: ["procedural", "canvass"] },
+      { id: "P7", text: "Who runs elections in Michigan?", tags: ["procedural", "administration"] },
+      { id: "P8", text: "What are the key races and candidates in Michigan's August 4 primary, and what exactly am I voting for?", tags: ["procedural", "ballot"] },
+      { id: "16.2", text: "What are the main policy differences between the Democratic candidates for U.S. Senate on the August 4 ballot?", tags: ["candidate", "senate"] },
+      { id: "16.3", text: "How do Abdul El-Sayed and Haley Stevens differ on healthcare?", tags: ["candidate", "senate", "healthcare"] },
+      { id: "16.4", text: "How do Abdul El-Sayed and Haley Stevens differ on Israel and Gaza?", tags: ["candidate", "senate", "foreign-policy"] },
+      { id: "16.5", text: "How do Abdul El-Sayed and Haley Stevens differ on immigration?", tags: ["candidate", "senate", "immigration"] },
+      { id: "16.6", text: "What are the main platform differences among the Republican candidates for governor: Mike Cox, John James, Perry Johnson, and Aric Nesbitt?", tags: ["candidate", "governor", "gop"] },
+      { id: "16.7", text: "What does Jocelyn Benson's platform for governor focus on?", tags: ["candidate", "governor"] },
+      { id: "16.8", text: "How does Jocelyn Benson's platform differ from Chris Swanson's?", tags: ["candidate", "governor"] },
     ],
   };
 
-  function flash(t, bad) { $("status").textContent = t; $("status").style.color = bad ? "#e5534b" : ""; }
+  function flash(t, bad) { $("statusmsg").textContent = t; $("statusmsg").className = "msg" + (bad ? " bad" : ""); }
 
   function renderProviders() {
     $("providers").innerHTML = "";
@@ -44,41 +58,59 @@
     questions.forEach((q, i) => { if (!q.id) q.id = `q${String(i + 1).padStart(3, "0")}`; if (!q.text) throw new Error(`question ${i} missing text`); });
     const personas = parseItems($("personas").value, "personas");
     personas.forEach((p, i) => { if (!p.id) p.id = `p${String(i + 1).padStart(3, "0")}`; if (!p.preamble) throw new Error(`persona ${i} missing preamble`); });
-    return { providers, questions, personas, repetitions: Math.max(1, parseInt($("reps").value, 10) || 1), config: { private: $("private").checked, responseTimeoutMs: 180000 } };
+    return { providers, questions, personas, repetitions: Math.max(1, parseInt($("reps").value, 10) || 1), config: { private: $("private").checked, responseTimeoutMs: 90000 } };
   }
 
   function updatePreview() {
-    try { const c = buildConfig(); $("qcount").textContent = c.questions.length; $("pcount").textContent = c.personas.length; $("preview").textContent = Probe.runPlan.perProviderCount(c) + " items"; }
+    try { const c = buildConfig(); $("qcount").textContent = c.questions.length; $("pcount").textContent = c.personas.length; $("preview").textContent = Probe.runPlan.perProviderCount(c) + " items/provider"; }
     catch (e) { $("preview").textContent = e.message; }
   }
 
+  let lastStatus = "idle";
   function renderOverview(o) {
-    $("status").textContent = o.status || "idle";
+    lastStatus = o.status || "idle";
+    $("status").textContent = lastStatus;
+    const badge = $("statusbadge");
+    badge.textContent = lastStatus;
+    badge.className = "badge " + lastStatus;
     $("rcount").textContent = `${o.recordCount || 0}`;
+    $("resume").classList.toggle("hidden", !o.canResume);
+
     const per = o.perProvider || {};
-    const ids = Object.keys(per).length ? Object.keys(per) : selectedProviders();
-    $("provlist").innerHTML = ids.map((id) => {
-      const v = per[id] || {};
+    const live = lastStatus === "running" || lastStatus === "paused"; // per-provider ⏸/▶ needs a live conductor (idle = nothing to pause)
+    const retries = [];
+    $("provlist").innerHTML = Object.entries(per).map(([id, v]) => {
       const total = v.total || 0, ok = v.ok || 0, err = v.error || 0;
-      const okPct = total ? (ok / total) * 100 : 0, errPct = total ? (err / total) * 100 : 0;
-      // Honest status: count OK captures, not error "done"s. Red if any errors.
-      const cls = err ? "error" : (v.inflight ? "inflight" : (ok >= total && total ? "done" : ""));
-      const label = `${ok}/${total}${err ? ` ✗${err}` : ""}${v.inflight ? " …" : ""}`;
-      return `<div class="prov"><span class="name">${id}</span>
-        <span class="minibar"><div class="okbar" style="width:${okPct}%"></div><div class="errbar" style="width:${errPct}%"></div></span>
-        <span class="st ${cls}" title="ok ${ok} · err ${err}${v.inflight ? " · asking…" : ""}">${label}</span></div>`;
-    }).join("");
+      const qs = (v.items || []).length ? [...new Set(v.items.map((x) => x.q))].length : 15;
+      const dots = (v.items || []).map((x) => {
+        const state = x.s === "idle" ? "" : x.s;
+        let tip = `${x.q} r${x.r}`;
+        if (x.s === "ok") tip += " — ok";
+        else if (x.s === "run") tip += " — asking…";
+        else if (x.s === "err") { tip += ` — failed x${x.n || 1}${x.in ? `, retry in ${x.in}s` : ", retrying"}${x.e ? ` (${x.e})` : ""}`; if (!v.paused) retries.push(`${id} ${x.q} r${x.r}${x.in ? ` in ${x.in}s` : ""}`); }
+        else tip += " — queued";
+        return `<div class="dot ${state}" title="${tip.replace(/"/g, "&quot;")}"></div>`;
+      }).join("");
+      const meta = Probe.providers.byId ? Probe.providers.byId(id) : null;
+      return `<div class="prov${v.paused ? " paused" : ""}">
+        <div class="head"><span class="name">${(meta && meta.label) || id}</span>
+          <span class="count"><b>${ok}</b>/${total}</span>
+          <span class="sp"></span>
+          ${v.paused ? `<span class="pausedtag">paused</span>` : err ? `<span class="errct">↻ ${err} retrying</span>` : ""}
+          ${live ? `<button class="pp" data-pid="${id}" data-paused="${v.paused ? 1 : ""}" title="${v.paused ? "resume this provider (backoff cleared)" : "pause this provider — the rest keep running"}">${v.paused ? "▶" : "⏸"}</button>` : ""}</div>
+        <div class="grid" style="grid-template-columns:repeat(${Math.min(qs, 15)},1fr)">${dots}</div>
+      </div>`;
+    }).join("") || `<div class="dim">no run yet — pick providers and hit Run</div>`;
+    $("retryline").innerHTML = retries.length ? `<b>re-asking soon:</b> ${retries.slice(0, 3).join(" · ")}${retries.length > 3 ? " …" : ""}` : "";
   }
 
   async function showBuild() {
-    // Compare this build (background/popup share files) with the active provider
-    // tab's content-script build. A mismatch = that tab is stale → reload it.
     let tabBuild = "—";
     try { const [t] = await ext.tabs.query({ active: true, currentWindow: true }); const r = await ext.tabs.sendMessage(t.id, { type: Probe.MSG.PING }); if (r && r.build) tabBuild = r.build; } catch (_) {}
     const el = $("build");
     const stale = tabBuild !== "—" && tabBuild !== Probe.BUILD;
     el.textContent = `bg ${Probe.BUILD} · tab ${tabBuild}${stale ? " ⚠ reload tab" : ""}`;
-    el.style.color = stale ? "#e5534b" : "var(--muted)";
+    el.style.color = stale ? "var(--danger)" : "var(--muted)";
   }
 
   async function refresh() {
@@ -86,25 +118,91 @@
     const o = await send({ type: Probe.MSG.GET_OVERVIEW });
     if (o && o.ok) renderOverview(o);
     const logEl = $("log");
-    // Only auto-scroll if already pinned to the bottom, so you can scroll up.
     const atBottom = logEl.scrollHeight - logEl.scrollTop - logEl.clientHeight < 40;
     logEl.textContent = (await Probe.log.getRing()).slice(-80).join("\n");
     if (atBottom) logEl.scrollTop = logEl.scrollHeight;
   }
 
   async function onRun() {
+    if (lastStatus === "running") return flash("already running — Stop first", true);
     let runConfig; try { runConfig = buildConfig(); } catch (e) { return flash(e.message, true); }
     const win = await ext.windows.getCurrent();
     const r = await send({ type: Probe.MSG.START_RUN, runConfig, windowId: win && win.id });
     if (!r || !r.ok) return flash("run failed: " + (r && r.error), true);
     flash(`running: ${r.perProvider} items × ${runConfig.providers.length} providers`);
+    loadRuns();
     setTimeout(refresh, 800);
   }
+  async function onResume() {
+    const win = await ext.windows.getCurrent();
+    const r = await send({ type: Probe.MSG.RESUME_RUN, fromStorage: true, windowId: win && win.id });
+    if (!r || !r.ok) return flash("resume failed: " + (r && r.error), true);
+    flash("resumed — filling missing items");
+    setTimeout(refresh, 800);
+  }
+  // Run history dropdown: shows each past run with its progress; picking one makes
+  // it active (config restored into the form; Resume missing continues it).
+  function applyCfgToForm(cfg) {
+    $("questions").value = JSON.stringify({ items: cfg.questions }, null, 2);
+    $("personas").value = JSON.stringify(cfg.personas || []);
+    $("reps").value = cfg.repetitions || 1;
+    $("private").checked = !!(cfg.config && cfg.config.private);
+    for (const p of Probe.providers.LIST) $("prov-" + p.id).checked = cfg.providers.includes(p.id);
+    updatePreview();
+  }
+  function runLabel(r) {
+    const m = r.runId.match(/run_(\d{4})-(\d{2})-(\d{2})T(\d{2})-(\d{2})/);
+    const when = m ? `${m[3]}/${m[2]} ${m[4]}:${m[5]}` : r.runId;
+    const done = r.ok >= r.total ? " ✓" : ` — ${r.ok}/${r.total}`;
+    return `${when} · ${r.providers.join(", ")}${done}${r.running ? " (running)" : ""}`;
+  }
+  async function loadRuns(keepSelection) {
+    const res = await send({ type: Probe.MSG.LIST_RUNS });
+    if (!res || !res.ok) return;
+    const sel = $("runsel");
+    const cur = keepSelection ? sel.value : (res.runs.find((r) => r.active) || {}).runId || "";
+    sel.innerHTML = `<option value="">New run…</option>` +
+      res.runs.map((r) => `<option value="${r.runId}">${runLabel(r)}</option>`).join("");
+    sel.value = cur || "";
+  }
+  async function onSelectRun() {
+    const runId = $("runsel").value;
+    if (!runId) return; // "New run…" keeps the form editable as-is
+    const r = await send({ type: Probe.MSG.SELECT_RUN, runId });
+    if (!r || !r.ok) return flash("select failed: " + (r && r.error), true);
+    applyCfgToForm(r.runConfig);
+    flash(`selected ${runId} — Resume missing continues it`);
+    setTimeout(refresh, 300);
+  }
+
+  // Import a .run.json manifest: the run's config + records are restored, the UI
+  // reflects its providers/questions/reps, and Resume missing fills the gaps.
+  // Firefox (macOS) closes the browserAction popup the moment the native file
+  // dialog takes focus, killing the change handler — so import must run from a
+  // full tab. First click opens this same page as a tab; the picker works there.
+  const IN_TAB = new URLSearchParams(location.search).has("tab");
+  async function onImportClick() {
+    if (IN_TAB) return $("importfile").click();
+    await ext.tabs.create({ url: ext.runtime.getURL("src/popup/popup.html") + "?tab=1#import" });
+    window.close();
+  }
+  async function onImportFile(file) {
+    let manifest;
+    try { manifest = JSON.parse(await file.text()); }
+    catch (e) { return flash("not valid JSON: " + (e.message || e), true); }
+    const r = await send({ type: Probe.MSG.IMPORT_RUN, manifest });
+    if (!r || !r.ok) return flash("import failed: " + (r && r.error), true);
+    applyCfgToForm(r.runConfig);
+    await loadRuns();
+    flash(`imported ${r.runId} (${r.records} records) — hit "Resume missing" to fill the gaps`);
+    setTimeout(refresh, 300);
+  }
+
   async function onExport() {
     const r = await send({ type: Probe.MSG.EXPORT_RUN });
     if (!r || !r.ok) return flash("export failed: " + (r && r.error), true);
     flash(`exported ${r.count} records + summary`);
-    if (r.summaryText) $("log").textContent = r.summaryText;
+    if (r.summaryText) { $("log").textContent = r.summaryText; document.querySelector("details.logbox").open = true; }
   }
 
   async function onCaptureDom() {
@@ -122,23 +220,41 @@
     flash("captured DOM → " + name);
   }
 
+  async function onClearCookies() {
+    if (!confirm("Clear all ChatGPT / OpenAI cookies? You'll be logged out and need to sign back into ChatGPT before running.")) return;
+    const r = await send({ type: Probe.MSG.CLEAR_COOKIES, domains: ["chatgpt.com", "openai.com"] });
+    flash(r && r.ok ? `cleared ${r.count} cookies — reload chatgpt.com & log in` : "clear failed: " + (r && r.error), !(r && r.ok));
+  }
+
   let recOn = false;
   async function onRecord() {
     if (!recOn) {
       const r = await send({ type: Probe.MSG.REC_START });
-      if (r && r.ok) { recOn = true; $("record").textContent = "⏹ Stop & export recording"; flash("recording — now do the steps in the page"); }
+      if (r && r.ok) { recOn = true; $("record").textContent = "⏹ Stop & export"; flash("recording — now do the steps in the page"); }
     } else {
       await send({ type: Probe.MSG.REC_STOP });
       const e = await send({ type: Probe.MSG.REC_EXPORT });
-      recOn = false; $("record").textContent = "⏺ Record interaction";
+      recOn = false; $("record").textContent = "⏺ Record";
       flash(e && e.ok ? `recording saved (${e.count} events)` : "record export failed");
     }
   }
 
   function wire() {
     $("run").addEventListener("click", onRun);
+    $("resume").addEventListener("click", onResume);
+    $("runsel").addEventListener("change", onSelectRun);
+    $("import").addEventListener("click", onImportClick);
+    $("importfile").addEventListener("change", (e) => { if (e.target.files[0]) onImportFile(e.target.files[0]); e.target.value = ""; });
     $("capture").addEventListener("click", onCaptureDom);
     $("record").addEventListener("click", onRecord);
+    $("clearcookies").addEventListener("click", onClearCookies);
+    // per-provider ⏸/▶ (provlist re-renders every poll, so delegate)
+    $("provlist").addEventListener("click", async (e) => {
+      const b = e.target.closest("button.pp");
+      if (!b) return;
+      await send({ type: b.dataset.paused ? Probe.MSG.RESUME_PROVIDER : Probe.MSG.PAUSE_PROVIDER, provider: b.dataset.pid });
+      refresh();
+    });
     $("pause").addEventListener("click", async () => { await send({ type: Probe.MSG.PAUSE_RUN }); setTimeout(refresh, 300); });
     $("stop").addEventListener("click", async () => { await send({ type: Probe.MSG.STOP_RUN }); setTimeout(refresh, 300); });
     $("export").addEventListener("click", onExport);
@@ -147,12 +263,16 @@
   }
 
   document.addEventListener("DOMContentLoaded", async () => {
+    if (IN_TAB) {
+      document.documentElement.classList.add("tab");
+      if (location.hash === "#import") flash('now pick your file with "Import run.json" — the dialog works here');
+    }
     renderProviders();
     $("questions").value = JSON.stringify(DEFAULT_QUESTIONS, null, 2);
     $("personas").value = "[]";
-    wire(); updatePreview(); refresh();
+    wire(); updatePreview(); refresh(); loadRuns();
     const ra = await send({ type: Probe.MSG.REC_ACTIVE });
-    if (ra && ra.recording) { recOn = true; $("record").textContent = "⏹ Stop & export recording"; }
+    if (ra && ra.recording) { recOn = true; $("record").textContent = "⏹ Stop & export"; }
     setInterval(refresh, 1500);
   });
 })();

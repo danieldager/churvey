@@ -11,3 +11,9 @@ data/
 .DS_Store
 *.log
 node_modules/
+ff/src/popup/_preview.html
+ff/dev/shots/
+
+# Python artifacts
+__pycache__/
+*.pyc

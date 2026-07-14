@@ -65,7 +65,7 @@
       error: parsed.error || null,
       model: completion ? sniffModel(provider.id, text) : null,
       sample: text.slice(0, 1500), // for discovery
-      raw: completion ? text.slice(0, 300000) : undefined, // full-ish for matched endpoints
+      raw: completion ? text.slice(0, 1000000) : undefined, // full-ish for matched endpoints (Grok/Gemini streams exceed 300KB)
     });
   }
 
@@ -87,6 +87,11 @@
     }
     if (providerId === "deepseek") {
       return { text: parseDeepseek(text) };
+    }
+    if (providerId === "chatgpt") {
+      const t = parseChatgpt(text);
+      if (t) return { text: t };
+      // fall through to generic branches for non-stream (JSON error) bodies
     }
 
     // SSE providers (ChatGPT, Claude, DeepSeek, and Grok when it streams).
@@ -129,31 +134,181 @@
     return { text: "" };
   }
 
-  // DeepSeek: SSE incremental-patch stream. The opening text is in the initial
-  // response object's RESPONSE fragment(s); the rest arrives as string `v` APPEND
-  // deltas. The generic parser only saw the deltas (dropping the first fragment).
-  function parseDeepseek(text) {
-    let out = "", gotInit = false, curPath = "";
+  // ChatGPT: delta_encoding v1 — the stream builds message documents via ops.
+  // The answer HEAD arrives inside an `o:"add"` message object, mid-answer chunks
+  // arrive in `o:"patch"` batches (and bare-list batches), and only the remainder
+  // is bare string `v` appends. The old generic parser kept just the bare appends,
+  // silently dropping ~80% of long answers. This applies the ops faithfully.
+  function parseChatgpt(text) {
+    const roots = []; // completed message docs
+    let root = null, lastPath = "";
+
+    const navigate = (doc, tokens) => {
+      let cur = doc;
+      for (let i = 0; i < tokens.length - 1; i++) {
+        const tok = tokens[i], nextIsIdx = /^\d+$/.test(tokens[i + 1]);
+        if (Array.isArray(cur)) {
+          const idx = +tok;
+          while (cur.length <= idx) cur.push({});
+          if (cur[idx] == null) cur[idx] = nextIsIdx ? [] : {};
+          cur = cur[idx];
+        } else {
+          if (cur[tok] == null) cur[tok] = nextIsIdx ? [] : {};
+          cur = cur[tok];
+        }
+      }
+      return [cur, tokens[tokens.length - 1]];
+    };
+    const apply = (op, path, value) => {
+      if (!path) {
+        if (op === "add") { if (root !== null) roots.push(root); root = value; }
+        else if (op === "replace") root = value;
+        return;
+      }
+      if (root === null) root = {};
+      const tokens = path.split("/").filter(Boolean);
+      const [cont, key] = navigate(root, tokens);
+      const k = Array.isArray(cont) ? +key : key;
+      if (Array.isArray(cont)) while (cont.length <= k) cont.push(op === "append" ? "" : null);
+      const old = cont[k];
+      if (op === "append") {
+        if (typeof old === "string" && typeof value === "string") cont[k] = old + value;
+        else if (Array.isArray(old) && Array.isArray(value)) cont[k] = old.concat(value);
+        else cont[k] = value;
+      } else if (op === "add" || op === "replace") cont[k] = value;
+    };
+    const feed = (j) => {
+      if (!j || typeof j !== "object") return;
+      if (j.type && !("v" in j)) return; // control frames (markers, moderation, resume)
+      const op = j.o, path = j.p, v = j.v;
+      if (op === "patch" || (op == null && Array.isArray(v) && path == null)) {
+        for (const sub of v) {
+          if (!sub || typeof sub !== "object") continue;
+          apply(sub.o || "append", sub.p || "", sub.v);
+          if (sub.p) lastPath = sub.p;
+        }
+        return;
+      }
+      if (op == null && path == null) {
+        if (typeof v === "string") apply("append", lastPath || "/message/content/parts/0", v);
+        else if (v && typeof v === "object") { apply("add", "", v); lastPath = ""; }
+        return;
+      }
+      if (path != null) lastPath = path;
+      apply(op || "append", path || "", v);
+    };
+
     for (const ln of text.split(/\r?\n/)) {
       const m = ln.match(/^data:\s?(.*)$/); if (!m) continue;
       const p = m[1].trim(); if (!p || p === "[DONE]") continue;
       let j; try { j = JSON.parse(p); } catch (_) { continue; }
-      if (typeof j.p === "string") curPath = j.p; // patches set the active path
-      if (typeof j.v === "string") {
-        // Only the answer text — content deltas (and their path-less continuations).
-        // Skips control deltas like response/status = "FINISHED".
-        if (curPath.includes("content")) out += j.v;
-      } else if (!gotInit && j.v && j.v.response && Array.isArray(j.v.response.fragments)) {
-        gotInit = true;
-        for (const f of j.v.response.fragments) if (f && f.type === "RESPONSE" && typeof f.content === "string") out += f.content;
-      }
+      feed(j);
     }
-    return out;
+    if (root !== null) roots.push(root);
+
+    // Join text parts of assistant messages; prefer the last "final"-channel one.
+    const texts = [];
+    for (const r of roots) {
+      const msg = r && r.message;
+      if (!msg || !msg.author || msg.author.role !== "assistant") continue;
+      const c = msg.content;
+      if (!c || c.content_type !== "text" || !Array.isArray(c.parts)) continue;
+      const t = c.parts.filter((x) => typeof x === "string").join("");
+      if (t.trim()) texts.push({ channel: msg.channel, t });
+    }
+    if (!texts.length) return "";
+    const finals = texts.filter((x) => x.channel == null || x.channel === "final");
+    return (finals.length ? finals[finals.length - 1] : texts[texts.length - 1]).t;
+  }
+
+  // DeepSeek: SSE incremental-patch stream building a response document. Ops:
+  // init {"v":{response:{...}}}, path ops {"p":"response/fragments/-1/content",
+  // "o":"APPEND","v":"..."}, BATCH lists of sub-ops (these carry NEW fragments,
+  // including the answer head), and bare {"v":"str"} continuations at the last
+  // path. The old parser missed BATCH and mis-tracked the path, dropping heads.
+  function parseDeepseek(text) {
+    let root = {}, lastPath = null;
+    const resolve = (tokens) => {
+      let cur = root;
+      for (let i = 0; i < tokens.length - 1; i++) {
+        let tok = tokens[i];
+        const nextIsIdx = /^-?\d+$/.test(tokens[i + 1]);
+        if (Array.isArray(cur)) {
+          let idx = tok === "-1" ? cur.length - 1 : +tok;
+          while (cur.length <= idx) cur.push({});
+          if (cur[idx] == null) cur[idx] = nextIsIdx ? [] : {};
+          cur = cur[idx];
+        } else {
+          if (cur[tok] == null) cur[tok] = nextIsIdx ? [] : {};
+          cur = cur[tok];
+        }
+      }
+      return [cur, tokens[tokens.length - 1]];
+    };
+    const apply = (path, op, value) => {
+      if (!path) { if (value && typeof value === "object" && !Array.isArray(value)) root = value; return; }
+      const tokens = path.split("/").filter(Boolean);
+      const [cont, key] = resolve(tokens);
+      let k = key;
+      if (Array.isArray(cont)) {
+        k = key === "-1" ? cont.length - 1 : +key;
+        while (cont.length <= k) cont.push(null);
+      }
+      const old = cont[k];
+      if (op === "APPEND") {
+        if (typeof old === "string" && typeof value === "string") cont[k] = old + value;
+        else if (Array.isArray(old) && Array.isArray(value)) cont[k] = old.concat(value);
+        else cont[k] = value;
+      } else cont[k] = value; // SET / default
+    };
+    const feed = (j) => {
+      if (!j || typeof j !== "object" || !("v" in j)) return;
+      const path = j.p, op = j.o, v = j.v;
+      if (op === "BATCH" && Array.isArray(v)) {
+        for (const sub of v) {
+          if (!sub || typeof sub !== "object" || !("v" in sub)) continue;
+          const full = ((path || "") + "/" + (sub.p || "")).replace(/^\/|\/$/g, "");
+          apply(full, sub.o || "SET", sub.v);
+          if (typeof sub.v === "string") lastPath = full;
+        }
+        return;
+      }
+      if (path == null && op == null) {
+        if (typeof v === "string" && lastPath) apply(lastPath, "APPEND", v);
+        else if (v && typeof v === "object") { apply("", "SET", v); lastPath = null; }
+        return;
+      }
+      apply(path || "", op || "SET", v);
+      if (typeof v === "string" && path) lastPath = path;
+    };
+    for (const ln of text.split(/\r?\n/)) {
+      const m = ln.match(/^data:\s?(.*)$/); if (!m) continue;
+      const p = m[1].trim(); if (!p || p === "[DONE]") continue;
+      let j; try { j = JSON.parse(p); } catch (_) { continue; }
+      feed(j);
+    }
+    const resp = (root && root.response) || (root && root.fragments ? root : null);
+    const frags = (resp && resp.fragments) || [];
+    return frags.filter((f) => f && f.type === "RESPONSE" && typeof f.content === "string").map((f) => f.content).join("");
+  }
+
+  // Grok embeds UI widget markup inside the answer text — <grok:render> inline
+  // citation cards and <xai:tool_usage_card> blocks. Neither is model prose, so
+  // strip both from EVERY path. (The modelResponse.message path used to skip this
+  // entirely: the render cards were ~36% of the captured characters.)
+  function stripGrokMarkup(s) {
+    return (s || "")
+      .replace(/<grok:render[\s\S]*?<\/grok:render>/g, "")
+      .replace(/<grok:render[^>]*\/>/g, "")
+      .replace(/<xai:tool_usage_card>[\s\S]*?<\/xai:tool_usage_card>/g, "")
+      .replace(/[ \t]{2,}/g, " ")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
   }
 
   // Grok: NDJSON stream from conversations/new. The clean final answer is in
   // result.response.modelResponse.message; otherwise join streamed `token`s
-  // (stripping the thinking + <xai:tool_usage_card> blocks). Also detect errors.
+  // (stripping the thinking blocks). Also detect errors.
   function parseGrok(text) {
     let finalMsg = "", tokens = [], err = null;
     for (const ln of text.split(/\r?\n/)) {
@@ -164,10 +319,9 @@
       if (r.modelResponse && typeof r.modelResponse.message === "string") finalMsg = r.modelResponse.message;
       else if (typeof r.token === "string") tokens.push(r.token);
     }
-    if (finalMsg) return { text: finalMsg };
+    if (finalMsg) return { text: stripGrokMarkup(finalMsg) };
     if (err && !tokens.length) return { text: "", error: err };
-    const joined = tokens.join("").replace(/<xai:tool_usage_card>[\s\S]*?<\/xai:tool_usage_card>/g, "");
-    return { text: joined.trim() };
+    return { text: stripGrokMarkup(tokens.join("")) };
   }
 
   // Gemini: strip )]}' guard, then each length-prefixed line is an array

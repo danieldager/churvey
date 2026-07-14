@@ -9,20 +9,25 @@
     const expected = cfg ? Probe.runPlan.perProviderCount(cfg) : null;
     const runId = (records[0] && records[0].runId) || (cfg && cfg.runId) || null;
     const scoped = runId ? records.filter((r) => r.runId === runId) : records;
+    const expectedKeys = cfg ? Probe.runPlan.expand(cfg).map((it) => it.itemKey) : null;
     const providers = {};
     for (const p of provs) {
       const rs = scoped.filter((r) => r.provider === p);
       const ok = rs.filter((r) => r.status === "ok");
       const err = rs.filter((r) => r.status === "error");
+      const okKeys = new Set(ok.map((r) => r.itemKey));
+      const missing = expectedKeys ? expectedKeys.filter((k) => !okKeys.has(k)) : [];
       const lat = ok.map((r) => r.latencyMs).filter((x) => typeof x === "number").sort((a, b) => a - b);
       providers[p] = {
         attempted: rs.length, expected,
         completion: expected ? +(rs.length / expected).toFixed(2) : null,
-        ok: ok.length, error: err.length,
+        ok: ok.length, error: err.length, missing,
         captureRate: rs.length ? +(ok.length / rs.length).toFixed(2) : null,
         blocked: err.some((r) => BLOCK_RE.test(r.errorMessage || "")),
         blockReasons: [...new Set(err.map((r) => r.errorMessage).filter(Boolean))],
         models: [...new Set(rs.map((r) => r.modelLabel).filter(Boolean))],
+        withCitations: ok.filter((r) => (r.citations || []).length).length,
+        citationsTotal: ok.reduce((n, r) => n + (r.citations || []).length, 0),
         latencyMs: lat.length ? { count: lat.length, min: lat[0], median: pctile(lat, 50), p90: pctile(lat, 90), max: lat[lat.length - 1], mean: Math.round(lat.reduce((a, b) => a + b, 0) / lat.length) } : null,
       };
     }
@@ -41,8 +46,10 @@
     L.push(`Totals: ${s.totals.records} records — ok ${s.totals.ok}, error ${s.totals.error}`, "");
     for (const [p, v] of Object.entries(s.providers)) {
       L.push(`${p.padEnd(9)} ${v.attempted}/${v.expected ?? "?"}  ok=${v.ok} err=${v.error}  capture=${v.captureRate == null ? "—" : Math.round(v.captureRate * 100) + "%"}${v.blocked ? "  ⚠ BLOCKED" : ""}`);
+      if (v.missing && v.missing.length) L.push(`           MISSING (${v.missing.length}): ${v.missing.slice(0, 8).join(", ")}${v.missing.length > 8 ? " …" : ""}`);
       if (v.latencyMs) L.push(`           latency median ${ms(v.latencyMs.median)} · p90 ${ms(v.latencyMs.p90)} · max ${ms(v.latencyMs.max)}`);
       if (v.models.length) L.push(`           models: ${v.models.join(", ")}`);
+      if (v.ok) L.push(`           citations: ${v.citationsTotal} urls across ${v.withCitations}/${v.ok} answers`);
       if (v.blockReasons.length) L.push(`           issues: ${v.blockReasons.slice(0, 3).join(" | ")}`);
     }
     return L.join("\n");

@@ -7,9 +7,15 @@
     PAUSE_RUN: "PAUSE_RUN",
     RESUME_RUN: "RESUME_RUN",
     STOP_RUN: "STOP_RUN",
+    PAUSE_PROVIDER: "PAUSE_PROVIDER", // {provider} freeze one provider (account swap); the rest keep running
+    RESUME_PROVIDER: "RESUME_PROVIDER", // {provider} unfreeze + clear its backoff so it re-asks immediately
     GET_OVERVIEW: "GET_OVERVIEW",
     EXPORT_RUN: "EXPORT_RUN",
+    IMPORT_RUN: "IMPORT_RUN", // {manifest} -> restore a .run.json (config + records); Resume fills gaps
+    LIST_RUNS: "LIST_RUNS", // -> {runs:[{runId, ok, total, ...}]} run history with progress
+    SELECT_RUN: "SELECT_RUN", // {runId} -> make a past run active (Resume continues it)
     CLEAR_RUN: "CLEAR_RUN",
+    CLEAR_COOKIES: "CLEAR_COOKIES", // {domains} -> full clear to fix 431 header bloat (re-login after)
 
     // background -> content driver (two-step so a navigating "new chat" can't
     // break the submit: conductor waits for the tab to be ready in between)
@@ -18,6 +24,7 @@
     PURGE: "PURGE", // DeepSeek: delete all chats
     PING: "PING", // -> {ok, ready, visibility}
     CAPTURE_DOM: "CAPTURE_DOM", // -> dump visible buttons/dialogs for selector authoring
+    SCRAPE_SOURCES: "SCRAPE_SOURCES", // -> {ok, citations:[{title,url}]} scraped from the answer's source UI
 
     // interaction recorder ("teach me this flow") — popup -> background
     REC_START: "REC_START",

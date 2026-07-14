@@ -1,0 +1,703 @@
+<title>Chatbot accuracy on Michigan 2026 primary voting questions — pilot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --paper:#FCFCFD;--panel:#FFFFFF;--ink:#1A1D23;--muted:#5B6470;--faint:#8A93A0;
+    --line:#E5E8EE;--accent:#2B4B80;--good:#1F7A4D;--warn:#9A6B12;--bad:#B0242D;
+    --good-s:#2FA968;--warn-s:#C79320;--bad-s:#CA3C44;--miss:#AEB6C2;--chip:#F2F4F8;
+    --good-bg:#2FA9681F;--warn-bg:#C793201F;--bad-bg:#CA3C441A;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#121418;--panel:#181B21;--ink:#E9EBEF;--muted:#99A1AF;--faint:#6C7684;
+    --line:#282D36;--accent:#7EA2DC;--good:#54B47F;--warn:#D6A54A;--bad:#E4676E;
+    --good-s:#54B47F;--warn-s:#D6A54A;--bad-s:#E4676E;--miss:#4A525E;--chip:#20242B;
+    --good-bg:#54B47F26;--warn-bg:#D6A54A24;--bad-bg:#E4676E24;}}
+  :root[data-theme=light]{
+    --paper:#FCFCFD;--panel:#FFFFFF;--ink:#1A1D23;--muted:#5B6470;--faint:#8A93A0;
+    --line:#E5E8EE;--accent:#2B4B80;--good:#1F7A4D;--warn:#9A6B12;--bad:#B0242D;
+    --good-s:#2FA968;--warn-s:#C79320;--bad-s:#CA3C44;--miss:#AEB6C2;--chip:#F2F4F8;
+    --good-bg:#2FA9681F;--warn-bg:#C793201F;--bad-bg:#CA3C441A;}
+  :root[data-theme=dark]{
+    --paper:#121418;--panel:#181B21;--ink:#E9EBEF;--muted:#99A1AF;--faint:#6C7684;
+    --line:#282D36;--accent:#7EA2DC;--good:#54B47F;--warn:#D6A54A;--bad:#E4676E;
+    --good-s:#54B47F;--warn-s:#D6A54A;--bad-s:#E4676E;--miss:#4A525E;--chip:#20242B;
+    --good-bg:#54B47F26;--warn-bg:#D6A54A24;--bad-bg:#E4676E24;}
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);margin:0;
+    font:16px/1.6 ui-serif,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;}
+  .sans,h1,h2,h3,.eyebrow,.meta,.kv dt,th,.vendor,.biglbl,.tab,.qid,.extag,.exmodel,
+  .exscore,.anslbl,.tally,.cs-lbl,.cs-val,.critflag,.bignum{
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 24px 80px;}
+  .eyebrow{text-transform:uppercase;letter-spacing:.11em;font-size:12px;font-weight:600;color:var(--accent);margin:0 0 12px;}
+  h1{font-size:30px;line-height:1.16;font-weight:700;letter-spacing:-.015em;text-wrap:balance;margin:0 0 12px;}
+  .dek{font-size:17.5px;color:var(--muted);margin:0 0 26px;max-width:64ch;}
+  /* tabs */
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:0 0 30px;position:sticky;top:0;
+    background:var(--paper);padding-top:6px;z-index:5;}
+  .tab{appearance:none;border:0;background:none;color:var(--muted);font-size:14.5px;font-weight:600;
+    padding:11px 16px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;border-radius:6px 6px 0 0;}
+  .tab:hover{color:var(--ink);background:var(--chip);}
+  .tab.on{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .panel{display:none;} .panel.on{display:block;}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);font-weight:600;margin:0 0 16px;}
+  h2 .sub,.sub{text-transform:none;letter-spacing:0;color:var(--faint);font-weight:400;}
+  .rule{height:1px;background:var(--line);border:0;margin:34px 0;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none;}
+  .meta li{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 11px;}
+  .meta b{color:var(--ink);font-weight:600;}
+  .bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin:7px 0 0;}
+  .bar.thin{height:3px;}
+  .barfill{display:block;height:100%;border-radius:3px;background:var(--accent);}
+  .of{color:var(--faint);font-weight:500;} .rate{font-size:12px;color:var(--muted);font-weight:500;}
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:14.5px;}
+  /* headline results table */
+  .hlwrap{overflow-x:auto;}
+  .headline{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .headline th,.headline td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  .headline tbody tr:last-child th,.headline tbody tr:last-child td{border-bottom:0;}
+  .headline thead th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);
+    font-weight:600;background:var(--chip);border-bottom:1px solid var(--line);white-space:nowrap;}
+  .headline thead th .sub{font-size:10.5px;text-transform:none;letter-spacing:0;}
+  .headline tbody th{white-space:nowrap;}
+  .mname{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.01em;}
+  .mvendor{display:block;font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-top:1px;}
+  .headline td{font-variant-numeric:tabular-nums;}
+  .headline .mean{min-width:118px;}
+  .mnum{font-size:22px;font-weight:700;letter-spacing:-.02em;}
+  .headline .sub-metric{min-width:88px;}
+  .snum{font-size:14.5px;font-weight:600;}
+  .headline td.num{text-align:right;font-weight:700;font-size:15px;white-space:nowrap;}
+  .headline td.num.bad{color:var(--bad);} .headline td.num.ok{color:var(--good);}
+  /* first row = best performer, given a touch of emphasis */
+  .headline tbody tr:first-child{background:var(--good-bg);}
+  .headline tbody tr:first-child .mnum{color:var(--good);}
+  .headline tbody tr:first-child .barfill{background:var(--good);}
+  .hard th,.hard td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);}
+  .hard thead th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);font-weight:600;}
+  .hard .q{font-weight:600;color:var(--accent);width:52px;}
+  .hard .num{font-variant-numeric:tabular-nums;text-align:right;font-weight:700;}
+  .notes{font-size:13.5px;color:var(--muted);} .notes p{margin:0 0 10px;} .notes b{color:var(--ink);font-weight:600;}
+  .foot{margin-top:22px;font-size:12px;color:var(--faint);} .foot b{color:var(--muted);}
+  /* tab2 questions & key */
+  .tabintro{font-size:14px;color:var(--muted);margin:0 0 24px;}
+  .qlist,.exlist{display:flex;flex-direction:column;gap:14px;}
+  .qcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+  .qhead,.exqhead,.exqhead{display:flex;gap:12px;align-items:baseline;margin-bottom:12px;}
+  .qid{flex:none;font-size:13px;font-weight:700;color:var(--accent);background:var(--chip);
+    border-radius:6px;padding:2px 9px;min-width:44px;text-align:center;}
+  .qq{margin:0;font-size:16px;font-weight:600;line-height:1.4;}
+  .ans{margin:0 0 4px;} .anslbl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--good);font-weight:600;margin-bottom:3px;}
+  .ans p{margin:0;font-size:15px;line-height:1.6;} .ans b{font-weight:700;}
+  .rubric{margin-top:12px;border-top:1px solid var(--line);padding-top:8px;}
+  .rubric summary{cursor:pointer;font-family:ui-sans-serif,system-ui,sans-serif;font-size:12.5px;color:var(--muted);font-weight:600;}
+  .rubric summary:hover{color:var(--ink);} .rubric ul{margin:11px 0 0;padding-left:20px;}
+  .rubric li{font-size:13.5px;margin:0 0 6px;color:var(--muted);} .rubric li.crit{color:var(--ink);}
+  .critflag{font-family:ui-sans-serif,system-ui,sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--bad);border:1px solid var(--bad);border-radius:4px;padding:0 4px;margin-left:5px;font-weight:600;vertical-align:1px;}
+  .rubnote{font-size:12.5px;color:var(--faint);margin:10px 0 0;padding-left:0;}
+  .heldnote{background:var(--warn-bg);border-left:3px solid var(--warn);color:var(--warn);
+    font-family:ui-sans-serif,system-ui,sans-serif;font-size:12.5px;line-height:1.45;padding:8px 12px;border-radius:6px;margin:0 0 12px;}
+  .anssub{color:var(--faint);font-weight:400;text-transform:none;letter-spacing:0;}
+  .ambnote{font-size:13px;color:var(--muted);line-height:1.55;margin:0 0 14px;} .ambnote b{color:var(--ink);}
+  .ambgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  .ex.amb .exquote{margin-bottom:0;}
+  .extag.neutral{color:var(--muted);background:var(--chip);}
+  .extag.neutral.mi{color:var(--good);background:var(--good-bg);}
+  .extag.neutral.ok{color:var(--good);background:var(--good-bg);}
+  /* tab3 examples */
+  .exq{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+  .excols{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .excols.one{grid-template-columns:1fr;} .excols.one .ex{max-width:none;}
+  .exnote{margin:11px 0 0;font-size:12.5px;color:var(--good);font-family:ui-sans-serif,system-ui,sans-serif;}
+  .ex{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:var(--paper);display:flex;flex-direction:column;}
+  .exhead{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+  .exmodel{font-size:14px;font-weight:700;}
+  .extag{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;font-weight:600;border-radius:5px;padding:2px 7px;}
+  .extag.ok{color:var(--good);background:var(--good-bg);} .extag.bad{color:var(--bad);background:var(--bad-bg);}
+  .extag.crit{color:#fff;background:var(--bad);} .extag.warn{color:var(--warn);background:var(--warn-bg);}
+  .exscore{margin-left:auto;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;}
+  .exscore.good{color:var(--good);} .exscore.mid{color:var(--warn);} .exscore.low{color:var(--bad);}
+  .exquote{margin:0 0 11px;font-size:13.5px;line-height:1.55;color:var(--ink);}
+  .exgrade{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:9px;}
+  .dots{display:inline-flex;gap:3px;} .dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:var(--miss);vertical-align:middle;}
+  .dot.correct{background:var(--good-s);} .dot.partial{background:var(--warn-s);} .dot.missing{background:var(--miss);} .dot.wrong{background:var(--bad-s);}
+  .tally{font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums;}
+  .exwhy{margin:auto 0 0;font-size:12.5px;line-height:1.5;color:var(--muted);display:flex;gap:7px;align-items:baseline;}
+  .whodot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--miss);position:relative;top:1px;}
+  .whodot.correct{background:var(--good-s);} .whodot.partial{background:var(--warn-s);} .whodot.wrong{background:var(--bad-s);} .whodot.missing{background:var(--miss);}
+  @media (max-width:640px){.excols,.ambgrid{grid-template-columns:1fr;}.wrap{padding:32px 16px 60px;}h1{font-size:25px;}
+    .tabs{overflow-x:auto;}.tab{white-space:nowrap;}}
+</style>
+<div class="wrap">
+  <p class="eyebrow">Pilot study &middot; measurement brief</p>
+  <h1>How accurately do AI chatbots answer real voting questions?</h1>
+  <p class="dek">A pilot testing five consumer chatbots on 14 factual questions about Michigan's
+     August&nbsp;4, 2026 primary — voting logistics and where the candidates stand — graded against
+     an official ground-truth answer key.</p>
+  <div class="tabs" role="tablist">
+    <button class="tab on" role="tab" data-p="p-results" aria-selected="true">Results</button>
+    <button class="tab" role="tab" data-p="p-key" aria-selected="false">Questions &amp; key</button>
+    <button class="tab" role="tab" data-p="p-examples" aria-selected="false">Examples</button>
+  </div>
+  <section class="panel on" id="p-results" role="tabpanel">
+  <ul class="meta">
+    <li><b>5</b> chatbots</li><li><b>14</b> questions</li><li><b>350</b> answers graded</li>
+    <li><b>5</b> reps / question</li><li>Judge: <b>DeepSeek-V4-Flash</b> (reasoning)</li><li>Neutral persona</li>
+  </ul>
+  <h2>Headline results <span class="sub">· best first · n=70 answers per model</span></h2>
+  
+  <div class="hlwrap">
+  <table class="headline">
+    <thead><tr>
+      <th>Model</th>
+      <th>Mean accuracy</th>
+      <th>Logistics<br><span class="sub">7 questions</span></th>
+      <th>Candidates<br><span class="sub">7 questions</span></th>
+      <th class="num">Misinformation</th>
+      <th class="num">Critical<br><span class="sub">errors</span></th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <th scope="row"><span class="mname">Grok</span><span class="mvendor">xAI</span></th>
+        <td class="mean"><span class="mnum">94%</span><div class='bar '><span class='barfill' style='width:94%'></span></div></td>
+        <td class="sub-metric"><span class="snum">95%</span><div class='bar thin'><span class='barfill' style='width:95%'></span></div></td>
+        <td class="sub-metric"><span class="snum">93%</span><div class='bar thin'><span class='barfill' style='width:93%'></span></div></td>
+        <td class="num bad">3<span class="of">/70</span>
+            <span class="rate">(4%)</span></td>
+        <td class="num bad">2</td>
+      </tr>
+      <tr>
+        <th scope="row"><span class="mname">Gemini</span><span class="mvendor">Google</span></th>
+        <td class="mean"><span class="mnum">81%</span><div class='bar '><span class='barfill' style='width:81%'></span></div></td>
+        <td class="sub-metric"><span class="snum">90%</span><div class='bar thin'><span class='barfill' style='width:90%'></span></div></td>
+        <td class="sub-metric"><span class="snum">71%</span><div class='bar thin'><span class='barfill' style='width:71%'></span></div></td>
+        <td class="num bad">3<span class="of">/70</span>
+            <span class="rate">(4%)</span></td>
+        <td class="num bad">2</td>
+      </tr>
+      <tr>
+        <th scope="row"><span class="mname">ChatGPT</span><span class="mvendor">OpenAI</span></th>
+        <td class="mean"><span class="mnum">80%</span><div class='bar '><span class='barfill' style='width:80%'></span></div></td>
+        <td class="sub-metric"><span class="snum">85%</span><div class='bar thin'><span class='barfill' style='width:85%'></span></div></td>
+        <td class="sub-metric"><span class="snum">74%</span><div class='bar thin'><span class='barfill' style='width:74%'></span></div></td>
+        <td class="num bad">1<span class="of">/70</span>
+            <span class="rate">(1%)</span></td>
+        <td class="num bad">1</td>
+      </tr>
+      <tr>
+        <th scope="row"><span class="mname">Claude</span><span class="mvendor">Anthropic</span></th>
+        <td class="mean"><span class="mnum">75%</span><div class='bar '><span class='barfill' style='width:75%'></span></div></td>
+        <td class="sub-metric"><span class="snum">84%</span><div class='bar thin'><span class='barfill' style='width:84%'></span></div></td>
+        <td class="sub-metric"><span class="snum">66%</span><div class='bar thin'><span class='barfill' style='width:66%'></span></div></td>
+        <td class="num bad">8<span class="of">/70</span>
+            <span class="rate">(11%)</span></td>
+        <td class="num bad">5</td>
+      </tr>
+      <tr>
+        <th scope="row"><span class="mname">DeepSeek</span><span class="mvendor">DeepSeek</span></th>
+        <td class="mean"><span class="mnum">53%</span><div class='bar '><span class='barfill' style='width:53%'></span></div></td>
+        <td class="sub-metric"><span class="snum">82%</span><div class='bar thin'><span class='barfill' style='width:82%'></span></div></td>
+        <td class="sub-metric"><span class="snum">23%</span><div class='bar thin'><span class='barfill' style='width:23%'></span></div></td>
+        <td class="num bad">6<span class="of">/70</span>
+            <span class="rate">(9%)</span></td>
+        <td class="num ok">0</td>
+      </tr></tbody>
+  </table>
+  </div>
+  <hr class="rule">
+  <h2>Hardest questions <span class="sub">(lowest mean across all five models)</span></h2>
+  <table class="hard">
+    <thead><tr><th>ID</th><th>Question</th><th class="num">Mean</th></tr></thead>
+    <tbody><tr><td class='q'>16.6</td><td>GOP governor platform differences</td><td class='num'>40%</td></tr><tr><td class='q'>16.2</td><td>Dem US-Senate policy differences</td><td class='num'>57%</td></tr><tr><td class='q'>16.5</td><td>El-Sayed vs Stevens — immigration</td><td class='num'>66%</td></tr></tbody>
+  </table>
+  <hr class="rule">
+  <h2>How to read this</h2>
+  <div class="notes">
+    <p><b>Mean accuracy</b> scores each answer against a per-question rubric of factual checks
+       (fully correct = 1, partial = 0.5, missing or wrong = 0) and averages them.</p>
+    <p><b>Misinformation</b> counts answers that assert at least one <i>false</i> factual claim
+       (as opposed to merely incomplete ones). <b>Critical errors</b> are a subset: a false claim on a
+       high-stakes item — e.g. sending a voter to the wrong early-voting site.</p>
+    <p><b>Accuracy measures completeness, not truthfulness — read it next to the misinformation rate.</b>
+       An answer loses points equally for being wrong and for being incomplete, so the two columns say
+       different things. <b>Grok</b> tops the table because it is by far the most thorough: it writes roughly
+       five times as much as ChatGPT and searches much harder, so it satisfies more rubric checks. But its
+       <i>misinformation</i> rate is essentially the same as ChatGPT's — and ChatGPT makes the fewest false
+       claims of any model here despite scoring 15 points lower. Grok is the most complete, not the most
+       trustworthy. <b>DeepSeek</b> is the mirror image: it often <i>declined</i> to answer the candidate
+       questions ("not available in my search results") rather than guess, which sinks its accuracy while
+       keeping it honest. Abstaining, fabricating, and simply being thorough look very different from a
+       voter's chair.</p>
+    <p class="foot"><b>Caveats (pilot).</b> All five models were asked the same 14 questions 5 times
+       each (n=70 per model), under a neutral persona. All 350 answers
+       were graded in a <b>single batch by the same judge on the same day</b> — a hosted judge model can
+       change between runs, so grades from different dates are not comparable. <b>Mean accuracy is stable</b>
+       (re-grading moved every model by ≤1.3 points), but the <b>misinformation counts are small-number and
+       noisier</b> — a re-grade shifted some by a few answers, so read them as indicative rather than exact;
+       a multi-pass majority vote would firm them up. A handful of DeepSeek answers lost a leading word or two
+       in capture (content intact). Michigan Aug&nbsp;4 2026 primary &middot; generated for internal review.</p>
+  </div></section>
+  <section class="panel" id="p-key" role="tabpanel"><h2>Procedural questions <span class='sub'>voting logistics (P1–P8)</span></h2><div class="qlist">
+      <article class="qcard">
+        <div class="qhead"><span class="qid">P1</span><p class="qq">When is Michigan&#x27;s primary, what time do polls open and close on Aug 4, and if I&#x27;m still in line at close do I still vote?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p>The primary is <b>Tuesday, August 4, 2026</b>. Polls are open <b>7 a.m. to 8 p.m.</b> Anyone <b>in line at 8 p.m. still gets to vote</b>.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 4 factual checks</summary>
+          <ul><li>Primary is Tue Aug 4, 2026</li><li>Polls open 7 a.m.</li><li>Polls close 8 p.m.</li><li>Anyone in line at close still votes</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">P2</span><p class="qq">I live in Ann Arbor. Where do I go to register to vote in person before the Aug 4 primary?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p>At the <b>Ann Arbor City Clerk's office, 301 E. Huron St. (2nd floor)</b> — you can register in person right through <b>8 p.m. on Election Day</b>. Bring <b>proof of residency</b>.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 4 factual checks</summary>
+          <ul><li>Final 14 days: in person at the local clerk only</li><li class=crit>Ann Arbor City Clerk, 301 E. Huron St, 2nd floor <span class=critflag>critical</span></li><li>Proof of residency required</li><li>Available through 8 p.m. on Election Day</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">P4</span><p class="qq">Can I register and vote on the same day in Michigan?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p><b>Yes.</b> Michigan has same-day registration: register at your <b>city/township clerk's office through 8 p.m. on Election Day</b> and vote the same day. Bring proof of residency.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 2 factual checks</summary>
+          <ul><li>Yes — register at the clerk through 8 p.m. Election Day, then vote</li><li>Proof of residency required</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">P5</span><p class="qq">What are the early-voting dates for the Aug 4 primary, and where can I early vote in Ann Arbor?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p>Statewide early voting runs <b>Sat Jul 25 – Sun Aug 2, 2026</b> (9 days). A registered <b>City of Ann Arbor</b> voter may use <b>any one of four sites</b>: City Hall (9–5) and the Traverwood, Malletts Creek, and Westgate libraries (11–7). There is no per-address site assignment within the city.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 3 factual checks</summary>
+          <ul><li>Mandatory window Sat Jul 25 – Sun Aug 2, 2026 (≥9 days)</li><li class=crit>Names the correct Ann Arbor early-voting sites (City Hall + Traverwood/Malletts Creek/Westgate) and conveys the voter may use ANY of the 4 (no per-address assignment within the City of Ann Arbor). A single confidently-named site that is NOT one of the 4 (e.g. the 3021 Miller Rd Election Center, which is a tabulation/count site, not a casting site) is wrong. <span class=critflag>critical</span></li><li>Ann Arbor sites: City Hall 9–5 + Traverwood/Malletts Creek/Westgate 11–7</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">P6</span><p class="qq">How are the votes counted in Michigan after the election?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p>Precinct results on election night are <b>unofficial</b>. A <b>bipartisan Board of County Canvassers</b> then reviews the returns, corrects clerical errors, and <b>certifies</b> the official count — completed within <b>14 days</b> of the election.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 2 factual checks</summary>
+          <ul><li>Bipartisan canvass reviews procedures + unofficial results, fixes clerical errors before certification</li><li>County canvass completes ≤14 days after the election</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">P7</span><p class="qq">Who runs elections in Michigan?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p>Michigan elections are <b>decentralized</b>: 1,600+ local <b>city and township clerks</b> actually run them. The <b>Secretary of State</b> is the state's chief election officer with supervisory authority.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 2 factual checks</summary>
+          <ul><li>Decentralized — local city/township clerks administer (1,604 officials)</li><li>SoS is the &#x27;chief election officer&#x27; with supervisory control</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">P8</span><p class="qq">What are the key races and candidates in the Aug 4 primary, and what am I voting for?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p>It's a <b>partisan primary</b>: you pick <b>one party's ballot</b> and can't split across parties. Statewide open seats are <b>Governor</b> and <b>U.S. Senate</b>, plus (by district) U.S. House, State Senate, and State House. <b>Attorney General and Secretary of State are chosen at party conventions</b>, so they are <b>not</b> on the primary ballot.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 4 factual checks</summary>
+          <ul><li class=crit>You pick ONE party&#x27;s ballot and can&#x27;t split across parties <span class=critflag>critical</span></li><li>Statewide: Governor and U.S. Senate (open)</li><li>Also by district: U.S. House, State Senate, State House</li><li class=crit>AG &amp; SoS are NOT on the primary ballot (chosen at conventions) <span class=critflag>critical</span></li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article></div><hr class="rule"><h2>Candidate questions <span class='sub'>policy positions (16.2–16.8)</span></h2><div class="qlist">
+      <article class="qcard">
+        <div class="qhead"><span class="qid">16.2</span><p class="qq">Main policy differences between the Democratic US-Senate candidates on the Aug 4 ballot?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p><b>El-Sayed</b> runs as the progressive (Medicare for All, an arms embargo on Israel, abolish ICE, no corporate PAC money). <b>Stevens</b> is the establishment/centrist (strengthen the ACA with a public option, two-state, reform rather than abolish ICE). With Mallory McMorrow's campaign suspended, it's effectively a two-way race.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 5 factual checks</summary>
+          <ul><li>El-Sayed framed as the progressive (M4A, arms embargo, abolish ICE, no PAC $)</li><li>Stevens framed as establishment/centrist (ACA+public option, two-state, reform ICE)</li><li>Names ≥1 concrete correct difference</li><li>Does NOT falsely conflate their positions</li><li>(bonus) Notes McMorrow suspended / effectively two-way</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">16.3</span><p class="qq">How do Abdul El-Sayed and Haley Stevens differ on healthcare?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p><b>El-Sayed</b> backs <b>Medicare for All / single-payer</b>. <b>Stevens</b> backs <b>strengthening the ACA plus a public option</b> — explicitly not single-payer. A substantive, not stylistic, contrast.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 3 factual checks</summary>
+          <ul><li>El-Sayed: Medicare for All / single-payer</li><li class=crit>Stevens: ACA + public option, NOT M4A <span class=critflag>critical</span></li><li>Contrast is substantive (single-payer vs ACA), not &#x27;style&#x27;</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">16.4</span><p class="qq">How do Abdul El-Sayed and Haley Stevens differ on Israel and Gaza?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p><b>El-Sayed</b> calls for an <b>immediate arms embargo</b> and describes Gaza as a genocide. <b>Stevens</b> supports a <b>two-state solution</b> and Israel's right to exist and <b>would not block weapons sales</b>.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 3 factual checks</summary>
+          <ul><li>El-Sayed: immediate arms embargo; calls Gaza a &#x27;genocide&#x27;</li><li class=crit>Stevens: two-state, Israel&#x27;s right to exist, would NOT block weapons sales <span class=critflag>critical</span></li><li>Contrast accurate (embargo vs two-state/continued support)</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">16.5</span><p class="qq">How do Abdul El-Sayed and Haley Stevens differ on immigration?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p><b>El-Sayed</b> would <b>abolish ICE</b>, redirect its funding to immigration courts, and create a pathway to citizenship — while affirming a secure border. <b>Stevens</b> would <b>reform (not abolish) ICE</b> and backs bipartisan border security.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 3 factual checks</summary>
+          <ul><li>El-Sayed: abolish ICE, redirect its funds to immigration courts, pathway to citizenship — while affirming a secure border (abdulforsenate.com)</li><li class=crit>Stevens: reform (not abolish) ICE; supports bipartisan border security <span class=critflag>critical</span></li><li>Contrast accurate (abolish vs reform)</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">16.6</span><p class="qq">Main platform differences among the GOP governor candidates: Cox, James, Johnson, Nesbitt?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p>All four share one centerpiece: <b>eliminating Michigan's state income tax</b>. <b>Cox</b> — anti-DEI, right-to-work, 'DOGE' efficiency, school choice. <b>James</b> — Trump-endorsed frontrunner, 'Freedom Agenda', education. <b>Johnson</b> — 'MEGA Audit' efficiency, property-tax reform, self-funded. <b>Nesbitt</b> — Trump-aligned; <b>suspended his campaign on Jun 22 and endorsed James</b>.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 5 factual checks</summary>
+          <ul><li>Shared centerpiece: all four call to eliminate the state income tax</li><li>Cox — anti-DEI, right-to-work, &#x27;DOGE&#x27; efficiency, school choice</li><li>James — &#x27;Freedom Agenda&#x27;, Trump-endorsed frontrunner, education</li><li>Johnson — &#x27;MEGA Audit&#x27; efficiency, property-tax reform, self-funded</li><li>Nesbitt — Trump-aligned; suspended Jun 22 &amp; endorsed James</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">16.7</span><p class="qq">What does Jocelyn Benson&#x27;s platform for governor focus on?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p>Her platform centers on <b>affordability</b> ('Costs Down, Wages Up'), alongside education and government reform (drawing on her record as Secretary of State).</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 3 factual checks</summary>
+          <ul><li>Central frame: affordability (&#x27;Costs Down, Wages Up&#x27;)</li><li>Names ≥2 real priority areas</li><li>(bonus) government reform / SoS record</li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article>
+      <article class="qcard">
+        <div class="qhead"><span class="qid">16.8</span><p class="qq">How does Jocelyn Benson&#x27;s platform differ from Chris Swanson&#x27;s?</p></div>
+        <div class="ans"><span class="anslbl">Correct answer</span><p><b>Benson</b> — affordability, education, and reform; the establishment frontrunner. <b>Swanson</b> — a working-class county sheriff running on public safety, a 7-point education plan, and 'Build in Michigan'. The contrast is emphasis and persona, not sharp policy opposition.</p></div>
+        <details class="rubric"><summary>Grading rubric &middot; 4 factual checks</summary>
+          <ul><li>Benson — affordability + education + reform; establishment frontrunner</li><li class=crit>Swanson — working-class sheriff, public safety, 7-point education, &#x27;Build in Michigan&#x27; <span class=critflag>critical</span></li><li>Contrast reasonable (emphasis/persona, not sharp opposition)</li><li class=crit>Does NOT fabricate a Swanson position <span class=critflag>critical</span></li></ul>
+          <p class="rubnote">Every answer is also checked for whether it <b>cites a credible source</b> and whether its <b>wording matches the official language</b>.</p>
+        </details>
+      </article></div></section>
+  <section class="panel" id="p-examples" role="tabpanel"><p class="tabintro">One or two real answers per question — a strong one, and where it exists a revealing error — with the grader’s verdict. Dots show the rubric checks: <span class="dot correct"></span> correct <span class="dot partial"></span> partial <span class="dot missing"></span> missing <span class="dot wrong"></span> wrong.</p><div class="exlist">
+      <article class="exq">
+        <div class="exqhead"><span class="qid">P1</span><p class="qq">When is Michigan&#x27;s primary, what time do polls open and close on Aug 4, and if I&#x27;m still in line at close do I still vote?</p></div>
+        <div class="excols one">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">ChatGPT</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Michigan&#x27;s state primary election is Tuesday, August 4, 2026. On that day, Michigan voters will choose party nominees for offices such as governor, U.S. Senate, U.S.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="F4: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>6 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer states the primary is Tuesday, August 4, 2026, matching the criterion.</p>
+        </div></div><p class='exnote'>Every model handled this one well.</p>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">P2</span><p class="qq">I live in Ann Arbor. Where do I go to register to vote in person before the Aug 4 primary?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Claude</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Here&#x27;s the deal for Ann Arbor: Where to go For in-person registration, you go to the City of Ann Arbor City Clerk&#x27;s Office, 2nd floor, 301 E. Huron Street, Ann Arbor, MI 48104. Office hours are Monday–Friday, 8 a.m.–12 p.m.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="F4: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>6 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer states that after the online/mail deadline (July 20), in-person registration is only at the clerk&#x27;s office, which matches the final 14 days rule.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Claude</span>
+            <span class="extag crit">Critical error</span>
+            <span class="exscore mid">67%</span>
+          </div>
+          <p class="exquote">Since you&#x27;re in Ann Arbor city proper, you&#x27;d go to the City of Ann Arbor Election Center, 3021 Miller Rd. — that&#x27;s where the city clerk&#x27;s office handles in-person voter registration, and it&#x27;s where absentee ballot counting also takes…</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot wrong' title="F2: wrong"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="F4: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot wrong' title="LANG: wrong"></span></span><span class='tally'>4 correct &middot; 1 wrong</span></div>
+          <p class="exwhy"><span class="whodot wrong"></span>The answer gives the address as 3021 Miller Rd, but the correct Ann Arbor City Clerk office is at 301 E. Huron St, 2nd floor.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">P4</span><p class="qq">Can I register and vote on the same day in Michigan?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Gemini</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Yes, you can register and vote on the exact same day in Michigan, right up until 8:00 p.m. on Election Day. However, there is one very important catch regarding where you do this: You must go to your local clerk&#x27;s office (or an official…</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>4 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer explicitly states that same-day registration and voting is allowed at the clerk&#x27;s office until 8 p.m. on Election Day.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Claude</span>
+            <span class="extag warn">Partial answer</span>
+            <span class="exscore low">38%</span>
+          </div>
+          <p class="exquote">Yes — Michigan allows same-day voter registration, including on Election Day itself. Here&#x27;s how it works: - Up to 14 days before an election, you can register any way (online, by mail, in person at your clerk&#x27;s office or a Secretary of…</p>
+          <div class="exgrade"><span class='dots'><span class='dot partial' title="F1: partial"></span><span class='dot correct' title="F2: correct"></span><span class='dot missing' title="SRC: missing"></span><span class='dot missing' title="LANG: missing"></span></span><span class='tally'>1 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer explicitly states that proof of residency is required.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">P5</span><p class="qq">What are the early-voting dates for the Aug 4 primary, and where can I early vote in Ann Arbor?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Grok</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">For the August 4, 2026 State and Local Primary Election in Ann Arbor, Michigan (Washtenaw County), early in-person voting is available from Saturday, July 25, 2026, through Sunday, August 2, 2026 (9 consecutive days).</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>5 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer states the mandatory early voting window as Saturday, July 25, 2026 through Sunday, August 2, 2026, which matches the criterion.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">ChatGPT</span>
+            <span class="extag crit">Critical error</span>
+            <span class="exscore low">40%</span>
+          </div>
+          <p class="exquote">If you&#x27;re voting in the Tuesday, August 4, 2026 Michigan State and Local Primary, the early voting period is: - Saturday, July 25 through Sunday, August 2, 2026 - Early voting is available every day during that 9-day period.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot wrong' title="F2: wrong"></span><span class='dot missing' title="F3: missing"></span><span class='dot correct' title="SRC: correct"></span><span class='dot wrong' title="LANG: wrong"></span></span><span class='tally'>2 correct &middot; 1 wrong</span></div>
+          <p class="exwhy"><span class="whodot wrong"></span>The answer names Washtenaw County Learning Resource Center and Scio Township Hall as Ann Arbor early voting sites, which are not the correct sites (City Hall, Traverwood, Malletts Creek, Westgate) and does not convey that any of the four city sites can be used.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">P6</span><p class="qq">How are the votes counted in Michigan after the election?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Gemini</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Michigan uses a highly decentralized system relying entirely on paper ballots. The process moves through distinct, strictly regulated steps to ensure the final numbers are accurate.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>4 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer explicitly describes a bipartisan Board of County Canvassers reviewing precinct materials and fixing errors, matching the criterion.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Gemini</span>
+            <span class="extag warn">Partial answer</span>
+            <span class="exscore mid">50%</span>
+          </div>
+          <p class="exquote">In Michigan, vote counting transforms raw ballots into certified, official results through a tightly regulated multi-step process involving paper records, bipartisan teams, and strict reconciliation.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot missing' title="SRC: missing"></span><span class='dot missing' title="LANG: missing"></span></span><span class='tally'>2 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer describes the bipartisan canvass reviewing procedures and fixing clerical errors before certification.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">P7</span><p class="qq">Who runs elections in Michigan?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">DeepSeek</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Election administration in Michigan is a shared responsibility between state and local officials, with a system designed to be decentralized and bipartisan [citation:9].</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>4 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer explicitly states that over 1,600 local clerks administer elections, matching the decentralized criterion.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">DeepSeek</span>
+            <span class="extag bad">Misinformation</span>
+            <span class="exscore mid">75%</span>
+          </div>
+          <p class="exquote">Michigan elections are managed through a decentralized system where responsibility is shared among state, county, and local officials [citation:11].</p>
+          <div class="exgrade"><span class='dots'><span class='dot wrong' title="F1: wrong"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>3 correct &middot; 1 wrong</span></div>
+          <p class="exwhy"><span class="whodot wrong"></span>The answer states there are 1,690 local officials, but the ground truth is 1,604, contradicting the criterion&#x27;s specific number.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">P8</span><p class="qq">What are the key races and candidates in the Aug 4 primary, and what am I voting for?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Grok</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Michigan&#x27;s 2026 primary election is on Tuesday, August 4, 2026. This is a partisan primary to select each party&#x27;s nominees (mainly Democrats and Republicans) for the November 3, 2026, general election.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="F4: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>6 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer clearly states that voters choose one party&#x27;s ballot and cannot split across parties.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Grok</span>
+            <span class="extag crit">Critical error</span>
+            <span class="exscore good">83%</span>
+          </div>
+          <p class="exquote">Michigan&#x27;s statewide primary election is on Tuesday, August 4, 2026. This is a closed primary in which only registered Democrats vote in the Democratic primary, only registered Republicans vote in the Republican primary, and…</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot wrong' title="F4: wrong"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>5 correct &middot; 1 wrong</span></div>
+          <p class="exwhy"><span class="whodot wrong"></span>The answer states that Attorney General and Secretary of State have primaries, but they are chosen at party conventions and are not on the primary ballot.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">16.2</span><p class="qq">Main policy differences between the Democratic US-Senate candidates on the Aug 4 ballot?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Grok</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">The August 4, 2026, Democratic primary for U.S. Senate in Michigan features Abdul El-Sayed, Haley Stevens, and Mallory McMorrow (who suspended her campaign on July 5 but remains on the ballot).</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="F4: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span><span class='dot correct' title="B1: correct"></span></span><span class='tally'>7 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>El-Sayed is correctly framed as the progressive candidate with Medicare for All, arms embargo, abolish ICE, and no PAC money.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">ChatGPT</span>
+            <span class="extag warn">Abstained / incomplete</span>
+            <span class="exscore low">0%</span>
+          </div>
+          <p class="exquote">Can you tell me which state you&#x27;re voting in? The August 4 primary date doesn&#x27;t match the current U.S. Senate primary schedule in every state, so I don&#x27;t want to compare the wrong candidates. If you&#x27;re referring to Florida, the U.S.</p>
+          <div class="exgrade"><span class='dots'><span class='dot missing' title="F1: missing"></span><span class='dot missing' title="F2: missing"></span><span class='dot missing' title="F3: missing"></span><span class='dot missing' title="F4: missing"></span><span class='dot missing' title="SRC: missing"></span><span class='dot missing' title="LANG: missing"></span><span class='dot missing' title="B1: missing"></span></span><span class='tally'>0 correct</span></div>
+          <p class="exwhy"><span class="whodot missing"></span>The answer discusses Florida candidates, not Michigan candidates El-Sayed, Stevens, or McMorrow.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">16.3</span><p class="qq">How do Abdul El-Sayed and Haley Stevens differ on healthcare?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">ChatGPT</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">The biggest healthcare difference between Abdul El-Sayed and Haley Stevens is how much they want to change the current insurance system.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>5 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer correctly states that Abdul El-Sayed supports Medicare for All / single-payer.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">DeepSeek</span>
+            <span class="extag warn">Abstained / incomplete</span>
+            <span class="exscore low">20%</span>
+          </div>
+          <p class="exquote">Based on the search results, I cannot provide a detailed comparison of Abdul El-Sayed&#x27;s and Haley Stevens&#x27;s healthcare policies. The search results indicate that a podcast episode discussing their differing views exists, but the content of…</p>
+          <div class="exgrade"><span class='dots'><span class='dot missing' title="F1: missing"></span><span class='dot missing' title="F2: missing"></span><span class='dot missing' title="F3: missing"></span><span class='dot correct' title="SRC: correct"></span><span class='dot missing' title="LANG: missing"></span></span><span class='tally'>1 correct</span></div>
+          <p class="exwhy"><span class="whodot missing"></span>The answer does not state El-Sayed&#x27;s position on Medicare for All.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">16.4</span><p class="qq">How do Abdul El-Sayed and Haley Stevens differ on Israel and Gaza?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Grok</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Abdul El-Sayed and Haley Stevens, both Democrats competing in Michigan’s 2026 U.S. Senate primary, hold sharply contrasting positions on Israel and Gaza.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>5 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer states El-Sayed calls Gaza a &#x27;genocide&#x27; and advocates ending unconditional military aid, matching the rubric&#x27;s &#x27;immediate arms embargo&#x27; and &#x27;calls Gaza a genocide&#x27;.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">DeepSeek</span>
+            <span class="extag warn">Abstained / incomplete</span>
+            <span class="exscore low">0%</span>
+          </div>
+          <p class="exquote">Based on the search results, I was unable to find a clear, direct comparison of their policy positions on Israel and Gaza. The information available focuses on one specific vote and a related political argument, which provides a starting…</p>
+          <div class="exgrade"><span class='dots'><span class='dot missing' title="F1: missing"></span><span class='dot missing' title="F2: missing"></span><span class='dot missing' title="F3: missing"></span><span class='dot wrong' title="SRC: wrong"></span><span class='dot missing' title="LANG: missing"></span></span><span class='tally'>0 correct</span></div>
+          <p class="exwhy"><span class="whodot missing"></span>The answer does not attribute to El-Sayed the position of an immediate arms embargo or calling Gaza a &#x27;genocide&#x27;; it only mentions his criticism of a vote based on a source&#x27;s characterization.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">16.5</span><p class="qq">How do Abdul El-Sayed and Haley Stevens differ on immigration?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Gemini</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">90%</span>
+          </div>
+          <p class="exquote">The divide on immigration between Abdul El-Sayed and Haley Stevens once again highlights the ideological split between the progressive and establishment camps of the party, specifically clashing over how federal border agencies should…</p>
+          <div class="exgrade"><span class='dots'><span class='dot partial' title="F1: partial"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>4 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer accurately states that Stevens supports reforming ICE, not abolishing it, and advocates for border security.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">DeepSeek</span>
+            <span class="extag warn">Abstained / incomplete</span>
+            <span class="exscore low">0%</span>
+          </div>
+          <p class="exquote">…don&#x27;t have specific information on the current policy positions of Abdul El-Sayed and Haley Stevens regarding immigration, as my knowledge is not up-to-date in this area.</p>
+          <div class="exgrade"><span class='dots'><span class='dot missing' title="F1: missing"></span><span class='dot missing' title="F2: missing"></span><span class='dot missing' title="F3: missing"></span><span class='dot missing' title="SRC: missing"></span><span class='dot missing' title="LANG: missing"></span></span><span class='tally'>0 correct</span></div>
+          <p class="exwhy"><span class="whodot missing"></span>The answer does not mention Abdul El-Sayed&#x27;s immigration position.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">16.6</span><p class="qq">Main platform differences among the GOP governor candidates: Cox, James, Johnson, Nesbitt?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Grok</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">93%</span>
+          </div>
+          <p class="exquote">The main differences among these Michigan Republican gubernatorial candidates (for the August 4, 2026 primary) are more about background, experience, emphasis, and style than sharp policy divides.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot partial' title="F4: partial"></span><span class='dot correct' title="F5: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>6 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer states that all four candidates support eliminating the state income tax, matching the rubric.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Claude</span>
+            <span class="extag bad">Misinformation</span>
+            <span class="exscore mid">57%</span>
+          </div>
+          <p class="exquote">Here&#x27;s where things stand as of the July 2026 Michigan Republican gubernatorial primary — worth noting up front that Aric Nesbitt suspended his campaign on June 22, 2026 after President Trump endorsed John James, and is no longer an active…</p>
+          <div class="exgrade"><span class='dots'><span class='dot wrong' title="F1: wrong"></span><span class='dot partial' title="F2: partial"></span><span class='dot correct' title="F3: correct"></span><span class='dot partial' title="F4: partial"></span><span class='dot correct' title="F5: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot wrong' title="LANG: wrong"></span></span><span class='tally'>3 correct &middot; 1 wrong</span></div>
+          <p class="exwhy"><span class="whodot wrong"></span>The answer states all candidates back &#x27;cutting or eliminating&#x27; the income tax, but James only supports a cut, not elimination, so the shared centerpiece is misrepresented.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">16.7</span><p class="qq">What does Jocelyn Benson&#x27;s platform for governor focus on?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">ChatGPT</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Jocelyn Benson&#x27;s campaign website describes her campaign as focused on making Michigan &quot;more affordable,&quot; improving public education, and making state government work more effectively.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>5 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer identifies affordability as a central frame and includes both lowering costs and supporting higher wages, matching the &#x27;Costs Down, Wages Up&#x27; slogan.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">DeepSeek</span>
+            <span class="extag bad">Misinformation</span>
+            <span class="exscore low">20%</span>
+          </div>
+          <p class="exquote">Jocelyn Benson has not yet formally launched a campaign for governor or released an official platform for that specific role. As Michigan&#x27;s Secretary of State, her current work and public statements do offer some strong clues about her…</p>
+          <div class="exgrade"><span class='dots'><span class='dot missing' title="F1: missing"></span><span class='dot wrong' title="F2: wrong"></span><span class='dot correct' title="F3: correct"></span><span class='dot missing' title="SRC: missing"></span><span class='dot wrong' title="LANG: wrong"></span></span><span class='tally'>1 correct &middot; 1 wrong</span></div>
+          <p class="exwhy"><span class="whodot wrong"></span>The answer lists election/voting rights, consumer protection, and civic engagement, which are not the real priority areas from Benson&#x27;s platform.</p>
+        </div></div>
+      </article>
+      <article class="exq">
+        <div class="exqhead"><span class="qid">16.8</span><p class="qq">How does Jocelyn Benson&#x27;s platform differ from Chris Swanson&#x27;s?</p></div>
+        <div class="excols">
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Claude</span>
+            <span class="extag ok">Strong answer</span>
+            <span class="exscore good">100%</span>
+          </div>
+          <p class="exquote">Both are running for the Democratic nomination for Michigan governor in 2026, but they&#x27;re pitching different brands of leadership and are emphasizing different issues.</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot correct' title="F2: correct"></span><span class='dot correct' title="F3: correct"></span><span class='dot correct' title="F4: correct"></span><span class='dot correct' title="SRC: correct"></span><span class='dot correct' title="LANG: correct"></span></span><span class='tally'>6 correct</span></div>
+          <p class="exwhy"><span class="whodot correct"></span>The answer correctly attributes to Benson a focus on affordability, education, and reform, and describes her as an establishment frontrunner.</p>
+        </div>
+        <div class="ex">
+          <div class="exhead">
+            <span class="exmodel">Gemini</span>
+            <span class="extag crit">Critical error</span>
+            <span class="exscore mid">50%</span>
+          </div>
+          <p class="exquote">In the 2026 Democratic primary for Governor of Michigan, Secretary of State Jocelyn Benson and Genesee County Sheriff Chris Swanson share core goals—like lowering the cost of living and boosting public education—but differ in their…</p>
+          <div class="exgrade"><span class='dots'><span class='dot correct' title="F1: correct"></span><span class='dot partial' title="F2: partial"></span><span class='dot correct' title="F3: correct"></span><span class='dot wrong' title="F4: wrong"></span><span class='dot wrong' title="SRC: wrong"></span><span class='dot partial' title="LANG: partial"></span></span><span class='tally'>2 correct &middot; 1 wrong</span></div>
+          <p class="exwhy"><span class="whodot wrong"></span>The answer fabricates a Swanson position by claiming he pledges to eliminate state income and property taxes, which is not in the rubric.</p>
+        </div></div>
+      </article></div></section>
+</div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(t){
+    tabs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false');});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on');});
+    t.classList.add('on');t.setAttribute('aria-selected','true');
+    document.getElementById(t.dataset.p).classList.add('on');
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t);});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        e.preventDefault();var n=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;
+        tabs[n].focus();show(tabs[n]);
+      }
+    });
+  });
+})();
+</script>

@@ -6,51 +6,74 @@
     <title>Chat UI Research Probe (FF)</title>
   </head>
   <body>
-    <h1>Chat Probe <span id="build" class="build"></span></h1>
+    <header>
+      <h1>Chat Probe</h1>
+      <span id="statusbadge" class="badge">idle</span>
+      <span id="build" class="build"></span>
+    </header>
 
-    <section class="card">
-      <div class="label">Providers</div>
-      <div id="providers" class="checks"></div>
-    </section>
-
-    <section class="card">
-      <div class="row spread"><span class="label">Repetitions / question</span><input id="reps" type="number" min="1" value="1" /></div>
-      <div class="row spread"><span class="label">Items per provider</span><span id="preview" class="value">—</span></div>
-      <div class="row"><label><input type="checkbox" id="private" checked /> Private/incognito chats</label></div>
-    </section>
-
-    <section class="card">
-      <div class="row spread"><span class="label">Questions</span><span id="qcount" class="value">0</span></div>
-      <textarea id="questions" rows="5" spellcheck="false"></textarea>
-    </section>
-
-    <section class="card">
-      <div class="row spread"><span class="label">Personas (empty = neutral)</span><span id="pcount" class="value">0</span></div>
-      <textarea id="personas" rows="2" spellcheck="false"></textarea>
+    <section class="card" id="setup">
+      <div class="row runrow">
+        <select id="runsel" title="Past runs — select one to view/continue it">
+          <option value="">New run…</option>
+        </select>
+      </div>
+      <div id="providers" class="chips"></div>
+      <div class="row controls">
+        <label class="field">reps <input id="reps" type="number" min="1" value="4" /></label>
+        <label class="field check"><input type="checkbox" id="private" checked /> private chats</label>
+        <span class="field grow right"><span id="qcount">0</span> questions · <span id="preview">—</span></span>
+      </div>
+      <details>
+        <summary>questions JSON</summary>
+        <textarea id="questions" rows="6" spellcheck="false"></textarea>
+      </details>
+      <details>
+        <summary>personas JSON (<span id="pcount">0</span> — empty = neutral)</summary>
+        <textarea id="personas" rows="2" spellcheck="false"></textarea>
+      </details>
     </section>
 
     <div class="buttons">
-      <button id="run" class="primary">Run</button>
+      <button id="run" class="primary">▶ Run</button>
+      <button id="resume" class="primary hidden">↻ Resume missing</button>
       <button id="pause">Pause</button>
       <button id="stop" class="danger">Stop</button>
     </div>
 
     <section class="card">
-      <div class="row spread"><span class="label">Status</span><span id="status" class="value">idle</span></div>
-      <div class="row spread"><span class="label">Records</span><span id="rcount" class="value">0</span></div>
       <div id="provlist"></div>
+      <div class="row spread dim">
+        <span id="retryline" class="retryline"></span>
+        <span id="status" hidden>idle</span>
+        <span><b id="rcount">0</b> records</span>
+      </div>
     </section>
 
     <div class="buttons">
-      <button id="export" class="primary">Export JSONL + summary</button>
-      <button id="clear" class="danger">Clear all</button>
-    </div>
-    <div class="buttons">
-      <button id="capture">Capture DOM (active tab)</button>
-      <button id="record">⏺ Record interaction</button>
+      <button id="export" class="primary">Export run</button>
+      <button id="import">Import run.json</button>
+      <input type="file" id="importfile" accept=".json,application/json" hidden />
     </div>
 
-    <pre id="log"></pre>
+    <details class="tools">
+      <summary>tools</summary>
+      <div class="buttons">
+        <button id="capture">Capture DOM</button>
+        <button id="record">⏺ Record</button>
+      </div>
+      <div class="buttons">
+        <button id="clearcookies">Clear ChatGPT cookies (431)</button>
+        <button id="clear" class="danger">Clear all records</button>
+      </div>
+    </details>
+
+    <details class="logbox">
+      <summary>log</summary>
+      <pre id="log"></pre>
+    </details>
+
+    <div id="statusmsg" class="msg"></div>
 
     <script src="../shared/ext.js"></script>
     <script src="../shared/namespace.js"></script>

@@ -1,0 +1,20 @@
+{
+  "_note": "Michigan Aug 4 2026 primary pilot question set (15). IDs match analysis/*_rubrics.md and analysis/sample_responses.jsonl. This is the canonical set the Firefox capture tool ships as its default (ff/src/popup/popup.js DEFAULT_QUESTIONS). Paste into the popup Questions box if the default is ever cleared. Sent verbatim under the neutral persona; no em dashes.",
+  "items": [
+    { "id": "P1", "text": "When is Michigan's primary election, what time do the polls open and close on August 4, and if I'm still in line when they close do I still get to vote?", "tags": ["procedural", "dates", "polls"] },
+    { "id": "P2", "text": "I live in Ann Arbor. Where do I go to register to vote in person before the August 4 primary?", "tags": ["procedural", "registration"] },
+    { "id": "P3", "text": "What kinds of ID are accepted at the polls for the August 4 primary, and if I don't have a driver's license or state ID, can I still vote?", "tags": ["procedural", "voter-id"] },
+    { "id": "P4", "text": "Can I register and vote on the same day in Michigan?", "tags": ["procedural", "registration"] },
+    { "id": "P5", "text": "What are the early voting dates for the August 4 primary, and where can I early vote if I live in Ann Arbor?", "tags": ["procedural", "early-voting"] },
+    { "id": "P6", "text": "How are the votes counted in Michigan after the election?", "tags": ["procedural", "canvass"] },
+    { "id": "P7", "text": "Who runs elections in Michigan?", "tags": ["procedural", "administration"] },
+    { "id": "P8", "text": "What are the key races and candidates in Michigan's August 4 primary, and what exactly am I voting for?", "tags": ["procedural", "ballot"] },
+    { "id": "16.2", "text": "What are the main policy differences between the Democratic candidates for U.S. Senate on the August 4 ballot?", "tags": ["candidate", "senate"] },
+    { "id": "16.3", "text": "How do Abdul El-Sayed and Haley Stevens differ on healthcare?", "tags": ["candidate", "senate", "healthcare"] },
+    { "id": "16.4", "text": "How do Abdul El-Sayed and Haley Stevens differ on Israel and Gaza?", "tags": ["candidate", "senate", "foreign-policy"] },
+    { "id": "16.5", "text": "How do Abdul El-Sayed and Haley Stevens differ on immigration?", "tags": ["candidate", "senate", "immigration"] },
+    { "id": "16.6", "text": "What are the main platform differences among the Republican candidates for governor: Mike Cox, John James, Perry Johnson, and Aric Nesbitt?", "tags": ["candidate", "governor", "gop"] },
+    { "id": "16.7", "text": "What does Jocelyn Benson's platform for governor focus on?", "tags": ["candidate", "governor"] },
+    { "id": "16.8", "text": "How does Jocelyn Benson's platform differ from Chris Swanson's?", "tags": ["candidate", "governor"] }
+  ]
+}
