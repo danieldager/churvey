@@ -7,6 +7,24 @@
 - [x] Fold in AIDAS framing-variation methodology
 - [x] HTML POC explaining the design → `docs/design-poc.html`
 
+## Monthly question aggregator (realism-subset sourcing; resolves method §10 open-decision #1)
+- [x] Free tier: Google autocomplete harvester → `aggregator/harvest_questions.py` (stdlib, question-word expansion, dedupe). 603 US / 504 FR unique queries → `aggregator/out/`.
+- [x] Topics pipeline → `aggregator/fetch_topics.py` (+`_llm.py`, DeepInfra/DeepSeek-V4-Flash extraction). US Gallup MIP via Selenium render (40 issues, %); FR Ipsos (7 issues, %). uv env + `requirements.txt`, py3.14.
+- [ ] World topics DEFERRED: Ipsos WWW full ranking + % is PDF-only (HTML thin). Add PDF parsing later.
+- [ ] Surging-queries bridge (topic→queries): trendspyg `explore` RATE-LIMITED from our IP (not volume — it's the direct `/trends/api` widget-replay + headless fingerprint + flagged IP). RSS path works but is all-topic entertainment noise.
+  - [x] `pytrends-modern` (yiromo) tested → also 429-BLOCKED (HTTP mode). Token call succeeds; `/trends/api/widgetdata/relatedsearches` returns 429. Request self-tags `userType:USER_TYPE_SCRAPER`. Confirms IP-level throttle on the scraper data endpoint. (Camoufox browser mode untested — heavy; same IP anyway.)
+  - [x] **PROTOTYPE WORKED:** drove real logged-in Chrome via claude-in-chrome → Explore page rendered (NO 429) → DOM-read the Rising related-queries widget. immigration/US/90d returned 5 clean Breakout queries (of 25). Confirms throttle was scraper-fingerprint + direct /trends/api replay, not volume.
+  - [ ] ROADMAP: standalone unattended script (non-headless Selenium + real Chrome profile, DOM-read, human-paced) for monthly cron. During EXPLORATION, Claude drives the browser (no script yet).
+  - [ ] Turn rough keyword rising-queries INTO chat-register questions (register-translation step — see below)
+- [ ] Discovery layer (DAILY) — genuine circulating misinformation per topic:
+  - [x] **Google Fact Check API WORKS** (GOOGLE_FCTAPI_KEY; SSL needs cafile=/etc/ssl/cert.pem). claims:search by topic → rating+publisher+url. Working Stage-3 source.
+  - [ ] Community Notes: data model confirmed (daily TSV; classification/summary/tweetId/currentStatus) BUT old public URLs dead + download now behind authed x.com app. Options: HF/GitHub mirror [check first] / grant x.com browser perm / per-tweet X API. Parallel track.
+  - [x] Build discovery→item script → `aggregator/discover_to_item.py` (Fact Check API → Serper grounding → LLM F0/F+/Fv → §7 item). Recency-floored (540d) so it skips years-old fact-checks. Finding: Fact Check lane lags fresh events (specific rising query → 0 hits) ⇒ query at topic level, use CN for fresh. Grounding still thin on verbatim-claim queries (query key entities instead).
+  - [ ] Wire generated items into the FF tool run + grade correction rate: MI1 (F0/F+/Fv) wired into ff DEFAULT_QUESTIONS, reps=3; user runs in Firefox → grade vs analysis/misinfo_questions.json answer key.
+- [ ] Serper PAA (`peopleAlsoAsk[].question`) + autocomplete harvest, seeded by the surging queries → emit method §7 rows (country, source_class=realism, source_url, source_date, question_en/fr)
+- [ ] Relevance/geo filter pass (autocomplete noise: other-state/other-country/non-civic)
+- [x] Seed layer DECIDED: hybrid — auto-propose from salience feeds, user approves
+
 ## Michigan pilot — ground-truth answer key
 - [x] Build ground-truth answer key for all 16 topics → `docs/michigan_answer_key.html` (verbatim quotes + official citations; 85 dated source snapshots in `source_cache/`)
 - [x] Jina cache infra + reusable helper (`scripts/fetch_source.sh`)
@@ -58,11 +76,46 @@
 - [ ] Boss email: use the honest rewrite draft (synthetic-fixture validation stated plainly)
 - [ ] Popup UI: awaiting user feedback on v2 macOS redesign — iterate via `ff/dev/shoot.sh` (headless FF screenshots; no Node on this machine)
 
+## FF capture bugs found 2026-07-22 (CN F+ run) — TO FIX
+- [ ] **GROK: questions submitted but NOTHING captured** (0/2 ok; "no response (timeout)" every attempt). Run also STALLS after ~2 questions (never reached CN3-7). Grok has been the weak link across every run — needs a dedicated capture/parse + stall investigation before it can be included.
+- [ ] **DEEPSEEK: intermittent "stream aborted after preamble"** (CN1); retried to attempt 4 but still failed after ~3 min. Retry/backoff isn't recovering the aborted stream — may need a longer inflight timeout or a full re-ask (new chat) on abort rather than resume.
+
 ## Grader / capture bugs found 14 Jul (fixed, but note for future runs)
 - [x] **DeepInfra `response_format: json_schema` CORRUPTS the judge in reasoning mode.** It isn't enforced, and the model copies the JSON-Schema's own `items.items` nesting into its output → unbalanced JSON. Measured 1/6 vs **6/6** clean parses with it removed (68/87 records had failed). Removed from `grade_pilot.py` (do NOT re-add). Also added tolerant `parse_grade()` (strips fences, unwraps double-nested items, `strict=False` for control chars).
 - [x] `grade_records.py --only-new` treated `grade: null` rows as done → would silently leave failures ungraded forever. Now only non-null grades count as done.
 - [x] **ff/ grok parser leaked `<grok:render …>` citation-widget markup** into responseText (36% of grok's text; all 59/59 records). Root cause: `parseGrok` only stripped `<xai:tool_usage_card>` on the token-joined *fallback* path — the `modelResponse.message` path (which almost always wins) returned the message unstripped. FIXED: new `stripGrokMarkup()` applied to BOTH paths (BUILD 2026-07-14-a). Validated against all 59 real captures — reproduces the cleaned text exactly, 0 markup surviving. Data already cleaned post-hoc (originals in `responseTextRaw` + `.jsonl.bak`).
 - [x] Regraded all 297 under ONE judge/day/config on cleaned text → `grades_5models_v2.jsonl` (297/297, 0 retries). Grok 94% / Gemini 80% / ChatGPT 79% / Claude 74% / DeepSeek 54%. Deltas vs old ≤1.3pt → Grok's 94% is REAL. Canonical grades file.
+
+## France arm — Carter Center Civic AI Audit port (NEW 2026-07-31)
+- [x] Investigate civicaiaudit.org: data model, pipeline, ground-truth precedence, dashboards → `docs/france-arm-plan.md`
+- [x] Verify FR jurisdiction counts live (geo.api.gouv.fr: 101 dépts / 18 régions; RNE: 577 députés / 348 sénateurs, 1–12 seats per senatorial constituency)
+- [x] **SCOPE DECIDED 2026-07-31: pass one = replication core** (adapt to their pipeline as closely as possible). Trap templates + our rubric layer deferred to pass two.
+- [x] **RESOLUTION DECIDED 2026-08-03: strict mirror, no commune tier.** Their sets = 51 states + 436 districts = 487 bindings / 3,761 rows; counties 0, `{city}` unpopulated. FR mirror = **18 régions + 101 départements = 119 bindings** (département ≈ US district by population: 633k vs 768k). Plus **build wide, load narrow**
+  - Consequences: maire template leaves the loaded set; pièce d'identité loses its threshold variance (→ 1 national editorial item); député goes `shape: name` → `shape: list`
+- [x] **Automatable-ingest plan rewritten 2026-08-03** → `docs/france-ingest-plan.md`. Loaded block = 4 templates × 119 = **321 template×bindings ≈ 650 GT rows** (vs their 3,761), **4,494 captures** @14 targets. ~2 build days + ~3h FR review
+  - [x] Stage 0: 9 files pinned to `data/fr/raw/2026-08-03/` + manifest. Gate 0 PASS
+  - [x] Stage 1: value sets `fr_region` (18) + `fr_departement` (101). All cardinality/referential gates PASS
+  - [x] Stage 5 PROBE: **R1 14/14 PASS, D3 89/94 (94.7%)**. Both ship w/ a declared 16-row hand patch. Denominators are 94 and 14, not 101/18 — collectivités uniques have assemblées, not conseils
+  - [x] Stage 2: GT built — D1 101, D2 101, D3 89, R1 14 = **305 auto rows** + 16 manual = 321
+  - [x] Stage 8: offline wide build → `data/fr/offline/` + `NOT_FOR_LOAD` (34,637 maires @99.05%; 34,963 ID keys, 10,099 oui)
+  - [x] Stage 6 sheet: `data/fr/review/gate6_grammaticality.md`, all 305 prompts. `render.py` refuses runnable output while `AUDITED is False`
+  - [ ] **Gate 1c — native-speaker sign-off on the 119-row preposition table**, then flip `france/prepositions.py:AUDITED`. BLOCKS the first batch
+  - [ ] **16-row hand patch**: D3 ×12 (16 Charente, 26 Drôme no président row; 56/85/976 ambiguous; 7 structural) + R1 ×4 (collectivités uniques, use `elus-membres-assemblee-ma.csv`)
+  - [ ] **Gate 2c**: test the judge accepts `Prénom NOM` / `NOM Prénom` / accent-stripped as one person — BEFORE the first batch, not recoverable after
+  - [ ] **Gate 2d**: N=20 stratified spot check vs senat.fr + assemblee-nationale.fr (detects systematic error only, not a low per-row rate)
+  - [ ] Stage 7 **BLOCKED**: export adapter — need the Carter Center's import format (CSV / JSON / DB seed / admin CRUD). First email
+- [ ] **France arm ordering + blocking relationships now live in `clog/ROADMAP.md`** (Blocks A-D). This section keeps the detail.
+- [ ] **France-specific extensions bench** → `docs/france-question-extensions.md`. Cheapest wins: **S3** (combien de sénateurs — count already on every D1 row, ships now), **P1** (parrainages 500/≥30 dépts/≤10%), **P4** (pas de primaires d'État). +103 bindings → 424 → 9,328 captures = 29% of their full crossing
+  - [ ] Fetch the static **série** table from senat.fr (~101 rows) — série is NOT derivable from RNE (mandate-date rule gives 165/178; by-election replacements inherit the série). Gates S1+S2
+  - [ ] Ask Carter Center for a **`not_applicable` / `expected: none` shape** — without it the judge grades a correct trap refusal as `refused` and drops it from the numerator, inverting the finding
+- [ ] Ingest must be re-runnable and **diff-based** (RNE = quarterly + rolling partielles); diff feeds the review queue, not an overwrite
+- [ ] **Get answers to the remaining open decisions (plan §11)** — deployment shape, French elections-law reviewer, runner hosting, taxonomy inheritance
+- [ ] Turn the plan into (a) the memo for Carter Center engineers and (b) the detailed annexes
+- [ ] Annex: full FR question-template set with `label_with_preposition` value-set members (101 dépts + 18 régions hand-audited; communes generated + exception-audited)
+- [ ] Annex: answer keys for the procedural + trap templates (needs a French elections-law reader — we draft, they ratify)
+- [ ] Annex: ground-truth connector specs (senat.fr, data.assemblee-nationale.fr, RNE, nosdeputes/nossenateurs, service-public, elections.interieur)
+- [ ] Map: France topology (geo.api.gouv.fr + circonscriptions `p20` from data.gouv.fr), Conic Conformal projection, DROM insets, Île-de-France magnifier
+- [ ] **Sénatoriales 27 Sept 2026 window** — candidacies close 11 Sept. If the full port slips, run a narrow 63-constituency capture instead.
 
 ## Study design (methodology track — parked while piloting)
 - [ ] Resolve method open sub-decisions (§10): realism-subset sourcing; Fv inclusion; Phase-3 robustness; per-cell source caps

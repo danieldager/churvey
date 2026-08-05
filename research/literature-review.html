@@ -1,0 +1,825 @@
+<title>Two Literature Reviews — AI Evidence Retrieval & Political Salience</title>
+
+<style>
+  :root {
+    --paper: #f8f7f4;
+    --raise: #fefdfb;
+    --ink: #1c1b18;
+    --muted: #6c6a63;
+    --faint: #8f8d85;
+    --accent: #345a78;
+    --accent-soft: #e8eef3;
+    --rule: #e7e4dd;
+    --rule-strong: #d6d2c8;
+    --flag: #8a5a12;
+    --flag-bg: #f3ead9;
+
+    --serif: "Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --measure: 43rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #15161a;
+      --raise: #1b1d22;
+      --ink: #e7e5df;
+      --muted: #9d9b92;
+      --faint: #7c7a72;
+      --accent: #88a9c8;
+      --accent-soft: #21303d;
+      --rule: #292b31;
+      --rule-strong: #3a3d44;
+      --flag: #d3a869;
+      --flag-bg: #2e2717;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #15161a;
+    --raise: #1b1d22;
+    --ink: #e7e5df;
+    --muted: #9d9b92;
+    --faint: #7c7a72;
+    --accent: #88a9c8;
+    --accent-soft: #21303d;
+    --rule: #292b31;
+    --rule-strong: #3a3d44;
+    --flag: #d3a869;
+    --flag-bg: #2e2717;
+  }
+  :root[data-theme="light"] {
+    --paper: #f8f7f4;
+    --raise: #fefdfb;
+    --ink: #1c1b18;
+    --muted: #6c6a63;
+    --faint: #8f8d85;
+    --accent: #345a78;
+    --accent-soft: #e8eef3;
+    --rule: #e7e4dd;
+    --rule-strong: #d6d2c8;
+    --flag: #8a5a12;
+    --flag-bg: #f3ead9;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    margin: 0;
+  }
+
+  .wrap {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+  }
+
+  /* ---- sticky nav ---- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 1.4rem;
+    font-family: var(--sans);
+  }
+  .nav-inner .brand {
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-right: auto;
+  }
+  nav a {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ---- masthead ---- */
+  header.top { padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--rule-strong); }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+  h1 {
+    font-size: 2.15rem;
+    line-height: 1.14;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 1rem;
+  }
+  .dek { font-size: 1.12rem; color: var(--muted); margin: 0 0 1.4rem; max-width: 38rem; }
+  .stamp {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    color: var(--faint);
+    letter-spacing: 0.02em;
+  }
+  .stamp code { font-family: var(--mono); font-size: 0.72rem; }
+
+  /* ---- topic sections ---- */
+  section.topic { padding-top: 3.5rem; }
+  .topic-head { margin-bottom: 1.6rem; }
+  .topic-kicker {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 0.5rem;
+  }
+  h2 {
+    font-size: 1.62rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  /* group headers */
+  h3 {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 2.8rem 0 1.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 .h3-note {
+    display: block;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    font-size: 0.82rem;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  p { margin: 0 0 1.1rem; }
+  .lead { font-size: 1.04rem; }
+
+  a.ref {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: border-color 0.15s;
+  }
+  a.ref:hover { border-bottom-color: var(--accent); }
+
+  /* ---- bibliography entries ---- */
+  .entry { padding: 1.15rem 0; border-top: 1px solid var(--rule); }
+  .entry:first-of-type { border-top: none; }
+  .entry-title {
+    font-size: 1.04rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 0.3rem;
+  }
+  .entry-title a {
+    color: var(--ink);
+    text-decoration: none;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0 1.5px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.2s ease, color 0.15s;
+  }
+  .entry-title a:hover { color: var(--accent); background-size: 100% 1.5px; }
+  .meta {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+    margin: 0 0 0.5rem;
+  }
+  .entry p { margin: 0; font-size: 0.97rem; color: var(--ink); }
+  .entry p + p { margin-top: 0.6rem; }
+
+  .flag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    color: var(--flag);
+    background: var(--flag-bg);
+    padding: 0.05rem 0.4rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  /* ---- callout / synthesis ---- */
+  .synthesis {
+    background: var(--raise);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+    border-radius: 2px;
+    padding: 1.4rem 1.6rem 0.6rem;
+    margin: 0 0 1rem;
+  }
+  .synthesis .lbl {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin: 0 0 0.9rem;
+  }
+  ul.tight { margin: 0 0 1.1rem; padding-left: 1.1rem; }
+  ul.tight li { margin-bottom: 0.7rem; padding-left: 0.2rem; }
+  ul.tight li:last-child { margin-bottom: 0; }
+  strong { font-weight: 650; }
+  em { font-style: italic; }
+
+  /* ---- table ---- */
+  .table-wrap { overflow-x: auto; margin: 0 0 1.4rem; border: 1px solid var(--rule); border-radius: 2px; }
+  table { border-collapse: collapse; width: 100%; min-width: 40rem; font-size: 0.86rem; }
+  caption {
+    caption-side: bottom;
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    color: var(--faint);
+    text-align: left;
+    padding: 0.6rem 0.9rem;
+  }
+  th, td { text-align: left; padding: 0.6rem 0.9rem; vertical-align: top; border-bottom: 1px solid var(--rule); }
+  thead th {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 600;
+    background: var(--raise);
+  }
+  tbody th { font-weight: 650; color: var(--ink); white-space: nowrap; }
+  tbody tr:last-child td, tbody tr:last-child th { border-bottom: none; }
+
+  /* ---- footer note ---- */
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--rule-strong);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer .lbl {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--faint);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    h1 { font-size: 1.8rem; }
+    header.top { padding: 2.5rem 0 2rem; }
+    .nav-inner .brand { display: none; }
+  }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <span class="brand">Literature Review · disinform</span>
+    <a href="#retrieval">Evidence Retrieval</a>
+    <a href="#salience">Pressing Questions</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Starting literature review</p>
+    <h1>Evidence retrieval in AI chat, and how to read society's most pressing political questions</h1>
+    <p class="dek">Two annotated source lists for the disinformation benchmark: how the major AI providers search and cite the web, and where to find what issues the public actually cares about — in the US and France.</p>
+    <p class="stamp">Compiled 2026-07-16 · every link found via live search &amp; where possible fetched · <code>[verify]</code> marks a real-but-unconfirmed deep URL · no links invented</p>
+  </header>
+
+  <!-- ============ TOPIC 1 ============ -->
+  <section class="topic" id="retrieval">
+    <div class="topic-head">
+      <p class="topic-kicker">Review One</p>
+      <h2>How AI chat providers retrieve &amp; cite evidence</h2>
+    </div>
+
+    <p class="lead">Provider-by-provider methods for ChatGPT, Claude, Grok, Gemini and DeepSeek, plus the general state of the art in retrieval-augmented generation and the studies that measure whether citations are actually trustworthy.</p>
+
+    <div class="synthesis">
+      <p class="lbl">The short version</p>
+      <ul class="tight">
+        <li><strong>ChatGPT</strong> — Hybrid: OpenAI's <em>own</em> search index (crawled by a dedicated <code style="font-family:var(--mono);font-size:0.8em">OAI-SearchBot</code>, separate from the training crawler) <em>plus</em> third-party providers (Bing / Microsoft "Web IQ"). Rewrites the query into targeted sub-queries; inline citations. Deep Research is an agentic, RL-fine-tuned o3 loop that browses hundreds of sources.</li>
+        <li><strong>Claude</strong> — Model-decided web-search tool backed by <strong>Brave Search</strong> (per subprocessor evidence; never named officially), citations always on, results encrypted between turns. Separate document Citations API grounds to exact passages. Research is a multi-agent orchestrator–worker system with a dedicated CitationAgent.</li>
+        <li><strong>Grok</strong> — Two channels: the open web <em>and the X (Twitter) firehose</em> (keyword + semantic search), in an agentic DeepSearch loop. Citations auto-collected from tool calls — but empirically often broken.</li>
+        <li><strong>Gemini</strong> — Rides <strong>Google's production Search index</strong> via query fan-out (many parallel sub-queries); returns structured metadata mapping text spans to sources. Can also ground against a private Vertex AI Search index (classic RAG).</li>
+        <li><strong>DeepSeek</strong> — Web search is an <em>app-only</em> feature, absent from the R1/V3 papers and the public API. A genuine documentation gap.</li>
+      </ul>
+      <p style="font-size:0.95rem;color:var(--muted);margin-bottom:1.1rem">The load-bearing theme for a disinformation benchmark: <strong>live retrieval ≠ accurate attribution.</strong> Multiple studies below find providers with real-time search still cite wrong or fabricated URLs at high rates.</p>
+    </div>
+
+    <h3>OpenAI / ChatGPT</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://openai.com/index/searchgpt-prototype/" target="_blank" rel="noopener">SearchGPT Prototype</a></p>
+      <p class="meta">Official OpenAI blog · 25 Jul 2024</p>
+      <p>OpenAI's first dedicated search product. Retrieval is grounded in live web content surfaced via a new dedicated crawler, <code style="font-family:var(--mono);font-size:0.85em">OAI-SearchBot</code>, explicitly separate from the training crawler and from model training. Answers carry inline source citations, built with named publisher partners (AP, Axel Springer, FT, Reuters, Condé Nast) who get opt-in/out controls independent of training.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://openai.com/index/introducing-chatgpt-search/" target="_blank" rel="noopener">Introducing ChatGPT search</a></p>
+      <p class="meta">Official OpenAI blog · 31 Oct 2024</p>
+      <p>Folds SearchGPT into ChatGPT. The RAG flow: the model decides whether the web is needed, formulates search queries, retrieves pages, synthesizes, and attaches inline citations with a source sidebar. Uses third-party providers plus partner content; independent reporting points to Bing's index as a primary candidate-URL provider (later formalized as "Web IQ").</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://help.openai.com/en/articles/9237897-chatgpt-search" target="_blank" rel="noopener">ChatGPT Search — Help Center</a></p>
+      <p class="meta">Official OpenAI docs · living document</p>
+      <p>The most explicit primary statement on mechanics: ChatGPT "sometimes partners with other search providers," and rewrites the user's query into one or more targeted queries for them. Confirms OpenAI maintains its own supplementary search index built by <code style="font-family:var(--mono);font-size:0.85em">OAI-SearchBot</code>, and documents the hover-to-preview / click-through citations.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://openai.com/index/introducing-deep-research/" target="_blank" rel="noopener">Introducing deep research</a></p>
+      <p class="meta">Official OpenAI blog · 2 Feb 2025</p>
+      <p>An agentic multi-step research capability powered by a version of o3 fine-tuned end-to-end with RL on browsing tasks. Autonomously plans, searches, browses, and synthesizes hundreds of sources into a cited report over tens of minutes — iterative retrieval (query → read → re-plan → re-query), not single-shot RAG.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2506.18096" target="_blank" rel="noopener">Deep Research Agents: A Systematic Examination and Roadmap</a></p>
+      <p class="meta">arXiv survey · 2025 · <span class="flag">[verify]</span> full text not fetched</p>
+      <p>Situates OpenAI Deep Research in a taxonomy of retrieval strategies: a single-agent, RL-fine-tuned o3 using browser-based retrieval (headless-browser interaction with dynamic pages) rather than a static vector index. Good for the API-search-vs-interactive-browser distinction.</p>
+    </div>
+
+    <h3>Anthropic / Claude</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://claude.com/blog/web-search-api" target="_blank" rel="noopener">Introducing web search on the Anthropic API</a></p>
+      <p class="meta">Official Anthropic blog · 7 May 2025</p>
+      <p>Primary announcement of Claude's web-search tool. Model-decided invocation: Claude reasons about whether to search, generates targeted queries, can run multiple progressive searches (earlier results inform later ones), and returns answers with citations always enabled. Documents domain allow/block filtering; $10 per 1,000 searches. Does not name the underlying provider.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool" target="_blank" rel="noopener">Web search tool — Claude Platform Docs</a></p>
+      <p class="meta">Official Anthropic docs</p>
+      <p>Technical reference: results return as <code style="font-family:var(--mono);font-size:0.85em">web_search_result</code> blocks; every answer carries citation objects (<code style="font-family:var(--mono);font-size:0.85em">cited_text</code>, title, url) that notably don't count toward token usage. Results are encrypted and passed back in multi-turn calls so Claude can reference them without re-exposing full content.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://platform.claude.com/docs/en/build-with-claude/citations" target="_blank" rel="noopener">Citations — Claude Platform Docs</a></p>
+      <p class="meta">Official Anthropic docs</p>
+      <p>The document-grounding Citations feature, distinct from web search: attach document blocks with citations enabled and Claude returns claims each carrying structured citations to the exact supporting passage with location references. Anthropic handles chunking internally; supports text, PDF, custom content. The API-native attribution primitive for RAG builders.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">How we built our multi-agent research system</a></p>
+      <p class="meta">Official Anthropic engineering blog · 13 Jun 2025</p>
+      <p>Claude's Research feature as an orchestrator–worker architecture: a lead agent (Opus) plans and spawns 3–5 parallel subagents (Sonnet) that each run iterative, adaptive web searches rather than static retrieval. A dedicated CitationAgent post-processes the report to attach attributions. Strong primary source on agentic retrieval design.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener">Contextual Retrieval in AI Systems</a></p>
+      <p class="meta">Official Anthropic engineering blog · 2024</p>
+      <p>Anthropic's own RAG technique: each chunk is prepended with an LLM-generated "where this fits" context string (Contextual Embeddings), and the enriched text also feeds a BM25 index (Contextual BM25) — hybrid dense + sparse retrieval. Reports 49% fewer retrieval failures (67% with a reranker). Concrete, quantified primary source on hybrid retrieval + reranking.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://techcrunch.com/2025/03/21/anthropic-appears-to-be-using-brave-to-power-web-searches-for-its-claude-chatbot/" target="_blank" rel="noopener">Anthropic appears to be using Brave to power web search for Claude</a></p>
+      <p class="meta">TechCrunch · third-party · 21 Mar 2025</p>
+      <p>Fills the gap Anthropic's docs leave open: identifies Brave Search as Claude's web-search backend, from response headers and the published subprocessor list. Corroborating reporting also lists TurboPuffer (a vector + full-text search DB) as a second subprocessor.</p>
+    </div>
+
+    <h3>xAI / Grok</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://docs.x.ai/docs/guides/live-search" target="_blank" rel="noopener">Live Search — xAI Docs</a></p>
+      <p class="meta">Official docs · transitional</p>
+      <p>Primary developer reference. Grok queries real-time data from X, the general web, news, and RSS. Retrieval controlled via search parameters (mode, max results, date ranges, domain allow/exclude). Note: xAI is retiring this Live Search API (reported 12 Jan 2026) in favour of a newer Agent Tools API.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://docs.x.ai/developers/tools/web-search" target="_blank" rel="noopener">Web Search Tool — xAI Docs (Agent Tools)</a></p>
+      <p class="meta">Official docs · <span class="flag">[verify]</span> mid-migration, field names may shift</p>
+      <p>The successor interface: the model can search the internet, access web pages, and extract information, with domain filters and image options. Citations are returned in the response object.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.datastudios.org/post/grok-real-time-search-how-x-integration-live-web-retrieval-citations-and-agent-tools-turn-xai-s" target="_blank" rel="noopener">Grok Real-Time Search: How X Integration, Live Web Retrieval &amp; Citations Work</a></p>
+      <p class="meta">Third-party analysis</p>
+      <p>The most useful non-official deep-dive. Documents Grok's two channels: general Web Search and X Search (keyword, semantic search, user search, thread fetch). Retrieval runs in an agent loop; citations are automatically collected from successful tool executions. Also references Collections Search over uploaded documents.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.tryprofound.com/blog/understanding-grok-a-comprehensive-guide-to-grok-websearch-grok-deepsearch" target="_blank" rel="noopener">Understanding Grok WebSearch and DeepSearch</a></p>
+      <p class="meta">Third-party (GEO/SEO firm)</p>
+      <p>Distinguishes fast indexed WebSearch from the multi-step autonomous DeepSearch (web crawling + real-time X synthesis, multi-turn agentic retrieval). Useful for the distinction; vendor-flavoured, some infrastructure claims unverified.</p>
+    </div>
+
+    <h3>Google / Gemini</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://ai.google.dev/gemini-api/docs/google-search" target="_blank" rel="noopener">Grounding with Google Search — Gemini API</a></p>
+      <p class="meta">Official docs</p>
+      <p>Primary developer reference. When enabled, the model "handles the entire workflow of searching, processing, and citing information automatically," including dynamic retrieval (deciding whether a search helps first) and issuing one or many queries. Responses carry the queries executed, UI search suggestions, and inline citation annotations linking text spans to sources by character index.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/reference/rest/v1beta1/GroundingMetadata" target="_blank" rel="noopener">GroundingMetadata — Vertex AI reference</a></p>
+      <p class="meta">Official API reference · <span class="flag">[verify]</span> redirects; field semantics from search summaries</p>
+      <p>Canonical schema for grounding output on Vertex AI: the queries used, grounding chunks (evidence pieces — URI, title, domain), grounding supports (mappings from generated text to supporting chunks), and a search entry point. Field names differ from the newer Gemini API surface.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://blog.google/products/search/ai-mode-search/" target="_blank" rel="noopener">Expanding AI Overviews and introducing AI Mode</a></p>
+      <p class="meta">Official Google blog · 2025</p>
+      <p>Describes the query fan-out technique: issue multiple related searches across subtopics and data sources, then synthesize with clickable citations. Establishes that Gemini-in-Search retrieval is anchored to Google's core Search ranking/index, not a separate store.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://blog.google/products-and-platforms/products/search/google-search-ai-mode-update/" target="_blank" rel="noopener">AI Mode in Google Search: Updates from Google I/O 2025</a></p>
+      <p class="meta">Official Google blog · May 2025</p>
+      <p>Extends fan-out to Deep Search, which "issue[s] hundreds of searches, reason[s] across disparate pieces of information, and create[s] an expert-level fully-cited report." Evidence of how far Google scales fan-out retrieval.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://github.com/GoogleCloudPlatform/generative-ai/blob/main/gemini/grounding/intro-grounding-gemini.ipynb" target="_blank" rel="noopener">intro-grounding-gemini.ipynb</a></p>
+      <p class="meta">Official Google sample notebook · GitHub</p>
+      <p>Runnable reference for configuring the grounding tool and parsing grounding metadata / citations — the exact request/response shape. A companion doc covers grounding against a private Vertex AI Search index, i.e. classic RAG over your own corpus.</p>
+    </div>
+
+    <h3>DeepSeek<span class="h3-note">Documentation gap: web search is an app feature, not described in the R1/V3 papers or exposed as a documented API capability. Most substantive detail is third-party.</span></h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2501.12948" target="_blank" rel="noopener">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL</a></p>
+      <p class="meta">Official paper · arXiv 2501.12948 · Jan 2025</p>
+      <p>Covers pure-RL reasoning (GRPO, self-verification, math/coding) and does <em>not</em> describe web search or retrieval. The visible reasoning traces are internal chain-of-thought, distinct from the app-level search feature. Cite to establish that search is undocumented at the model-paper level.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://api-docs.deepseek.com/" target="_blank" rel="noopener">DeepSeek API Docs</a></p>
+      <p class="meta">Official docs</p>
+      <p>Documents chat completions, thinking/non-thinking modes, JSON output, tool calls, FIM — but no web-search feature. Evidence that live retrieval is confined to the first-party chat product, not the API.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.tryprofound.com/blog/deepseek-r1-model-to-master-web-search" target="_blank" rel="noopener">Tracking DeepSeek R1: First reasoning model to master web search</a></p>
+      <p class="meta">Third-party (GEO firm)</p>
+      <p>Argues R1 was the first widely available product to combine deep reasoning with internet search, exposing citation browsing in the UI; describes a multi-step mix of index lookup + selective real-time crawling. Treat architectural specifics as informed inference, not confirmed internals.</p>
+    </div>
+
+    <h3>General RAG &amp; LLM search — state of the art</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a></p>
+      <p class="meta">Lewis et al. · 2020 · the foundational RAG paper</p>
+      <p>Couples a parametric seq2seq generator with a non-parametric dense vector index of Wikipedia (via DPR), trained end-to-end. Establishes the parametric + non-parametric memory framing underlying essentially all modern retrieval-augmented chat.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2004.04906" target="_blank" rel="noopener">Dense Passage Retrieval for Open-Domain QA</a></p>
+      <p class="meta">Karpukhin et al. · 2020</p>
+      <p>Introduces DPR, the dual-encoder dense retriever (separate BERT encoders for query and passage, dot-product similarity). Beats BM25 by 9–19% top-20 accuracy. The canonical reference for embedding / vector retrieval that powers most RAG stacks and vector DBs.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2112.01488" target="_blank" rel="noopener">ColBERTv2: Retrieval via Lightweight Late Interaction</a></p>
+      <p class="meta">Khattab et al. · 2021</p>
+      <p>Late-interaction retrieval: per-token embeddings scored via MaxSim instead of one vector per passage, giving finer relevance. The multi-vector branch of dense retrieval, relevant to high-precision reranking.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2212.10496" target="_blank" rel="noopener">Precise Zero-Shot Dense Retrieval without Relevance Labels (HyDE)</a></p>
+      <p class="meta">Gao et al. · 2022</p>
+      <p>Hypothetical Document Embeddings: the LLM drafts a hypothetical answer, which is embedded and used for retrieval, bridging the query–document semantic gap without labeled data. A key query-transformation / query-rewriting technique in modern RAG pipelines.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2310.11511" target="_blank" rel="noopener">Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection</a></p>
+      <p class="meta">Asai et al. · 2023</p>
+      <p>Trains a single LM to adaptively decide when to retrieve and to self-critique retrieved passages and its own output via reflection tokens. Foundational for adaptive / agentic retrieval — conceptually close to how ChatGPT and Claude decide whether to search.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2312.10997" target="_blank" rel="noopener">Retrieval-Augmented Generation for Large Language Models: A Survey</a></p>
+      <p class="meta">Gao et al. · 2024 · the most-cited RAG survey</p>
+      <p>Organizes the field into Naive → Advanced → Modular RAG and dissects the retrieval / generation / augmentation triad (chunking, embeddings, query rewriting, reranking, iterative retrieval). The best single orientation document for RAG state of the art.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2305.14627" target="_blank" rel="noopener">Enabling LLMs to Generate Text with Citations (ALCE)</a></p>
+      <p class="meta">Gao et al. · EMNLP 2023 · code: princeton-nlp/ALCE</p>
+      <p>The first benchmark for automatic citation evaluation. Defines citation precision and recall via NLI entailment (does the cited doc support the sentence? is each citation necessary?) across ASQA / QAMPARI / ELI5. The reference benchmark for attribution / citation faithfulness — directly relevant to grading how well chat providers cite.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/abs/2505.04847" target="_blank" rel="noopener">Benchmarking LLM Faithfulness in RAG with Evolving Leaderboards</a></p>
+      <p class="meta">2025 · also ACL Anthology 2025.emnlp-industry.54</p>
+      <p>Recent work on RAG faithfulness / hallucination: an evolving leaderboard and an LLM-as-judge ("FaithJudge") framework calibrated on human-annotated hallucinations. The current, post-ALCE state of measuring whether retrieval-grounded answers stay faithful.</p>
+    </div>
+
+    <h3>Cross-provider citation-fidelity studies<span class="h3-note">The most relevant sources for a disinformation benchmark — they measure whether retrieval actually produces trustworthy citations.</span></h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php" target="_blank" rel="noopener">AI Search Has a Citation Problem</a></p>
+      <p class="meta">Columbia Journalism Review / Tow Center · Mar 2025</p>
+      <p>Compared eight AI search tools on 200 news excerpts: over 60% of source-attribution responses were wrong overall. Grok 3 answered ~94% of source-identification queries incorrectly and linked to broken URLs in 154 of 200 responses; Gemini frequently invented URLs. Strong evidence that live retrieval ≠ accurate attribution.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://arxiv.org/pdf/2505.18059" target="_blank" rel="noopener">Assessing 8 AI chatbots in bibliographic reference retrieval</a></p>
+      <p class="meta">Third-party research · arXiv 2505.18059 · 2025</p>
+      <p>Comparative reference-retrieval accuracy across eight chatbots. Notable: Grok and DeepSeek were the only systems that did not generate false references in this test, outperforming ChatGPT / Claude / others — though none were fully accurate. A rare data point spanning all five providers of interest.</p>
+    </div>
+
+    <h3>Architecture at a glance</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>Retrieval source, query strategy and citation mechanism by provider.</caption>
+        <thead>
+          <tr><th scope="col">Provider</th><th scope="col">Retrieval source</th><th scope="col">Query strategy</th><th scope="col">Citation mechanism</th><th scope="col">Own index?</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">ChatGPT</th>
+            <td>Own index (OAI-SearchBot) + Bing / Web IQ</td>
+            <td>Query rewrite → sub-queries; agentic browsing (Deep Research)</td>
+            <td>Inline citations + sidebar</td>
+            <td>Yes (supplementary)</td>
+          </tr>
+          <tr>
+            <th scope="row">Claude</th>
+            <td>Brave Search (per 3rd-party evidence)</td>
+            <td>Model-decided, iterative multi-search; multi-agent Research</td>
+            <td>Always-on structured citations; separate document API</td>
+            <td>No; has Contextual Retrieval for own RAG</td>
+          </tr>
+          <tr>
+            <th scope="row">Grok</th>
+            <td>Open web + X firehose</td>
+            <td>Agentic DeepSearch loop; X keyword + semantic search</td>
+            <td>Auto-collected from tool calls (often broken)</td>
+            <td>X firehose is proprietary</td>
+          </tr>
+          <tr>
+            <th scope="row">Gemini</th>
+            <td>Google Search production index</td>
+            <td>Query fan-out (many parallel sub-queries)</td>
+            <td>Grounding chunks / supports; url_citation</td>
+            <td>Rides Search; can use private Vertex AI Search</td>
+          </tr>
+          <tr>
+            <th scope="row">DeepSeek</th>
+            <td>App-only web search (undocumented)</td>
+            <td>Index lookup + selective crawl (inferred)</td>
+            <td>UI citation browsing</td>
+            <td>Unknown — doc gap</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ TOPIC 2 ============ -->
+  <section class="topic" id="salience">
+    <div class="topic-head">
+      <p class="topic-kicker">Review Two</p>
+      <h2>Reading society's most pressing political questions</h2>
+    </div>
+
+    <p class="lead">Practical tools, datasets and recurring polls for identifying which political issues command public attention — and capturing the actual questions people ask — in the US, France, and cross-nationally, followed by the methodological grounding.</p>
+
+    <div class="synthesis">
+      <p class="lbl">Three signal types</p>
+      <p style="font-size:0.97rem;margin-bottom:1rem">A robust "what's most pressing" system triangulates across all three; they diverge because, per agenda-setting theory, the media agenda shapes the public agenda, and "most important problem" measures conflate an issue's importance with how much of a current problem it is.</p>
+      <ul class="tight">
+        <li><strong>Survey-based salience</strong> — what people <em>say</em> is most important. Gallup MIP, Pew, AP-NORC, YouGov, Eurobarometer, Ipsos <em>What Worries the World</em>, and the French barometers. Open-ended MIP instruments capture <em>spontaneous</em> concerns; closed-list ones give cleaner year-over-year comparability.</li>
+        <li><strong>Behavioral / revealed interest</strong> — what people <em>search or ask</em>. Google Trends and the AI-query corpora WildChat and LMSYS-Chat — the only sources that capture the <em>literal questions</em> people pose.</li>
+        <li><strong>Media agenda</strong> — what the press amplifies. GDELT and Media Cloud.</li>
+      </ul>
+    </div>
+
+    <h3>United States — recurring polls &amp; trackers</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://news.gallup.com/poll/1675/most-important-problem.aspx" target="_blank" rel="noopener">Gallup — Most Important Problem (MIP)</a></p>
+      <p class="meta">Recurring poll · Gallup · ~monthly</p>
+      <p>The gold-standard, longest-running open-ended tracker: "What do you think is the most important problem facing this country today?" The page hosts historical trend tables. Because it's open-ended, it captures spontaneous salience rather than prompting from a list — ideal for seeing which issues genuinely dominate mindshare over time.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.pewresearch.org/topic/politics-policy/political-issues/issue-priorities/" target="_blank" rel="noopener">Pew Research Center — Issue Priorities</a></p>
+      <p class="meta">Recurring survey · Pew · annual flagship + related</p>
+      <p>Hub for Pew's annual "top policy priorities for the President and Congress" plus related studies. Uses a closed list rated "top priority," with strong partisan breakdowns. Free, methodologically transparent, downloadable. Best for a structured, comparable year-over-year ranking.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://apnorc.org/topics/politics/" target="_blank" rel="noopener">AP-NORC — Politics / Priorities</a></p>
+      <p class="meta">Recurring poll · AP-NORC (U. Chicago)</p>
+      <p>Year-opening "public's priorities and expectations" study plus frequent topical polls via the probability-based AmeriSpeak panel. Open-ended "what should government prioritize" questions surface spontaneous concerns. Free toplines.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://today.yougov.com/topics/politics/trackers/most-important-issues-facing-the-us" target="_blank" rel="noopener">YouGov — Most Important Issues Facing the US</a></p>
+      <p class="meta">Tracker · YouGov · data back to 2009</p>
+      <p>Interactive, continuously updated; watch salience shift week to week with partisan splits. Very current and granular; free interactive charts on-site (raw microdata is commercial).</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.realclearpolling.com/" target="_blank" rel="noopener">RealClearPolling / RealClearPolitics</a></p>
+      <p class="meta">Aggregator · <span class="flag">[verify]</span> current 538 issue tracker unconfirmed</p>
+      <p>Averages many pollsters. Most relevant: the Direction of Country average (right/wrong track) as a mood barometer, plus curated "most important issue" polling. A one-stop, always-current meta-view rather than a primary source.</p>
+    </div>
+
+    <h3>United States — search interest, media agenda &amp; real queries</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://trends.google.com/trends/" target="_blank" rel="noopener">Google Trends</a></p>
+      <p class="meta">Tool · Google</p>
+      <p>Relative search interest in any term/topic; Trending Now for real-time breakout searches, Explore for custom terms, regional interest and related queries. The closest free window into the specific terms people type. Granular to sub-region and daily. Caveat: values are normalized 0–100, not absolute volumes.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://developers.google.com/search/blog/2025/07/trends-api" target="_blank" rel="noopener">Google Trends API (alpha)</a></p>
+      <p class="meta">API · Google · Jul 2025 · gated alpha</p>
+      <p>Consistently scaled search-interest data (5-year lookback; daily to yearly; region + sub-region) joinable across requests — a major improvement over the normalized web UI. Access is gated behind an alpha program.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://github.com/GeneralMills/pytrends" target="_blank" rel="noopener">pytrends</a></p>
+      <p class="meta">Unofficial library · community</p>
+      <p>Widely used Python pseudo-API for scripting Google Trends pulls. Handy for bulk collection; unofficial, subject to rate limits and breakage.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a></p>
+      <p class="meta">Dataset + API · updates every 15 min · global, 100+ languages</p>
+      <p>Monitors world broadcast, print and web news, coding themes, tone, people, places and events. Access via the DOC 2.0 API, BigQuery / AWS Open Data, or raw CSV. The best tool for measuring the media agenda at global scale, near-real-time. Covers the US thoroughly and works equally for France.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.mediacloud.org/" target="_blank" rel="noopener">Media Cloud</a></p>
+      <p class="meta">Tool + API · UMass Amherst / Northeastern consortium</p>
+      <p>Open-source platform over ~2 billion news stories from 60,000+ sources in 20+ languages. Measure attention/coverage peaks, compare framing across outlets, track story spread. Free web tools + API; a more research-oriented complement to GDELT, and it indexes French sources.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://huggingface.co/datasets/allenai/WildChat-4.8M" target="_blank" rel="noopener">WildChat (1M / 4.8M)</a></p>
+      <p class="meta">Dataset · Allen Institute for AI · Hugging Face (usage agreement)</p>
+      <p>1M+ (now 4.8M) timestamped, consented real user↔ChatGPT/GPT-4 conversations, with coarse geolocation and language tags, PII removed. Because these are actual prompts real people wrote, it's a rich corpus for mining what questions — including political ones — users bring to AI. <a class="ref" href="https://huggingface.co/datasets/allenai/WildChat-1M" target="_blank" rel="noopener">1M version</a>.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://huggingface.co/datasets/lmsys/lmsys-chat-1m" target="_blank" rel="noopener">LMSYS-Chat-1M</a></p>
+      <p class="meta">Dataset · LMSYS / Chatbot Arena · Apr–Aug 2023</p>
+      <p>1M real conversations with 25 LLMs, with language and moderation tags. Another window into genuine user queries to AI. Free on Hugging Face (usage agreement). Historical precedent — the withdrawn 2006 AOL search log — is cautionary background only, not a usable resource.</p>
+    </div>
+
+    <h3>France — the "préoccupations des Français" barometers</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.ipsos.com/fr-fr/ce-qui-preoccupe-les-francais" target="_blank" rel="noopener">Ipsos — Ce qui préoccupe les Français</a></p>
+      <p class="meta">Recurring tracker · Ipsos France · monthly</p>
+      <p>The French edition of Ipsos's global monthly worry tracker. Publishes each month the top concerns of the French (crime, inflation, poverty, taxes, immigration, health, climate) with month-over-month movement. Free; the monthly cadence makes it one of the most current French salience sources.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.sciencespo.fr/cevipof/fr/etudes-enquetes/barometre-priorites-francaises-l-ob-so-co-cevipof/" target="_blank" rel="noopener">L'ObSoCo–CEVIPOF — Baromètre "Priorités françaises"</a></p>
+      <p class="meta">Recurring academic barometer · L'ObSoCo × Sciences Po CEVIPOF · quarterly · launched Dec 2025</p>
+      <p>A quarterly, open-ended MIP survey explicitly built on international MIP methodology (continuing the 2014–2020 "priorités politiques" series), 2,000-person sample. The closest French analogue to Gallup's MIP and the most methodologically rigorous "what's most pressing" instrument in France. Also mirrored on <a class="ref" href="https://lobsoco.com/priorites-francaises-vague-2-janvier-2026/" target="_blank" rel="noopener">lobsoco.com</a>.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.sciencespo.fr/cevipof/" target="_blank" rel="noopener">CEVIPOF — Baromètre de la confiance politique</a></p>
+      <p class="meta">Recurring barometer · Sciences Po CEVIPOF (fielded by OpinionWay) · annual, 17+ waves</p>
+      <p>The reference survey on French trust in politics and institutions and associated concerns. The <a class="ref" href="https://www.opinion-way.com/fr/publications/barometre-de-la-confiance-politique-cevipof-vague-16-2025-19248/" target="_blank" rel="noopener">OpinionWay data pages</a> carry the toplines. More about political trust/mood than issue ranking, but essential context.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://harris-interactive.fr/catalogue/" target="_blank" rel="noopener">Harris Interactive — Baromètre des préoccupations des Français</a></p>
+      <p class="meta">Recurring poll · Harris Interactive France (with Toluna) · monthly</p>
+      <p>A monthly "préoccupations" barometer; the catalogue indexes their studies, with representative monthly PDFs. Tracks both national and personal concerns. Free reports.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.ifop.com/en/ifop-opinion/" target="_blank" rel="noopener">IFOP — Ifop Opinion</a></p>
+      <p class="meta">Pollster · Institut Français d'Opinion Publique · France's oldest</p>
+      <p>Frequent issue-priority and "état d'esprit des Français" studies. No single canonical concerns barometer URL, but the Ifop Opinion hub is the entry point to recurring political/priority tracking. Free summaries on-site.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.odoxa.fr/les-sondages/" target="_blank" rel="noopener">Odoxa — Les sondages</a></p>
+      <p class="meta">Pollster · Odoxa</p>
+      <p>Numerous French barometers (security, society, politics, economy), including large "priorités des Français" studies. Free write-ups; practical for issue-specific salience.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://elabe.fr/" target="_blank" rel="noopener">Elabe</a></p>
+      <p class="meta">Pollster · Elabe · <span class="flag">[verify]</span> dedicated concerns tracker URL unconfirmed</p>
+      <p>Political/opinion observatories widely cited in French media (BFMTV, Les Échos). Start from the homepage. Other reputable houses — BVA, Kantar Public–OnePoint, Cluster17 — publish similar barometers; canonical concerns-tracker URLs not locked down this pass. Search interest for France is the same Google Trends tool scoped via the FR region selector.</p>
+    </div>
+
+    <h3>Global / cross-national</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.ipsos.com/en/what-worries-world" target="_blank" rel="noopener">Ipsos — What Worries the World</a></p>
+      <p class="meta">Recurring global tracker · Ipsos · monthly, ~30 countries</p>
+      <p>The single most useful cross-national instrument: a monthly survey across ~30 countries (~20,000 adults), 10+ years, on which issues worry people most and country direction. Country-level breakdowns (incl. US and France) and long historical series, free monthly. Directly answers "what's most pressing right now" comparably across nations.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://europa.eu/eurobarometer/" target="_blank" rel="noopener">Eurobarometer</a></p>
+      <p class="meta">Recurring survey · European Commission / Parliament</p>
+      <p>The Standard Eurobarometer's core question — "the two most important issues facing (our country) at the moment" — is asked consistently across member states (incl. France) for decades. For long trend series, use the <a class="ref" href="https://www.gesis.org/en/eurobarometer-data-service/overview/eb-trends-trend-files/list-of-trends/polit-issues-national" target="_blank" rel="noopener">GESIS "Most Important Issues" trend file</a>, which stitches the question into a comparable time series.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.worldvaluessurvey.org/wvs.jsp" target="_blank" rel="noopener">World Values Survey</a></p>
+      <p class="meta">Dataset · WVS Association · since 1981, ~100 countries</p>
+      <p>A global academic survey now through Wave 8, on values, priorities, trust and attitudes. Free datasets/documentation. Less month-to-month "pressing questions," more deep, slow-moving values — best for structural / longitudinal context.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://yougov.com/en-gb/trackers/the-most-important-issues-facing-the-country" target="_blank" rel="noopener">YouGov — Most Important Issues (multi-country)</a></p>
+      <p class="meta">Tracker · YouGov · GB + Europe comparison</p>
+      <p>A cross-country version of the issues tracker, complementing the US tracker. Interactive and continuously updated.</p>
+    </div>
+
+    <h3>Methods &amp; theory — agenda-setting &amp; salience</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://academic.oup.com/poq/article-abstract/36/2/176/1853310" target="_blank" rel="noopener">The Agenda-Setting Function of Mass Media</a></p>
+      <p class="meta">McCombs &amp; Shaw · 1972 · Public Opinion Quarterly 36(2):176–187 · seminal</p>
+      <p>The founding "Chapel Hill study": content-analyzed nine 1968-campaign news outlets and compared issue rankings to voters' open-ended reports, finding near-perfect correlation. The core claim underlying any salience measurement — the media agenda transfers to the public agenda. Free author-hosted <a class="ref" href="https://fbaum.unc.edu/teaching/articles/POQ-1972-McCOMBS-176-87.pdf" target="_blank" rel="noopener">PDF</a>.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://press.uchicago.edu/ucp/books/book/chicago/N/bo10579884.html" target="_blank" rel="noopener">News That Matters: Television and American Opinion</a></p>
+      <p class="meta">Iyengar &amp; Kinder · 1987 (rev. 2010) · U. Chicago Press</p>
+      <p>Controlled experiments re-editing TV newscasts establish agenda-setting causally, and introduce priming: issues made salient become the criteria by which the public evaluates leaders. Key for distinguishing salience (what's on the agenda) from priming (how it reweights judgment).</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1460-2466.1993.tb01304.x" target="_blank" rel="noopener">Framing: Toward Clarification of a Fractured Paradigm</a></p>
+      <p class="meta">Entman · 1993 · Journal of Communication 43(4):51–58</p>
+      <p>The canonical statement of framing as distinct from agenda-setting: selection and salience — highlighting some aspects to promote a particular problem definition. Keeps agenda-setting, priming and framing analytically separate.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.semanticscholar.org/paper/Issue-Ownership-in-Presidential-Elections,-with-a-Petrocik/e38a9005b95731003353db9d0c1a18e6cfba47b2" target="_blank" rel="noopener">Issue Ownership in Presidential Elections</a></p>
+      <p class="meta">Petrocik · 1996 · AJPS 40(3):825–850 · <span class="flag">[verify]</span> DOI not fetched</p>
+      <p>Introduces issue ownership: parties hold durable reputations on particular issues and campaign by making "their" issues salient. Relevant because which issues are pressing is partly strategically manufactured — salience is contested, not just observed.</p>
+    </div>
+
+    <h3>Methods &amp; theory — measurement instruments &amp; projects</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.sciencedirect.com/science/article/abs/pii/S026137940500020X" target="_blank" rel="noopener">On the salience of political issues: the problem with 'most important problem'</a></p>
+      <p class="meta">Wlezien · 2005 · Electoral Studies 24(4):555–579 · key methodological critique</p>
+      <p>The essential caveat: MIP conflates an issue's importance with how much it's currently a problem, so much of MIP's variation tracks changing conditions, not stable salience. Read before treating MIP-style measures as ground truth. Open pre-print at <a class="ref" href="https://www.nuff.ox.ac.uk/Politics/papers/2003/Wlezien%20Salience%20June%202003.pdf" target="_blank" rel="noopener">Nuffield College</a>.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://philipmoniz.org/wp-content/uploads/2025/12/Moniz-and-Wlezien-2020-Issue-Salience-and-Political-Decisions.pdf" target="_blank" rel="noopener">Issue Salience and Political Decisions</a></p>
+      <p class="meta">Moniz &amp; Wlezien · 2020 · Oxford Research Encyclopedia of Politics</p>
+      <p>Modern synthesis distinguishing dimensions of salience (importance vs. problem-status; individual vs. aggregate; personal vs. national) and how each is measured. A good single-source map of the conceptual terrain.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://global.oup.com/academic/product/comparative-policy-agendas-9780198835332" target="_blank" rel="noopener">Comparative Policy Agendas: Theory, Tools, Data</a></p>
+      <p class="meta">Baumgartner, Breunig &amp; Grossman (eds.) · 2019 · OUP</p>
+      <p>Reference volume for the <a class="ref" href="https://www.comparativeagendas.net/" target="_blank" rel="noopener">Comparative Agendas Project</a>, which applies a shared master codebook to classify political attention (laws, hearings, budgets, media, speeches) into consistent topics across ~20 countries including the US and France. State-of-the-art infrastructure for measuring institutional issue attention comparably. Open-access text at <a class="ref" href="https://library.oapen.org/bitstream/handle/20.500.12657/52225/9780198835332.pdf" target="_blank" rel="noopener">OAPEN</a>.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://sciencespo.hal.science/view/index/identifiant/hal-03263626" target="_blank" rel="noopener">Agenda-Setting in Comparative Perspective: France, the UK and the US</a></p>
+      <p class="meta">Sciences Po HAL · France-focused · <span class="flag">[verify]</span> author/date confirm against record</p>
+      <p>Emiliano Grossman (Sciences Po) leads the French arm of the Comparative Agendas Project; this and related work apply the CAP framework to French institutions and compare agenda dynamics across France, the UK and the US. Directly relevant to any US/France comparative component.</p>
+    </div>
+
+    <h3>Methods &amp; theory — computational / digital-trace methods</h3>
+
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/abs/where-and-when-can-we-use-google-trends-to-measure-issue-salience/A5B3FE4B866C97E55C9CD6564BDE9C0D" target="_blank" rel="noopener">Where and When Can We Use Google Trends to Measure Issue Salience?</a></p>
+      <p class="meta">Mellon · 2013 · PS: Political Science &amp; Politics · <span class="flag">[verify]</span> DOI not fetched</p>
+      <p>Tests Google Trends against Gallup MIP: for issues with clear, unambiguous search terms (macroeconomics, terrorism, immigration, fuel prices) search data validly tracks salience — with cautions about term ambiguity and coverage. A practical guide to when digital traces are trustworthy proxies.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.tandfonline.com/doi/abs/10.1080/17457289.2013.846346" target="_blank" rel="noopener">Internet Search Data and Issue Salience: Properties of Google Trends</a></p>
+      <p class="meta">Mellon · 2014 · J. Elections, Public Opinion and Parties 24(1):45–72</p>
+      <p>The fuller companion: systematically assesses validity, reliability and comparability of Google Trends as a salience instrument, motivated by MIP being monthly and country-limited whereas search data is weekly, global and free. Core citation for deriving MIP-style signals from search traces.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1541-0072.2011.00406.x" target="_blank" rel="noopener">Capturing Curiosity: Using Internet Search Trends to Measure Public Attentiveness</a></p>
+      <p class="meta">Ripberger · 2011 · Policy Studies Journal 39(2):239–259</p>
+      <p>Borrows from epidemiological search surveillance to propose Google search activity as a measure of public attention, validated against the NYT-coverage media proxy. An early, influential argument that search traces are a legitimate attentiveness instrument.</p>
+    </div>
+    <div class="entry">
+      <p class="entry-title"><a href="https://www.cambridge.org/core/journals/american-political-science-review/article/who-leads-who-follows-measuring-issue-attention-and-agenda-setting-by-legislators-and-the-mass-public-using-social-media-data/D855849CE288A241529E9EC2E4FBD3A8" target="_blank" rel="noopener">Who Leads? Who Follows? Measuring Issue Attention with Social Media Data</a></p>
+      <p class="meta">Barberá et al. · 2019 · APSR 113(4):883–901</p>
+      <p>Classifies the topics of legislators' and the public's tweets into daily issue-attention series, then uses vector autoregression to test who sets whose agenda. A model for measuring issue attention from social media at high temporal resolution and probing lead/lag dynamics between elites and the public. Open access at <a class="ref" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7672368/" target="_blank" rel="noopener">PMC</a>.</p>
+    </div>
+
+    <div class="synthesis" style="margin-top:2.8rem">
+      <p class="lbl">How this connects to picking benchmark questions</p>
+      <p style="font-size:0.97rem;margin-bottom:1rem">For sourcing the actual political questions to test AI systems on, the highest-leverage combination is:</p>
+      <ul class="tight">
+        <li><strong>Google Trends "related queries" + WildChat / LMSYS</strong> → the literal phrasing people use, which matters for a disinformation benchmark because real queries carry the framing and false premises models must handle.</li>
+        <li><strong>Gallup MIP / Ipsos What Worries the World / L'ObSoCo–CEVIPOF</strong> → which topics are pressing right now, in both the US and France, on a comparable basis.</li>
+        <li><strong>GDELT / Media Cloud</strong> → time-align a question to when its issue actually peaked in the news, so a benchmark item can be dated to a real salience moment.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span class="lbl">Verification</span>
+    <p style="margin-bottom:0">All links were found via live web search and, where possible, fetched. <span class="flag">[verify]</span> marks a real URL whose exact content couldn't be fully confirmed (a few DOIs, some French pollster product pages, the Vertex grounding schema, xAI's migrating API). OpenAI blog pages block automated fetchers, so those summaries lean on search snippets plus corroboration; the URLs are canonical. The Google Trends API is alpha/gated, pytrends is unofficial, and the 2006 AOL query log is withdrawn (background only). No URLs were invented.</p>
+  </footer>
+
+</div>
