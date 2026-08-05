@@ -1,0 +1,42 @@
+{
+  "month": "Juin 2026",
+  "items": [
+    {
+      "rank": 1,
+      "issue": "Criminalité et violence",
+      "pct": 38
+    },
+    {
+      "rank": 2,
+      "issue": "Inflation",
+      "pct": 38
+    },
+    {
+      "rank": 3,
+      "issue": "Pauvreté et inégalités sociales",
+      "pct": 25
+    },
+    {
+      "rank": 4,
+      "issue": "Taxes",
+      "pct": 24
+    },
+    {
+      "rank": 5,
+      "issue": "Flux migratoires",
+      "pct": 24
+    },
+    {
+      "rank": 6,
+      "issue": "Système de santé",
+      "pct": 23
+    },
+    {
+      "rank": 7,
+      "issue": "Changement climatique",
+      "pct": 19
+    }
+  ],
+  "region": "FR",
+  "source": "https://www.ipsos.com/fr-fr/ce-qui-preoccupe-les-francais"
+}

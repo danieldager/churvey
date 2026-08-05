@@ -1,0 +1,207 @@
+{
+  "month": "June 2026",
+  "items": [
+    {
+      "rank": 1,
+      "issue": "The government/Poor leadership",
+      "pct": 26
+    },
+    {
+      "rank": 2,
+      "issue": "High cost of living/Inflation",
+      "pct": 14
+    },
+    {
+      "rank": 3,
+      "issue": "Economy in general",
+      "pct": 13
+    },
+    {
+      "rank": 4,
+      "issue": "Immigration",
+      "pct": 9
+    },
+    {
+      "rank": 5,
+      "issue": "Ethics/moral/religious/family decline",
+      "pct": 6
+    },
+    {
+      "rank": 6,
+      "issue": "Poverty/Hunger/Homelessness",
+      "pct": 6
+    },
+    {
+      "rank": 7,
+      "issue": "Unifying the country",
+      "pct": 5
+    },
+    {
+      "rank": 8,
+      "issue": "Fuel/Oil prices",
+      "pct": 4
+    },
+    {
+      "rank": 9,
+      "issue": "Judicial system/Courts/Laws",
+      "pct": 4
+    },
+    {
+      "rank": 10,
+      "issue": "War in the Middle East",
+      "pct": 4
+    },
+    {
+      "rank": 11,
+      "issue": "Lack of respect for each other",
+      "pct": 4
+    },
+    {
+      "rank": 12,
+      "issue": "Healthcare",
+      "pct": 3
+    },
+    {
+      "rank": 13,
+      "issue": "Race relations/Racism",
+      "pct": 3
+    },
+    {
+      "rank": 14,
+      "issue": "Wars/War (nonspecific)/Fear of war",
+      "pct": 3
+    },
+    {
+      "rank": 15,
+      "issue": "Gap between rich and poor",
+      "pct": 3
+    },
+    {
+      "rank": 16,
+      "issue": "Unemployment/Jobs",
+      "pct": 3
+    },
+    {
+      "rank": 17,
+      "issue": "Foreign policy/Foreign aid/Focus overseas",
+      "pct": 2
+    },
+    {
+      "rank": 18,
+      "issue": "Education",
+      "pct": 2
+    },
+    {
+      "rank": 19,
+      "issue": "Crime/Violence",
+      "pct": 2
+    },
+    {
+      "rank": 20,
+      "issue": "Elections/Election reform/Democracy",
+      "pct": 2
+    },
+    {
+      "rank": 21,
+      "issue": "National security",
+      "pct": 2
+    },
+    {
+      "rank": 22,
+      "issue": "Wage issues",
+      "pct": 2
+    },
+    {
+      "rank": 23,
+      "issue": "Taxes",
+      "pct": 2
+    },
+    {
+      "rank": 24,
+      "issue": "Lack of money",
+      "pct": 1
+    },
+    {
+      "rank": 25,
+      "issue": "Federal budget deficit/Federal debt",
+      "pct": 1
+    },
+    {
+      "rank": 26,
+      "issue": "The media",
+      "pct": 1
+    },
+    {
+      "rank": 27,
+      "issue": "Environment/Pollution/Climate change",
+      "pct": 1
+    },
+    {
+      "rank": 28,
+      "issue": "Drugs",
+      "pct": 1
+    },
+    {
+      "rank": 29,
+      "issue": "Abortion",
+      "pct": 1
+    },
+    {
+      "rank": 30,
+      "issue": "Lack of military defense",
+      "pct": 1
+    },
+    {
+      "rank": 31,
+      "issue": "Situation with China",
+      "pct": 1
+    },
+    {
+      "rank": 32,
+      "issue": "Energy/Lack of energy sources",
+      "pct": 1
+    },
+    {
+      "rank": 33,
+      "issue": "Corporate corruption",
+      "pct": 0
+    },
+    {
+      "rank": 34,
+      "issue": "Advancement of computers/technology",
+      "pct": 0
+    },
+    {
+      "rank": 35,
+      "issue": "Welfare",
+      "pct": 0
+    },
+    {
+      "rank": 36,
+      "issue": "International issues, problems",
+      "pct": 0
+    },
+    {
+      "rank": 37,
+      "issue": "Children’s needs",
+      "pct": 0
+    },
+    {
+      "rank": 38,
+      "issue": "Situation with Russia",
+      "pct": 0
+    },
+    {
+      "rank": 39,
+      "issue": "Infrastructure",
+      "pct": 0
+    },
+    {
+      "rank": 40,
+      "issue": "Foreign Trade/Trade deficit",
+      "pct": 0
+    }
+  ],
+  "region": "US",
+  "source": "https://news.gallup.com/poll/1675/most-important-problem.aspx"
+}

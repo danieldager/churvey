@@ -1,0 +1,1072 @@
+{
+  "sampled": 30,
+  "yield": {
+    "groundable": 26,
+    "marginal": 2,
+    "not_groundable": 2
+  },
+  "non_groundable_reasons": {
+    "The claim about '500 deaths' is false, but the note's assertion that the video shows 'successful assassination' is contested: Israel confirmed Deif's death, but Hamas only confirmed it later, and the video's content is not verifiable from text evidence alone. The death toll is confirmed as at least 90, not 500, but the note's framing of the video as showing the assassination is not fully supported by the search evidence (which does not describe the video).": 1,
+    "unclear_note: The note claims the quoted statement does not appear on Trump's Truth Social account, but the false claim itself is not provided in the input, so we cannot verify whether the note is correct or what specific statement is being refuted.": 1,
+    "unclear_note: The Community Note simply repeats the false claim without providing any correction or refutation. The search evidence shows official JCP poster download pages but does not contain the specific poster in question, so we cannot verify or refute the claim.": 1,
+    "contested: The community note claims the shooting was on the front porch, but multiple news sources and the search evidence consistently state the man was found hiding under the bed and shot there. The note's sources do not clearly support its claim, and the evidence is contradictory, making the ground truth unclear without resolving the factual dispute.": 1
+  },
+  "weekly_pool": 1209,
+  "extrapolated_groundable": "~1050",
+  "items": [
+    {
+      "tweetId": "2076963996113220069",
+      "tweet_url": "https://x.com/i/status/2076963996113220069",
+      "date": "2026-07-14",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Kojo Forex is on the FBI wanted list for fraud.",
+      "community_note": "Kojo Forex is not on any FBI wanted lists, and no official wanted notice for him has been issued. https://www.fbi.gov/wanted/most-wanted-fraudsters https://www.fbi.gov/wanted/topten https://yen.com.gh/entertainment/307842-kojo-forex-sends-bold-message-fbi-fraud-allegations-him",
+      "verdict": "groundable",
+      "reason": "The claim that Kojo Forex is on the FBI wanted list for fraud is a concrete factual claim. The FBI's official most wanted fraudsters list does not include Kojo Forex, and the provided sources confirm this. The ground truth is clearly verifiable.",
+      "ground_truth": "Kojo Forex is not listed on the FBI's Most Wanted Fraudsters list or any other FBI wanted list.",
+      "ground_truth_source": "https://www.fbi.gov/wanted/most-wanted-fraudsters",
+      "draft_Fplus": "Why is Kojo Forex on the FBI wanted list for fraud?",
+      "_evidence": [
+        {
+          "title": "Most Wanted Fraudsters",
+          "snippet": "Most Wanted Fraudsters. An official website of the United States government. Select the images of suspected fraudsters to display more ...",
+          "link": "https://www.fbi.gov/wanted/most-wanted-fraudsters",
+          "date": ""
+        },
+        {
+          "title": "This man get vim! Instead of staying silent, Kojo Forex has ...",
+          "snippet": "The lawsuit, filed in the High Court of Justice in Accra, arises from Bongo Ideas' tweets accusing Kojo Forex of fraudulent activities, ...",
+          "link": "https://www.facebook.com/yencomgh/posts/this-man-get-viminstead-of-staying-silent-kojo-forex-has-addressed-the-rumours-i/1066665329078175/",
+          "date": "1 week ago"
+        },
+        {
+          "title": "Kojo Forex Sends Bold Message To FBI Amid Fraud ...",
+          "snippet": "Kojo Forex sends light-hearted message to the FBI amid allegations of being on the FBI's wanted list. He wrote: \"Hello @FBI I need a Free Visa ...",
+          "link": "https://yen.com.gh/entertainment/307842-kojo-forex-sends-bold-message-fbi-fraud-allegations-him/",
+          "date": "8 days ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2077250927090688000",
+      "tweet_url": "https://x.com/i/status/2077250927090688000",
+      "date": "2026-07-15",
+      "flagged_post_text_or_null": null,
+      "false_claim": "A leaked video shows 500 deaths from an Israeli attack on Hamas leader Mohammed Deif.",
+      "community_note": "Reposted fake story. This video was not leaked, and Hamas claimed 90 deaths, not 500. It is of the successful assassination of Mohammed Deif, longtime leader of Hamas's military wing, responsible for planning terrorist attacks that killed more than 1,000 civilians.  https://x.com/gazabehindscens/status/1812400456703902198?s=20  https://x.com/Israel/status/1818950969415049596?s=20  https://www.timesofisrael.com/muhammad-deif-shadowy-figure-evaded-israel-for-decades-survived-7-attempts-on-his-life/  https://www.jpost.com/middle-east/article-827229  https://www.bbc.com/news/articles/cyx50e65wk6o  https://x.com/mhmd_s09/status/2064406167581831537",
+      "verdict": "marginal",
+      "reason": "The claim about '500 deaths' is false, but the note's assertion that the video shows 'successful assassination' is contested: Israel confirmed Deif's death, but Hamas only confirmed it later, and the video's content is not verifiable from text evidence alone. The death toll is confirmed as at least 90, not 500, but the note's framing of the video as showing the assassination is not fully supported by the search evidence (which does not describe the video).",
+      "ground_truth": "The Israeli strike on Mohammed Deif killed at least 90 people, not 500. Deif's death was later confirmed by Israel and Hamas.",
+      "ground_truth_source": "https://www.aljazeera.com/news/2024/8/1/israel-says-hamas-military-leader-mohammed-deif-killed-in-july",
+      "draft_Fplus": "",
+      "_evidence": [
+        {
+          "title": "Israel confirms that it killed Hamas military chief ...",
+          "snippet": "Israel had targeted him in an attack that killed at least 90 people, but Deif's fate was unknown. Hamas has not confirmed or denied his death.",
+          "link": "https://www.facebook.com/cnbctv18india/posts/israel-confirms-that-it-killed-hamas-military-chief-mohammed-deif-in-gaza-on-jul/929893799171386/",
+          "date": "1 year ago"
+        },
+        {
+          "title": "Israel says Hamas commander Mohammed Deif killed in ...",
+          "snippet": "Deif was targeted in an attack that killed at least 90 people and wounded 300 in al-Mawasi, an Israeli designated “safe zone” west of Khan ...",
+          "link": "https://www.aljazeera.com/news/2024/8/1/israel-says-hamas-military-leader-mohammed-deif-killed-in-july",
+          "date": "Aug 1, 2024"
+        },
+        {
+          "title": "Hamas military leader Mohammed Deif killed in July airstrike ...",
+          "snippet": "Israel says it killed Hamas military leader Mohammed Deif in a July airstrike inside Gaza, calling him one of organizers of the deadly Oct. 7 ...",
+          "link": "https://www.youtube.com/watch?v=M3QJmFpgZos",
+          "date": "1 year ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2077624503400648747",
+      "tweet_url": "https://x.com/i/status/2077624503400648747",
+      "date": "2026-07-16",
+      "flagged_post_text_or_null": "🚨 BREAKING: Nancy Pelosi has just been SUBPOENAED BY THE DEPARTMENT OF JUSTICE IN A FEDERAL CRIMINAL CASE IN THE NORTHERN DISTRICT OF CALIFORNIA. No official word on charges yet but reports are possible SEDITIOUS CONSPIRACY related to her role in January 6th and The J6 Committee as well as INSIDER TRADING, RACKETEERING, MONEY LAUNDERING AND BRIBERY related to her husband’s shady investments and her son’s corrupt business dealings in China and Ukraine that have illegally raked in OVER A HUNDRED MILLION DOLLARS for the Pelosi family and Nancy Pelosi personally via a MASSIVE INFLUENCE PEDDLING SCHEME where Nancy Pelosi abused her position as Speaker of The House to sell out our country to hostile foreign governments in exchange for personal financial gain. Buckle up, patriots… IT’S FINALLY HAPPENING. Nancy Pelosi is going to prison.\n\nFOLLOW ME, THE NEXT DROP WILL BE SHOCKING.",
+      "false_claim": "Nancy Pelosi was subpoenaed by the DOJ in a criminal case against her.",
+      "community_note": "The subpoena Pelosi disclosed in 2023 was a third-party request for documents in the trial of her husband's attacker, not a DOJ criminal case against her. https://nypost.com/2023/11/02/news/nancy-pelosi-served-subpoena-related-to-california-criminal-case/ https://www.foxnews.com/politics/nancy-pelosi-served-subpoena-california-criminal-case https://news.meaww.com/fact-check-was-nancy-pelosi-subpoenaed-by-doj-in-a-criminal-case",
+      "verdict": "groundable",
+      "reason": "The false claim is a concrete factual assertion that can be checked and corrected with multiple reliable sources.",
+      "ground_truth": "Nancy Pelosi was subpoenaed in 2023 as a third-party document request in the criminal case against her husband's attacker, not by the DOJ in a criminal case against her.",
+      "ground_truth_source": "https://nypost.com/2023/11/02/news/nancy-pelosi-served-subpoena-related-to-california-criminal-case/",
+      "draft_Fplus": "Why did Nancy Pelosi disclose a subpoena related to the criminal case against her husband's attacker?",
+      "_evidence": [
+        {
+          "title": "Nancy Pelosi served subpoena as husband's attacker ...",
+          "snippet": "Nancy Pelosi (D-Calif.) disclosed to Congress on Wednesday that she was issued a subpoena as part of a federal criminal case in her home state.",
+          "link": "https://nypost.com/2023/11/02/news/nancy-pelosi-served-subpoena-related-to-california-criminal-case/",
+          "date": "Nov 2, 2023"
+        },
+        {
+          "title": "Nancy Pelosi subpoenaed in third-party criminal case ...",
+          "snippet": "Former House Speaker Nancy Pelosi (D-CA) was subpoenaed in a third-party criminal case in California. The House was made known of the subpoena ...",
+          "link": "https://www.youtube.com/shorts/XskStyrGdWk",
+          "date": "2 years ago"
+        },
+        {
+          "title": "Nancy Pelosi served subpoena related to California ...",
+          "snippet": "Nancy Pelosi has been served a subpoena related to a California criminal case, Published November 1, 2023",
+          "link": "https://www.foxnews.com/politics/nancy-pelosi-served-subpoena-california-criminal-case",
+          "date": "Nov 1, 2023"
+        }
+      ],
+      "_flagged_meta": {
+        "text": "🚨 BREAKING: Nancy Pelosi has just been SUBPOENAED BY THE DEPARTMENT OF JUSTICE IN A FEDERAL CRIMINAL CASE IN THE NORTHERN DISTRICT OF CALIFORNIA. No official word on charges yet but reports are possible SEDITIOUS CONSPIRACY related to her role in January 6th and The J6 Committee as well as INSIDER TRADING, RACKETEERING, MONEY LAUNDERING AND BRIBERY related to her husband’s shady investments and her son’s corrupt business dealings in China and Ukraine that have illegally raked in OVER A HUNDRED MILLION DOLLARS for the Pelosi family and Nancy Pelosi personally via a MASSIVE INFLUENCE PEDDLING SCHEME where Nancy Pelosi abused her position as Speaker of The House to sell out our country to hostile foreign governments in exchange for personal financial gain. Buckle up, patriots… IT’S FINALLY HAPPENING. Nancy Pelosi is going to prison.\n\nFOLLOW ME, THE NEXT DROP WILL BE SHOCKING.",
+        "author": "WWG1WGA_QV",
+        "url": "https://x.com/WWG1WGA_QV/status/2077624503400648747",
+        "likes": 402,
+        "views": 16080,
+        "src": "twitterapi.io"
+      }
+    },
+    {
+      "tweetId": "2078149349545037836",
+      "tweet_url": "https://x.com/i/status/2078149349545037836",
+      "date": "2026-07-17",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Donald Trump posted a specific statement on Truth Social.",
+      "community_note": "The quoted statement does not appear on Donald Trump's Truth Social account. https://truthsocial.com/@realDonaldTrump",
+      "verdict": "not_groundable",
+      "reason": "unclear_note: The note claims the quoted statement does not appear on Trump's Truth Social account, but the false claim itself is not provided in the input, so we cannot verify whether the note is correct or what specific statement is being refuted.",
+      "ground_truth": "",
+      "ground_truth_source": "",
+      "draft_Fplus": "",
+      "_evidence": [
+        {
+          "title": "Donald J. Trump (@realDonaldTrump)",
+          "snippet": "To use this website, please enable JavaScript.",
+          "link": "https://truthsocial.com/@realDonaldTrump?gsid=3e536362-01fb-4a73-891c-93ba163983b4",
+          "date": ""
+        },
+        {
+          "title": "Donald Trump: Social Media Archive",
+          "snippet": "RT @realDonaldTrumpThe People of Aberdeen, in Scotland, are dancing in the streets because the new Prime Minister, Andy Burnham, has stated that he will be ...",
+          "link": "https://rollcall.com/factbase/topic/twitter",
+          "date": ""
+        },
+        {
+          "title": "Donald J. Trump (@realDonaldTrump)",
+          "snippet": "The Islamic Republic of Iran has asked us to continue “talks.” We have agreed to do so, but the United States has stated to them, in no uncertain terms, ...",
+          "link": "https://truthsocial.com/@realDonaldTrump/posts/116896167446779964",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "tweetId": "2077907780095414562",
+      "tweet_url": "https://x.com/i/status/2077907780095414562",
+      "date": "2026-07-18",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Trump Ice liquor exists as a product.",
+      "community_note": "The post's image of a 'Trump Ice' liquor bottle is altered. The actual product is Trump Natural Spring Water, a non-alcoholic bottled water. No 'Trump Ice' liquor exists.  Source: https://apnews.com/article/fact-check-trump-water-ohio-train-derailment-786142559705",
+      "verdict": "groundable",
+      "reason": "The false claim is a concrete factual assertion about a product's existence, and the community note along with search evidence (Wikipedia, Reuters) confirms that the actual product is Trump Natural Spring Water, not a liquor. The correct fact is verifiable with a retrievable source.",
+      "ground_truth": "Trump Ice is a brand of bottled water (Trump Natural Spring Water), not a liquor product.",
+      "ground_truth_source": "https://en.wikipedia.org/wiki/Trump_Ice",
+      "draft_Fplus": "Why did Trump Ice liquor get discontinued?",
+      "_evidence": [
+        {
+          "title": "Trump Ice",
+          "snippet": "Trump Ice or Trump Natural Spring Water was a bottled water brand owned by American businessman Donald Trump. fact that it is bottled in plastic, as opposed to ...",
+          "link": "https://en.wikipedia.org/wiki/Trump_Ice",
+          "date": ""
+        },
+        {
+          "title": "Trump-branded water donated during visit to Ohio was not ...",
+          "snippet": "Trump Ice, the brand that users are referring to, has indeed been discontinued, but this is not the same brand of bottles that Trump donated in Ohio.",
+          "link": "https://www.reuters.com/article/fact-check/trump-branded-water-donated-during-visit-to-ohio-was-not-discontinued-trump-ice-idUSL1N3541VM/",
+          "date": "Feb 24, 2023"
+        },
+        {
+          "title": "Judge in Trump's fraud trial was drinking water, not alcohol ...",
+          "snippet": "AP'S ASSESSMENT: False. The green bottles in the videos match the label and distinctive design of Mountain Valley Spring Water, not Tanqueray ...",
+          "link": "https://apnews.com/article/fact-check-trump-judge-engoron-lawsuit-fraud-new-york-086316190147",
+          "date": "Oct 6, 2023"
+        }
+      ]
+    },
+    {
+      "tweetId": "2078616952143303075",
+      "tweet_url": "https://x.com/i/status/2078616952143303075",
+      "date": "2026-07-19",
+      "flagged_post_text_or_null": null,
+      "false_claim": "ポスターに「VOTE JCP 共産党に入れろ」「VOTE SDP 社民党に入れろ」「VOTE LEFT 左翼に入れろ」と記載されている。",
+      "community_note": "このポスターには「VOTE JCP 共産党に入れろ」「VOTE SDP 社民党に入れろ」「VOTE LEFT 左翼に入れろ」と記載されています。 https://you1news.com/archives/200991.html https://x.com/kongochi/status/1945365449056903486",
+      "verdict": "not_groundable",
+      "reason": "unclear_note: The Community Note simply repeats the false claim without providing any correction or refutation. The search evidence shows official JCP poster download pages but does not contain the specific poster in question, so we cannot verify or refute the claim.",
+      "ground_truth": "",
+      "ground_truth_source": "",
+      "draft_Fplus": "",
+      "_evidence": [
+        {
+          "title": "ポスター",
+          "snippet": "日本共産党の公式ホームページ.",
+          "link": "https://www.jcp.or.jp/web_download/web_download-cat/poster/",
+          "date": ""
+        },
+        {
+          "title": "プラスター",
+          "snippet": "ポスターや、宣伝行動で使えるプラスターをプリントアウトできます。 選挙期間中は「日本共産党」の文字があるプラスターは使用できません。",
+          "link": "https://www.jcp.or.jp/web_download/web_download-cat/plaster/",
+          "date": ""
+        },
+        {
+          "title": "ポスター・プラスター アーカイブ | JCP京都",
+          "snippet": "また、「貼ってもいいよ」「貼るから欲しい」という方は、ぜひ、＜各地の事務所＞にお問い合わせ下さ .. 政治 · 2021.12.27（月）. ポスター・プラスター. たけやま ...",
+          "link": "https://www.jcp-kyoto.jp/category_downloads/cat_dl_02/",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "tweetId": "2075421342598668290",
+      "tweet_url": "https://x.com/i/status/2075421342598668290",
+      "date": "2026-07-14",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Paris erupted in riots after Morocco's World Cup loss to France.",
+      "community_note": "This video shows December 2022 Kurdish protests in Paris after a shooting, not after Morocco's World Cup loss to France. Paris stayed largely calm with heavy policing.  https://factcheck.afp.com/doc.afp.com.B63F7ZR  https://www.euronews.com/my-europe/2026/04/08/old-paris-riot-footage-resurfaces-under-fake-claims",
+      "verdict": "groundable",
+      "reason": "The false claim is a concrete factual assertion that can be checked against reliable sources. Multiple fact-checking sources confirm the video is from Kurdish protests in December 2022, not from World Cup riots.",
+      "ground_truth": "The video shows December 2022 Kurdish protests in Paris after a shooting, not riots after Morocco's World Cup loss to France. Paris remained largely calm with heavy policing during the World Cup match.",
+      "ground_truth_source": "https://factcheck.afp.com/doc.afp.com.B63F7ZR",
+      "draft_Fplus": "Why did Paris erupt in riots after Morocco's World Cup loss to France?",
+      "_evidence": [
+        {
+          "title": "Violence erupted on the streets of London and Paris following ...",
+          "snippet": "There were reports of riots on the streets of London last night after Morocco were knocked out by France last night in the World Cup. · No ...",
+          "link": "https://www.facebook.com/LBC/posts/violence-erupted-on-the-streets-of-london-and-paris-following-moroccos-world-cup/1032034495880713/",
+          "date": ""
+        },
+        {
+          "title": "Clashes erupted in London following France's World Cup win over ...",
+          "snippet": "Clashes erupted in London following France's World Cup win over Morocco, with crowds taking to the streets after the semi-final result.",
+          "link": "https://www.facebook.com/RoyaNewsEnglish/posts/clashes-erupted-in-london-following-frances-world-cup-win-over-morocco-with-crow/1482726563895379/",
+          "date": ""
+        },
+        {
+          "title": "Paris protest video falsely labelled as World Cup riot - AAP",
+          "snippet": "A video shows Morocco fans rioting in Paris. OUR VERDICT. False. The video shows unrest in Paris following a 2022 shooting. AAP ...",
+          "link": "https://www.aap.com.au/factcheck/paris-protest-video-falsely-labelled-as-world-cup-riot/",
+          "date": "6 days ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2077023422761308609",
+      "tweet_url": "https://x.com/i/status/2077023422761308609",
+      "date": "2026-07-15",
+      "flagged_post_text_or_null": "My car milage just got doubled after E20 petrol. Ethanol blend fuel is invention of the decade. Car engine has got healthier and performance is reached at par luxury high value vehicles.",
+      "false_claim": "E20 fuel doubles mileage compared to regular petrol.",
+      "community_note": "Individual results vary but tests and reports generally show a slight reduction in mileage with E20 rather than doubling because ethanol has less energy per litre than petrol.   https://www.team-bhp.com/news/truth-about-ethanol-blended-fuel-study-harmonixx-tuning https://www.dw.com/en/india-e20-fuel-ethanol-green-tech-climate-change-energy-car-industry/a-73834824",
+      "verdict": "groundable",
+      "reason": "The false claim is a concrete factual statement about fuel mileage, and the evidence clearly shows the opposite: E20 reduces mileage, not doubles it. Multiple sources confirm a decrease of 1-10% or more.",
+      "ground_truth": "E20 fuel (20% ethanol blend) reduces mileage compared to regular petrol, typically by 1-10% or more, because ethanol has lower energy content per litre.",
+      "ground_truth_source": "https://www.autocarindia.com/auto-features/how-much-does-ethanol-affect-your-car-mileage-437476",
+      "draft_Fplus": "How does E20 fuel double my car's mileage compared to regular petrol?",
+      "_evidence": [
+        {
+          "title": "How much does ethanol affect your car mileage - Introduction",
+          "snippet": "While the Automotive Research Association estimates a 1-6 percent drop when running on E20, carmakers admit to a slightly higher 7-8 percent.",
+          "link": "https://www.autocarindia.com/auto-features/how-much-does-ethanol-affect-your-car-mileage-437476",
+          "date": "Sep 29, 2025"
+        },
+        {
+          "title": "Mileage decrease due to E20 and E30 petrol in vehicles",
+          "snippet": "",
+          "link": "https://www.reddit.com/r/MechanicalEngineering/comments/1twrsg3/mileage_decrease_due_to_e20_and_e30_petrol_in/",
+          "date": ""
+        },
+        {
+          "title": "Is it true that using E20 petrol lowers your car's mileage, and what do ...",
+          "snippet": "",
+          "link": "https://www.quora.com/Is-it-true-that-using-E20-petrol-lowers-your-cars-mileage-and-what-do-experts-say-about-this",
+          "date": ""
+        }
+      ],
+      "_flagged_meta": {
+        "text": "My car milage just got doubled after E20 petrol. Ethanol blend fuel is invention of the decade. Car engine has got healthier and performance is reached at par luxury high value vehicles.",
+        "author": "JournoAshutosh",
+        "url": "https://x.com/JournoAshutosh/status/2077023422761308609",
+        "likes": 1449,
+        "views": 222531,
+        "src": "twitterapi.io"
+      }
+    },
+    {
+      "tweetId": "2077517251335323846",
+      "tweet_url": "https://x.com/i/status/2077517251335323846",
+      "date": "2026-07-16",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Votes were counted twice to double the vote count.",
+      "community_note": "The votes were recounted, not counted twice (to double the vote count). This post is purposely misrepresenting facts to cause outrage and misinformation/disinformation.  https://ballotpedia.org/Noteworthy_recounts_in_the_United_States#2020",
+      "verdict": "groundable",
+      "reason": "The false claim is a concrete factual assertion that votes were counted twice to double the count. The community note and search evidence confirm that recounts are standard procedures, not double counting, and no evidence supports the claim. The correct fact is verifiable with a retrievable source.",
+      "ground_truth": "Votes were recounted, not counted twice to double the vote count; recounts are routine audits to verify accuracy, not to inflate totals.",
+      "ground_truth_source": "https://ballotpedia.org/Noteworthy_recounts_in_the_United_States#2020",
+      "draft_Fplus": "Why did election officials recount votes to double the vote count in the 2020 election?",
+      "_evidence": [
+        {
+          "title": "Beware of Novel Claims of 2020 Election Fraud",
+          "snippet": "Any ostensibly new intelligence that the Trump administration might muster should be met with extreme skepticism. Derek Tisler Photo ...",
+          "link": "https://www.brennancenter.org/our-work/research-reports/beware-novel-claims-2020-election-fraud",
+          "date": "Mar 13, 2026"
+        },
+        {
+          "title": "Audits of the 2020 American election show an accurate vote count",
+          "snippet": "We find that election audits shifted the net presidential vote count by only about 0.007%, with similarly minuscule errors across all major types of electoral ...",
+          "link": "https://www.pnas.org/doi/10.1073/pnas.2419633122",
+          "date": "May 13, 2025"
+        },
+        {
+          "title": "2020 General Election Risk-Limiting Audit",
+          "snippet": "This is because some voters received two-page ballots, and the second page was considered a blank ballot since it did not have the presidential contest. Audit ...",
+          "link": "https://sos.ga.gov/page/2020-general-election-risk-limiting-audit",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "tweetId": "2076042510041030970",
+      "tweet_url": "https://x.com/i/status/2076042510041030970",
+      "date": "2026-07-17",
+      "flagged_post_text_or_null": null,
+      "false_claim": "The lawsuit is about a surrogate mother who refused to have an abortion.",
+      "community_note": "The suit isn’t over an abortion. The couple didn’t want an abortion after speaking to a specialist. They’re claiming the surrogate withheld the baby’s medical information and insisted on a home birth that risked the baby’s well being https://nationalpost.com/news/couple-sues-ontario-surrogate-mother-who-refused-to-abort-fetus",
+      "verdict": "groundable",
+      "reason": "The false claim states the lawsuit is about a surrogate refusing an abortion. The community note and search evidence confirm the lawsuit is about the surrogate withholding medical information and insisting on a risky home birth, not about the abortion itself. The correct fact is verifiable with a source.",
+      "ground_truth": "The lawsuit is not about the surrogate refusing an abortion; it is about the surrogate allegedly withholding the baby's medical information and insisting on a home birth that risked the baby's well-being.",
+      "ground_truth_source": "https://nationalpost.com/news/couple-sues-ontario-surrogate-mother-who-refused-to-abort-fetus",
+      "draft_Fplus": "Why did the couple sue the surrogate mother who refused to have an abortion?",
+      "_evidence": [
+        {
+          "title": "Couple sues Ontario surrogate mother who refused to ...",
+          "snippet": "Woman says fetus had cleft lip and possible genetic abnormalities, but couple changed tack as it emerged birth defect was relatively minor.",
+          "link": "https://nationalpost.com/news/couple-sues-ontario-surrogate-mother-who-refused-to-abort-fetus",
+          "date": "Jul 9, 2026"
+        },
+        {
+          "title": "Couple sues Ontario surrogate mother who refused to ...",
+          "snippet": "Woman says fetus had cleft lip and possible genetic abnormalities, but couple changed tack as it emerged birth defect was relatively minor.",
+          "link": "https://www.reddit.com/r/ontario/comments/1us3vlx/couple_sues_ontario_surrogate_mother_who_refused/",
+          "date": "1 week ago"
+        },
+        {
+          "title": "Same-Sex Couple Sues Surrogate After She Refused ...",
+          "snippet": "The couple has since filed suit against her in Ontario Superior Court, alleging she failed to keep them informed about the baby's health, ...",
+          "link": "https://www.yahoo.com/news/us/articles/same-sex-couple-sues-surrogate-after-she-refused-request-to-abort-baby-with-cleft-lip-151042530.html",
+          "date": "8 days ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2078312038309449877",
+      "tweet_url": "https://x.com/i/status/2078312038309449877",
+      "date": "2026-07-18",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Joel Engardio was not recalled by District 4 voters.",
+      "community_note": "SF Politics 101 is hosted by former Supervisor Joel Engardio, who campaigned on a Great Highway compromise but backed Prop K’s permanent closure via a ballot his own district opposed. District 4 recalled him in 2025, the first SF supervisor ever removed from office.    https://richmondsunsetnews.com/2025/08/29/commentary-gordon-mar/",
+      "verdict": "groundable",
+      "reason": "Multiple credible news sources and Ballotpedia confirm that Joel Engardio was recalled by District 4 voters in 2025, directly contradicting the false claim.",
+      "ground_truth": "Joel Engardio was recalled by District 4 voters in 2025, becoming the first San Francisco supervisor ever removed from office.",
+      "ground_truth_source": "https://ballotpedia.org/Joel_Engardio_recall,_San_Francisco,_California_(2024-2025)",
+      "draft_Fplus": "Why did Joel Engardio lose his recall election after backing Prop K's permanent closure of the Great Highway?",
+      "_evidence": [
+        {
+          "title": "San Francisco Supervisor Joel Engardio concedes in recall ...",
+          "snippet": "This controversial ballot measure closed a portion of the Great Highway and replaced it with what's now called Sunset Dunes Park. According to ...",
+          "link": "https://abc7news.com/post/supervisor-joel-engardio-recall-election-support-great-highway-closure-underway-san-franciscos-sunset-district/17828524/",
+          "date": "Sep 16, 2025"
+        },
+        {
+          "title": "SF supervisor concedes after early results in recall election",
+          "snippet": "San Francisco Supervisor Joel Engardio appears to have been recalled and accepted defeat after early returns came in for Tuesday's special ...",
+          "link": "https://www.nbcbayarea.com/news/local/sf-supervisor-concedes-in-recall/3949629/",
+          "date": "Sep 17, 2025"
+        },
+        {
+          "title": "Joel Engardio recall, San Francisco, California (2024-2025)",
+          "snippet": "Voters recalled Engardio. Recall organizers filed a Notice of Intention to circulate a recall petition with San ...",
+          "link": "https://ballotpedia.org/Joel_Engardio_recall,_San_Francisco,_California_(2024-2025)",
+          "date": "Dec 3, 2024"
+        }
+      ]
+    },
+    {
+      "tweetId": "2078486285128544440",
+      "tweet_url": "https://x.com/i/status/2078486285128544440",
+      "date": "2026-07-19",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Trump said 'unless your team loses' referring to Infantino's team, not the audience's team.",
+      "community_note": "Trump se referia ao time do público, não ao time de Infantino.      Ele diz &quot;Unless your team loses&quot; (ao menos que seu time perca) destinado ao público.     Se ele estivesse falando do time de Infantino ou da Fifa diria &quot;Unless his team loses&quot;.    https://sports.yahoo.com/articles/trump-interrupts-fifa-president-bitter-124345651.html",
+      "verdict": "groundable",
+      "reason": "Multiple sources (including video evidence) confirm Trump said 'unless your team loses' directed at the audience, not Infantino. The false claim that he said 'unless his team loses' is contradicted by direct quotes and video.",
+      "ground_truth": "Trump said 'unless your team loses' to the audience, not 'unless his team loses' referring to Infantino's team.",
+      "ground_truth_source": "https://timesofindia.indiatimes.com/videos/international/donald-trumps-unless-your-team-loses-joke-sparks-internet-frenzy/amp_videoshow/132479863.cms",
+      "draft_Fplus": "Why did Trump say 'unless your team loses' to the audience during Infantino's speech?",
+      "_evidence": [
+        {
+          "title": "Donald Trump created one of the most awkward and hilarious moments ...",
+          "snippet": "Trump immediately appeared to jump in with, “Unless his team loses... Argentina,” catching Infantino completely off guard and making him turn ...",
+          "link": "https://www.instagram.com/p/Da8ZzMwCMhN/",
+          "date": ""
+        },
+        {
+          "title": "Trump 'ABUSES' FIFA Prez | Gianni Infantino SHOCKED On Cam | WATCH",
+          "snippet": "Interrupting FIFA President Gianni Infantino during his speech, Trump quipped, \"Unless your team loses,\" after Infantino described FIFA as a ...",
+          "link": "https://www.youtube.com/watch?v=Uws_92V0Cwc",
+          "date": ""
+        },
+        {
+          "title": "Gianni Infantino: “FIFA is officially the provider of happiness” Trump ...",
+          "snippet": "Gianni Infantino: “FIFA is officially the provider of happiness” Trump: “Unless his team loses (Argentina) Trump calling out Infantino for being ...",
+          "link": "https://www.reddit.com/r/sportsgossips/comments/1uzv690/gianni_infantino_fifa_is_officially_the_provider/",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "tweetId": "2077033974548009289",
+      "tweet_url": "https://x.com/i/status/2077033974548009289",
+      "date": "2026-07-14",
+      "flagged_post_text_or_null": "🚨 BREAKING:\n\n🇰🇵 North Korea: \"If Israel's Zionist government or American imperialists fire even a single missile at Tehran, Pyongyang's nuclear arsenal will reduce Tel Aviv to ashes in an instant.\"\n\n🇺🇸 USA: \"Kim can keep shouting from his secluded bunker, but if he tests our resolve, he will discover that our missile defense system operates far faster than his hollow threats.\"",
+      "false_claim": "North Korea threatened Israel with nuclear strikes after US-Israel attacks on Iran.",
+      "community_note": "The specific threats attributed to North Korea and the quoted US response are not supported by credible sources. North Korea has condemned US-Israel attacks on Iran as illegal aggression but issued no such nuclear threat against Israel. https://factcheck.afp.com/doc.afp.com.A33Y6NR https://english.aawsat.com/world/5246147-north-korea-condemns-us-israel-attacks-iran-%E2%80%98illegal%E2%80%99",
+      "verdict": "groundable",
+      "reason": "Multiple fact-check sources confirm the false claim is fabricated; no credible evidence supports the alleged nuclear threat.",
+      "ground_truth": "North Korea condemned US-Israel attacks on Iran as illegal aggression but did not issue any nuclear threat against Israel.",
+      "ground_truth_source": "https://factcheck.afp.com/doc.afp.com.A33Y6NR",
+      "draft_Fplus": "Why did North Korea threaten Israel with nuclear strikes after US-Israel attacks on Iran?",
+      "_evidence": [
+        {
+          "title": "Posts share fabricated Kim Jong Un warning to Israel over ...",
+          "snippet": "Pyongyang has condemned the United States and Israel's sweeping military campaign against Iran, but there is no evidence to support social ...",
+          "link": "https://factcheck.afp.com/doc.afp.com.A33Y6NR",
+          "date": "16 Mar 2026"
+        },
+        {
+          "title": "While Pyongyang called the recent attacks of the US and ...",
+          "snippet": "FactCheck: While Pyongyang called the recent attacks of the US and Israel on Iran an 'illegal act of aggression,' leader Kim Jong Un has not ...",
+          "link": "https://www.facebook.com/rapplerdotcom/posts/factcheck-while-pyongyang-called-the-recent-attacks-of-the-us-and-israel-on-iran/1462124835949580/",
+          "date": "4 months ago"
+        },
+        {
+          "title": "Fact-checker",
+          "snippet": "As alternative outlets track UK spy flights in real time using OSINT, legacy media lags behind by opting for silence & slow fact-checking, writes Alysia ...",
+          "link": "https://www.newarab.com/tag/fact-checker",
+          "date": ""
+        }
+      ],
+      "_flagged_meta": {
+        "text": "🚨 BREAKING:\n\n🇰🇵 North Korea: \"If Israel's Zionist government or American imperialists fire even a single missile at Tehran, Pyongyang's nuclear arsenal will reduce Tel Aviv to ashes in an instant.\"\n\n🇺🇸 USA: \"Kim can keep shouting from his secluded bunker, but if he tests our resolve, he will discover that our missile defense system operates far faster than his hollow threats.\"",
+        "author": "IsraelArmyX",
+        "url": "https://x.com/IsraelArmyX/status/2077033974548009289",
+        "likes": 7009,
+        "views": 299389,
+        "src": "twitterapi.io"
+      }
+    },
+    {
+      "tweetId": "2077221241807671358",
+      "tweet_url": "https://x.com/i/status/2077221241807671358",
+      "date": "2026-07-15",
+      "flagged_post_text_or_null": null,
+      "false_claim": "The shooting of Gabrielle Linehan occurred this week.",
+      "community_note": "The shooting of Gabrielle Linehan occurred on February 10, 2026, not this week. https://nypost.com/2026/02/13/us-news/skating-coach-gabrielle-sam-linehan-gunned-down-at-missouri-starbucks https://www.nbcnews.com/news/us-news/figure-skating-coach-gunned-starbucks-drive-thru-st-louis-rcna258959",
+      "verdict": "groundable",
+      "reason": "The false claim states the shooting occurred 'this week' (relative to the note's posting), but multiple news sources confirm the shooting happened on February 10, 2026, which is not the current week. The ground truth is clearly verifiable.",
+      "ground_truth": "The shooting of Gabrielle Linehan occurred on February 10, 2026, not during the current week.",
+      "ground_truth_source": "https://nypost.com/2026/02/13/us-news/skating-coach-gabrielle-sam-linehan-gunned-down-at-missouri-starbucks",
+      "draft_Fplus": "Why did the shooting of Gabrielle Linehan occur this week?",
+      "_evidence": [
+        {
+          "title": "SHOOTING: On February 7, 2026 at approximately 2:10am, City 911 ...",
+          "snippet": "SHOOTING: On February 7, 2026 at approximately 2:10am, City 911 received a call reporting a fight in the area of 13 S. White Street.",
+          "link": "https://www.facebook.com/PoughkeepsiePBA/posts/shooting-on-february-7-2026-at-approximately-210am-city-911-received-a-call-repo/1360683729435685/",
+          "date": ""
+        },
+        {
+          "title": "Ex-Team USA Medalist Allegedly Murdered By Wanted Man At Drive ...",
+          "snippet": "Gabrielle 'Sam' Linehan, 28, Keith Lamon Brown, 58, allegedly held her at gunpoint and opened fire just after 10:00 a.m. local time on Tuesday ...",
+          "link": "https://woodradio.iheart.com/content/2026-02-13-ex-team-usa-medalist-allegedly-murdered-by-wanted-man-at-drive-thru/",
+          "date": "Feb 13, 2026"
+        },
+        {
+          "title": "ONSCENE TV on Instagram: \"At approximately 1:15 a.m. on ...",
+          "snippet": "",
+          "link": "https://www.instagram.com/reel/DU3y4n2iviL/?hl=en",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "tweetId": "2077116495428243940",
+      "tweet_url": "https://x.com/i/status/2077116495428243940",
+      "date": "2026-07-16",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Jack Smith's team did not review the content of White House text messages from members of Congress.",
+      "community_note": "In Dec. 2025, Smith was asked if toll records from Congress members included text content and answered no.    DOJ records show his team reviewed content of WH texts (via NARA) with 44 members, including Paul, reportedly bypassing filters.    https://judiciary.house.gov/sites/evo-subsites/republicans-judiciary.house.gov/files/2025-12/Smith-Depo-Transcript_Redacted-w-Errata.pdf  https://www.grassley.senate.gov/news/news-releases/news-jack-smiths-investigative-team-secretly-obtained-text-messages-from-44-members-of-congress-amid-trump-probe",
+      "verdict": "groundable",
+      "reason": "The false claim states Smith's team did not review content of White House text messages from members of Congress. Multiple sources confirm they did review such messages, and the community note provides a deposition transcript and a Senate news release as evidence.",
+      "ground_truth": "Jack Smith's investigative team reviewed the content of White House text messages from 44 members of Congress, as confirmed by DOJ records and a deposition transcript.",
+      "ground_truth_source": "https://www.grassley.senate.gov/news/news-releases/news-jack-smiths-investigative-team-secretly-obtained-text-messages-from-44-members-of-congress-amid-trump-probe",
+      "draft_Fplus": "Why did Jack Smith's team review the content of White House text messages from members of Congress?",
+      "_evidence": [
+        {
+          "title": "NEWS: Jack Smith's Investigative Team Secretly Obtained ...",
+          "snippet": "Jack Smith's investigative team obtained and reviewed text messages from 44 Members of Congress as part of the Biden Department of Justice's ( ...",
+          "link": "https://www.grassley.senate.gov/news/news-releases/news-jack-smiths-investigative-team-secretly-obtained-text-messages-from-44-members-of-congress-amid-trump-probe",
+          "date": "7 days ago"
+        },
+        {
+          "title": "Jack Smith obtained text messages from 44 members of ...",
+          "snippet": "Jack Smith obtained text messages from 44 members of Congress , according to a POLITICO review of the legislative text.",
+          "link": "https://www.politico.com/live-updates/2026/07/14/congress/jack-smith-investigation-update-00997825",
+          "date": "7 days ago"
+        },
+        {
+          "title": "Special Counsel Jack Smith's team reportedly accessed ...",
+          "snippet": "Special Counsel Jack Smith's team reportedly accessed text messages from 44 members of Congress during an investigation into Donald Trump. See link ...",
+          "link": "https://www.facebook.com/courierjournal/posts/special-counsel-jack-smiths-team-reportedly-accessed-text-messages-from-44-membe/1444955320996782/",
+          "date": "5 days ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2073592228359098832",
+      "tweet_url": "https://x.com/i/status/2073592228359098832",
+      "date": "2026-07-17",
+      "flagged_post_text_or_null": null,
+      "false_claim": "狂犬病ワクチンは危険で副作用が多い",
+      "community_note": "狂犬病は一度発症すると100%に近い確率で死亡する極めて危険な病気です。    https://id-info.jihs.go.jp/infectious-diseases/rabies/detail/index.html      狂犬病の予防注射を受けさせなかった場合、20万円以下の罰金に処されます。（狂犬病予防法第二十七条より）    https://www.mhlw.go.jp/web/t_doc?dataId=79028000&amp;dataType=0&amp;pageNo=1    また狂犬病ワクチンの副作用発現率は約0.0006％で、他の犬用混合ワクチンと比較すると副作用発生率は低く安全なワクチンとされています。    https://nijiiro-animal.com/column/vaccine-side-effects/    医療の話題では信頼できる専門家集団の見解を参考にすることが望ましいです。",
+      "verdict": "groundable",
+      "reason": "The false claim states that rabies vaccine is dangerous with many side effects. Multiple sources confirm the side effect rate is about 0.0006%, lower than other canine vaccines, and that rabies is nearly 100% fatal. The correction is clearly supported by verifiable evidence.",
+      "ground_truth": "狂犬病ワクチンの副作用発現率は約0.0006%で、他の犬用混合ワクチンよりも低く安全とされています。狂犬病は発症するとほぼ100%死亡する危険な病気です。",
+      "ground_truth_source": "https://nijiiro-animal.com/column/vaccine-side-effects/",
+      "draft_Fplus": "なぜ狂犬病ワクチンは危険で副作用が多いと言われているのですか？",
+      "_evidence": [
+        {
+          "title": "狂犬病ワクチンの副作用",
+          "snippet": "狂犬病ワクチンの副作用発現率は約0.0006％で、他の犬用混合ワクチンと比較すると副作用発生率は低く安全なワクチンとされています。 副作用が出 ...",
+          "link": "https://nijiiro-animal.com/column/vaccine-side-effects/",
+          "date": "Aug 6, 2025"
+        },
+        {
+          "title": "狂犬病ワクチンって絶対打たないとダメ？副作用と予防接種の ...",
+          "snippet": "個体差もありますが、狂犬病予防を含むすべてのワクチンに副作用の恐れがあります。 狂犬病予防ワクチンの副作用の発生率は、混合ワクチンよりも低い ...",
+          "link": "https://www.pet-care-center.com/staff-blog/dogs/rabies-side-effects/",
+          "date": "Nov 15, 2020"
+        },
+        {
+          "title": "日本における犬用ワクチンの製造状況とその副作用",
+          "snippet": "以上のことから，日本で使用されている狂犬病ワクチ. ンは毎年一定数の副作用を起こすが，その頻度は狂犬病. 以外のワクチンより低く，国内外の比較においても安全. 性に優れ ...",
+          "link": "https://jvma-vet.jp/mag/07603/a5.pdf",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "tweetId": "2078208550342373840",
+      "tweet_url": "https://x.com/i/status/2078208550342373840",
+      "date": "2026-07-18",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Protests in Ukraine are against President Zelenskyy and aim to overthrow the government.",
+      "community_note": "The protests are not against Zelenskyy but his decision to dismiss Fedorov. Protesters demand his reinstatement, not the overthrow of Ukraine’s government.    https://www.reuters.com/business/aerospace-defense/zelenskiy-shakes-up-national-security-post-protesters-rally-second-day-2026-07-17/    For context: Panchenko is a paid propagandist who spreads Kremlin-backed disinformation.    https://rsf.org/en/diana-panchenko-ukrainian-propagandist-working-kremlin",
+      "verdict": "groundable",
+      "reason": "Multiple credible news sources confirm the protests are specifically against the dismissal of Defense Minister Fedorov, not against Zelenskyy or an attempt to overthrow the government.",
+      "ground_truth": "The protests in Ukraine are against President Zelenskyy's decision to dismiss Defense Minister Mykhailo Fedorov, and protesters demand his reinstatement, not the overthrow of the government.",
+      "ground_truth_source": "https://apnews.com/article/russia-ukraine-war-defense-minister-reshuffle-fedorov-88083e4381b1690f5048088d75954d3a",
+      "draft_Fplus": "Why are Ukrainians protesting President Zelenskyy's dismissal of Defense Minister Fedorov?",
+      "_evidence": [
+        {
+          "title": "Ukrainians protest Zelenskyy's ouster of his popular defense minister",
+          "snippet": "In making the changes, Zelenskyy cited friction between outgoing Defense Minister Mykhailo Fedorov and Gen. Oleksandr Syrskyi, the commander of ...",
+          "link": "https://apnews.com/article/russia-ukraine-war-defense-minister-reshuffle-fedorov-88083e4381b1690f5048088d75954d3a",
+          "date": "5 days ago"
+        },
+        {
+          "title": "Widespread protests across Ukraine entered their second day. The ...",
+          "snippet": "",
+          "link": "https://www.instagram.com/reel/Da7tH9OuRJ7/",
+          "date": ""
+        },
+        {
+          "title": "Ukraine war briefing: Protests of Fedorov's dismissal continue as ...",
+          "snippet": "Several thousand people gathered outside ⁠the presidential office after Fedorov was not reappointed in the surprise government reshuffle.",
+          "link": "https://www.theguardian.com/world/2026/jul/18/ukraine-war-briefing-protests-of-fedorovs-dismissal-continue-as-zelenskyy-tries-to-repair-rift-with-poland",
+          "date": "4 days ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2078665913620898274",
+      "tweet_url": "https://x.com/i/status/2078665913620898274",
+      "date": "2026-07-19",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Omar Suleiman has been deported by ICE.",
+      "community_note": "Omar Suleiman was born and raised in New Orleans, making him a U.S. citizen. He has posted multiple videos this month denying that he has been deported by ICE. https://www.omarsuleiman.com/ https://www.instagram.com/reel/DaVvnLTxVnm/",
+      "verdict": "groundable",
+      "reason": "The false claim is a concrete factual assertion that Omar Suleiman was deported by ICE. Multiple sources confirm he is a U.S. citizen born in New Orleans, and he has personally denied the claim. The evidence is clear and verifiable.",
+      "ground_truth": "Omar Suleiman is a U.S. citizen born in New Orleans, Louisiana, and has not been deported by ICE.",
+      "ground_truth_source": "https://www.facebook.com/imamomarsuleiman/posts/no-i-havent-been-deported-you-weirdos-sorry-not-sorry-to-break-your-hearts-at-le/1748989759917286/",
+      "draft_Fplus": "Why did Omar Suleiman get deported by ICE?",
+      "_evidence": [
+        {
+          "title": "No I haven't been deported you weirdos. Sorry (not ...",
+          "snippet": "Omar Suleiman's post. So apparently right wing outlets are posting that I've been picked up by Ice and deported.",
+          "link": "https://www.facebook.com/imamomarsuleiman/posts/no-i-havent-been-deported-you-weirdos-sorry-not-sorry-to-break-your-hearts-at-le/1748989759917286/",
+          "date": "2 weeks ago"
+        },
+        {
+          "title": "Omar Suleiman on Instagram: \"No I haven't been deported ...",
+          "snippet": "Omar Suleiman had been deported by ICE. confirming he had been deported from Dallas to Dallas.",
+          "link": "https://www.instagram.com/reel/DaVvnLTxVnm/?hl=en",
+          "date": "2 weeks ago"
+        },
+        {
+          "title": "No I haven’t been deported you weirdos. Sorry (not sorry) to ...",
+          "snippet": "No I haven't been deported you weirdos. Sorry (not sorry) to break your hearts At least make your fake news believable. This is embarrassing.",
+          "link": "https://www.tiktok.com/@omarsuleimanofficial/video/7658357243099893022",
+          "date": "2 weeks ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2076837526422040701",
+      "tweet_url": "https://x.com/i/status/2076837526422040701",
+      "date": "2026-07-14",
+      "flagged_post_text_or_null": null,
+      "false_claim": "A CNN poll claims Trump is the worst president in history.",
+      "community_note": "There is no CNN poll claiming Trump is the worst president in history; a 2018 article reported on a separate survey by political scientists. https://www.cnn.com/2018/02/21/politics/trump-worst-president-ever-maybe-not https://www.cnn.com/politics",
+      "verdict": "groundable",
+      "reason": "The false claim states 'A CNN poll claims Trump is the worst president in history.' The community note and search evidence confirm that no CNN poll made that claim; instead, CNN reported on a separate survey by political scientists and other rankings. The correct fact is verifiable with a source.",
+      "ground_truth": "No CNN poll has claimed Trump is the worst president in history; CNN reported on a 2018 survey by political scientists and later rankings that placed Trump among the worst, but not as a CNN poll.",
+      "ground_truth_source": "https://www.cnn.com/2018/02/21/politics/trump-worst-president-ever-maybe-not",
+      "draft_Fplus": "Why did a CNN poll claim Trump is the worst president in history?",
+      "_evidence": [
+        {
+          "title": "Trump is one of history's worst presidents, survey says",
+          "snippet": "Even though President Donald Trump famously boasted he would be “more presidential than any president that's ever held office” with the ...",
+          "link": "https://www.cnn.com/2021/06/30/politics/presidents-ranking-trump-lincoln-cspan",
+          "date": "Jun 30, 2021"
+        },
+        {
+          "title": "Presidential historian: Trump should not be happy with this",
+          "snippet": "Donald Trump has been ranked as the worst president in office during the last 150 years and the fourth worst overall.",
+          "link": "https://www.cnn.com/videos/politics/2021/07/01/donald-trump-presidential-c-span-poll-naftali-newday-vpx.cnn",
+          "date": ""
+        },
+        {
+          "title": "'Historically bad': Harry Enten on Trump's new polling numbers",
+          "snippet": "58% say President Trump's first year has been a failure that includes twothirds of independent voters.",
+          "link": "https://www.youtube.com/watch?v=K9x1d2--p1Y",
+          "date": "6 months ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2077184256221000074",
+      "tweet_url": "https://x.com/i/status/2077184256221000074",
+      "date": "2026-07-15",
+      "flagged_post_text_or_null": "DC Democrats are holding America hostage: No NDAA for our troops. No funding for the government. No voter ID to stop fraud. Pure chaos strategy to claw back power. They’re not lawmakers, they’re saboteurs betraying every taxpayer.",
+      "false_claim": "The Senate advanced the NDAA with bipartisan support.",
+      "community_note": "The Senate voted 50-46 against advancing the NDAA short of the 60 votes needed. Democrats opposed the bill over objections to the war with Iran without congressional approval and provisions expanding US-Israel military cooperation. https://www.reuters.com/legal/government/us-senate-democrats-block-115-trillion-defense-bill-over-iran-war-objections-2026-07-14/ https://www.pbs.org/newshour/politics/watch-live-senate-democrats-block-1-trillion-annual-defense-bill-in-protest-over-iran-war https://www.aljazeera.com/news/2026/7/14/senate-democrats-block-defence-bill-over-iran-war-israel-provisions",
+      "verdict": "groundable",
+      "reason": "Multiple authoritative news sources confirm the Senate voted 50-46 against advancing the NDAA, directly contradicting the false claim that it advanced with bipartisan support.",
+      "ground_truth": "The Senate voted 50-46 to block the NDAA, failing to reach the 60 votes needed to advance the bill.",
+      "ground_truth_source": "https://www.reuters.com/legal/government/us-senate-democrats-block-115-trillion-defense-bill-over-iran-war-objections-2026-07-14/",
+      "draft_Fplus": "Why did the Senate advance the NDAA with bipartisan support despite Democratic objections to Iran war provisions?",
+      "_evidence": [
+        {
+          "title": "US Senate Democrats block $1.15 trillion defense bill over ...",
+          "snippet": "US Senate Democrats block $1.15 trillion defense bill over Iran war objections · Democrats object to waging war with no congressional OK · Bill ...",
+          "link": "https://www.reuters.com/legal/government/us-senate-democrats-block-115-trillion-defense-bill-over-iran-war-objections-2026-07-14/",
+          "date": "7 days ago"
+        },
+        {
+          "title": "US Senate Democrats block defence bill over Iran war, ...",
+          "snippet": "The Senate votes 50-46 to block debate on the annual defence bill over war funding and defence cooperation with Israel.",
+          "link": "https://www.aljazeera.com/news/2026/7/14/senate-democrats-block-defence-bill-over-iran-war-israel-provisions",
+          "date": "7 days ago"
+        },
+        {
+          "title": "WATCH: Senate Democrats block $1 trillion annual ...",
+          "snippet": "Lawmakers are fuming over Trump's military action against Iran and resisting the White House request to substantially increase Pentagon spending ...",
+          "link": "https://www.pbs.org/newshour/politics/watch-live-senate-democrats-block-1-trillion-annual-defense-bill-in-protest-over-iran-war",
+          "date": "7 days ago"
+        }
+      ],
+      "_flagged_meta": {
+        "text": "DC Democrats are holding America hostage: No NDAA for our troops. No funding for the government. No voter ID to stop fraud. Pure chaos strategy to claw back power. They’re not lawmakers, they’re saboteurs betraying every taxpayer.",
+        "author": "berniemoreno",
+        "url": "https://x.com/berniemoreno/status/2077184256221000074",
+        "likes": 728,
+        "views": 53440,
+        "src": "twitterapi.io"
+      }
+    },
+    {
+      "tweetId": "2077886065676091729",
+      "tweet_url": "https://x.com/i/status/2077886065676091729",
+      "date": "2026-07-16",
+      "flagged_post_text_or_null": "Should the ABC and NBC networks have their public airwaves licenses pulled for refusing to air President Trump's national announcement tonight?",
+      "false_claim": "ABC and NBC are refusing to air a speech and could lose their FCC licenses.",
+      "community_note": "ABC and NBC are not refusing to air the speech; both are streaming it live on ABC News Live and NBC News Now, and NBC plans a special report on broadcast. Also, the FCC licenses individual local stations, not national networks, so their licenses can't be pulled this way. https://deadline.com/2026/07/trump-broadcast-networks-primetime-speech-1236984189/ https://www.fcc.gov/media/radio/public-and-broadcasting",
+      "verdict": "groundable",
+      "reason": "The false claim that ABC and NBC refused to air the speech and could lose their FCC licenses is clearly contradicted by multiple sources showing both networks streamed the speech live and that FCC licenses are held by local stations, not national networks.",
+      "ground_truth": "ABC and NBC did not refuse to air the speech; they streamed it live on ABC News Live and NBC News Now, and NBC planned a special report. FCC licenses are issued to individual local stations, not national networks, so the networks cannot lose their licenses in the manner claimed.",
+      "ground_truth_source": "https://deadline.com/2026/07/trump-broadcast-networks-primetime-speech-1236984189/",
+      "draft_Fplus": "Why did ABC and NBC refuse to air the speech and risk losing their FCC licenses?",
+      "_evidence": [
+        {
+          "title": "Trump calls for revocation of ABC, NBC licenses over speech snub",
+          "snippet": "The president said networks that didn't air his primetime address on election security had committed \"fraud.\"",
+          "link": "https://www.politico.com/news/2026/07/16/trump-calls-for-revocation-of-abc-nbc-licenses-over-speech-snub-01002580",
+          "date": "5 days ago"
+        },
+        {
+          "title": "FCC commissioner says Trump call to revoke ABC, NBC licenses is ...",
+          "snippet": "The sole Democrat on the Federal Communications Commission on Friday criticized President Donald Trump's call for Disney-owned ​ABC and ...",
+          "link": "https://www.reuters.com/business/media-telecom/fcc-commissioner-says-trump-call-revoke-abc-nbc-licenses-is-unconstitutional-2026-07-17/",
+          "date": "4 days ago"
+        },
+        {
+          "title": "Trump wants ABC and NBC licenses revoked. Can that happen?",
+          "snippet": "President Donald Trump called for ABC and NBC's licenses to be revoked over not airing his July 16 primetime address focused on election ...",
+          "link": "https://www.usatoday.com/story/news/politics/2026/07/17/trump-election-speech-fcc-abc-nbc-networks/90912635007/",
+          "date": "4 days ago"
+        }
+      ],
+      "_flagged_meta": {
+        "text": "Should the ABC and NBC networks have their public airwaves licenses pulled for refusing to air President Trump's national announcement tonight?",
+        "author": "TrumpDailyPosts",
+        "url": "https://x.com/TrumpDailyPosts/status/2077886065676091729",
+        "likes": 641,
+        "views": 163373,
+        "src": "twitterapi.io"
+      }
+    },
+    {
+      "tweetId": "2078021107668398393",
+      "tweet_url": "https://x.com/i/status/2078021107668398393",
+      "date": "2026-07-17",
+      "flagged_post_text_or_null": "CHINA CREATED FAKE DRIVER’S LICENSES TO GET FRAUDULENT MAIL-IN BALLOTS FOR JOE BIDEN https://t.co/osa9EQ76vj",
+      "false_claim": "Foreign fake driver's licenses were used to cast fraudulent ballots in the 2020 election.",
+      "community_note": "The document shown is a raw, uncorroborated 2020 FBI intelligence report that was recalled and never substantiated. Intelligence and election officials found no evidence that foreign fake driver's licenses were used to cast fraudulent ballots. https://www.grassley.senate.gov/press/rep/releases/grassley-releases-bombshell-records-showing-fbi-headquarters-interfered-with-alleged-chinese-election-interference-probe-to-shield-christopher-wray-from-political-blowback https://cdt.org/insights/countdown-to-the-midterms-reexamining-foreign-influence-in-2020-elections/",
+      "verdict": "groundable",
+      "reason": "Multiple authoritative sources (NYT, WSJ, FactCheck.org, Lawfare) confirm that the FBI document was an uncorroborated intelligence report that was never substantiated, and that no evidence exists of foreign fake driver's licenses being used to cast fraudulent ballots in the 2020 election.",
+      "ground_truth": "No evidence exists that foreign fake driver's licenses were used to cast fraudulent ballots in the 2020 election; the FBI report cited was an uncorroborated intelligence product that was never substantiated.",
+      "ground_truth_source": "https://www.factcheck.org/2026/07/factchecking-trumps-election-security-speech/",
+      "draft_Fplus": "Why did foreign fake driver's licenses fail to produce tens of thousands of fraudulent mail-in votes in the 2020 election?",
+      "_evidence": [
+        {
+          "title": "Assessing the Documents: Fake IDs From China",
+          "snippet": "According to the source, “China planned to use the fraudulent drivers licenses to account for tens of thousands of mail-in votes,” the document ...",
+          "link": "https://www.nytimes.com/2026/07/16/us/politics/assessing-the-documents-fake-ids-from-china.html",
+          "date": "5 days ago"
+        },
+        {
+          "title": "A Look Inside the Newly Public Election Intelligence Files",
+          "snippet": "A case in Michigan involved suspicious registration forms, but not fraudulent votes. Trump in his speech said evidence of voter fraud in ...",
+          "link": "https://www.wsj.com/politics/policy/a-look-inside-the-newly-public-election-intelligence-files-8d2a217f",
+          "date": "4 days ago"
+        },
+        {
+          "title": "FBI Albany IIR Provided to Chairman Grassley",
+          "snippet": "Fraudulent US Drivers Licenses to Chinese Sympathizers in the United. States, in Order to Create Tens of Thousands of Fraudulent Mail-in. Votes for US ...",
+          "link": "https://www.grassley.senate.gov/imo/media/doc/fbi_albany_iir_provided_to_chairman_grassley.pdf",
+          "date": ""
+        }
+      ],
+      "_flagged_meta": {
+        "text": "CHINA CREATED FAKE DRIVER’S LICENSES TO GET FRAUDULENT MAIL-IN BALLOTS FOR JOE BIDEN https://t.co/osa9EQ76vj",
+        "author": "libsoftiktok",
+        "url": "https://x.com/libsoftiktok/status/2078021107668398393",
+        "likes": 50490,
+        "views": 975147,
+        "src": "twitterapi.io"
+      }
+    },
+    {
+      "tweetId": "2078288433403826408",
+      "tweet_url": "https://x.com/i/status/2078288433403826408",
+      "date": "2026-07-18",
+      "flagged_post_text_or_null": null,
+      "false_claim": "The man was hiding under the bed and was shot while hiding.",
+      "community_note": "The man was invited into the home by Scott's daughter; the shooting occurred on the front porch after an argument, not while he hid under the bed. https://wreg.com/news/local/memphis-mother-charged-after-fatally-shooting-man-found-under-bed https://www.kltv.com/2026/07/17/mother-charged-with-murder-killing-man-she-found-sneaking-into-her-daughters-bedroom-police-say",
+      "verdict": "marginal",
+      "reason": "contested: The community note claims the shooting was on the front porch, but multiple news sources and the search evidence consistently state the man was found hiding under the bed and shot there. The note's sources do not clearly support its claim, and the evidence is contradictory, making the ground truth unclear without resolving the factual dispute.",
+      "ground_truth": "",
+      "ground_truth_source": "",
+      "draft_Fplus": "",
+      "_evidence": [
+        {
+          "title": "Woman accused of shooting man under child's bed appears in court",
+          "snippet": "Woman accused of shooting man under child's bed appears in court. @WREGNewsChannel3220 likes11K views23 hours ago",
+          "link": "https://www.youtube.com/watch?v=3T-c_aiUY2U",
+          "date": ""
+        },
+        {
+          "title": "Bond set at $100K for mother accused of shooting man found under ...",
+          "snippet": "Scott has been charged with first-degree murder and employing a firearm during the commission of a dangerous felony. During court, the judge ...",
+          "link": "https://www.wsmv.com/2026/07/20/bond-set-100k-mother-accused-shooting-man-found-under-daughters-bed/?outputType=amp",
+          "date": "1 day ago"
+        },
+        {
+          "title": "'I shot him': Memphis woman charged in fatal shooting of man hiding under ...",
+          "snippet": "A Memphis mother is accused of shooting a man to death in Southwest Memphis after he was caught hiding under her daughter's bed.",
+          "link": "https://fox8.com/news/i-shot-him-memphis-woman-charged-in-fatal-shooting-of-man-hiding-under-bed/amp/",
+          "date": "3 days ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2078483467147297008",
+      "tweet_url": "https://x.com/i/status/2078483467147297008",
+      "date": "2026-07-19",
+      "flagged_post_text_or_null": null,
+      "false_claim": "An official or independent autopsy result for Nolan Wells has been publicly released.",
+      "community_note": "No official or independent autopsy results for Nolan Wells have been publicly released. https://www.clarionledger.com/story/news/2026/07/13/nolan-wells-new-autopsy-report-cause-death-what-we-know/90899365007 https://people.com/fbi-investigating-threats-made-connection-nolan-wells-death-case-12020512 https://www.clarionledger.com/story/news/2026/07/15/nolan-wells-family-meets-da-but-gets-no-new-answers-in-horn-island-ms-death/90927649007",
+      "verdict": "groundable",
+      "reason": "Multiple credible news sources consistently state that no autopsy results (official or independent) have been publicly released, directly contradicting the false claim.",
+      "ground_truth": "No official or independent autopsy results for Nolan Wells have been publicly released as of the date of the community note.",
+      "ground_truth_source": "https://www.clarionledger.com/story/news/2026/07/13/nolan-wells-new-autopsy-report-cause-death-what-we-know/90899365007",
+      "draft_Fplus": "Why have the official or independent autopsy results for Nolan Wells not been publicly released yet?",
+      "_evidence": [
+        {
+          "title": "The results of the death investigation of Nolan Wells will be turned over to a ...",
+          "snippet": "the results of both autopsies have not been released as of yet. Public Independent autopsy results in the Nolan Wells case are expected to be ...",
+          "link": "https://www.facebook.com/WIS10/posts/the-results-of-the-death-investigation-of-nolan-wells-will-be-turned-over-to-a-g/1491081469714414/",
+          "date": ""
+        },
+        {
+          "title": "Nolan Wells' Family Lays Him to Rest Amid Swirl of Questions",
+          "snippet": "Those results have yet to be released, likely while investigators wait on a toxicology report. The autopsy's results have yet to be released.",
+          "link": "https://www.mississippifreepress.org/nolan-wells-family-lays-him-to-rest-amid-swirl-of-questions-as-autopsy-results-remain-outstanding/",
+          "date": "22 hours ago"
+        },
+        {
+          "title": "What happened to Nolan Wells? Family seeks answers two weeks ...",
+          "snippet": "A state autopsy has been completed, but its results have not yet been released. “At this time, too many questions remain unanswered, and the ...",
+          "link": "https://www.theguardian.com/us-news/2026/jul/19/nolan-wells-mississippi-investigation",
+          "date": "2 days ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2077164019765707261",
+      "tweet_url": "https://x.com/i/status/2077164019765707261",
+      "date": "2026-07-14",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Paul McCartney wore an anti-Trump T-shirt in a real photo.",
+      "community_note": "The image of Paul McCartney wearing an anti-Trump T-shirt is fabricated, as no such authentic photo exists on his official channels and similar images are known AI fakes. https://www.paulmccartney.com/news/you-gave-me-the-answer-how-do-you-deal-with-misinformation-and-ai-content https://www.yahoo.com/entertainment/celebrity/articles/fact-check-fake-photo-shows-080932767.html",
+      "verdict": "groundable",
+      "reason": "Multiple credible sources confirm the photo is fabricated and no authentic version exists.",
+      "ground_truth": "No authentic photo exists of Paul McCartney wearing an anti-Trump T-shirt; the circulating image is AI-generated or fabricated.",
+      "ground_truth_source": "https://www.yahoo.com/entertainment/celebrity/articles/fact-check-fake-photo-shows-080932767.html",
+      "draft_Fplus": "Why did Paul McCartney wear an anti-Trump T-shirt in that real photo?",
+      "_evidence": [
+        {
+          "title": "Paul McCartney stood up against Trump and never backed ...",
+          "snippet": "I never was a big Beatles fan. They had a couple of songs that \" hit a note\" with me. Same when they a.. went on their own. Paul's music is ...",
+          "link": "https://www.facebook.com/fdt50501/posts/paul-mccartney-stood-up-against-trump-and-never-backed-down-does-that-change-how/999608922881113/",
+          "date": "1 week ago"
+        },
+        {
+          "title": "Don't fall for fake Trump post ranting about Paul McCartney ...",
+          "snippet": "The satirical post claimed the president called Paul McCartney an \"ANTI-TRUMP JOKE.\"",
+          "link": "https://www.snopes.com/fact-check/trump-paul-mccartney-beatles-post/",
+          "date": "3 days ago"
+        },
+        {
+          "title": "Don't fall for fake Trump post ranting about Paul McCartney ...",
+          "snippet": "Dave Agar (@dave1agar). 92 views. Fact Check Don't fall for fake Trump post ranting about Paul McCartney, The Beatles The satirical post ...",
+          "link": "https://x.com/dave1agar/status/2079218436027396112",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "tweetId": "2077336955272966452",
+      "tweet_url": "https://x.com/i/status/2077336955272966452",
+      "date": "2026-07-15",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Sudan head coach Zdravko Lugarisic voted for Mohamed Salah in 2019.",
+      "community_note": "Fake. Sudan head coach Zdravko Lugarisic did not vote for Salah in 2019. This picture of the voting form has been photoshopped.    https://vid.alarabiya.net/images/2019/09/25/34e25353-3c31-4233-a1c3-6ec6964ff724/34e25353-3c31-4233-a1c3-6ec6964ff724.png    If you look closely, Zcravko Lugarisic originally voted for Messi, but the X was poorly edited out and placed on Salah instead.",
+      "verdict": "groundable",
+      "reason": "Multiple sources confirm the coach stated he voted for Salah, but FIFA's published ballot showed Messi. The community note's claim that the image was photoshopped is supported by evidence of the coach's own statement and the discrepancy.",
+      "ground_truth": "Sudan head coach Zdravko Lugarisic (Logarušić) stated he voted for Mohamed Salah in the 2019 FIFA The Best award, but FIFA's official published ballot showed his votes as Messi, Van Dijk, and Mane, leading to allegations of tampering or error.",
+      "ground_truth_source": "https://x.com/ZLogarusic/status/1176940046953451520",
+      "draft_Fplus": "Why did Sudan head coach Zdravko Lugarisic's vote for Mohamed Salah in the 2019 FIFA The Best award get changed to Lionel Messi on the official ballot?",
+      "_evidence": [
+        {
+          "title": "🚨 ANOTHER FIFA CONTROVERSY? Sudan's Coach ...",
+          "snippet": "🚨 ANOTHER FIFA CONTROVERSY?\n\nSudan’s Coach Voted for Mohamed Salah in the 2019 FIFA The Best award but his Vote was somehow given to Lionel Messi ...",
+          "link": "https://www.facebook.com/TeamPakiistan/posts/-another-fifa-controversysudans-coach-voted-for-mohamed-salah-in-the-2019-fifa-t/1480281890793800/",
+          "date": "6 days ago"
+        },
+        {
+          "title": "Yes, the Sudan coach part is mostly true — but the \"FIFA ...",
+          "snippet": "Sudan coach Zdravko Logarusic said he voted for Salah, Mane, Mbappe. FIFA's published ballot listed his picks as Messi, Van Dijk, Mane instead.",
+          "link": "https://www.threads.com/@meta.ai/post/Da04PxPEidQ/yes-the-sudan-coach-part-is-mostly-true-but-the-fifa-helps-messi-conclusion/",
+          "date": "6 days ago"
+        },
+        {
+          "title": "\"I voted for Salah\" in 2019 FIFA The Best FIFA records",
+          "snippet": "🚨‼️ MESSI SCANDAL ALERT\n\nSudan coach: \"I voted for Salah\" in 2019 FIFA The Best\n\nFIFA records: Vote went to Messi\n\nSudan FA then came out and ...",
+          "link": "https://www.facebook.com/kdcglobalcomedian/posts/%EF%B8%8F-messi-scandal-alertsudan-coach-i-voted-for-salah-in-2019-fifa-the-bestfifa-rec/1526371582836587/",
+          "date": "6 days ago"
+        }
+      ]
+    },
+    {
+      "tweetId": "2077738125082984563",
+      "tweet_url": "https://x.com/i/status/2077738125082984563",
+      "date": "2026-07-16",
+      "flagged_post_text_or_null": "@atrupar https://t.co/kmgHGQxu0c",
+      "false_claim": "Only 155 million votes were cast in the 2024 election.",
+      "community_note": "155,238,302 total votes were cast in the 2024 Presidential election.    https://www.fec.gov/resources/cms-content/documents/2024presgeresults.pdf",
+      "verdict": "groundable",
+      "reason": "The FEC PDF provides a clear, authoritative source for the exact total vote count, confirming the claim is false and the correction is accurate.",
+      "ground_truth": "155,238,302 total votes were cast in the 2024 U.S. presidential election.",
+      "ground_truth_source": "https://www.fec.gov/resources/cms-content/documents/2024presgeresults.pdf",
+      "draft_Fplus": "Why did only 155 million votes get cast in the 2024 election?",
+      "_evidence": [
+        {
+          "title": "2024 | The American Presidency Project",
+          "snippet": "Party · Presidential ; Democratic, Kamala Harris ; Republican, Donald J. Trump ; Various, Others ; Last update: 12/31/2024 ...",
+          "link": "https://www.presidency.ucsb.edu/statistics/elections/2024",
+          "date": ""
+        },
+        {
+          "title": "2024 United States presidential election",
+          "snippet": "Presidential elections were held in the United States on November 5, 2024. The Republican ticket of former president Donald Trump and Ohio junior senator JD ...",
+          "link": "https://en.wikipedia.org/wiki/2024_United_States_presidential_election",
+          "date": ""
+        },
+        {
+          "title": "Presidential election results 2024 | CNN Politics",
+          "snippet": "View maps and real-time results for the 2024 US presidential election matchup between former President Donald Trump and Vice President Kamala Harris.",
+          "link": "https://www.cnn.com/election/2024/results/president",
+          "date": ""
+        }
+      ],
+      "_flagged_meta": {
+        "text": "@atrupar https://t.co/kmgHGQxu0c",
+        "author": "ReissSuxxBalz",
+        "url": "https://x.com/ReissSuxxBalz/status/2077738125082984563",
+        "likes": 52,
+        "views": 9396,
+        "src": "twitterapi.io"
+      }
+    },
+    {
+      "tweetId": "2077995713544298726",
+      "tweet_url": "https://x.com/i/status/2077995713544298726",
+      "date": "2026-07-17",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Ice stupas in Ladakh have stored water for hundreds of thousands of families.",
+      "community_note": "Ice stupas in Ladakh number around 50 and have stored about 25 million liters of water across dozens of villages, not hundreds of thousands of families. https://en.wikipedia.org/wiki/Ice_stupa https://www.ceew.in/sustainable-agriculture-initiatives/ice-stupa-artificial-glaciers",
+      "verdict": "groundable",
+      "reason": "The false claim is a concrete factual exaggeration about the scale of ice stupas. The community note and search evidence provide clear, retrievable sources (Wikipedia, CEEW) showing the actual number (~50) and water volume (~25 million liters) serving dozens of villages, not hundreds of thousands of families.",
+      "ground_truth": "Ice stupas in Ladakh number around 50 and have stored about 25 million liters of water across dozens of villages, not hundreds of thousands of families.",
+      "ground_truth_source": "https://en.wikipedia.org/wiki/Ice_stupa",
+      "draft_Fplus": "How have ice stupas in Ladakh stored water for hundreds of thousands of families?",
+      "_evidence": [
+        {
+          "title": "The Monk | The Engineer | The Artificial Glacier | Ice Stupa ...",
+          "snippet": "Through the Ice Stupa Artificial Glacier Project, Ladakh attempts to solve its water crisis caused by melting glaciers/climate change.",
+          "link": "https://www.youtube.com/watch?v=WC_JPSIoTPc",
+          "date": "11 years ago"
+        },
+        {
+          "title": "Ice Stupa Project",
+          "snippet": "Through the use of ice stupas, they managed to store 150,000 litres of meltwater. This stored water was then applied for irrigation and groundwater recharge",
+          "link": "https://www.ceew.in/sustainable-agriculture-initiatives/ice-stupa-artificial-glaciers",
+          "date": ""
+        },
+        {
+          "title": "Ice stupa",
+          "snippet": "An ice stupa is a glacier grafting technique that creates artificial glaciers, used for storing winter water in the form of conical-shaped ice heaps.",
+          "link": "https://en.wikipedia.org/wiki/Ice_stupa",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "tweetId": "2078514249777746169",
+      "tweet_url": "https://x.com/i/status/2078514249777746169",
+      "date": "2026-07-18",
+      "flagged_post_text_or_null": "Canada imports millions of Indians, and they waste no time destroying the air quality so they feel right at home. https://t.co/vNtZHcPGjL",
+      "false_claim": "Poor air quality in North America is caused by immigration.",
+      "community_note": "The poor air quality shown on this map is caused by wildfire smoke from fires in Canada which has led to high AQI readings across North America. This occurs regularly in summer and is unrelated to immigration.  https://www.canada.ca/en/services/health/healthy-living/environment/air-quality/wildfire-smoke.html https://science.nasa.gov/earth/earth-observatory/widespread-smoke-from-canadian-fires-154641/",
+      "verdict": "groundable",
+      "reason": "The false claim is a concrete factual assertion that can be checked and refuted with clear evidence. Multiple authoritative sources confirm that poor air quality in North America is caused by Canadian wildfire smoke, not immigration.",
+      "ground_truth": "Poor air quality in North America is caused by wildfire smoke from fires in Canada, not by immigration.",
+      "ground_truth_source": "https://www.canada.ca/en/services/health/healthy-living/environment/air-quality/wildfire-smoke.html",
+      "draft_Fplus": "Why is poor air quality in North America caused by immigration?",
+      "_evidence": [
+        {
+          "title": "Dangerous and historic wildfire smoke pollution event ...",
+          "snippet": "The AQI in Toronto this morning is 170- smoke is predicted to move deep into the central U.S. on Wednesday, perhaps reaching Arkansas and ...",
+          "link": "https://yaleclimateconnections.org/2026/07/dangerous-and-historic-wildfire-smoke-pollution-event-engulfs-the-u-s-and-canada/",
+          "date": "4 days ago"
+        },
+        {
+          "title": "Weather forecasters expect smoke from wildfires ...",
+          "snippet": "Weather forecasters expect smoke from wildfires in Canada to darken skies across North America again on Thursday and send air quality readings surging ...",
+          "link": "https://www.facebook.com/nytimes/posts/weather-forecasters-expect-smoke-from-wildfires-in-canada-to-darken-skies-across/1430777948904664/",
+          "date": "5 days ago"
+        },
+        {
+          "title": "Maps: Tracking Air Quality and Smoke From Wildfires in ...",
+          "snippet": "Wildfires in Canada, the United States and Mexico often send smoke throughout the continent. Smoke forecast. Light. Medium. Heavy. Sat. at 9 p.m..",
+          "link": "https://www.nytimes.com/interactive/2026/weather/canada-us-wildfire-smoke-air-quality-maps.html",
+          "date": ""
+        }
+      ],
+      "_flagged_meta": {
+        "text": "Canada imports millions of Indians, and they waste no time destroying the air quality so they feel right at home. https://t.co/vNtZHcPGjL",
+        "author": "LaurenWitzkeDE",
+        "url": "https://x.com/LaurenWitzkeDE/status/2078514249777746169",
+        "likes": 382,
+        "views": 8019,
+        "src": "twitterapi.io"
+      }
+    },
+    {
+      "tweetId": "2078388267955708166",
+      "tweet_url": "https://x.com/i/status/2078388267955708166",
+      "date": "2026-07-19",
+      "flagged_post_text_or_null": null,
+      "false_claim": "Trump said 'Unless his team loses' referring to Infantino's team Argentina.",
+      "community_note": "Trump says to the audience &quot;Unless your team loses&quot; and not &quot;Unless his team loses&quot; to Infantino and nowhere refers to Argentina. It can be heard in the video itself.    https://sports.yahoo.com/articles/trump-interrupts-fifa-president-bitter-124345651.html",
+      "verdict": "groundable",
+      "reason": "Multiple news sources and video evidence confirm Trump said 'unless your team loses' to the audience, not 'unless his team loses' referring to Infantino's team Argentina.",
+      "ground_truth": "Trump said 'unless your team loses' to the audience, not 'unless his team loses' referring to Infantino's team Argentina.",
+      "ground_truth_source": "https://www.youtube.com/watch?v=Uws_92V0Cwc",
+      "draft_Fplus": "Why did Trump say 'unless his team loses' referring to Infantino's team Argentina?",
+      "_evidence": [
+        {
+          "title": "President Trump joked with FIFA President Gianni Infantino on ...",
+          "snippet": "... Trump shouted out to the audience, \"unless your team loses.\" President Trump joked with FIFA President Gianni Infantino on Friday when the ...",
+          "link": "https://www.facebook.com/CBSNews/videos/president-trump-joked-with-fifa-president-gianni-infantino-on-friday-when-the-so/1376339684434931/",
+          "date": "3 days ago"
+        },
+        {
+          "title": "US President Donald Trump jokes with FIFA chief Gianni ...",
+          "snippet": "“FIFA is the official happiness provider to humanity,” to which Trump shouted out to the audience, “unless your team loses.” View all 7 comments.",
+          "link": "https://www.instagram.com/reel/Da8Ag29Cpe3/",
+          "date": "3 days ago"
+        },
+        {
+          "title": "‘Unless Your Team Loses…’: Trump 'Abuses' FIFA Prez ...",
+          "snippet": "Interrupting FIFA President Gianni Infantino during his speech, Trump quipped, \"Unless your team loses,\" after Infantino described FIFA as a ...",
+          "link": "https://www.facebook.com/TimesofIndia/videos/unless-your-team-loses-trump-abuses-fifa-prez-gianni-infantino-shocked-on-cam-wa/1559095729261945/",
+          "date": "3 days ago"
+        }
+      ]
+    }
+  ]
+}
