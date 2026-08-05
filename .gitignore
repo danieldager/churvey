@@ -1,8 +1,21 @@
-# Captured research data AND interaction recordings (recordings contain auth
-# tokens + cookies) — never commit.
-data/
-# devsync symlink (data lives in iCloud via devlink) — don't commit the symlink
-/data
+# Research data.
+#
+# data/ used to be ignored wholesale, on two premises that are no longer true:
+# it is not a symlink (it is a real directory), and the chat-probe captures were
+# thought to contain auth tokens and cookies. A scan on 2026-08-05 found no
+# cookies, bearer tokens, session keys, csrf or oauth values in them; the only
+# "authorization" hits are model output about the National Defense Authorization
+# Act. So the France dataset and its pinned source snapshots are now committed,
+# which is what makes the SHA-256 hashes in france/build_locality_answers.py
+# verifiable by anyone else.
+#
+# Still excluded, on size rather than secrecy.
+# 49 MB of raw model completions from the Michigan pilot:
+data/chat-probe/
+# 29 MB all-communes research asset, carries a NOT_FOR_LOAD marker:
+data/fr/offline/
+# empty scaffold:
+france/data/
 
 # Claude Code session data
 .claude/
@@ -14,6 +27,7 @@ node_modules/
 ff/src/popup/_preview.html
 ff/dev/shots/
 
-# Python artifacts
+# Python artifacts and virtualenvs
 __pycache__/
 *.pyc
+.venv*/
