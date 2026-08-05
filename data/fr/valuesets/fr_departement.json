@@ -1,0 +1,1012 @@
+[
+  {
+    "code": "01",
+    "label": "Ain",
+    "label_with_preposition": "de l'Ain",
+    "label_with_article": "l'Ain",
+    "region_code": "84",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "02",
+    "label": "Aisne",
+    "label_with_preposition": "de l'Aisne",
+    "label_with_article": "l'Aisne",
+    "region_code": "32",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "03",
+    "label": "Allier",
+    "label_with_preposition": "de l'Allier",
+    "label_with_article": "l'Allier",
+    "region_code": "84",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "04",
+    "label": "Alpes-de-Haute-Provence",
+    "label_with_preposition": "des Alpes-de-Haute-Provence",
+    "label_with_article": "les Alpes-de-Haute-Provence",
+    "region_code": "93",
+    "n_senateurs": 1,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "05",
+    "label": "Hautes-Alpes",
+    "label_with_preposition": "des Hautes-Alpes",
+    "label_with_article": "les Hautes-Alpes",
+    "region_code": "93",
+    "n_senateurs": 1,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "06",
+    "label": "Alpes-Maritimes",
+    "label_with_preposition": "des Alpes-Maritimes",
+    "label_with_article": "les Alpes-Maritimes",
+    "region_code": "93",
+    "n_senateurs": 5,
+    "n_circonscriptions": 9,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "07",
+    "label": "Ardèche",
+    "label_with_preposition": "de l'Ardèche",
+    "label_with_article": "l'Ardèche",
+    "region_code": "84",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "08",
+    "label": "Ardennes",
+    "label_with_preposition": "des Ardennes",
+    "label_with_article": "les Ardennes",
+    "region_code": "44",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "09",
+    "label": "Ariège",
+    "label_with_preposition": "de l'Ariège",
+    "label_with_article": "l'Ariège",
+    "region_code": "76",
+    "n_senateurs": 1,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "10",
+    "label": "Aube",
+    "label_with_preposition": "de l'Aube",
+    "label_with_article": "l'Aube",
+    "region_code": "44",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "11",
+    "label": "Aude",
+    "label_with_preposition": "de l'Aude",
+    "label_with_article": "l'Aude",
+    "region_code": "76",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "12",
+    "label": "Aveyron",
+    "label_with_preposition": "de l'Aveyron",
+    "label_with_article": "l'Aveyron",
+    "region_code": "76",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "13",
+    "label": "Bouches-du-Rhône",
+    "label_with_preposition": "des Bouches-du-Rhône",
+    "label_with_article": "les Bouches-du-Rhône",
+    "region_code": "93",
+    "n_senateurs": 8,
+    "n_circonscriptions": 16,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "14",
+    "label": "Calvados",
+    "label_with_preposition": "du Calvados",
+    "label_with_article": "le Calvados",
+    "region_code": "28",
+    "n_senateurs": 3,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "15",
+    "label": "Cantal",
+    "label_with_preposition": "du Cantal",
+    "label_with_article": "le Cantal",
+    "region_code": "84",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "16",
+    "label": "Charente",
+    "label_with_preposition": "de la Charente",
+    "label_with_article": "la Charente",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "17",
+    "label": "Charente-Maritime",
+    "label_with_preposition": "de la Charente-Maritime",
+    "label_with_article": "la Charente-Maritime",
+    "region_code": "75",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "18",
+    "label": "Cher",
+    "label_with_preposition": "du Cher",
+    "label_with_article": "le Cher",
+    "region_code": "24",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "19",
+    "label": "Corrèze",
+    "label_with_preposition": "de la Corrèze",
+    "label_with_article": "la Corrèze",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "21",
+    "label": "Côte-d'Or",
+    "label_with_preposition": "de la Côte-d'Or",
+    "label_with_article": "la Côte-d'Or",
+    "region_code": "27",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "22",
+    "label": "Côtes-d'Armor",
+    "label_with_preposition": "des Côtes-d'Armor",
+    "label_with_article": "les Côtes-d'Armor",
+    "region_code": "53",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "23",
+    "label": "Creuse",
+    "label_with_preposition": "de la Creuse",
+    "label_with_article": "la Creuse",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 1,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "24",
+    "label": "Dordogne",
+    "label_with_preposition": "de la Dordogne",
+    "label_with_article": "la Dordogne",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "25",
+    "label": "Doubs",
+    "label_with_preposition": "du Doubs",
+    "label_with_article": "le Doubs",
+    "region_code": "27",
+    "n_senateurs": 3,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "26",
+    "label": "Drôme",
+    "label_with_preposition": "de la Drôme",
+    "label_with_article": "la Drôme",
+    "region_code": "84",
+    "n_senateurs": 3,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "27",
+    "label": "Eure",
+    "label_with_preposition": "de l'Eure",
+    "label_with_article": "l'Eure",
+    "region_code": "28",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "28",
+    "label": "Eure-et-Loir",
+    "label_with_preposition": "d'Eure-et-Loir",
+    "label_with_article": "l'Eure-et-Loir",
+    "region_code": "24",
+    "n_senateurs": 3,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "29",
+    "label": "Finistère",
+    "label_with_preposition": "du Finistère",
+    "label_with_article": "le Finistère",
+    "region_code": "53",
+    "n_senateurs": 4,
+    "n_circonscriptions": 8,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "2A",
+    "label": "Corse-du-Sud",
+    "label_with_preposition": "de Corse-du-Sud",
+    "label_with_article": "la Corse-du-Sud",
+    "region_code": "94",
+    "n_senateurs": 1,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": false
+  },
+  {
+    "code": "2B",
+    "label": "Haute-Corse",
+    "label_with_preposition": "de Haute-Corse",
+    "label_with_article": "la Haute-Corse",
+    "region_code": "94",
+    "n_senateurs": 1,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": false
+  },
+  {
+    "code": "30",
+    "label": "Gard",
+    "label_with_preposition": "du Gard",
+    "label_with_article": "le Gard",
+    "region_code": "76",
+    "n_senateurs": 3,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "31",
+    "label": "Haute-Garonne",
+    "label_with_preposition": "de la Haute-Garonne",
+    "label_with_article": "la Haute-Garonne",
+    "region_code": "76",
+    "n_senateurs": 5,
+    "n_circonscriptions": 10,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "32",
+    "label": "Gers",
+    "label_with_preposition": "du Gers",
+    "label_with_article": "le Gers",
+    "region_code": "76",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "33",
+    "label": "Gironde",
+    "label_with_preposition": "de la Gironde",
+    "label_with_article": "la Gironde",
+    "region_code": "75",
+    "n_senateurs": 6,
+    "n_circonscriptions": 11,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "34",
+    "label": "Hérault",
+    "label_with_preposition": "de l'Hérault",
+    "label_with_article": "l'Hérault",
+    "region_code": "76",
+    "n_senateurs": 4,
+    "n_circonscriptions": 9,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "35",
+    "label": "Ille-et-Vilaine",
+    "label_with_preposition": "d'Ille-et-Vilaine",
+    "label_with_article": "l'Ille-et-Vilaine",
+    "region_code": "53",
+    "n_senateurs": 4,
+    "n_circonscriptions": 8,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "36",
+    "label": "Indre",
+    "label_with_preposition": "de l'Indre",
+    "label_with_article": "l'Indre",
+    "region_code": "24",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "37",
+    "label": "Indre-et-Loire",
+    "label_with_preposition": "d'Indre-et-Loire",
+    "label_with_article": "l'Indre-et-Loire",
+    "region_code": "24",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "38",
+    "label": "Isère",
+    "label_with_preposition": "de l'Isère",
+    "label_with_article": "l'Isère",
+    "region_code": "84",
+    "n_senateurs": 5,
+    "n_circonscriptions": 10,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "39",
+    "label": "Jura",
+    "label_with_preposition": "du Jura",
+    "label_with_article": "le Jura",
+    "region_code": "27",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "40",
+    "label": "Landes",
+    "label_with_preposition": "des Landes",
+    "label_with_article": "les Landes",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "41",
+    "label": "Loir-et-Cher",
+    "label_with_preposition": "de Loir-et-Cher",
+    "label_with_article": "le Loir-et-Cher",
+    "region_code": "24",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "42",
+    "label": "Loire",
+    "label_with_preposition": "de la Loire",
+    "label_with_article": "la Loire",
+    "region_code": "84",
+    "n_senateurs": 4,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "43",
+    "label": "Haute-Loire",
+    "label_with_preposition": "de la Haute-Loire",
+    "label_with_article": "la Haute-Loire",
+    "region_code": "84",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "44",
+    "label": "Loire-Atlantique",
+    "label_with_preposition": "de la Loire-Atlantique",
+    "label_with_article": "la Loire-Atlantique",
+    "region_code": "52",
+    "n_senateurs": 5,
+    "n_circonscriptions": 10,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "45",
+    "label": "Loiret",
+    "label_with_preposition": "du Loiret",
+    "label_with_article": "le Loiret",
+    "region_code": "24",
+    "n_senateurs": 3,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "46",
+    "label": "Lot",
+    "label_with_preposition": "du Lot",
+    "label_with_article": "le Lot",
+    "region_code": "76",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "47",
+    "label": "Lot-et-Garonne",
+    "label_with_preposition": "de Lot-et-Garonne",
+    "label_with_article": "le Lot-et-Garonne",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "48",
+    "label": "Lozère",
+    "label_with_preposition": "de la Lozère",
+    "label_with_article": "la Lozère",
+    "region_code": "76",
+    "n_senateurs": 1,
+    "n_circonscriptions": 1,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "49",
+    "label": "Maine-et-Loire",
+    "label_with_preposition": "de Maine-et-Loire",
+    "label_with_article": "le Maine-et-Loire",
+    "region_code": "52",
+    "n_senateurs": 4,
+    "n_circonscriptions": 7,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "50",
+    "label": "Manche",
+    "label_with_preposition": "de la Manche",
+    "label_with_article": "la Manche",
+    "region_code": "28",
+    "n_senateurs": 3,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "51",
+    "label": "Marne",
+    "label_with_preposition": "de la Marne",
+    "label_with_article": "la Marne",
+    "region_code": "44",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "52",
+    "label": "Haute-Marne",
+    "label_with_preposition": "de la Haute-Marne",
+    "label_with_article": "la Haute-Marne",
+    "region_code": "44",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "53",
+    "label": "Mayenne",
+    "label_with_preposition": "de la Mayenne",
+    "label_with_article": "la Mayenne",
+    "region_code": "52",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "54",
+    "label": "Meurthe-et-Moselle",
+    "label_with_preposition": "de Meurthe-et-Moselle",
+    "label_with_article": "la Meurthe-et-Moselle",
+    "region_code": "44",
+    "n_senateurs": 4,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "55",
+    "label": "Meuse",
+    "label_with_preposition": "de la Meuse",
+    "label_with_article": "la Meuse",
+    "region_code": "44",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "56",
+    "label": "Morbihan",
+    "label_with_preposition": "du Morbihan",
+    "label_with_article": "le Morbihan",
+    "region_code": "53",
+    "n_senateurs": 3,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "57",
+    "label": "Moselle",
+    "label_with_preposition": "de la Moselle",
+    "label_with_article": "la Moselle",
+    "region_code": "44",
+    "n_senateurs": 5,
+    "n_circonscriptions": 10,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "58",
+    "label": "Nièvre",
+    "label_with_preposition": "de la Nièvre",
+    "label_with_article": "la Nièvre",
+    "region_code": "27",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "59",
+    "label": "Nord",
+    "label_with_preposition": "du Nord",
+    "label_with_article": "le Nord",
+    "region_code": "32",
+    "n_senateurs": 11,
+    "n_circonscriptions": 20,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "60",
+    "label": "Oise",
+    "label_with_preposition": "de l'Oise",
+    "label_with_article": "l'Oise",
+    "region_code": "32",
+    "n_senateurs": 4,
+    "n_circonscriptions": 7,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "61",
+    "label": "Orne",
+    "label_with_preposition": "de l'Orne",
+    "label_with_article": "l'Orne",
+    "region_code": "28",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "62",
+    "label": "Pas-de-Calais",
+    "label_with_preposition": "du Pas-de-Calais",
+    "label_with_article": "le Pas-de-Calais",
+    "region_code": "32",
+    "n_senateurs": 7,
+    "n_circonscriptions": 12,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "63",
+    "label": "Puy-de-Dôme",
+    "label_with_preposition": "du Puy-de-Dôme",
+    "label_with_article": "le Puy-de-Dôme",
+    "region_code": "84",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "64",
+    "label": "Pyrénées-Atlantiques",
+    "label_with_preposition": "des Pyrénées-Atlantiques",
+    "label_with_article": "les Pyrénées-Atlantiques",
+    "region_code": "75",
+    "n_senateurs": 3,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "65",
+    "label": "Hautes-Pyrénées",
+    "label_with_preposition": "des Hautes-Pyrénées",
+    "label_with_article": "les Hautes-Pyrénées",
+    "region_code": "76",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "66",
+    "label": "Pyrénées-Orientales",
+    "label_with_preposition": "des Pyrénées-Orientales",
+    "label_with_article": "les Pyrénées-Orientales",
+    "region_code": "76",
+    "n_senateurs": 2,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "67",
+    "label": "Bas-Rhin",
+    "label_with_preposition": "du Bas-Rhin",
+    "label_with_article": "le Bas-Rhin",
+    "region_code": "44",
+    "n_senateurs": 5,
+    "n_circonscriptions": 9,
+    "has_conseil_departemental": false
+  },
+  {
+    "code": "68",
+    "label": "Haut-Rhin",
+    "label_with_preposition": "du Haut-Rhin",
+    "label_with_article": "le Haut-Rhin",
+    "region_code": "44",
+    "n_senateurs": 4,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": false
+  },
+  {
+    "code": "69",
+    "label": "Rhône",
+    "label_with_preposition": "du Rhône",
+    "label_with_article": "le Rhône",
+    "region_code": "84",
+    "n_senateurs": 7,
+    "n_circonscriptions": 14,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "70",
+    "label": "Haute-Saône",
+    "label_with_preposition": "de la Haute-Saône",
+    "label_with_article": "la Haute-Saône",
+    "region_code": "27",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "71",
+    "label": "Saône-et-Loire",
+    "label_with_preposition": "de Saône-et-Loire",
+    "label_with_article": "la Saône-et-Loire",
+    "region_code": "27",
+    "n_senateurs": 3,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "72",
+    "label": "Sarthe",
+    "label_with_preposition": "de la Sarthe",
+    "label_with_article": "la Sarthe",
+    "region_code": "52",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "73",
+    "label": "Savoie",
+    "label_with_preposition": "de la Savoie",
+    "label_with_article": "la Savoie",
+    "region_code": "84",
+    "n_senateurs": 2,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "74",
+    "label": "Haute-Savoie",
+    "label_with_preposition": "de la Haute-Savoie",
+    "label_with_article": "la Haute-Savoie",
+    "region_code": "84",
+    "n_senateurs": 3,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "75",
+    "label": "Paris",
+    "label_with_preposition": "de Paris",
+    "label_with_article": "Paris",
+    "region_code": "11",
+    "n_senateurs": 12,
+    "n_circonscriptions": 18,
+    "has_conseil_departemental": false
+  },
+  {
+    "code": "76",
+    "label": "Seine-Maritime",
+    "label_with_preposition": "de la Seine-Maritime",
+    "label_with_article": "la Seine-Maritime",
+    "region_code": "28",
+    "n_senateurs": 6,
+    "n_circonscriptions": 10,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "77",
+    "label": "Seine-et-Marne",
+    "label_with_preposition": "de Seine-et-Marne",
+    "label_with_article": "la Seine-et-Marne",
+    "region_code": "11",
+    "n_senateurs": 6,
+    "n_circonscriptions": 11,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "78",
+    "label": "Yvelines",
+    "label_with_preposition": "des Yvelines",
+    "label_with_article": "les Yvelines",
+    "region_code": "11",
+    "n_senateurs": 6,
+    "n_circonscriptions": 12,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "79",
+    "label": "Deux-Sèvres",
+    "label_with_preposition": "des Deux-Sèvres",
+    "label_with_article": "les Deux-Sèvres",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "80",
+    "label": "Somme",
+    "label_with_preposition": "de la Somme",
+    "label_with_article": "la Somme",
+    "region_code": "32",
+    "n_senateurs": 3,
+    "n_circonscriptions": 6,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "81",
+    "label": "Tarn",
+    "label_with_preposition": "du Tarn",
+    "label_with_article": "le Tarn",
+    "region_code": "76",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "82",
+    "label": "Tarn-et-Garonne",
+    "label_with_preposition": "de Tarn-et-Garonne",
+    "label_with_article": "le Tarn-et-Garonne",
+    "region_code": "76",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "83",
+    "label": "Var",
+    "label_with_preposition": "du Var",
+    "label_with_article": "le Var",
+    "region_code": "93",
+    "n_senateurs": 4,
+    "n_circonscriptions": 8,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "84",
+    "label": "Vaucluse",
+    "label_with_preposition": "du Vaucluse",
+    "label_with_article": "le Vaucluse",
+    "region_code": "93",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "85",
+    "label": "Vendée",
+    "label_with_preposition": "de la Vendée",
+    "label_with_article": "la Vendée",
+    "region_code": "52",
+    "n_senateurs": 3,
+    "n_circonscriptions": 5,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "86",
+    "label": "Vienne",
+    "label_with_preposition": "de la Vienne",
+    "label_with_article": "la Vienne",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "87",
+    "label": "Haute-Vienne",
+    "label_with_preposition": "de la Haute-Vienne",
+    "label_with_article": "la Haute-Vienne",
+    "region_code": "75",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "88",
+    "label": "Vosges",
+    "label_with_preposition": "des Vosges",
+    "label_with_article": "les Vosges",
+    "region_code": "44",
+    "n_senateurs": 2,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "89",
+    "label": "Yonne",
+    "label_with_preposition": "de l'Yonne",
+    "label_with_article": "l'Yonne",
+    "region_code": "27",
+    "n_senateurs": 2,
+    "n_circonscriptions": 3,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "90",
+    "label": "Territoire de Belfort",
+    "label_with_preposition": "du Territoire de Belfort",
+    "label_with_article": "le Territoire de Belfort",
+    "region_code": "27",
+    "n_senateurs": 1,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "91",
+    "label": "Essonne",
+    "label_with_preposition": "de l'Essonne",
+    "label_with_article": "l'Essonne",
+    "region_code": "11",
+    "n_senateurs": 5,
+    "n_circonscriptions": 10,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "92",
+    "label": "Hauts-de-Seine",
+    "label_with_preposition": "des Hauts-de-Seine",
+    "label_with_article": "les Hauts-de-Seine",
+    "region_code": "11",
+    "n_senateurs": 7,
+    "n_circonscriptions": 13,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "93",
+    "label": "Seine-Saint-Denis",
+    "label_with_preposition": "de la Seine-Saint-Denis",
+    "label_with_article": "la Seine-Saint-Denis",
+    "region_code": "11",
+    "n_senateurs": 6,
+    "n_circonscriptions": 12,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "94",
+    "label": "Val-de-Marne",
+    "label_with_preposition": "du Val-de-Marne",
+    "label_with_article": "le Val-de-Marne",
+    "region_code": "11",
+    "n_senateurs": 6,
+    "n_circonscriptions": 11,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "95",
+    "label": "Val-d'Oise",
+    "label_with_preposition": "du Val-d'Oise",
+    "label_with_article": "le Val-d'Oise",
+    "region_code": "11",
+    "n_senateurs": 5,
+    "n_circonscriptions": 10,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "971",
+    "label": "Guadeloupe",
+    "label_with_preposition": "de la Guadeloupe",
+    "label_with_article": "la Guadeloupe",
+    "region_code": "01",
+    "n_senateurs": 3,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "972",
+    "label": "Martinique",
+    "label_with_preposition": "de la Martinique",
+    "label_with_article": "la Martinique",
+    "region_code": "02",
+    "n_senateurs": 2,
+    "n_circonscriptions": 4,
+    "has_conseil_departemental": false
+  },
+  {
+    "code": "973",
+    "label": "Guyane",
+    "label_with_preposition": "de la Guyane",
+    "label_with_article": "la Guyane",
+    "region_code": "03",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": false
+  },
+  {
+    "code": "974",
+    "label": "La Réunion",
+    "label_with_preposition": "de La Réunion",
+    "label_with_article": "La Réunion",
+    "region_code": "04",
+    "n_senateurs": 4,
+    "n_circonscriptions": 7,
+    "has_conseil_departemental": true
+  },
+  {
+    "code": "976",
+    "label": "Mayotte",
+    "label_with_preposition": "de Mayotte",
+    "label_with_article": "Mayotte",
+    "region_code": "06",
+    "n_senateurs": 2,
+    "n_circonscriptions": 2,
+    "has_conseil_departemental": false
+  }
+]

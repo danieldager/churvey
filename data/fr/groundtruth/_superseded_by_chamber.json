@@ -1,0 +1,52 @@
+{
+  "note": "names the RNE lists that the chamber does not - titulaire replaced by suppléant, or RNE stale. NOT accepted as answers.",
+  "d1": [
+    {
+      "departement": "69",
+      "name_in_rne": "François-Noël BUFFET",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    },
+    {
+      "departement": "95",
+      "name_in_rne": "Sophie DANET",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    }
+  ],
+  "d2": [
+    {
+      "departement": "25",
+      "name_in_rne": "Lionel DUPARAY",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    },
+    {
+      "departement": "33",
+      "name_in_rne": "Florent BOUDIÉ",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    },
+    {
+      "departement": "42",
+      "name_in_rne": "Jean-Pierre TAITE",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    },
+    {
+      "departement": "45",
+      "name_in_rne": "Stéphanie RIST",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    },
+    {
+      "departement": "57",
+      "name_in_rne": "Charlotte PARMENTIER-LECOCQ",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    },
+    {
+      "departement": "80",
+      "name_in_rne": "Alexandra MARTIN",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    },
+    {
+      "departement": "85",
+      "name_in_rne": "Béatrice BELLAMY",
+      "reason": "not sitting per the chamber - titulaire replaced, or RNE is stale"
+    }
+  ]
+}

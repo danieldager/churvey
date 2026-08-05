@@ -1,0 +1,110 @@
+[
+  {
+    "code": "01",
+    "label": "Guadeloupe",
+    "label_with_preposition": "de la Guadeloupe",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "02",
+    "label": "Martinique",
+    "label_with_preposition": "de la Martinique",
+    "has_conseil_regional": false
+  },
+  {
+    "code": "03",
+    "label": "Guyane",
+    "label_with_preposition": "de la Guyane",
+    "has_conseil_regional": false
+  },
+  {
+    "code": "04",
+    "label": "La Réunion",
+    "label_with_preposition": "de La Réunion",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "06",
+    "label": "Mayotte",
+    "label_with_preposition": "de Mayotte",
+    "has_conseil_regional": false
+  },
+  {
+    "code": "11",
+    "label": "Île-de-France",
+    "label_with_preposition": "d'Île-de-France",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "24",
+    "label": "Centre-Val de Loire",
+    "label_with_preposition": "du Centre-Val de Loire",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "27",
+    "label": "Bourgogne-Franche-Comté",
+    "label_with_preposition": "de Bourgogne-Franche-Comté",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "28",
+    "label": "Normandie",
+    "label_with_preposition": "de Normandie",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "32",
+    "label": "Hauts-de-France",
+    "label_with_preposition": "des Hauts-de-France",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "44",
+    "label": "Grand Est",
+    "label_with_preposition": "du Grand Est",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "52",
+    "label": "Pays de la Loire",
+    "label_with_preposition": "des Pays de la Loire",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "53",
+    "label": "Bretagne",
+    "label_with_preposition": "de Bretagne",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "75",
+    "label": "Nouvelle-Aquitaine",
+    "label_with_preposition": "de Nouvelle-Aquitaine",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "76",
+    "label": "Occitanie",
+    "label_with_preposition": "d'Occitanie",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "84",
+    "label": "Auvergne-Rhône-Alpes",
+    "label_with_preposition": "d'Auvergne-Rhône-Alpes",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "93",
+    "label": "Provence-Alpes-Côte d'Azur",
+    "label_with_preposition": "de Provence-Alpes-Côte d'Azur",
+    "has_conseil_regional": true
+  },
+  {
+    "code": "94",
+    "label": "Corse",
+    "label_with_preposition": "de Corse",
+    "has_conseil_regional": false
+  }
+]

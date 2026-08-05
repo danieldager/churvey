@@ -1,0 +1,184 @@
+[
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "01"
+    },
+    "rendered_slot": "de la Guadeloupe",
+    "shape": "name",
+    "expected": "Ary CHALUS",
+    "expected_source_spelling": "CHALUS Ary",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "04"
+    },
+    "rendered_slot": "de La Réunion",
+    "shape": "name",
+    "expected": "Huguette BELLO",
+    "expected_source_spelling": "BELLO Huguette",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "11"
+    },
+    "rendered_slot": "d'Île-de-France",
+    "shape": "name",
+    "expected": "Valérie PÉCRESSE",
+    "expected_source_spelling": "PÉCRESSE Valérie",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "24"
+    },
+    "rendered_slot": "du Centre-Val de Loire",
+    "shape": "name",
+    "expected": "François BONNEAU",
+    "expected_source_spelling": "BONNEAU François",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "27"
+    },
+    "rendered_slot": "de Bourgogne-Franche-Comté",
+    "shape": "name",
+    "expected": "Jérôme DURAIN",
+    "expected_source_spelling": "DURAIN Jérôme",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "28"
+    },
+    "rendered_slot": "de Normandie",
+    "shape": "name",
+    "expected": "Hervé MORIN",
+    "expected_source_spelling": "MORIN Hervé",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "32"
+    },
+    "rendered_slot": "des Hauts-de-France",
+    "shape": "name",
+    "expected": "Xavier BERTRAND",
+    "expected_source_spelling": "BERTRAND Xavier",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "44"
+    },
+    "rendered_slot": "du Grand Est",
+    "shape": "name",
+    "expected": "Franck LEROY",
+    "expected_source_spelling": "LEROY Franck",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "52"
+    },
+    "rendered_slot": "des Pays de la Loire",
+    "shape": "name",
+    "expected": "Christelle MORANÇAIS",
+    "expected_source_spelling": "MORANÇAIS Christelle",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "53"
+    },
+    "rendered_slot": "de Bretagne",
+    "shape": "name",
+    "expected": "Loïg CHESNAIS-GIRARD",
+    "expected_source_spelling": "CHESNAIS-GIRARD Loïg",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "75"
+    },
+    "rendered_slot": "de Nouvelle-Aquitaine",
+    "shape": "name",
+    "expected": "Alain ROUSSET",
+    "expected_source_spelling": "ROUSSET Alain",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "76"
+    },
+    "rendered_slot": "d'Occitanie",
+    "shape": "name",
+    "expected": "Carole DELGA",
+    "expected_source_spelling": "DELGA Carole",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "84"
+    },
+    "rendered_slot": "d'Auvergne-Rhône-Alpes",
+    "shape": "name",
+    "expected": "Fabrice PANNEKOUCKE",
+    "expected_source_spelling": "PANNEKOUCKE Fabrice",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil régional {reg_prep} ?",
+    "bindings": {
+      "region": "93"
+    },
+    "rendered_slot": "de Provence-Alpes-Côte d'Azur",
+    "shape": "name",
+    "expected": "Renaud MUSELIER",
+    "expected_source_spelling": "MUSELIER Renaud",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  }
+]

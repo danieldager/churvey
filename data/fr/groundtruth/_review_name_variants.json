@@ -1,0 +1,32 @@
+{
+  "note": "the chamber and the RNE spell these differently and we accept BOTH. Heuristic match on a shared token >= 5 chars - confirm each is one person.",
+  "cases": [
+    {
+      "departement": "57",
+      "chamber": "Khalifé Khalifé",
+      "rne": "Khalifé KHALIFÉ",
+      "action": "BOTH ACCEPTED as answers",
+      "status": "VERIFIED",
+      "note": "Given name and surname are genuinely both 'Khalifé'. Sénateur de la Moselle since 24 Sept 2023. The two forms differ only in case and diacritics.",
+      "source": "https://www.senat.fr/senateur/khalife_khalife21081h.html"
+    },
+    {
+      "departement": "43",
+      "chamber": "Jean-Pierre Vigier",
+      "rne": "Peter VIGIER",
+      "action": "BOTH ACCEPTED as answers",
+      "status": "VERIFIED",
+      "note": "'Peter' is a usage nickname distinguishing him from his father, also Jean-Pierre Vigier, whom he succeeded as maire de Lavoûte-Chilhac in 2008. Canonical form is Jean-Pierre Vigier. Distinct from Philippe Vigier (28).",
+      "source": "https://www.assemblee-nationale.fr/dyn/deputes/PA607090"
+    },
+    {
+      "departement": "974",
+      "chamber": "Émeline K/Bidi",
+      "rne": "Emeline KBIDI",
+      "action": "BOTH ACCEPTED as answers",
+      "status": "VERIFIED",
+      "note": "The slash is genuine - Breton abbreviation of the prefix 'Ker-', pronounced Kerbidi. The RNE strips it because its surname field does not tolerate '/'.",
+      "source": "https://www.assemblee-nationale.fr/dyn/deputes/PA795998"
+    }
+  ]
+}

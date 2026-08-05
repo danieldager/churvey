@@ -1,0 +1,403 @@
+{
+  "checked": "2026-08-04",
+  "source": "fr.wikipedia article infoboxes",
+  "caveat": "NOT an authority - a disagreement detector. Agreement lowers suspicion; it does not verify a row.",
+  "max_age_days": 120,
+  "disagree": [],
+  "agree_but_stale": [
+    {
+      "template": "D3",
+      "binding": "04",
+      "ours": "Eliane BARREILLE",
+      "wikipedia": "Éliane Barreille",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "05",
+      "ours": "Jean-Marie BERNARD",
+      "wikipedia": "Jean-Marie Bernard",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "07",
+      "ours": "Olivier AMRANE",
+      "wikipedia": "Olivier Amrane",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "09",
+      "ours": "Christine TEQUI",
+      "wikipedia": "Christine Téqui",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "11",
+      "ours": "Hélène SANDRAGNÉ",
+      "wikipedia": "Hélène Sandragné",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "14",
+      "ours": "Jean-Léonce DUPONT",
+      "wikipedia": "Jean-Léonce Dupont",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "15",
+      "ours": "Bruno FAURE",
+      "wikipedia": "Bruno Faure",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "18",
+      "ours": "Jacques FLEURY",
+      "wikipedia": "Jacques Fleury",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "21",
+      "ours": "François SAUVADET",
+      "wikipedia": "François Sauvadet",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "23",
+      "ours": "Valérie SIMONET",
+      "wikipedia": "Valérie Simonet",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "25",
+      "ours": "Christine BOUQUIN",
+      "wikipedia": "Christine Bouquin",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "30",
+      "ours": "Françoise LAURENT-PERRIGOT",
+      "wikipedia": "Françoise Laurent-Perrigot",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "32",
+      "ours": "Philippe DUPOUY",
+      "wikipedia": "Philippe Dupouy",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "36",
+      "ours": "Marc FLEURET",
+      "wikipedia": "Marc Fleuret",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "38",
+      "ours": "Jean-Pierre BARBIER",
+      "wikipedia": "Jean-Pierre Barbier",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "39",
+      "ours": "Gérôme FASSENET",
+      "wikipedia": "Gérôme Fassenet",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "41",
+      "ours": "Philippe GOUET",
+      "wikipedia": "Philippe Gouet",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "45",
+      "ours": "Marc GAUDET",
+      "wikipedia": "Marc Gaudet",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "47",
+      "ours": "Sophie BORDERIE",
+      "wikipedia": "Sophie Borderie",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "48",
+      "ours": "Laurent SUAU",
+      "wikipedia": "Laurent Suau",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "50",
+      "ours": "Jean MORIN",
+      "wikipedia": "Jean Morin",
+      "revised": "2026-01-29",
+      "age_days": 187
+    },
+    {
+      "template": "D3",
+      "binding": "52",
+      "ours": "Nicolas LACROIX",
+      "wikipedia": "Nicolas Lacroix",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "54",
+      "ours": "Chaynesse KHIROUNI",
+      "wikipedia": "Chaynesse Khirouni",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "57",
+      "ours": "Patrick WEITEN",
+      "wikipedia": "Patrick Weiten",
+      "revised": "2026-02-24",
+      "age_days": 161
+    },
+    {
+      "template": "D3",
+      "binding": "66",
+      "ours": "Hermeline MALHERBE",
+      "wikipedia": "Hermeline Malherbe",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "70",
+      "ours": "Laurent SEGUIN",
+      "wikipedia": "Laurent Seguin",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "77",
+      "ours": "Jean-François PARIGI",
+      "wikipedia": "Jean-François Parigi",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "81",
+      "ours": "Christophe RAMOND",
+      "wikipedia": "Christophe Ramond",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "85",
+      "ours": "Alain LEBŒUF",
+      "wikipedia": "Alain Lebœuf",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "86",
+      "ours": "Alain PICHON",
+      "wikipedia": "Alain Pichon",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "87",
+      "ours": "Jean-Claude LEBLOIS",
+      "wikipedia": "Jean-Claude Leblois",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "89",
+      "ours": "Grégory DORTE",
+      "wikipedia": "Grégory Dorte",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "91",
+      "ours": "François DUROVRAY",
+      "wikipedia": "François Durovray",
+      "revised": "2026-02-14",
+      "age_days": 171
+    },
+    {
+      "template": "D3",
+      "binding": "92",
+      "ours": "Georges SIFFREDI",
+      "wikipedia": "Georges Siffredi",
+      "revised": "2025-09-27",
+      "age_days": 311
+    },
+    {
+      "template": "D3",
+      "binding": "94",
+      "ours": "Olivier CAPITANIO",
+      "wikipedia": "Olivier Capitanio",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "D3",
+      "binding": "974",
+      "ours": "Cyrille MELCHIOR",
+      "wikipedia": "Cyrille Melchior",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "R1",
+      "binding": "27",
+      "ours": "Jérôme DURAIN",
+      "wikipedia": "Jérôme Durain",
+      "revised": "2026-04-01",
+      "age_days": 125
+    },
+    {
+      "template": "R1",
+      "binding": "28",
+      "ours": "Hervé MORIN",
+      "wikipedia": "Hervé Morin",
+      "revised": "2026-04-03",
+      "age_days": 123
+    },
+    {
+      "template": "R1",
+      "binding": "32",
+      "ours": "Xavier BERTRAND",
+      "wikipedia": "Xavier Bertrand",
+      "revised": "2026-04-03",
+      "age_days": 123
+    }
+  ],
+  "unchecked": [
+    {
+      "template": "D3",
+      "binding": "84",
+      "title": "Conseil départemental du Vaucluse"
+    },
+    {
+      "template": "R1",
+      "binding": "76",
+      "title": "Conseil régional d'Occitanie (no président field)"
+    }
+  ],
+  "agree_fresh": [
+    "01",
+    "02",
+    "03",
+    "06",
+    "08",
+    "10",
+    "12",
+    "13",
+    "16",
+    "17",
+    "19",
+    "22",
+    "24",
+    "26",
+    "27",
+    "28",
+    "29",
+    "31",
+    "33",
+    "34",
+    "35",
+    "37",
+    "40",
+    "42",
+    "43",
+    "44",
+    "46",
+    "49",
+    "51",
+    "53",
+    "55",
+    "56",
+    "58",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63",
+    "64",
+    "65",
+    "69",
+    "69M",
+    "71",
+    "72",
+    "73",
+    "74",
+    "76",
+    "78",
+    "79",
+    "80",
+    "82",
+    "83",
+    "88",
+    "90",
+    "93",
+    "95",
+    "971",
+    "976",
+    "01",
+    "04",
+    "11",
+    "24",
+    "44",
+    "52",
+    "53",
+    "75",
+    "84",
+    "93"
+  ]
+}

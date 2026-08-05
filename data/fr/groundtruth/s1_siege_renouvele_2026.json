@@ -1,0 +1,1315 @@
+[
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "01"
+    },
+    "rendered_slot": "de l'Ain",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "02"
+    },
+    "rendered_slot": "de l'Aisne",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "03"
+    },
+    "rendered_slot": "de l'Allier",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "04"
+    },
+    "rendered_slot": "des Alpes-de-Haute-Provence",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 1,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "05"
+    },
+    "rendered_slot": "des Hautes-Alpes",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 1,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "06"
+    },
+    "rendered_slot": "des Alpes-Maritimes",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 5,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "07"
+    },
+    "rendered_slot": "de l'Ardèche",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "08"
+    },
+    "rendered_slot": "des Ardennes",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "09"
+    },
+    "rendered_slot": "de l'Ariège",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 1,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "10"
+    },
+    "rendered_slot": "de l'Aube",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "11"
+    },
+    "rendered_slot": "de l'Aude",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "12"
+    },
+    "rendered_slot": "de l'Aveyron",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "13"
+    },
+    "rendered_slot": "des Bouches-du-Rhône",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 8,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "14"
+    },
+    "rendered_slot": "du Calvados",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "15"
+    },
+    "rendered_slot": "du Cantal",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "16"
+    },
+    "rendered_slot": "de la Charente",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "17"
+    },
+    "rendered_slot": "de la Charente-Maritime",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "18"
+    },
+    "rendered_slot": "du Cher",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "19"
+    },
+    "rendered_slot": "de la Corrèze",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "21"
+    },
+    "rendered_slot": "de la Côte-d'Or",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "22"
+    },
+    "rendered_slot": "des Côtes-d'Armor",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "23"
+    },
+    "rendered_slot": "de la Creuse",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "24"
+    },
+    "rendered_slot": "de la Dordogne",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "25"
+    },
+    "rendered_slot": "du Doubs",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "26"
+    },
+    "rendered_slot": "de la Drôme",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "27"
+    },
+    "rendered_slot": "de l'Eure",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "28"
+    },
+    "rendered_slot": "d'Eure-et-Loir",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "29"
+    },
+    "rendered_slot": "du Finistère",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 4,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "2A"
+    },
+    "rendered_slot": "de Corse-du-Sud",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 1,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "2B"
+    },
+    "rendered_slot": "de Haute-Corse",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 1,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "30"
+    },
+    "rendered_slot": "du Gard",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "31"
+    },
+    "rendered_slot": "de la Haute-Garonne",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 5,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "32"
+    },
+    "rendered_slot": "du Gers",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "33"
+    },
+    "rendered_slot": "de la Gironde",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 6,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "34"
+    },
+    "rendered_slot": "de l'Hérault",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 4,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "35"
+    },
+    "rendered_slot": "d'Ille-et-Vilaine",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 4,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "36"
+    },
+    "rendered_slot": "de l'Indre",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "37"
+    },
+    "rendered_slot": "d'Indre-et-Loire",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "38"
+    },
+    "rendered_slot": "de l'Isère",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "39"
+    },
+    "rendered_slot": "du Jura",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "40"
+    },
+    "rendered_slot": "des Landes",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "41"
+    },
+    "rendered_slot": "de Loir-et-Cher",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "42"
+    },
+    "rendered_slot": "de la Loire",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "43"
+    },
+    "rendered_slot": "de la Haute-Loire",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "44"
+    },
+    "rendered_slot": "de la Loire-Atlantique",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "45"
+    },
+    "rendered_slot": "du Loiret",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "46"
+    },
+    "rendered_slot": "du Lot",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "47"
+    },
+    "rendered_slot": "de Lot-et-Garonne",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "48"
+    },
+    "rendered_slot": "de la Lozère",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "49"
+    },
+    "rendered_slot": "de Maine-et-Loire",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "50"
+    },
+    "rendered_slot": "de la Manche",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "51"
+    },
+    "rendered_slot": "de la Marne",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "52"
+    },
+    "rendered_slot": "de la Haute-Marne",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "53"
+    },
+    "rendered_slot": "de la Mayenne",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "54"
+    },
+    "rendered_slot": "de Meurthe-et-Moselle",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "55"
+    },
+    "rendered_slot": "de la Meuse",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "56"
+    },
+    "rendered_slot": "du Morbihan",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "57"
+    },
+    "rendered_slot": "de la Moselle",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "58"
+    },
+    "rendered_slot": "de la Nièvre",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "59"
+    },
+    "rendered_slot": "du Nord",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "60"
+    },
+    "rendered_slot": "de l'Oise",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "61"
+    },
+    "rendered_slot": "de l'Orne",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "62"
+    },
+    "rendered_slot": "du Pas-de-Calais",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "63"
+    },
+    "rendered_slot": "du Puy-de-Dôme",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "64"
+    },
+    "rendered_slot": "des Pyrénées-Atlantiques",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "65"
+    },
+    "rendered_slot": "des Hautes-Pyrénées",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "66"
+    },
+    "rendered_slot": "des Pyrénées-Orientales",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "67"
+    },
+    "rendered_slot": "du Bas-Rhin",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 5,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "68"
+    },
+    "rendered_slot": "du Haut-Rhin",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 4,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "69"
+    },
+    "rendered_slot": "du Rhône",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 7,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "70"
+    },
+    "rendered_slot": "de la Haute-Saône",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "71"
+    },
+    "rendered_slot": "de Saône-et-Loire",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "72"
+    },
+    "rendered_slot": "de la Sarthe",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "73"
+    },
+    "rendered_slot": "de la Savoie",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "74"
+    },
+    "rendered_slot": "de la Haute-Savoie",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "75"
+    },
+    "rendered_slot": "de Paris",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "76"
+    },
+    "rendered_slot": "de la Seine-Maritime",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 6,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "77"
+    },
+    "rendered_slot": "de Seine-et-Marne",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "78"
+    },
+    "rendered_slot": "des Yvelines",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "79"
+    },
+    "rendered_slot": "des Deux-Sèvres",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "80"
+    },
+    "rendered_slot": "de la Somme",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "81"
+    },
+    "rendered_slot": "du Tarn",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "82"
+    },
+    "rendered_slot": "de Tarn-et-Garonne",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "83"
+    },
+    "rendered_slot": "du Var",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 4,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "84"
+    },
+    "rendered_slot": "du Vaucluse",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "85"
+    },
+    "rendered_slot": "de la Vendée",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 3,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "86"
+    },
+    "rendered_slot": "de la Vienne",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "87"
+    },
+    "rendered_slot": "de la Haute-Vienne",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "88"
+    },
+    "rendered_slot": "des Vosges",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "89"
+    },
+    "rendered_slot": "de l'Yonne",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "90"
+    },
+    "rendered_slot": "du Territoire de Belfort",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 1,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "91"
+    },
+    "rendered_slot": "de l'Essonne",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "92"
+    },
+    "rendered_slot": "des Hauts-de-Seine",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "93"
+    },
+    "rendered_slot": "de la Seine-Saint-Denis",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "94"
+    },
+    "rendered_slot": "du Val-de-Marne",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "95"
+    },
+    "rendered_slot": "du Val-d'Oise",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "971"
+    },
+    "rendered_slot": "de la Guadeloupe",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "972"
+    },
+    "rendered_slot": "de la Martinique",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "973"
+    },
+    "rendered_slot": "de la Guyane",
+    "shape": "yes_no",
+    "expected": "oui",
+    "n_seats_renewed": 2,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "974"
+    },
+    "rendered_slot": "de La Réunion",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Le siège de sénateur {dep_prep} est-il renouvelé en septembre 2026 ?",
+    "bindings": {
+      "departement": "976"
+    },
+    "rendered_slot": "de Mayotte",
+    "shape": "yes_no",
+    "expected": "non",
+    "n_seats_renewed": 0,
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  }
+]

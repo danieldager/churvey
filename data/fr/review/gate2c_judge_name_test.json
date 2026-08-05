@@ -1,0 +1,69 @@
+{
+  "purpose": "Gate 2c - does the judge treat these pairs as the same person?",
+  "note": "Classes are taken from variants OBSERVED in real French parliamentary data during the Gate 2d cross-check, not invented. Two rows have same_person=null: they are decisions to make, not facts to test.",
+  "cases": [
+    {
+      "variant_class": "order",
+      "form_a": "Florence BLATRIX CONTAT",
+      "form_b": "BLATRIX CONTAT Florence",
+      "same_person": true,
+      "why": "RNE stores surname-first upper-case; display form is Prénom NOM"
+    },
+    {
+      "variant_class": "accents",
+      "form_a": "Antoine LEFÈVRE",
+      "form_b": "Antoine LEFEVRE",
+      "same_person": true,
+      "why": "accent-stripped spelling is common in chat output"
+    },
+    {
+      "variant_class": "case",
+      "form_a": "Florence BLATRIX CONTAT",
+      "form_b": "FLORENCE BLATRIX CONTAT",
+      "same_person": true,
+      "why": "registry is upper-case, models answer in title case"
+    },
+    {
+      "variant_class": "compound-surname",
+      "form_a": "Marie-Pierre Guérin",
+      "form_b": "Marie-Pierre Bessin-Guérin",
+      "same_person": true,
+      "why": "OBSERVED Loire-Atlantique: senat.fr carries the married/compound form, RNE does not"
+    },
+    {
+      "variant_class": "punctuated-surname",
+      "form_a": "Emeline Kbidi",
+      "form_b": "Emeline K/Bidi",
+      "same_person": true,
+      "why": "OBSERVED La Réunion: the surname genuinely contains a slash"
+    },
+    {
+      "variant_class": "disambiguation-suffix",
+      "form_a": "Alexandra Martin",
+      "form_b": "Alexandra Martin (Gironde)",
+      "same_person": true,
+      "why": "OBSERVED: the Assemblée appends the département when two députés share a name"
+    },
+    {
+      "variant_class": "given-name-rendering",
+      "form_a": "Peter Vigier",
+      "form_b": "Jean-Pierre Vigier",
+      "same_person": null,
+      "why": "OBSERVED Haute-Loire: RNE says Peter, the Assemblée says Jean-Pierre. UNRESOLVED — if these are the same person the judge must match them; if not, it must not"
+    },
+    {
+      "variant_class": "different-person",
+      "form_a": "Bruno ROJOUAN",
+      "form_b": "Jean-Yves ROUX",
+      "same_person": false,
+      "why": "control: two distinct senators, the judge must NOT merge them"
+    },
+    {
+      "variant_class": "partial-surname-only",
+      "form_a": "Florence BLATRIX CONTAT",
+      "form_b": "CONTAT",
+      "same_person": null,
+      "why": "a model answering with the surname alone — is that accurate? POLICY DECISION, not a bug"
+    }
+  ]
+}

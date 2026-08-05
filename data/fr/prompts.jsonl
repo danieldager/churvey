@@ -1,0 +1,612 @@
+{"template_id": "d1_senateurs", "binding": "01", "prompt": "Qui représente l'Ain au Sénat ?", "expected": ["Florence Blatrix Contat", "Patrick Chaize", "Sylvie Goy-Chavent"]}
+{"template_id": "d1_senateurs", "binding": "02", "prompt": "Qui représente l'Aisne au Sénat ?", "expected": ["Antoine Lefèvre", "Pascale Gruny", "Pierre-Jean Verzelen"]}
+{"template_id": "d1_senateurs", "binding": "03", "prompt": "Qui représente l'Allier au Sénat ?", "expected": ["Bruno Rojouan", "Claude Malhuret"]}
+{"template_id": "d1_senateurs", "binding": "04", "prompt": "Qui représente les Alpes-de-Haute-Provence au Sénat ?", "expected": ["Jean-Yves Roux"]}
+{"template_id": "d1_senateurs", "binding": "05", "prompt": "Qui représente les Hautes-Alpes au Sénat ?", "expected": ["Jean-Michel Arnaud"]}
+{"template_id": "d1_senateurs", "binding": "06", "prompt": "Qui représente les Alpes-Maritimes au Sénat ?", "expected": ["Alexandra Borchio Fontimp", "Dominique Estrosi Sassone", "Henri Leroy", "Patricia Demas", "Sandra Paire"]}
+{"template_id": "d1_senateurs", "binding": "07", "prompt": "Qui représente l'Ardèche au Sénat ?", "expected": ["Anne Ventalon", "Mathieu Darnaud"]}
+{"template_id": "d1_senateurs", "binding": "08", "prompt": "Qui représente les Ardennes au Sénat ?", "expected": ["Else Joseph", "Marc Laménie"]}
+{"template_id": "d1_senateurs", "binding": "09", "prompt": "Qui représente l'Ariège au Sénat ?", "expected": ["Jean-Jacques Michau"]}
+{"template_id": "d1_senateurs", "binding": "10", "prompt": "Qui représente l'Aube au Sénat ?", "expected": ["Vanina Paoli-Gagin", "Évelyne Perrot"]}
+{"template_id": "d1_senateurs", "binding": "11", "prompt": "Qui représente l'Aude au Sénat ?", "expected": ["Gisèle Jourda", "Sebastien Pla"]}
+{"template_id": "d1_senateurs", "binding": "12", "prompt": "Qui représente l'Aveyron au Sénat ?", "expected": ["Alain Marc", "Jean-Claude Anglars"]}
+{"template_id": "d1_senateurs", "binding": "13", "prompt": "Qui représente les Bouches-du-Rhône au Sénat ?", "expected": ["Brigitte Devésa", "Guy Benarroche", "Jérémy Bacchi", "Marie-Arlette Carlotti", "Mireille Jouve", "Stéphane Le Rudulier", "Stéphane Ravier", "Valérie Boyer"]}
+{"template_id": "d1_senateurs", "binding": "14", "prompt": "Qui représente le Calvados au Sénat ?", "expected": ["Corinne Féret", "Pascal Allizard", "Sonia de La Provôté"]}
+{"template_id": "d1_senateurs", "binding": "15", "prompt": "Qui représente le Cantal au Sénat ?", "expected": ["Bernard Delcros", "Stéphane Sautarel"]}
+{"template_id": "d1_senateurs", "binding": "16", "prompt": "Qui représente la Charente au Sénat ?", "expected": ["François Bonneau", "Nicole Bonnefoy"]}
+{"template_id": "d1_senateurs", "binding": "17", "prompt": "Qui représente la Charente-Maritime au Sénat ?", "expected": ["Corinne Imbert", "Daniel Laurent", "Mickaël Vallet"]}
+{"template_id": "d1_senateurs", "binding": "18", "prompt": "Qui représente le Cher au Sénat ?", "expected": ["Marie-Pierre Richer", "Rémy Pointereau"]}
+{"template_id": "d1_senateurs", "binding": "19", "prompt": "Qui représente la Corrèze au Sénat ?", "expected": ["Claude Nougein", "Daniel Chasseing"]}
+{"template_id": "d1_senateurs", "binding": "21", "prompt": "Qui représente la Côte-d'Or au Sénat ?", "expected": ["Alain Houpert", "Anne-Catherine Loisier", "François Patriat"]}
+{"template_id": "d1_senateurs", "binding": "22", "prompt": "Qui représente les Côtes-d'Armor au Sénat ?", "expected": ["Alain Cadec", "Annie Le Houerou", "Gérard Lahellec"]}
+{"template_id": "d1_senateurs", "binding": "23", "prompt": "Qui représente la Creuse au Sénat ?", "expected": ["Jean-Jacques Lozach", "Éric Jeansannetas"]}
+{"template_id": "d1_senateurs", "binding": "24", "prompt": "Qui représente la Dordogne au Sénat ?", "expected": ["Marie-Claude Varaillas", "Serge Mérillou"]}
+{"template_id": "d1_senateurs", "binding": "25", "prompt": "Qui représente le Doubs au Sénat ?", "expected": ["Annick Jacquemet", "Jacques Grosperrin", "Jean-François Longeot"]}
+{"template_id": "d1_senateurs", "binding": "26", "prompt": "Qui représente la Drôme au Sénat ?", "expected": ["Bernard Buis", "Marie-Pierre Monier", "Marie-Pierre Mouton"]}
+{"template_id": "d1_senateurs", "binding": "27", "prompt": "Qui représente l'Eure au Sénat ?", "expected": ["Hervé Maurey", "Kristina Pluchet", "Nicole Duranton"]}
+{"template_id": "d1_senateurs", "binding": "28", "prompt": "Qui représente l'Eure-et-Loir au Sénat ?", "expected": ["Albéric de Montgolfier", "Chantal Deseyne", "Daniel Gueret"]}
+{"template_id": "d1_senateurs", "binding": "29", "prompt": "Qui représente le Finistère au Sénat ?", "expected": ["Jean-Luc Fichet", "Michel Canévet", "Nadège Havet", "Philippe Paul"]}
+{"template_id": "d1_senateurs", "binding": "2A", "prompt": "Qui représente la Corse-du-Sud au Sénat ?", "expected": ["Jean-Jacques Panunzi"]}
+{"template_id": "d1_senateurs", "binding": "2B", "prompt": "Qui représente la Haute-Corse au Sénat ?", "expected": ["Paul Toussaint Parigi"]}
+{"template_id": "d1_senateurs", "binding": "30", "prompt": "Qui représente le Gard au Sénat ?", "expected": ["Denis Bouad", "Laurent Burgoa", "Vivette Lopez"]}
+{"template_id": "d1_senateurs", "binding": "31", "prompt": "Qui représente la Haute-Garonne au Sénat ?", "expected": ["Alain Chatillon", "Brigitte Micouleau", "Claude Raynal", "Pierre Médevielle", "Émilienne Poumirol"]}
+{"template_id": "d1_senateurs", "binding": "32", "prompt": "Qui représente le Gers au Sénat ?", "expected": ["Alain Duffourg", "Franck Montaugé"]}
+{"template_id": "d1_senateurs", "binding": "33", "prompt": "Qui représente la Gironde au Sénat ?", "expected": ["Alain Cazabonne", "Florence Lassarade", "Hervé Gillé", "Laurence Harribey", "Monique de Marco", "Nathalie Delattre"]}
+{"template_id": "d1_senateurs", "binding": "34", "prompt": "Qui représente l'Hérault au Sénat ?", "expected": ["Christian Bilhac", "Henri Cabanel", "Hussein Bourgi", "Jean-Pierre Grand"]}
+{"template_id": "d1_senateurs", "binding": "35", "prompt": "Qui représente l'Ille-et-Vilaine au Sénat ?", "expected": ["Anne-Sophie Patru", "Daniel Salmon", "Dominique de Legge", "Sylvie Robert"]}
+{"template_id": "d1_senateurs", "binding": "36", "prompt": "Qui représente l'Indre au Sénat ?", "expected": ["Frédérique Gerbaud", "Nadine Bellurot"]}
+{"template_id": "d1_senateurs", "binding": "37", "prompt": "Qui représente l'Indre-et-Loire au Sénat ?", "expected": ["Jean-Gérard Paumier", "Pierre-Alain Roiron", "Vincent Louault"]}
+{"template_id": "d1_senateurs", "binding": "38", "prompt": "Qui représente l'Isère au Sénat ?", "expected": ["Damien Michallet", "Didier Rambaud", "Frédérique Puissat", "Guillaume Gontard", "Michel Savin"]}
+{"template_id": "d1_senateurs", "binding": "39", "prompt": "Qui représente le Jura au Sénat ?", "expected": ["Clément Pernot", "Sylvie Vermeillet"]}
+{"template_id": "d1_senateurs", "binding": "40", "prompt": "Qui représente les Landes au Sénat ?", "expected": ["Monique Lubin", "Éric Kerrouche"]}
+{"template_id": "d1_senateurs", "binding": "41", "prompt": "Qui représente le Loir-et-Cher au Sénat ?", "expected": ["Bernard Pillefer", "Jean-Luc Brault"]}
+{"template_id": "d1_senateurs", "binding": "42", "prompt": "Qui représente la Loire au Sénat ?", "expected": ["Cécile Cukierman", "Hervé Reynaud", "Jean-Claude Tissot", "Pierre Jean Rochette"]}
+{"template_id": "d1_senateurs", "binding": "43", "prompt": "Qui représente la Haute-Loire au Sénat ?", "expected": ["Laurent Duplomb", "Olivier Cigolotti"]}
+{"template_id": "d1_senateurs", "binding": "44", "prompt": "Qui représente la Loire-Atlantique au Sénat ?", "expected": ["Karine Daniel", "Laurence Garnier", "Marie-Pierre Bessin-Guérin", "Philippe Grosvalet", "Ronan Dantec"]}
+{"template_id": "d1_senateurs", "binding": "45", "prompt": "Qui représente le Loiret au Sénat ?", "expected": ["Christophe Chaillou", "Hugues Saury", "Pauline Martin"]}
+{"template_id": "d1_senateurs", "binding": "46", "prompt": "Qui représente le Lot au Sénat ?", "expected": ["Jean-Marc Vayssouze-Faure", "Raphaël Daubet"]}
+{"template_id": "d1_senateurs", "binding": "47", "prompt": "Qui représente le Lot-et-Garonne au Sénat ?", "expected": ["Christine Bonfanti-Dossat", "Michel Masset"]}
+{"template_id": "d1_senateurs", "binding": "48", "prompt": "Qui représente la Lozère au Sénat ?", "expected": ["Guylène Pantel"]}
+{"template_id": "d1_senateurs", "binding": "49", "prompt": "Qui représente le Maine-et-Loire au Sénat ?", "expected": ["Corinne Bourcier", "Emmanuel Capus", "Grégory Blanc", "Stéphane Piednoir"]}
+{"template_id": "d1_senateurs", "binding": "50", "prompt": "Qui représente la Manche au Sénat ?", "expected": ["Béatrice Gosselin", "David Margueritte", "Sébastien Fagnen"]}
+{"template_id": "d1_senateurs", "binding": "51", "prompt": "Qui représente la Marne au Sénat ?", "expected": ["Anne-Sophie Romagny", "Christian Bruyen", "Cédric Chevalier"]}
+{"template_id": "d1_senateurs", "binding": "52", "prompt": "Qui représente la Haute-Marne au Sénat ?", "expected": ["Anne-Marie Nédélec", "Bruno Sido"]}
+{"template_id": "d1_senateurs", "binding": "53", "prompt": "Qui représente la Mayenne au Sénat ?", "expected": ["Guillaume Chevrollier", "Élisabeth Doineau"]}
+{"template_id": "d1_senateurs", "binding": "54", "prompt": "Qui représente la Meurthe-et-Moselle au Sénat ?", "expected": ["Jean-François Husson", "Olivier Jacquin", "Pierre Boileau", "Silvana Silvani"]}
+{"template_id": "d1_senateurs", "binding": "55", "prompt": "Qui représente la Meuse au Sénat ?", "expected": ["Franck Menonville", "Jocelyne Antoine"]}
+{"template_id": "d1_senateurs", "binding": "56", "prompt": "Qui représente le Morbihan au Sénat ?", "expected": ["Muriel Jourda", "Simon Uzenat", "Yves Bleunven"]}
+{"template_id": "d1_senateurs", "binding": "57", "prompt": "Qui représente la Moselle au Sénat ?", "expected": ["Catherine Belrhiti", "Christine Herzog", "Jean-Marie Mizzon", "Khalifé Khalifé", "Michaël Weber"]}
+{"template_id": "d1_senateurs", "binding": "58", "prompt": "Qui représente la Nièvre au Sénat ?", "expected": ["Nadia Sollogoub", "Patrice Joly"]}
+{"template_id": "d1_senateurs", "binding": "59", "prompt": "Qui représente le Nord au Sénat ?", "expected": ["Alexandre Basquin", "Audrey Linkenheld", "Dany Wattebled", "Franck Dhersin", "Guislain Cambier", "Joshua Hochart", "Marc-Philippe Daubresse", "Marie-Claude Lermytte", "Michelle Gréaume", "Olivier Henno", "Patrick Kanner"]}
+{"template_id": "d1_senateurs", "binding": "60", "prompt": "Qui représente l'Oise au Sénat ?", "expected": ["Alexandre Ouizille", "Olivier Paccaud", "Sylvie Valente Le Hir", "Édouard Courtial"]}
+{"template_id": "d1_senateurs", "binding": "61", "prompt": "Qui représente l'Orne au Sénat ?", "expected": ["Nathalie Goulet", "Olivier Bitz"]}
+{"template_id": "d1_senateurs", "binding": "62", "prompt": "Qui représente le Pas-de-Calais au Sénat ?", "expected": ["Amel Gacquerre", "Brigitte Bourguignon", "Cathy Apourceau-Poly", "Christopher Szczurek", "Jean-François Rapin", "Jean-Pierre Corbisez", "Jérôme Darras"]}
+{"template_id": "d1_senateurs", "binding": "63", "prompt": "Qui représente le Puy-de-Dôme au Sénat ?", "expected": ["Jean-Marc Boyer", "Marion Canalès", "Éric Gold"]}
+{"template_id": "d1_senateurs", "binding": "64", "prompt": "Qui représente les Pyrénées-Atlantiques au Sénat ?", "expected": ["Denise Saint-Pé", "Frédérique Espagnac", "Max Brisson"]}
+{"template_id": "d1_senateurs", "binding": "65", "prompt": "Qui représente les Hautes-Pyrénées au Sénat ?", "expected": ["Maryse Carrère", "Viviane Artigalas"]}
+{"template_id": "d1_senateurs", "binding": "66", "prompt": "Qui représente les Pyrénées-Orientales au Sénat ?", "expected": ["Jean Sol", "Lauriane Josende"]}
+{"template_id": "d1_senateurs", "binding": "67", "prompt": "Qui représente le Bas-Rhin au Sénat ?", "expected": ["Claude Kern", "Elsa Schalck", "Jacques Fernique", "Laurence Muller-Bronn", "Marc Séné"]}
+{"template_id": "d1_senateurs", "binding": "68", "prompt": "Qui représente le Haut-Rhin au Sénat ?", "expected": ["Christian Klinger", "Ludovic Haye", "Patricia Schillinger", "Sabine Drexler"]}
+{"template_id": "d1_senateurs", "binding": "69", "prompt": "Qui représente le Rhône au Sénat ?", "expected": ["Bernard Fialaire", "Catherine Di Folco", "Gilbert-Luc Devinaz", "Paul Vidal", "Raymonde Poncet Monge", "Thomas Dossus", "Étienne Blanc"]}
+{"template_id": "d1_senateurs", "binding": "70", "prompt": "Qui représente la Haute-Saône au Sénat ?", "expected": ["Alain Joyandet", "Olivier Rietmann"]}
+{"template_id": "d1_senateurs", "binding": "71", "prompt": "Qui représente la Saône-et-Loire au Sénat ?", "expected": ["Fabien Genet", "Marie Mercier", "Paulette Matray"]}
+{"template_id": "d1_senateurs", "binding": "72", "prompt": "Qui représente la Sarthe au Sénat ?", "expected": ["Jean Pierre Vogel", "Louis-Jean de Nicolaÿ", "Thierry Cozic"]}
+{"template_id": "d1_senateurs", "binding": "73", "prompt": "Qui représente la Savoie au Sénat ?", "expected": ["Cédric Vial", "Martine Berthet"]}
+{"template_id": "d1_senateurs", "binding": "74", "prompt": "Qui représente la Haute-Savoie au Sénat ?", "expected": ["Cyril Pellevat", "Loïc Hervé", "Sylviane Noël"]}
+{"template_id": "d1_senateurs", "binding": "75", "prompt": "Qui représente Paris au Sénat ?", "expected": ["Agnès Evren", "Anne Souyris", "Antoinette Guhl", "Bernard Jomier", "Catherine Dumas", "Colombe Brossel", "Francis Szpiner", "Ian Brossat", "Marie-Claire Carrère-Gée", "Marie-Pierre de La Gontrie", "Rémi Féraud", "Yannick Jadot"]}
+{"template_id": "d1_senateurs", "binding": "76", "prompt": "Qui représente la Seine-Maritime au Sénat ?", "expected": ["Agnès Canayer", "Catherine Morin-Desailly", "Céline Brulin", "Didier Marie", "Pascal Martin", "Patrick Chauvet"]}
+{"template_id": "d1_senateurs", "binding": "77", "prompt": "Qui représente la Seine-et-Marne au Sénat ?", "expected": ["Anne Chain-Larché", "Aymeric Durox", "Louis Vogel", "Marianne Margaté", "Pierre Cuypers", "Vincent Éblé"]}
+{"template_id": "d1_senateurs", "binding": "78", "prompt": "Qui représente les Yvelines au Sénat ?", "expected": ["Ghislaine Senée", "Gérard Larcher", "Marta de Cidrac", "Martin Lévrier", "Michel Laugier", "Sophie Primas"]}
+{"template_id": "d1_senateurs", "binding": "79", "prompt": "Qui représente les Deux-Sèvres au Sénat ?", "expected": ["Gilbert Favreau", "Philippe Mouiller"]}
+{"template_id": "d1_senateurs", "binding": "80", "prompt": "Qui représente la Somme au Sénat ?", "expected": ["Laurent Somon", "Rémi Cardon", "Stéphane Demilly"]}
+{"template_id": "d1_senateurs", "binding": "81", "prompt": "Qui représente le Tarn au Sénat ?", "expected": ["Marie-Lise Housseau", "Philippe Folliot"]}
+{"template_id": "d1_senateurs", "binding": "82", "prompt": "Qui représente le Tarn-et-Garonne au Sénat ?", "expected": ["François Bonhomme", "Pierre-Antoine Levi"]}
+{"template_id": "d1_senateurs", "binding": "83", "prompt": "Qui représente le Var au Sénat ?", "expected": ["André Guiol", "Françoise Dumont", "Jean Bacci", "Michel Bonnus"]}
+{"template_id": "d1_senateurs", "binding": "84", "prompt": "Qui représente le Vaucluse au Sénat ?", "expected": ["Alain Milon", "Jean-Baptiste Blanc", "Lucien Stanzione"]}
+{"template_id": "d1_senateurs", "binding": "85", "prompt": "Qui représente la Vendée au Sénat ?", "expected": ["Annick Billon", "Bruno Retailleau", "Didier Mandelli"]}
+{"template_id": "d1_senateurs", "binding": "86", "prompt": "Qui représente la Vienne au Sénat ?", "expected": ["Bruno Belin", "Marie-Jeanne Bellamy"]}
+{"template_id": "d1_senateurs", "binding": "87", "prompt": "Qui représente la Haute-Vienne au Sénat ?", "expected": ["Christian Redon-Sarrazy", "Isabelle Briquet"]}
+{"template_id": "d1_senateurs", "binding": "88", "prompt": "Qui représente les Vosges au Sénat ?", "expected": ["Daniel Gremillet", "Jean Hingray"]}
+{"template_id": "d1_senateurs", "binding": "89", "prompt": "Qui représente l'Yonne au Sénat ?", "expected": ["Dominique Vérien", "Jean-Baptiste Lemoyne"]}
+{"template_id": "d1_senateurs", "binding": "90", "prompt": "Qui représente le Territoire de Belfort au Sénat ?", "expected": ["Cédric Perrin"]}
+{"template_id": "d1_senateurs", "binding": "91", "prompt": "Qui représente l'Essonne au Sénat ?", "expected": ["David Ros", "Jean-Raymond Hugonet", "Jocelyne Guidez", "Laure Darcos", "Vincent Delahaye"]}
+{"template_id": "d1_senateurs", "binding": "92", "prompt": "Qui représente les Hauts-de-Seine au Sénat ?", "expected": ["Christine Lavarde", "Hervé Marseille", "Isabelle Florennes", "Marie-Do Aeschlimann", "Pierre Ouzoulias", "Roger Karoutchi", "Xavier Iacovelli"]}
+{"template_id": "d1_senateurs", "binding": "93", "prompt": "Qui représente la Seine-Saint-Denis au Sénat ?", "expected": ["Adel Ziane", "Ahmed Laouedj", "Corinne Narassiguin", "Fabien Gay", "Thierry Meignen", "Vincent Capo-Canellas"]}
+{"template_id": "d1_senateurs", "binding": "94", "prompt": "Qui représente le Val-de-Marne au Sénat ?", "expected": ["Akli Mellouli", "Christian Cambon", "Laurence Rossignol", "Laurent Lafon", "Marie-Carole Ciuntu", "Pascal Savoldelli"]}
+{"template_id": "d1_senateurs", "binding": "95", "prompt": "Qui représente le Val-d'Oise au Sénat ?", "expected": ["Arnaud Bazin", "Daniel Fargeot", "Jacqueline Eustache-Brinio", "Pierre Barros", "Rachid Temal"]}
+{"template_id": "d1_senateurs", "binding": "971", "prompt": "Qui représente la Guadeloupe au Sénat ?", "expected": ["Dominique Théophile", "Solanges Nadille", "Victorin Lurel"]}
+{"template_id": "d1_senateurs", "binding": "972", "prompt": "Qui représente la Martinique au Sénat ?", "expected": ["Catherine Conconne", "Frédéric Buval"]}
+{"template_id": "d1_senateurs", "binding": "973", "prompt": "Qui représente la Guyane au Sénat ?", "expected": ["Georges Patient", "Marie-Laure Phinera-Horth"]}
+{"template_id": "d1_senateurs", "binding": "974", "prompt": "Qui représente La Réunion au Sénat ?", "expected": ["Audrey Bélim", "Evelyne Corbière Naminzo", "Stéphane Fouassin", "Viviane Malet"]}
+{"template_id": "d1_senateurs", "binding": "976", "prompt": "Qui représente Mayotte au Sénat ?", "expected": ["Saïd Omar Oili", "Thani Mohamed Soilihi"]}
+{"template_id": "d2_deputes", "binding": "01", "prompt": "Qui représente l'Ain à l'Assemblée nationale ?", "expected": ["Jérôme Buisson", "Marc Chavent", "Olga Givernet", "Romain Daubié", "Xavier Breton"]}
+{"template_id": "d2_deputes", "binding": "02", "prompt": "Qui représente l'Aisne à l'Assemblée nationale ?", "expected": ["Eddy Casterman", "Jocelyn Dessigny", "José Beaurain", "Julien Dive", "Nicolas Dragon"]}
+{"template_id": "d2_deputes", "binding": "03", "prompt": "Qui représente l'Allier à l'Assemblée nationale ?", "expected": ["Jorys Bovet", "Nicolas Ray", "Yannick Monnet"]}
+{"template_id": "d2_deputes", "binding": "04", "prompt": "Qui représente les Alpes-de-Haute-Provence à l'Assemblée nationale ?", "expected": ["Christian Girard", "Sophie Ricourt Vaginay"]}
+{"template_id": "d2_deputes", "binding": "05", "prompt": "Qui représente les Hautes-Alpes à l'Assemblée nationale ?", "expected": ["Marie-José Allemand", "Valérie Rossi"]}
+{"template_id": "d2_deputes", "binding": "06", "prompt": "Qui représente les Alpes-Maritimes à l'Assemblée nationale ?", "expected": ["Alexandra Martin (Alpes-Maritimes)", "Bernard Chaix", "Christelle D'Intorni", "Cyril Tribuiani", "Gabriel Tomatis", "Lionel Tivoli", "Michèle Tabarot", "Éric Ciotti", "Éric Pauget"]}
+{"template_id": "d2_deputes", "binding": "07", "prompt": "Qui représente l'Ardèche à l'Assemblée nationale ?", "expected": ["Fabrice Brun", "Hervé Saulignac", "Vincent Trébuchet"]}
+{"template_id": "d2_deputes", "binding": "08", "prompt": "Qui représente les Ardennes à l'Assemblée nationale ?", "expected": ["Jean-Luc Warsmann", "Lionel Vuibert", "Pierre Cordier"]}
+{"template_id": "d2_deputes", "binding": "09", "prompt": "Qui représente l'Ariège à l'Assemblée nationale ?", "expected": ["Audrey Abadie-Amiel", "Martine Froger"]}
+{"template_id": "d2_deputes", "binding": "10", "prompt": "Qui représente l'Aube à l'Assemblée nationale ?", "expected": ["Angélique Ranc", "Jordan Guitton", "Valérie Bazin-Malgras"]}
+{"template_id": "d2_deputes", "binding": "11", "prompt": "Qui représente l'Aude à l'Assemblée nationale ?", "expected": ["Frédéric Falcon", "Julien Rancoule", "Édouard Jordan"]}
+{"template_id": "d2_deputes", "binding": "12", "prompt": "Qui représente l'Aveyron à l'Assemblée nationale ?", "expected": ["Jean-François Rousset", "Laurent Alexandre", "Pauline Cestrières"]}
+{"template_id": "d2_deputes", "binding": "13", "prompt": "Qui représente les Bouches-du-Rhône à l'Assemblée nationale ?", "expected": ["Emmanuel Fouquart", "Emmanuel Taché", "Franck Allisio", "Gisèle Lelouis", "Gérault Verny", "Hendrik Davi", "José Gonzalez", "Joëlle Mélin", "Laurent Lhardit", "Manuel Bompard", "Marc Pena", "Monique Griseti", "Olivier Fayssat", "Romain Baubry", "Romain Tonussi", "Sébastien Delogu"]}
+{"template_id": "d2_deputes", "binding": "14", "prompt": "Qui représente le Calvados à l'Assemblée nationale ?", "expected": ["Arthur Delaporte", "Bertrand Bouyx", "Christophe Blanchet", "Joël Bruneau", "Jérémie Patrier-Leitus", "Élisabeth Borne"]}
+{"template_id": "d2_deputes", "binding": "15", "prompt": "Qui représente le Cantal à l'Assemblée nationale ?", "expected": ["Jean-Yves Bony", "Vincent Descoeur"]}
+{"template_id": "d2_deputes", "binding": "16", "prompt": "Qui représente la Charente à l'Assemblée nationale ?", "expected": ["Caroline Colombier", "René Pilato", "Sandra Marsaud"]}
+{"template_id": "d2_deputes", "binding": "17", "prompt": "Qui représente la Charente-Maritime à l'Assemblée nationale ?", "expected": ["Benoît Biteau", "Christophe Plassard", "Fabrice Barusseau", "Pascal Markowsky", "Sabine Gervais"]}
+{"template_id": "d2_deputes", "binding": "18", "prompt": "Qui représente le Cher à l'Assemblée nationale ?", "expected": ["François Cormier-Bouligeon", "Loïc Kervran", "Nicolas Sansu"]}
+{"template_id": "d2_deputes", "binding": "19", "prompt": "Qui représente la Corrèze à l'Assemblée nationale ?", "expected": ["François Hollande", "Frédérique Meunier"]}
+{"template_id": "d2_deputes", "binding": "21", "prompt": "Qui représente la Côte-d'Or à l'Assemblée nationale ?", "expected": ["Catherine Hervieu", "Hubert Brigand", "Océane Godard", "Pierre Pribetich", "René Lioret"]}
+{"template_id": "d2_deputes", "binding": "22", "prompt": "Qui représente les Côtes-d'Armor à l'Assemblée nationale ?", "expected": ["Corentin Le Fur", "Hervé Berville", "Mickaël Cosson", "Murielle Lepvraud", "Éric Bothorel"]}
+{"template_id": "d2_deputes", "binding": "23", "prompt": "Qui représente la Creuse à l'Assemblée nationale ?", "expected": ["Bartolomé Lenoir"]}
+{"template_id": "d2_deputes", "binding": "24", "prompt": "Qui représente la Dordogne à l'Assemblée nationale ?", "expected": ["Florence Joubert", "Nadine Lechon", "Serge Muller", "Sébastien Peytavie"]}
+{"template_id": "d2_deputes", "binding": "25", "prompt": "Qui représente le Doubs à l'Assemblée nationale ?", "expected": ["Dominique Voynet", "Eric Liégeon", "Géraldine Grangier", "Laurent Croizier", "Matthieu Bloch"]}
+{"template_id": "d2_deputes", "binding": "26", "prompt": "Qui représente la Drôme à l'Assemblée nationale ?", "expected": ["Lisette Pollet", "Marie Pochon", "Paul Christophle", "Thibaut Monnier"]}
+{"template_id": "d2_deputes", "binding": "27", "prompt": "Qui représente l'Eure à l'Assemblée nationale ?", "expected": ["Christine Loir", "Katiana Levavasseur", "Kévin Mauvieux", "Philippe Brun", "Timothée Houssin"]}
+{"template_id": "d2_deputes", "binding": "28", "prompt": "Qui représente l'Eure-et-Loir à l'Assemblée nationale ?", "expected": ["Christelle Minard", "Guillaume Kasbarian", "Harold Huwart", "Philippe Vigier"]}
+{"template_id": "d2_deputes", "binding": "29", "prompt": "Qui représente le Finistère à l'Assemblée nationale ?", "expected": ["Annaïg Le Meur", "Didier Le Gac", "Erwan Balanant", "Graziella Melchior", "Liliana Tanguy", "Mélanie Thomin", "Pierre-Yves Cadalen", "Sandrine Le Feur"]}
+{"template_id": "d2_deputes", "binding": "2A", "prompt": "Qui représente la Corse-du-Sud à l'Assemblée nationale ?", "expected": ["Laurent Marcangeli", "Paul-André Colombani"]}
+{"template_id": "d2_deputes", "binding": "2B", "prompt": "Qui représente la Haute-Corse à l'Assemblée nationale ?", "expected": ["François-Xavier Ceccoli", "Michel Castellani"]}
+{"template_id": "d2_deputes", "binding": "30", "prompt": "Qui représente le Gard à l'Assemblée nationale ?", "expected": ["Alexandre Allegret-Pilot", "Catherine Dellong Meng", "Nicolas Meizonnet", "Pierre Meurin", "Sylvie Josserand", "Yoann Gillet"]}
+{"template_id": "d2_deputes", "binding": "31", "prompt": "Qui représente la Haute-Garonne à l'Assemblée nationale ?", "expected": ["Anne Stambach-Terrenoir", "Arnaud Simion", "Christine Arrighi", "Christophe Bex", "Corinne Vignon", "François Piquemal", "Hadrien Clouet", "Jacques Oberti", "Jean-François Portarrieu", "Joël Aviragnet"]}
+{"template_id": "d2_deputes", "binding": "32", "prompt": "Qui représente le Gers à l'Assemblée nationale ?", "expected": ["David Taupiac", "Jean-René Cazeneuve"]}
+{"template_id": "d2_deputes", "binding": "33", "prompt": "Qui représente la Gironde à l'Assemblée nationale ?", "expected": ["Alain David", "Alexandra Martin (Gironde)", "Edwige Diaz", "Loïc Prud'homme", "Marie Récalde", "Marie-Sophie Bernadeau", "Mathilde Feld", "Nicolas Thierry", "Pascale Got", "Sophie Mette", "Sophie Panonacle", "Sébastien Saint-Pasteur"]}
+{"template_id": "d2_deputes", "binding": "34", "prompt": "Qui représente l'Hérault à l'Assemblée nationale ?", "expected": ["Bernard Chaumeil", "Charles Alloncle", "Fanny Dombre Coste", "Jean-Louis Roumégas", "Julien Gabarron", "Manon Bouquin", "Nathalie Oziol", "Stéphanie Galzy", "Sylvain Carrière"]}
+{"template_id": "d2_deputes", "binding": "35", "prompt": "Qui représente l'Ille-et-Vilaine à l'Assemblée nationale ?", "expected": ["Christine Le Nabour", "Claudia Rouaux", "Jean-Luc Bourgeaux", "Marie Mesmeur", "Mathilde Hignet", "Mickaël Bouloux", "Thierry Benoit", "Tristan Lahais"]}
+{"template_id": "d2_deputes", "binding": "36", "prompt": "Qui représente l'Indre à l'Assemblée nationale ?", "expected": ["Alix Fruchon", "François Jolivet"]}
+{"template_id": "d2_deputes", "binding": "37", "prompt": "Qui représente l'Indre-et-Loire à l'Assemblée nationale ?", "expected": ["Charles Fournier", "Daniel Labaronne", "Henri Alfandari", "Laurent Baumel", "Sabine Thillaye"]}
+{"template_id": "d2_deputes", "binding": "38", "prompt": "Qui représente l'Isère à l'Assemblée nationale ?", "expected": ["Alexis Jolly", "Alim Latrèche", "Cyrielle Chatelain", "Hanane Mansouri", "Jérémie Iordanoff", "Marie-Noëlle Battistel", "Sandrine Nosbé", "Thierry Perez", "Yannick Neuder", "Élisa Martin"]}
+{"template_id": "d2_deputes", "binding": "39", "prompt": "Qui représente le Jura à l'Assemblée nationale ?", "expected": ["Danielle Brulebois", "Justine Gruet", "Marie-Christine Dalloz"]}
+{"template_id": "d2_deputes", "binding": "40", "prompt": "Qui représente les Landes à l'Assemblée nationale ?", "expected": ["Boris Vallaud", "Geneviève Darrieussecq", "Lionel Causse"]}
+{"template_id": "d2_deputes", "binding": "41", "prompt": "Qui représente le Loir-et-Cher à l'Assemblée nationale ?", "expected": ["Christophe Marion", "Marc Fesneau", "Roger Chudeau"]}
+{"template_id": "d2_deputes", "binding": "42", "prompt": "Qui représente la Loire à l'Assemblée nationale ?", "expected": ["Andrée Taurinya", "Antoine Vermorel-Marques", "Emmanuel Mandon", "Jean-Yves Bonnefoy", "Pierrick Courbon", "Sylvie Bonnet"]}
+{"template_id": "d2_deputes", "binding": "43", "prompt": "Qui représente la Haute-Loire à l'Assemblée nationale ?", "expected": ["Jean-Pierre Vigier", "Laurent Wauquiez"]}
+{"template_id": "d2_deputes", "binding": "44", "prompt": "Qui représente la Loire-Atlantique à l'Assemblée nationale ?", "expected": ["Andy Kerbrat", "Fabrice Roussel", "Jean-Claude Raux", "Jean-Michel Brard", "Julie Laernoes", "Karim Benbrahim", "Matthias Tavel", "Sandrine Josso", "Sophie Errante", "Ségolène Amiot"]}
+{"template_id": "d2_deputes", "binding": "45", "prompt": "Qui représente le Loiret à l'Assemblée nationale ?", "expected": ["Anthony Brosse", "Constance de Pélichy", "Emmanuel Duplessy", "Marie-Philippe Lubet", "Richard Ramos", "Thomas Ménagé"]}
+{"template_id": "d2_deputes", "binding": "46", "prompt": "Qui représente le Lot à l'Assemblée nationale ?", "expected": ["Aurélien Pradié", "Christophe Proença"]}
+{"template_id": "d2_deputes", "binding": "47", "prompt": "Qui représente le Lot-et-Garonne à l'Assemblée nationale ?", "expected": ["Emeline Rey-Rinchet", "Hélène Laporte", "Michel Lauzzana"]}
+{"template_id": "d2_deputes", "binding": "48", "prompt": "Qui représente la Lozère à l'Assemblée nationale ?", "expected": ["Sophie Pantel"]}
+{"template_id": "d2_deputes", "binding": "49", "prompt": "Qui représente le Maine-et-Loire à l'Assemblée nationale ?", "expected": ["Anne-Laure Blin", "Denis Masséglia", "François Gernigon", "Laetitia Saint-Paul", "Nicole Dubré-Chirat", "Patricia Maussion", "Stella Dupont"]}
+{"template_id": "d2_deputes", "binding": "50", "prompt": "Qui représente la Manche à l'Assemblée nationale ?", "expected": ["Anna Pic", "Bertrand Sorre", "Philippe Gosselin", "Stéphane Travert"]}
+{"template_id": "d2_deputes", "binding": "51", "prompt": "Qui représente la Marne à l'Assemblée nationale ?", "expected": ["Charles de Courson", "Laure Miller", "Lise Magnier", "Maxime Michelet", "Xavier Albertini"]}
+{"template_id": "d2_deputes", "binding": "52", "prompt": "Qui représente la Haute-Marne à l'Assemblée nationale ?", "expected": ["Christophe Bentz", "Laurence Robert-Dehault"]}
+{"template_id": "d2_deputes", "binding": "53", "prompt": "Qui représente la Mayenne à l'Assemblée nationale ?", "expected": ["Guillaume Garot", "Géraldine Bannier", "Yannick Favennec-Bécot"]}
+{"template_id": "d2_deputes", "binding": "54", "prompt": "Qui représente la Meurthe-et-Moselle à l'Assemblée nationale ?", "expected": ["Anthony Boulogne", "Dominique Potier", "Estelle Mercier", "Frédéric Weber", "Stéphane Hablot", "Thibault Bazin"]}
+{"template_id": "d2_deputes", "binding": "55", "prompt": "Qui représente la Meuse à l'Assemblée nationale ?", "expected": ["Florence Goulet", "Maxime Amblard"]}
+{"template_id": "d2_deputes", "binding": "56", "prompt": "Qui représente le Morbihan à l'Assemblée nationale ?", "expected": ["Damien Girard", "Jean-Michel Jacques", "Jimmy Pahun", "Michel Criaud", "Nicole Le Peih", "Paul Molac"]}
+{"template_id": "d2_deputes", "binding": "57", "prompt": "Qui représente la Moselle à l'Assemblée nationale ?", "expected": ["Alexandre Loubet", "Belkhir Belhaddad", "Isabelle Rauch", "Jérôme End", "Kévin Pfeffer", "Laurent Jacobelli", "Ludovic Mendes", "Nathalie Colin-Oesterlé", "Pascal Jenft"]}
+{"template_id": "d2_deputes", "binding": "58", "prompt": "Qui représente la Nièvre à l'Assemblée nationale ?", "expected": ["Julien Guibert", "Perrine Goulet"]}
+{"template_id": "d2_deputes", "binding": "59", "prompt": "Qui représente le Nord à l'Assemblée nationale ?", "expected": ["Alexandre Dufosset", "Aurélien Le Coq", "Brigitte Liso", "Charlotte Parmentier-Lecocq", "Félicie Gérard", "Guillaume Florquin", "Jean Bodart", "Jean-Pierre Bataille", "Matthieu Marchio", "Michaël Taverne", "Pierre Marle", "Roger Vicot", "Sandra Delannoy", "Shéhérazade Bentorki", "Sébastien Chenu", "Sébastien Huyghe", "Thierry Tesson", "Ugo Bernalicis", "Valérie Létard", "Vincent Ledoux", "Violette Spillebout"]}
+{"template_id": "d2_deputes", "binding": "60", "prompt": "Qui représente l'Oise à l'Assemblée nationale ?", "expected": ["Alexandre Sabatou", "Claire Marais-Beuil", "David Magnier", "Frédéric-Pierre Vos", "Michel Guiniot", "Philippe Ballard", "Véronique Ludmann"]}
+{"template_id": "d2_deputes", "binding": "61", "prompt": "Qui représente l'Orne à l'Assemblée nationale ?", "expected": ["Cendrine Chazé", "Chantal Jourdan", "Thierry Liger"]}
+{"template_id": "d2_deputes", "binding": "62", "prompt": "Qui représente le Pas-de-Calais à l'Assemblée nationale ?", "expected": ["Agnès Pannier-Runacher", "Antoine Golliot", "Auguste Evrard", "Bruno Bilde", "Bruno Clavet", "Caroline Parmentier", "Christine Engrand", "Emmanuel Blairy", "Marc de Fleurian", "Marine Le Pen", "Philippe Fait", "Thierry Frappé"]}
+{"template_id": "d2_deputes", "binding": "63", "prompt": "Qui représente le Puy-de-Dôme à l'Assemblée nationale ?", "expected": ["Christine Pirès Beaune", "Delphine Lingemann", "Julien Brugerolles", "Marianne Maximi", "Nicolas Bonnet"]}
+{"template_id": "d2_deputes", "binding": "64", "prompt": "Qui représente les Pyrénées-Atlantiques à l'Assemblée nationale ?", "expected": ["Colette Capdevielle", "David Habib", "Iñaki Echaniz", "Jean-Paul Mattei", "Josy Poueyto", "Peio Dufau"]}
+{"template_id": "d2_deputes", "binding": "65", "prompt": "Qui représente les Hautes-Pyrénées à l'Assemblée nationale ?", "expected": ["Denis Fégné", "Sylvie Ferrer"]}
+{"template_id": "d2_deputes", "binding": "66", "prompt": "Qui représente les Pyrénées-Orientales à l'Assemblée nationale ?", "expected": ["Anaïs Sabatini", "Michèle Martinez", "Sandrine Dogor-Such", "Sophie Blanc"]}
+{"template_id": "d2_deputes", "binding": "67", "prompt": "Qui représente le Bas-Rhin à l'Assemblée nationale ?", "expected": ["Charles Sitzenstuhl", "Emmanuel Fernandes", "Françoise Buffet", "Louise Morel", "Patrick Hetzel", "Sandra Regol", "Thierry Sother", "Théo Bernhardt", "Vincent Thiébaut"]}
+{"template_id": "d2_deputes", "binding": "68", "prompt": "Qui représente le Haut-Rhin à l'Assemblée nationale ?", "expected": ["Brigitte Klinkert", "Bruno Fuchs", "Didier Lemaire", "Hubert Ott", "Olivier Becht", "Raphaël Schellenberger"]}
+{"template_id": "d2_deputes", "binding": "69", "prompt": "Qui représente le Rhône à l'Assemblée nationale ?", "expected": ["Abdelkader Lahmar", "Alexandre Portier", "Anaïs Belouassa-Cherifi", "Blandine Brocard", "Boris Tavernier", "Cyrille Isaac-Sibille", "Gabriel Amard", "Idir Boumertit", "Jean-Luc Fugit", "Jonathan Gery", "Marie-Charlotte Garin", "Sandrine Runel", "Thomas Gassilloud", "Tiffany Joncour"]}
+{"template_id": "d2_deputes", "binding": "70", "prompt": "Qui représente la Haute-Saône à l'Assemblée nationale ?", "expected": ["Antoine Villedieu", "Emeric Salmon"]}
+{"template_id": "d2_deputes", "binding": "71", "prompt": "Qui représente la Saône-et-Loire à l'Assemblée nationale ?", "expected": ["Aurélien Dutremble", "Benjamin Dirx", "Josiane Corneloup", "Lionel Duparay", "Éric Michoux"]}
+{"template_id": "d2_deputes", "binding": "72", "prompt": "Qui représente la Sarthe à l'Assemblée nationale ?", "expected": ["Jean-Carles Grelier", "Julie Delpech", "Marietta Karamanli", "Élise Leboucher", "Éric Martineau"]}
+{"template_id": "d2_deputes", "binding": "73", "prompt": "Qui représente la Savoie à l'Assemblée nationale ?", "expected": ["Didier Padey", "Jean-François Coulomme", "Vincent Rolland", "Émilie Bonnivard"]}
+{"template_id": "d2_deputes", "binding": "74", "prompt": "Qui représente la Haute-Savoie à l'Assemblée nationale ?", "expected": ["Anne-Cécile Violland", "Antoine Valentin", "Danièle Carteron", "Virginie Duby-Muller", "Véronique Riotton", "Xavier Roseren"]}
+{"template_id": "d2_deputes", "binding": "75", "prompt": "Qui représente Paris à l'Assemblée nationale ?", "expected": ["Astrid Panosyan-Bouvet", "Aymeric Caron", "Catherine Ibled", "Céline Hervieu", "Danielle Simonnet", "Danièle Obono", "Dorine Bregman", "Eva Sas", "Joséphine Missoffe", "Léa Balage El Mariky", "Michel Barnier", "Olivia Grégoire", "Pouria Amirshahi", "Rodrigo Arenas", "Sandrine Rousseau", "Sarah Legrain", "Sophia Chikirou", "Sylvain Maillard"]}
+{"template_id": "d2_deputes", "binding": "76", "prompt": "Qui représente la Seine-Maritime à l'Assemblée nationale ?", "expected": ["Agnès Firmin Le Bodo", "Alma Dufour", "Annie Vidal", "Florence Herouin-Léautey", "Gérard Leseul", "Jean-Paul Lecoq", "Marie-Agnès Poussier-Winsback", "Patrice Martin", "Robert Le Bourgeois", "Édouard Bénard"]}
+{"template_id": "d2_deputes", "binding": "77", "prompt": "Qui représente la Seine-et-Marne à l'Assemblée nationale ?", "expected": ["Arnaud Bonnet", "Arnaud Saint-Martin", "Béatrice Roullaud", "Céline Thiébault-Martinez", "Ersilia Soudais", "Frédéric Valletoux", "Jean-Louis Thiériot", "Julien Limongi", "Maxime Laisney", "Olivier Faure", "Patricia Lemoine"]}
+{"template_id": "d2_deputes", "binding": "78", "prompt": "Qui représente les Yvelines à l'Assemblée nationale ?", "expected": ["Anne Bergantz", "Anne-Sophie Ronceret", "Aurélien Rousseau", "Benjamin Lucas-Lundy", "Béatrice Piron", "Charles Rodwell", "Dieynaba Diop", "Karl Olive", "Laurent Mazaury", "Marie Lebec", "Natalia Pouzyreff", "Yaël Braun-Pivet"]}
+{"template_id": "d2_deputes", "binding": "79", "prompt": "Qui représente les Deux-Sèvres à l'Assemblée nationale ?", "expected": ["Bastien Marchive", "Delphine Batho", "Jean-Marie Fiévet"]}
+{"template_id": "d2_deputes", "binding": "80", "prompt": "Qui représente la Somme à l'Assemblée nationale ?", "expected": ["François Ruffin", "Jean-Philippe Tanguy", "Matthias Renault", "Yaël Ménaché", "Zahia Hamdane"]}
+{"template_id": "d2_deputes", "binding": "81", "prompt": "Qui représente le Tarn à l'Assemblée nationale ?", "expected": ["Jean Terlier", "Karen Erodi", "Philippe Bonnecarrère"]}
+{"template_id": "d2_deputes", "binding": "82", "prompt": "Qui représente le Tarn-et-Garonne à l'Assemblée nationale ?", "expected": ["Marine Hamelet", "Pierre-Henri Carbonnel"]}
+{"template_id": "d2_deputes", "binding": "83", "prompt": "Qui représente le Var à l'Assemblée nationale ?", "expected": ["Frank Giletti", "Frédéric Boccaletti", "Julie Lechanteux", "Laure Lavalette", "Philippe Lottiaux", "Philippe Schreck", "Stéphane Rambaud", "Yannick Chenevard"]}
+{"template_id": "d2_deputes", "binding": "84", "prompt": "Qui représente le Vaucluse à l'Assemblée nationale ?", "expected": ["Bénédicte Auzanot", "Catherine Rimbert", "Hervé de Lépinau", "Marie-France Lorho", "Raphaël Arnault"]}
+{"template_id": "d2_deputes", "binding": "85", "prompt": "Qui représente la Vendée à l'Assemblée nationale ?", "expected": ["Dominique Paillat", "Philippe Latombe", "Pierre Henriet", "Stéphane Buchou", "Véronique Besse"]}
+{"template_id": "d2_deputes", "binding": "86", "prompt": "Qui représente la Vienne à l'Assemblée nationale ?", "expected": ["Lisa Belluco", "Nicolas Turquois", "Pascal Lecamp", "Sacha Houlié"]}
+{"template_id": "d2_deputes", "binding": "87", "prompt": "Qui représente la Haute-Vienne à l'Assemblée nationale ?", "expected": ["Damien Maudet", "Manon Meunier", "Stéphane Delautrette"]}
+{"template_id": "d2_deputes", "binding": "88", "prompt": "Qui représente les Vosges à l'Assemblée nationale ?", "expected": ["Christophe Naegelen", "Gaëtan Dussausaye", "Stéphane Viry", "Sébastien Humbert"]}
+{"template_id": "d2_deputes", "binding": "89", "prompt": "Qui représente l'Yonne à l'Assemblée nationale ?", "expected": ["Daniel Grenon", "Julien Odoul", "Sophie-Laurence Roy"]}
+{"template_id": "d2_deputes", "binding": "90", "prompt": "Qui représente le Territoire de Belfort à l'Assemblée nationale ?", "expected": ["Guillaume Bigot", "Ian Boucard"]}
+{"template_id": "d2_deputes", "binding": "91", "prompt": "Qui représente l'Essonne à l'Assemblée nationale ?", "expected": ["Antoine Léaument", "Bérenger Cernon", "Claire Lejeune", "Farida Amrani", "Julie Ozenne", "Jérôme Guedj", "Marie-Pierre Rixain", "Nathalie Da Conceicao Carvalho", "Paul Midy", "Steevy Gustave"]}
+{"template_id": "d2_deputes", "binding": "92", "prompt": "Qui représente les Hauts-de-Seine à l'Assemblée nationale ?", "expected": ["Aurélien Saintoul", "Carole Guillerm", "Christophe Mongardien", "Constance Le Grip", "Céline Calvez", "Elsa Faucillon", "Gabriel Attal", "Philippe Juvin", "Pierre Cazeneuve", "Prisca Thevenot", "Sabrina Sebaihi", "Thomas Lam", "Élisabeth de Maistre"]}
+{"template_id": "d2_deputes", "binding": "93", "prompt": "Qui représente la Seine-Saint-Denis à l'Assemblée nationale ?", "expected": ["Alexis Corbière", "Aly Diouara", "Aurélie Trouvé", "Bastien Lachaud", "Clémentine Autain", "Fatiha Keloua Hachi", "Jérôme Legavre", "Nadège Abomangoli", "Soumya Bourouaha", "Stéphane Peu", "Thomas Portes", "Éric Coquerel"]}
+{"template_id": "d2_deputes", "binding": "94", "prompt": "Qui représente le Val-de-Marne à l'Assemblée nationale ?", "expected": ["Clémence Guetté", "Guillaume Gouffier Valente", "Isabelle Santiago", "Louis Boyard", "Mathilde Panot", "Maud Petit", "Michel Herbillon", "Nicolas Tryzna", "Sandrine Lalanne", "Sophie Taillé-Polian", "Sylvain Berrios"]}
+{"template_id": "d2_deputes", "binding": "95", "prompt": "Qui représente le Val-d'Oise à l'Assemblée nationale ?", "expected": ["Anne Sicard", "Arnaud Le Gall", "Aurélien Taché", "Ayda Hadizadeh", "Benoît Blanchard", "Carlos Martens Bilongo", "Emmanuel Maurel", "Gabrielle Cathala", "Paul Vannier", "Romain Eskenazi"]}
+{"template_id": "d2_deputes", "binding": "971", "prompt": "Qui représente la Guadeloupe à l'Assemblée nationale ?", "expected": ["Christian Baptiste", "Elie Califer", "Max Mathiasin", "Olivier Serva"]}
+{"template_id": "d2_deputes", "binding": "972", "prompt": "Qui représente la Martinique à l'Assemblée nationale ?", "expected": ["Béatrice Bellay", "Jean-Philippe Nilor", "Jiovanny William", "Marcellin Nadeau"]}
+{"template_id": "d2_deputes", "binding": "973", "prompt": "Qui représente la Guyane à l'Assemblée nationale ?", "expected": ["Davy Rimane", "Jean-Victor Castor"]}
+{"template_id": "d2_deputes", "binding": "974", "prompt": "Qui représente La Réunion à l'Assemblée nationale ?", "expected": ["Frédéric Maillot", "Jean-Hugues Ratenon", "Joseph Rivière", "Karine Lebon", "Perceval Gaillard", "Philippe Naillet", "Émeline K/Bidi"]}
+{"template_id": "d2_deputes", "binding": "976", "prompt": "Qui représente Mayotte à l'Assemblée nationale ?", "expected": ["Anchya Bamana", "Estelle Youssouffa"]}
+{"template_id": "s3_nb_senateurs", "binding": "01", "prompt": "Combien y a-t-il de sénateurs de l'Ain ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "02", "prompt": "Combien y a-t-il de sénateurs de l'Aisne ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "03", "prompt": "Combien y a-t-il de sénateurs de l'Allier ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "04", "prompt": "Combien y a-t-il de sénateurs des Alpes-de-Haute-Provence ?", "expected": 1}
+{"template_id": "s3_nb_senateurs", "binding": "05", "prompt": "Combien y a-t-il de sénateurs des Hautes-Alpes ?", "expected": 1}
+{"template_id": "s3_nb_senateurs", "binding": "06", "prompt": "Combien y a-t-il de sénateurs des Alpes-Maritimes ?", "expected": 5}
+{"template_id": "s3_nb_senateurs", "binding": "07", "prompt": "Combien y a-t-il de sénateurs de l'Ardèche ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "08", "prompt": "Combien y a-t-il de sénateurs des Ardennes ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "09", "prompt": "Combien y a-t-il de sénateurs de l'Ariège ?", "expected": 1}
+{"template_id": "s3_nb_senateurs", "binding": "10", "prompt": "Combien y a-t-il de sénateurs de l'Aube ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "11", "prompt": "Combien y a-t-il de sénateurs de l'Aude ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "12", "prompt": "Combien y a-t-il de sénateurs de l'Aveyron ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "13", "prompt": "Combien y a-t-il de sénateurs des Bouches-du-Rhône ?", "expected": 8}
+{"template_id": "s3_nb_senateurs", "binding": "14", "prompt": "Combien y a-t-il de sénateurs du Calvados ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "15", "prompt": "Combien y a-t-il de sénateurs du Cantal ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "16", "prompt": "Combien y a-t-il de sénateurs de la Charente ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "17", "prompt": "Combien y a-t-il de sénateurs de la Charente-Maritime ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "18", "prompt": "Combien y a-t-il de sénateurs du Cher ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "19", "prompt": "Combien y a-t-il de sénateurs de la Corrèze ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "21", "prompt": "Combien y a-t-il de sénateurs de la Côte-d'Or ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "22", "prompt": "Combien y a-t-il de sénateurs des Côtes-d'Armor ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "23", "prompt": "Combien y a-t-il de sénateurs de la Creuse ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "24", "prompt": "Combien y a-t-il de sénateurs de la Dordogne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "25", "prompt": "Combien y a-t-il de sénateurs du Doubs ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "26", "prompt": "Combien y a-t-il de sénateurs de la Drôme ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "27", "prompt": "Combien y a-t-il de sénateurs de l'Eure ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "28", "prompt": "Combien y a-t-il de sénateurs d'Eure-et-Loir ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "29", "prompt": "Combien y a-t-il de sénateurs du Finistère ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "2A", "prompt": "Combien y a-t-il de sénateurs de Corse-du-Sud ?", "expected": 1}
+{"template_id": "s3_nb_senateurs", "binding": "2B", "prompt": "Combien y a-t-il de sénateurs de Haute-Corse ?", "expected": 1}
+{"template_id": "s3_nb_senateurs", "binding": "30", "prompt": "Combien y a-t-il de sénateurs du Gard ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "31", "prompt": "Combien y a-t-il de sénateurs de la Haute-Garonne ?", "expected": 5}
+{"template_id": "s3_nb_senateurs", "binding": "32", "prompt": "Combien y a-t-il de sénateurs du Gers ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "33", "prompt": "Combien y a-t-il de sénateurs de la Gironde ?", "expected": 6}
+{"template_id": "s3_nb_senateurs", "binding": "34", "prompt": "Combien y a-t-il de sénateurs de l'Hérault ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "35", "prompt": "Combien y a-t-il de sénateurs d'Ille-et-Vilaine ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "36", "prompt": "Combien y a-t-il de sénateurs de l'Indre ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "37", "prompt": "Combien y a-t-il de sénateurs d'Indre-et-Loire ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "38", "prompt": "Combien y a-t-il de sénateurs de l'Isère ?", "expected": 5}
+{"template_id": "s3_nb_senateurs", "binding": "39", "prompt": "Combien y a-t-il de sénateurs du Jura ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "40", "prompt": "Combien y a-t-il de sénateurs des Landes ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "41", "prompt": "Combien y a-t-il de sénateurs de Loir-et-Cher ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "42", "prompt": "Combien y a-t-il de sénateurs de la Loire ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "43", "prompt": "Combien y a-t-il de sénateurs de la Haute-Loire ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "44", "prompt": "Combien y a-t-il de sénateurs de la Loire-Atlantique ?", "expected": 5}
+{"template_id": "s3_nb_senateurs", "binding": "45", "prompt": "Combien y a-t-il de sénateurs du Loiret ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "46", "prompt": "Combien y a-t-il de sénateurs du Lot ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "47", "prompt": "Combien y a-t-il de sénateurs de Lot-et-Garonne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "48", "prompt": "Combien y a-t-il de sénateurs de la Lozère ?", "expected": 1}
+{"template_id": "s3_nb_senateurs", "binding": "49", "prompt": "Combien y a-t-il de sénateurs de Maine-et-Loire ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "50", "prompt": "Combien y a-t-il de sénateurs de la Manche ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "51", "prompt": "Combien y a-t-il de sénateurs de la Marne ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "52", "prompt": "Combien y a-t-il de sénateurs de la Haute-Marne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "53", "prompt": "Combien y a-t-il de sénateurs de la Mayenne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "54", "prompt": "Combien y a-t-il de sénateurs de Meurthe-et-Moselle ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "55", "prompt": "Combien y a-t-il de sénateurs de la Meuse ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "56", "prompt": "Combien y a-t-il de sénateurs du Morbihan ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "57", "prompt": "Combien y a-t-il de sénateurs de la Moselle ?", "expected": 5}
+{"template_id": "s3_nb_senateurs", "binding": "58", "prompt": "Combien y a-t-il de sénateurs de la Nièvre ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "59", "prompt": "Combien y a-t-il de sénateurs du Nord ?", "expected": 11}
+{"template_id": "s3_nb_senateurs", "binding": "60", "prompt": "Combien y a-t-il de sénateurs de l'Oise ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "61", "prompt": "Combien y a-t-il de sénateurs de l'Orne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "62", "prompt": "Combien y a-t-il de sénateurs du Pas-de-Calais ?", "expected": 7}
+{"template_id": "s3_nb_senateurs", "binding": "63", "prompt": "Combien y a-t-il de sénateurs du Puy-de-Dôme ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "64", "prompt": "Combien y a-t-il de sénateurs des Pyrénées-Atlantiques ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "65", "prompt": "Combien y a-t-il de sénateurs des Hautes-Pyrénées ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "66", "prompt": "Combien y a-t-il de sénateurs des Pyrénées-Orientales ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "67", "prompt": "Combien y a-t-il de sénateurs du Bas-Rhin ?", "expected": 5}
+{"template_id": "s3_nb_senateurs", "binding": "68", "prompt": "Combien y a-t-il de sénateurs du Haut-Rhin ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "69", "prompt": "Combien y a-t-il de sénateurs du Rhône ?", "expected": 7}
+{"template_id": "s3_nb_senateurs", "binding": "70", "prompt": "Combien y a-t-il de sénateurs de la Haute-Saône ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "71", "prompt": "Combien y a-t-il de sénateurs de Saône-et-Loire ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "72", "prompt": "Combien y a-t-il de sénateurs de la Sarthe ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "73", "prompt": "Combien y a-t-il de sénateurs de la Savoie ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "74", "prompt": "Combien y a-t-il de sénateurs de la Haute-Savoie ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "75", "prompt": "Combien y a-t-il de sénateurs de Paris ?", "expected": 12}
+{"template_id": "s3_nb_senateurs", "binding": "76", "prompt": "Combien y a-t-il de sénateurs de la Seine-Maritime ?", "expected": 6}
+{"template_id": "s3_nb_senateurs", "binding": "77", "prompt": "Combien y a-t-il de sénateurs de Seine-et-Marne ?", "expected": 6}
+{"template_id": "s3_nb_senateurs", "binding": "78", "prompt": "Combien y a-t-il de sénateurs des Yvelines ?", "expected": 6}
+{"template_id": "s3_nb_senateurs", "binding": "79", "prompt": "Combien y a-t-il de sénateurs des Deux-Sèvres ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "80", "prompt": "Combien y a-t-il de sénateurs de la Somme ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "81", "prompt": "Combien y a-t-il de sénateurs du Tarn ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "82", "prompt": "Combien y a-t-il de sénateurs de Tarn-et-Garonne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "83", "prompt": "Combien y a-t-il de sénateurs du Var ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "84", "prompt": "Combien y a-t-il de sénateurs du Vaucluse ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "85", "prompt": "Combien y a-t-il de sénateurs de la Vendée ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "86", "prompt": "Combien y a-t-il de sénateurs de la Vienne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "87", "prompt": "Combien y a-t-il de sénateurs de la Haute-Vienne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "88", "prompt": "Combien y a-t-il de sénateurs des Vosges ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "89", "prompt": "Combien y a-t-il de sénateurs de l'Yonne ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "90", "prompt": "Combien y a-t-il de sénateurs du Territoire de Belfort ?", "expected": 1}
+{"template_id": "s3_nb_senateurs", "binding": "91", "prompt": "Combien y a-t-il de sénateurs de l'Essonne ?", "expected": 5}
+{"template_id": "s3_nb_senateurs", "binding": "92", "prompt": "Combien y a-t-il de sénateurs des Hauts-de-Seine ?", "expected": 7}
+{"template_id": "s3_nb_senateurs", "binding": "93", "prompt": "Combien y a-t-il de sénateurs de la Seine-Saint-Denis ?", "expected": 6}
+{"template_id": "s3_nb_senateurs", "binding": "94", "prompt": "Combien y a-t-il de sénateurs du Val-de-Marne ?", "expected": 6}
+{"template_id": "s3_nb_senateurs", "binding": "95", "prompt": "Combien y a-t-il de sénateurs du Val-d'Oise ?", "expected": 5}
+{"template_id": "s3_nb_senateurs", "binding": "971", "prompt": "Combien y a-t-il de sénateurs de la Guadeloupe ?", "expected": 3}
+{"template_id": "s3_nb_senateurs", "binding": "972", "prompt": "Combien y a-t-il de sénateurs de la Martinique ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "973", "prompt": "Combien y a-t-il de sénateurs de la Guyane ?", "expected": 2}
+{"template_id": "s3_nb_senateurs", "binding": "974", "prompt": "Combien y a-t-il de sénateurs de La Réunion ?", "expected": 4}
+{"template_id": "s3_nb_senateurs", "binding": "976", "prompt": "Combien y a-t-il de sénateurs de Mayotte ?", "expected": 2}
+{"template_id": "s1_siege_renouvele_2026", "binding": "01", "prompt": "Le siège de sénateur de l'Ain est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "02", "prompt": "Le siège de sénateur de l'Aisne est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "03", "prompt": "Le siège de sénateur de l'Allier est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "04", "prompt": "Le siège de sénateur des Alpes-de-Haute-Provence est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "05", "prompt": "Le siège de sénateur des Hautes-Alpes est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "06", "prompt": "Le siège de sénateur des Alpes-Maritimes est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "07", "prompt": "Le siège de sénateur de l'Ardèche est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "08", "prompt": "Le siège de sénateur des Ardennes est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "09", "prompt": "Le siège de sénateur de l'Ariège est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "10", "prompt": "Le siège de sénateur de l'Aube est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "11", "prompt": "Le siège de sénateur de l'Aude est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "12", "prompt": "Le siège de sénateur de l'Aveyron est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "13", "prompt": "Le siège de sénateur des Bouches-du-Rhône est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "14", "prompt": "Le siège de sénateur du Calvados est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "15", "prompt": "Le siège de sénateur du Cantal est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "16", "prompt": "Le siège de sénateur de la Charente est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "17", "prompt": "Le siège de sénateur de la Charente-Maritime est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "18", "prompt": "Le siège de sénateur du Cher est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "19", "prompt": "Le siège de sénateur de la Corrèze est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "21", "prompt": "Le siège de sénateur de la Côte-d'Or est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "22", "prompt": "Le siège de sénateur des Côtes-d'Armor est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "23", "prompt": "Le siège de sénateur de la Creuse est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "24", "prompt": "Le siège de sénateur de la Dordogne est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "25", "prompt": "Le siège de sénateur du Doubs est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "26", "prompt": "Le siège de sénateur de la Drôme est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "27", "prompt": "Le siège de sénateur de l'Eure est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "28", "prompt": "Le siège de sénateur d'Eure-et-Loir est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "29", "prompt": "Le siège de sénateur du Finistère est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "2A", "prompt": "Le siège de sénateur de Corse-du-Sud est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "2B", "prompt": "Le siège de sénateur de Haute-Corse est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "30", "prompt": "Le siège de sénateur du Gard est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "31", "prompt": "Le siège de sénateur de la Haute-Garonne est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "32", "prompt": "Le siège de sénateur du Gers est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "33", "prompt": "Le siège de sénateur de la Gironde est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "34", "prompt": "Le siège de sénateur de l'Hérault est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "35", "prompt": "Le siège de sénateur d'Ille-et-Vilaine est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "36", "prompt": "Le siège de sénateur de l'Indre est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "37", "prompt": "Le siège de sénateur d'Indre-et-Loire est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "38", "prompt": "Le siège de sénateur de l'Isère est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "39", "prompt": "Le siège de sénateur du Jura est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "40", "prompt": "Le siège de sénateur des Landes est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "41", "prompt": "Le siège de sénateur de Loir-et-Cher est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "42", "prompt": "Le siège de sénateur de la Loire est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "43", "prompt": "Le siège de sénateur de la Haute-Loire est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "44", "prompt": "Le siège de sénateur de la Loire-Atlantique est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "45", "prompt": "Le siège de sénateur du Loiret est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "46", "prompt": "Le siège de sénateur du Lot est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "47", "prompt": "Le siège de sénateur de Lot-et-Garonne est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "48", "prompt": "Le siège de sénateur de la Lozère est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "49", "prompt": "Le siège de sénateur de Maine-et-Loire est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "50", "prompt": "Le siège de sénateur de la Manche est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "51", "prompt": "Le siège de sénateur de la Marne est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "52", "prompt": "Le siège de sénateur de la Haute-Marne est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "53", "prompt": "Le siège de sénateur de la Mayenne est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "54", "prompt": "Le siège de sénateur de Meurthe-et-Moselle est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "55", "prompt": "Le siège de sénateur de la Meuse est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "56", "prompt": "Le siège de sénateur du Morbihan est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "57", "prompt": "Le siège de sénateur de la Moselle est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "58", "prompt": "Le siège de sénateur de la Nièvre est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "59", "prompt": "Le siège de sénateur du Nord est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "60", "prompt": "Le siège de sénateur de l'Oise est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "61", "prompt": "Le siège de sénateur de l'Orne est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "62", "prompt": "Le siège de sénateur du Pas-de-Calais est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "63", "prompt": "Le siège de sénateur du Puy-de-Dôme est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "64", "prompt": "Le siège de sénateur des Pyrénées-Atlantiques est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "65", "prompt": "Le siège de sénateur des Hautes-Pyrénées est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "66", "prompt": "Le siège de sénateur des Pyrénées-Orientales est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "67", "prompt": "Le siège de sénateur du Bas-Rhin est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "68", "prompt": "Le siège de sénateur du Haut-Rhin est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "69", "prompt": "Le siège de sénateur du Rhône est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "70", "prompt": "Le siège de sénateur de la Haute-Saône est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "71", "prompt": "Le siège de sénateur de Saône-et-Loire est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "72", "prompt": "Le siège de sénateur de la Sarthe est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "73", "prompt": "Le siège de sénateur de la Savoie est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "74", "prompt": "Le siège de sénateur de la Haute-Savoie est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "75", "prompt": "Le siège de sénateur de Paris est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "76", "prompt": "Le siège de sénateur de la Seine-Maritime est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "77", "prompt": "Le siège de sénateur de Seine-et-Marne est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "78", "prompt": "Le siège de sénateur des Yvelines est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "79", "prompt": "Le siège de sénateur des Deux-Sèvres est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "80", "prompt": "Le siège de sénateur de la Somme est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "81", "prompt": "Le siège de sénateur du Tarn est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "82", "prompt": "Le siège de sénateur de Tarn-et-Garonne est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "83", "prompt": "Le siège de sénateur du Var est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "84", "prompt": "Le siège de sénateur du Vaucluse est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "85", "prompt": "Le siège de sénateur de la Vendée est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "86", "prompt": "Le siège de sénateur de la Vienne est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "87", "prompt": "Le siège de sénateur de la Haute-Vienne est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "88", "prompt": "Le siège de sénateur des Vosges est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "89", "prompt": "Le siège de sénateur de l'Yonne est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "90", "prompt": "Le siège de sénateur du Territoire de Belfort est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "91", "prompt": "Le siège de sénateur de l'Essonne est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "92", "prompt": "Le siège de sénateur des Hauts-de-Seine est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "93", "prompt": "Le siège de sénateur de la Seine-Saint-Denis est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "94", "prompt": "Le siège de sénateur du Val-de-Marne est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "95", "prompt": "Le siège de sénateur du Val-d'Oise est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "971", "prompt": "Le siège de sénateur de la Guadeloupe est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "972", "prompt": "Le siège de sénateur de la Martinique est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "973", "prompt": "Le siège de sénateur de la Guyane est-il renouvelé en septembre 2026 ?", "expected": "oui"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "974", "prompt": "Le siège de sénateur de La Réunion est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s1_siege_renouvele_2026", "binding": "976", "prompt": "Le siège de sénateur de Mayotte est-il renouvelé en septembre 2026 ?", "expected": "non"}
+{"template_id": "s2_nb_elus_2026", "binding": "01", "prompt": "Combien de sièges de sénateur de l'Ain seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "02", "prompt": "Combien de sièges de sénateur de l'Aisne seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "03", "prompt": "Combien de sièges de sénateur de l'Allier seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "04", "prompt": "Combien de sièges de sénateur des Alpes-de-Haute-Provence seront renouvelés le 27 septembre 2026 ?", "expected": 1}
+{"template_id": "s2_nb_elus_2026", "binding": "05", "prompt": "Combien de sièges de sénateur des Hautes-Alpes seront renouvelés le 27 septembre 2026 ?", "expected": 1}
+{"template_id": "s2_nb_elus_2026", "binding": "06", "prompt": "Combien de sièges de sénateur des Alpes-Maritimes seront renouvelés le 27 septembre 2026 ?", "expected": 5}
+{"template_id": "s2_nb_elus_2026", "binding": "07", "prompt": "Combien de sièges de sénateur de l'Ardèche seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "08", "prompt": "Combien de sièges de sénateur des Ardennes seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "09", "prompt": "Combien de sièges de sénateur de l'Ariège seront renouvelés le 27 septembre 2026 ?", "expected": 1}
+{"template_id": "s2_nb_elus_2026", "binding": "10", "prompt": "Combien de sièges de sénateur de l'Aube seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "11", "prompt": "Combien de sièges de sénateur de l'Aude seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "12", "prompt": "Combien de sièges de sénateur de l'Aveyron seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "13", "prompt": "Combien de sièges de sénateur des Bouches-du-Rhône seront renouvelés le 27 septembre 2026 ?", "expected": 8}
+{"template_id": "s2_nb_elus_2026", "binding": "14", "prompt": "Combien de sièges de sénateur du Calvados seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "15", "prompt": "Combien de sièges de sénateur du Cantal seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "16", "prompt": "Combien de sièges de sénateur de la Charente seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "17", "prompt": "Combien de sièges de sénateur de la Charente-Maritime seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "18", "prompt": "Combien de sièges de sénateur du Cher seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "19", "prompt": "Combien de sièges de sénateur de la Corrèze seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "21", "prompt": "Combien de sièges de sénateur de la Côte-d'Or seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "22", "prompt": "Combien de sièges de sénateur des Côtes-d'Armor seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "23", "prompt": "Combien de sièges de sénateur de la Creuse seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "24", "prompt": "Combien de sièges de sénateur de la Dordogne seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "25", "prompt": "Combien de sièges de sénateur du Doubs seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "26", "prompt": "Combien de sièges de sénateur de la Drôme seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "27", "prompt": "Combien de sièges de sénateur de l'Eure seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "28", "prompt": "Combien de sièges de sénateur d'Eure-et-Loir seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "29", "prompt": "Combien de sièges de sénateur du Finistère seront renouvelés le 27 septembre 2026 ?", "expected": 4}
+{"template_id": "s2_nb_elus_2026", "binding": "2A", "prompt": "Combien de sièges de sénateur de Corse-du-Sud seront renouvelés le 27 septembre 2026 ?", "expected": 1}
+{"template_id": "s2_nb_elus_2026", "binding": "2B", "prompt": "Combien de sièges de sénateur de Haute-Corse seront renouvelés le 27 septembre 2026 ?", "expected": 1}
+{"template_id": "s2_nb_elus_2026", "binding": "30", "prompt": "Combien de sièges de sénateur du Gard seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "31", "prompt": "Combien de sièges de sénateur de la Haute-Garonne seront renouvelés le 27 septembre 2026 ?", "expected": 5}
+{"template_id": "s2_nb_elus_2026", "binding": "32", "prompt": "Combien de sièges de sénateur du Gers seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "33", "prompt": "Combien de sièges de sénateur de la Gironde seront renouvelés le 27 septembre 2026 ?", "expected": 6}
+{"template_id": "s2_nb_elus_2026", "binding": "34", "prompt": "Combien de sièges de sénateur de l'Hérault seront renouvelés le 27 septembre 2026 ?", "expected": 4}
+{"template_id": "s2_nb_elus_2026", "binding": "35", "prompt": "Combien de sièges de sénateur d'Ille-et-Vilaine seront renouvelés le 27 septembre 2026 ?", "expected": 4}
+{"template_id": "s2_nb_elus_2026", "binding": "36", "prompt": "Combien de sièges de sénateur de l'Indre seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "37", "prompt": "Combien de sièges de sénateur d'Indre-et-Loire seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "38", "prompt": "Combien de sièges de sénateur de l'Isère seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "39", "prompt": "Combien de sièges de sénateur du Jura seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "40", "prompt": "Combien de sièges de sénateur des Landes seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "41", "prompt": "Combien de sièges de sénateur de Loir-et-Cher seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "42", "prompt": "Combien de sièges de sénateur de la Loire seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "43", "prompt": "Combien de sièges de sénateur de la Haute-Loire seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "44", "prompt": "Combien de sièges de sénateur de la Loire-Atlantique seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "45", "prompt": "Combien de sièges de sénateur du Loiret seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "46", "prompt": "Combien de sièges de sénateur du Lot seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "47", "prompt": "Combien de sièges de sénateur de Lot-et-Garonne seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "48", "prompt": "Combien de sièges de sénateur de la Lozère seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "49", "prompt": "Combien de sièges de sénateur de Maine-et-Loire seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "50", "prompt": "Combien de sièges de sénateur de la Manche seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "51", "prompt": "Combien de sièges de sénateur de la Marne seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "52", "prompt": "Combien de sièges de sénateur de la Haute-Marne seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "53", "prompt": "Combien de sièges de sénateur de la Mayenne seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "54", "prompt": "Combien de sièges de sénateur de Meurthe-et-Moselle seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "55", "prompt": "Combien de sièges de sénateur de la Meuse seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "56", "prompt": "Combien de sièges de sénateur du Morbihan seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "57", "prompt": "Combien de sièges de sénateur de la Moselle seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "58", "prompt": "Combien de sièges de sénateur de la Nièvre seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "59", "prompt": "Combien de sièges de sénateur du Nord seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "60", "prompt": "Combien de sièges de sénateur de l'Oise seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "61", "prompt": "Combien de sièges de sénateur de l'Orne seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "62", "prompt": "Combien de sièges de sénateur du Pas-de-Calais seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "63", "prompt": "Combien de sièges de sénateur du Puy-de-Dôme seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "64", "prompt": "Combien de sièges de sénateur des Pyrénées-Atlantiques seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "65", "prompt": "Combien de sièges de sénateur des Hautes-Pyrénées seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "66", "prompt": "Combien de sièges de sénateur des Pyrénées-Orientales seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "67", "prompt": "Combien de sièges de sénateur du Bas-Rhin seront renouvelés le 27 septembre 2026 ?", "expected": 5}
+{"template_id": "s2_nb_elus_2026", "binding": "68", "prompt": "Combien de sièges de sénateur du Haut-Rhin seront renouvelés le 27 septembre 2026 ?", "expected": 4}
+{"template_id": "s2_nb_elus_2026", "binding": "69", "prompt": "Combien de sièges de sénateur du Rhône seront renouvelés le 27 septembre 2026 ?", "expected": 7}
+{"template_id": "s2_nb_elus_2026", "binding": "70", "prompt": "Combien de sièges de sénateur de la Haute-Saône seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "71", "prompt": "Combien de sièges de sénateur de Saône-et-Loire seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "72", "prompt": "Combien de sièges de sénateur de la Sarthe seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "73", "prompt": "Combien de sièges de sénateur de la Savoie seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "74", "prompt": "Combien de sièges de sénateur de la Haute-Savoie seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "75", "prompt": "Combien de sièges de sénateur de Paris seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "76", "prompt": "Combien de sièges de sénateur de la Seine-Maritime seront renouvelés le 27 septembre 2026 ?", "expected": 6}
+{"template_id": "s2_nb_elus_2026", "binding": "77", "prompt": "Combien de sièges de sénateur de Seine-et-Marne seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "78", "prompt": "Combien de sièges de sénateur des Yvelines seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "79", "prompt": "Combien de sièges de sénateur des Deux-Sèvres seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "80", "prompt": "Combien de sièges de sénateur de la Somme seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "81", "prompt": "Combien de sièges de sénateur du Tarn seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "82", "prompt": "Combien de sièges de sénateur de Tarn-et-Garonne seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "83", "prompt": "Combien de sièges de sénateur du Var seront renouvelés le 27 septembre 2026 ?", "expected": 4}
+{"template_id": "s2_nb_elus_2026", "binding": "84", "prompt": "Combien de sièges de sénateur du Vaucluse seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "85", "prompt": "Combien de sièges de sénateur de la Vendée seront renouvelés le 27 septembre 2026 ?", "expected": 3}
+{"template_id": "s2_nb_elus_2026", "binding": "86", "prompt": "Combien de sièges de sénateur de la Vienne seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "87", "prompt": "Combien de sièges de sénateur de la Haute-Vienne seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "88", "prompt": "Combien de sièges de sénateur des Vosges seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "89", "prompt": "Combien de sièges de sénateur de l'Yonne seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "90", "prompt": "Combien de sièges de sénateur du Territoire de Belfort seront renouvelés le 27 septembre 2026 ?", "expected": 1}
+{"template_id": "s2_nb_elus_2026", "binding": "91", "prompt": "Combien de sièges de sénateur de l'Essonne seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "92", "prompt": "Combien de sièges de sénateur des Hauts-de-Seine seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "93", "prompt": "Combien de sièges de sénateur de la Seine-Saint-Denis seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "94", "prompt": "Combien de sièges de sénateur du Val-de-Marne seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "95", "prompt": "Combien de sièges de sénateur du Val-d'Oise seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "971", "prompt": "Combien de sièges de sénateur de la Guadeloupe seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "972", "prompt": "Combien de sièges de sénateur de la Martinique seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "973", "prompt": "Combien de sièges de sénateur de la Guyane seront renouvelés le 27 septembre 2026 ?", "expected": 2}
+{"template_id": "s2_nb_elus_2026", "binding": "974", "prompt": "Combien de sièges de sénateur de La Réunion seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "s2_nb_elus_2026", "binding": "976", "prompt": "Combien de sièges de sénateur de Mayotte seront renouvelés le 27 septembre 2026 ?", "expected": 0}
+{"template_id": "d3_president_conseil_departemental", "binding": "01", "prompt": "Qui est le président du conseil départemental de l'Ain ?", "expected": "Jean DEGUERRY"}
+{"template_id": "d3_president_conseil_departemental", "binding": "02", "prompt": "Qui est le président du conseil départemental de l'Aisne ?", "expected": "Pierre-Jean VERZELEN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "03", "prompt": "Qui est le président du conseil départemental de l'Allier ?", "expected": "Claude RIBOULET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "04", "prompt": "Qui est le président du conseil départemental des Alpes-de-Haute-Provence ?", "expected": "Eliane BARREILLE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "05", "prompt": "Qui est le président du conseil départemental des Hautes-Alpes ?", "expected": "Jean-Marie BERNARD"}
+{"template_id": "d3_president_conseil_departemental", "binding": "06", "prompt": "Qui est le président du conseil départemental des Alpes-Maritimes ?", "expected": "Charles Ange GINESY"}
+{"template_id": "d3_president_conseil_departemental", "binding": "07", "prompt": "Qui est le président du conseil départemental de l'Ardèche ?", "expected": "Olivier AMRANE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "08", "prompt": "Qui est le président du conseil départemental des Ardennes ?", "expected": "Noël BOURGEOIS"}
+{"template_id": "d3_president_conseil_departemental", "binding": "09", "prompt": "Qui est le président du conseil départemental de l'Ariège ?", "expected": "Christine TEQUI"}
+{"template_id": "d3_president_conseil_departemental", "binding": "10", "prompt": "Qui est le président du conseil départemental de l'Aube ?", "expected": "Philippe DALLEMAGNE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "11", "prompt": "Qui est le président du conseil départemental de l'Aude ?", "expected": "Hélène SANDRAGNÉ"}
+{"template_id": "d3_president_conseil_departemental", "binding": "12", "prompt": "Qui est le président du conseil départemental de l'Aveyron ?", "expected": "Arnaud VIALA"}
+{"template_id": "d3_president_conseil_departemental", "binding": "13", "prompt": "Qui est le président du conseil départemental des Bouches-du-Rhône ?", "expected": "Martine VASSAL"}
+{"template_id": "d3_president_conseil_departemental", "binding": "14", "prompt": "Qui est le président du conseil départemental du Calvados ?", "expected": "Jean-Léonce DUPONT"}
+{"template_id": "d3_president_conseil_departemental", "binding": "15", "prompt": "Qui est le président du conseil départemental du Cantal ?", "expected": "Bruno FAURE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "16", "prompt": "Qui est le président du conseil départemental de la Charente ?", "expected": "Jérôme SOURISSEAU"}
+{"template_id": "d3_president_conseil_departemental", "binding": "17", "prompt": "Qui est le président du conseil départemental de la Charente-Maritime ?", "expected": "Sylvie MARCILLY"}
+{"template_id": "d3_president_conseil_departemental", "binding": "18", "prompt": "Qui est le président du conseil départemental du Cher ?", "expected": "Jacques FLEURY"}
+{"template_id": "d3_president_conseil_departemental", "binding": "19", "prompt": "Qui est le président du conseil départemental de la Corrèze ?", "expected": "Pascal COSTE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "21", "prompt": "Qui est le président du conseil départemental de la Côte-d'Or ?", "expected": "François SAUVADET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "22", "prompt": "Qui est le président du conseil départemental des Côtes-d'Armor ?", "expected": "Christian COAIL"}
+{"template_id": "d3_president_conseil_departemental", "binding": "23", "prompt": "Qui est le président du conseil départemental de la Creuse ?", "expected": "Valérie SIMONET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "24", "prompt": "Qui est le président du conseil départemental de la Dordogne ?", "expected": "Germinal PEIRO"}
+{"template_id": "d3_president_conseil_departemental", "binding": "25", "prompt": "Qui est le président du conseil départemental du Doubs ?", "expected": "Christine BOUQUIN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "26", "prompt": "Qui est le président du conseil départemental de la Drôme ?", "expected": "Franck SOULIGNAC"}
+{"template_id": "d3_president_conseil_departemental", "binding": "27", "prompt": "Qui est le président du conseil départemental de l'Eure ?", "expected": "Alexandre RASSAËRT"}
+{"template_id": "d3_president_conseil_departemental", "binding": "28", "prompt": "Qui est le président du conseil départemental d'Eure-et-Loir ?", "expected": "Christophe LE DORVEN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "29", "prompt": "Qui est le président du conseil départemental du Finistère ?", "expected": "Maël DE CALAN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "30", "prompt": "Qui est le président du conseil départemental du Gard ?", "expected": "Françoise LAURENT-PERRIGOT"}
+{"template_id": "d3_president_conseil_departemental", "binding": "31", "prompt": "Qui est le président du conseil départemental de la Haute-Garonne ?", "expected": "Sebastien VINCINI"}
+{"template_id": "d3_president_conseil_departemental", "binding": "32", "prompt": "Qui est le président du conseil départemental du Gers ?", "expected": "Philippe DUPOUY"}
+{"template_id": "d3_president_conseil_departemental", "binding": "33", "prompt": "Qui est le président du conseil départemental de la Gironde ?", "expected": "Jean-Luc GLEYZE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "34", "prompt": "Qui est le président du conseil départemental de l'Hérault ?", "expected": "Kléber MESQUIDA"}
+{"template_id": "d3_president_conseil_departemental", "binding": "35", "prompt": "Qui est le président du conseil départemental d'Ille-et-Vilaine ?", "expected": "Jean-Luc CHENUT"}
+{"template_id": "d3_president_conseil_departemental", "binding": "36", "prompt": "Qui est le président du conseil départemental de l'Indre ?", "expected": "Marc FLEURET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "37", "prompt": "Qui est le président du conseil départemental d'Indre-et-Loire ?", "expected": "Nadège ARNAULT"}
+{"template_id": "d3_president_conseil_departemental", "binding": "38", "prompt": "Qui est le président du conseil départemental de l'Isère ?", "expected": "Jean-Pierre BARBIER"}
+{"template_id": "d3_president_conseil_departemental", "binding": "39", "prompt": "Qui est le président du conseil départemental du Jura ?", "expected": "Gérôme FASSENET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "40", "prompt": "Qui est le président du conseil départemental des Landes ?", "expected": "Xavier FORTINON"}
+{"template_id": "d3_president_conseil_departemental", "binding": "41", "prompt": "Qui est le président du conseil départemental de Loir-et-Cher ?", "expected": "Philippe GOUET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "42", "prompt": "Qui est le président du conseil départemental de la Loire ?", "expected": "Georges ZIEGLER"}
+{"template_id": "d3_president_conseil_departemental", "binding": "43", "prompt": "Qui est le président du conseil départemental de la Haute-Loire ?", "expected": "Marie-Agnès PETIT"}
+{"template_id": "d3_president_conseil_departemental", "binding": "44", "prompt": "Qui est le président du conseil départemental de la Loire-Atlantique ?", "expected": "Michel MENARD"}
+{"template_id": "d3_president_conseil_departemental", "binding": "45", "prompt": "Qui est le président du conseil départemental du Loiret ?", "expected": "Marc GAUDET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "46", "prompt": "Qui est le président du conseil départemental du Lot ?", "expected": "Serge RIGAL"}
+{"template_id": "d3_president_conseil_departemental", "binding": "47", "prompt": "Qui est le président du conseil départemental de Lot-et-Garonne ?", "expected": "Sophie BORDERIE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "48", "prompt": "Qui est le président du conseil départemental de la Lozère ?", "expected": "Laurent SUAU"}
+{"template_id": "d3_president_conseil_departemental", "binding": "49", "prompt": "Qui est le président du conseil départemental de Maine-et-Loire ?", "expected": "Florence DABIN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "50", "prompt": "Qui est le président du conseil départemental de la Manche ?", "expected": "Jean MORIN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "51", "prompt": "Qui est le président du conseil départemental de la Marne ?", "expected": "Jean-Marc ROZE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "52", "prompt": "Qui est le président du conseil départemental de la Haute-Marne ?", "expected": "Nicolas LACROIX"}
+{"template_id": "d3_president_conseil_departemental", "binding": "53", "prompt": "Qui est le président du conseil départemental de la Mayenne ?", "expected": "Olivier RICHEFOU"}
+{"template_id": "d3_president_conseil_departemental", "binding": "54", "prompt": "Qui est le président du conseil départemental de Meurthe-et-Moselle ?", "expected": "Chaynesse KHIROUNI"}
+{"template_id": "d3_president_conseil_departemental", "binding": "55", "prompt": "Qui est le président du conseil départemental de la Meuse ?", "expected": "Jérôme DUMONT"}
+{"template_id": "d3_president_conseil_departemental", "binding": "56", "prompt": "Qui est le président du conseil départemental du Morbihan ?", "expected": "David LAPPARTIENT"}
+{"template_id": "d3_president_conseil_departemental", "binding": "57", "prompt": "Qui est le président du conseil départemental de la Moselle ?", "expected": "Patrick WEITEN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "58", "prompt": "Qui est le président du conseil départemental de la Nièvre ?", "expected": "Fabien BAZIN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "59", "prompt": "Qui est le président du conseil départemental du Nord ?", "expected": "Christian POIRET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "60", "prompt": "Qui est le président du conseil départemental de l'Oise ?", "expected": "Nadège LEFEBVRE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "61", "prompt": "Qui est le président du conseil départemental de l'Orne ?", "expected": "Christophe DE BALORRE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "62", "prompt": "Qui est le président du conseil départemental du Pas-de-Calais ?", "expected": "Jean-Claude LEROY"}
+{"template_id": "d3_president_conseil_departemental", "binding": "63", "prompt": "Qui est le président du conseil départemental du Puy-de-Dôme ?", "expected": "Lionel CHAUVIN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "64", "prompt": "Qui est le président du conseil départemental des Pyrénées-Atlantiques ?", "expected": "Jean-Jacques LASSERRE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "65", "prompt": "Qui est le président du conseil départemental des Hautes-Pyrénées ?", "expected": "Michel PÉLIEU"}
+{"template_id": "d3_president_conseil_departemental", "binding": "66", "prompt": "Qui est le président du conseil départemental des Pyrénées-Orientales ?", "expected": "Hermeline MALHERBE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "69", "prompt": "Qui est le président du conseil départemental du Rhône ?", "expected": "Christophe GUILLOTEAU"}
+{"template_id": "d3_president_conseil_departemental", "binding": "70", "prompt": "Qui est le président du conseil départemental de la Haute-Saône ?", "expected": "Laurent SEGUIN"}
+{"template_id": "d3_president_conseil_departemental", "binding": "71", "prompt": "Qui est le président du conseil départemental de Saône-et-Loire ?", "expected": "André ACCARY"}
+{"template_id": "d3_president_conseil_departemental", "binding": "72", "prompt": "Qui est le président du conseil départemental de la Sarthe ?", "expected": "Dominique LE MENER"}
+{"template_id": "d3_president_conseil_departemental", "binding": "73", "prompt": "Qui est le président du conseil départemental de la Savoie ?", "expected": "Hervé GAYMARD"}
+{"template_id": "d3_president_conseil_departemental", "binding": "74", "prompt": "Qui est le président du conseil départemental de la Haute-Savoie ?", "expected": "Martial SADDIER"}
+{"template_id": "d3_president_conseil_departemental", "binding": "76", "prompt": "Qui est le président du conseil départemental de la Seine-Maritime ?", "expected": "Bertrand BELLANGER"}
+{"template_id": "d3_president_conseil_departemental", "binding": "77", "prompt": "Qui est le président du conseil départemental de Seine-et-Marne ?", "expected": "Jean-François PARIGI"}
+{"template_id": "d3_president_conseil_departemental", "binding": "78", "prompt": "Qui est le président du conseil départemental des Yvelines ?", "expected": "Pierre BEDIER"}
+{"template_id": "d3_president_conseil_departemental", "binding": "79", "prompt": "Qui est le président du conseil départemental des Deux-Sèvres ?", "expected": "Coralie DENOUES"}
+{"template_id": "d3_president_conseil_departemental", "binding": "80", "prompt": "Qui est le président du conseil départemental de la Somme ?", "expected": "Christelle HIVER"}
+{"template_id": "d3_president_conseil_departemental", "binding": "81", "prompt": "Qui est le président du conseil départemental du Tarn ?", "expected": "Christophe RAMOND"}
+{"template_id": "d3_president_conseil_departemental", "binding": "82", "prompt": "Qui est le président du conseil départemental de Tarn-et-Garonne ?", "expected": "Jean-Claude BERTELLI"}
+{"template_id": "d3_president_conseil_departemental", "binding": "83", "prompt": "Qui est le président du conseil départemental du Var ?", "expected": "Jean-Louis MASSON"}
+{"template_id": "d3_president_conseil_departemental", "binding": "84", "prompt": "Qui est le président du conseil départemental du Vaucluse ?", "expected": "Dominique SANTONI"}
+{"template_id": "d3_president_conseil_departemental", "binding": "85", "prompt": "Qui est le président du conseil départemental de la Vendée ?", "expected": "Alain LEBŒUF"}
+{"template_id": "d3_president_conseil_departemental", "binding": "86", "prompt": "Qui est le président du conseil départemental de la Vienne ?", "expected": "Alain PICHON"}
+{"template_id": "d3_president_conseil_departemental", "binding": "87", "prompt": "Qui est le président du conseil départemental de la Haute-Vienne ?", "expected": "Jean-Claude LEBLOIS"}
+{"template_id": "d3_president_conseil_departemental", "binding": "88", "prompt": "Qui est le président du conseil départemental des Vosges ?", "expected": "François VANNSON"}
+{"template_id": "d3_president_conseil_departemental", "binding": "89", "prompt": "Qui est le président du conseil départemental de l'Yonne ?", "expected": "Grégory DORTE"}
+{"template_id": "d3_president_conseil_departemental", "binding": "90", "prompt": "Qui est le président du conseil départemental du Territoire de Belfort ?", "expected": "Florian BOUQUET"}
+{"template_id": "d3_president_conseil_departemental", "binding": "91", "prompt": "Qui est le président du conseil départemental de l'Essonne ?", "expected": "François DUROVRAY"}
+{"template_id": "d3_president_conseil_departemental", "binding": "92", "prompt": "Qui est le président du conseil départemental des Hauts-de-Seine ?", "expected": "Georges SIFFREDI"}
+{"template_id": "d3_president_conseil_departemental", "binding": "93", "prompt": "Qui est le président du conseil départemental de la Seine-Saint-Denis ?", "expected": "Stéphane TROUSSEL"}
+{"template_id": "d3_president_conseil_departemental", "binding": "94", "prompt": "Qui est le président du conseil départemental du Val-de-Marne ?", "expected": "Olivier CAPITANIO"}
+{"template_id": "d3_president_conseil_departemental", "binding": "95", "prompt": "Qui est le président du conseil départemental du Val-d'Oise ?", "expected": "Marie-Christine CAVECCHI"}
+{"template_id": "d3_president_conseil_departemental", "binding": "971", "prompt": "Qui est le président du conseil départemental de la Guadeloupe ?", "expected": "Guy LOSBAR"}
+{"template_id": "d3_president_conseil_departemental", "binding": "974", "prompt": "Qui est le président du conseil départemental de La Réunion ?", "expected": "Cyrille MELCHIOR"}
+{"template_id": "r1_president_conseil_regional", "binding": "01", "prompt": "Qui est le président du conseil régional de la Guadeloupe ?", "expected": "Ary CHALUS"}
+{"template_id": "r1_president_conseil_regional", "binding": "04", "prompt": "Qui est le président du conseil régional de La Réunion ?", "expected": "Huguette BELLO"}
+{"template_id": "r1_president_conseil_regional", "binding": "11", "prompt": "Qui est le président du conseil régional d'Île-de-France ?", "expected": "Valérie PÉCRESSE"}
+{"template_id": "r1_president_conseil_regional", "binding": "24", "prompt": "Qui est le président du conseil régional du Centre-Val de Loire ?", "expected": "François BONNEAU"}
+{"template_id": "r1_president_conseil_regional", "binding": "27", "prompt": "Qui est le président du conseil régional de Bourgogne-Franche-Comté ?", "expected": "Jérôme DURAIN"}
+{"template_id": "r1_president_conseil_regional", "binding": "28", "prompt": "Qui est le président du conseil régional de Normandie ?", "expected": "Hervé MORIN"}
+{"template_id": "r1_president_conseil_regional", "binding": "32", "prompt": "Qui est le président du conseil régional des Hauts-de-France ?", "expected": "Xavier BERTRAND"}
+{"template_id": "r1_president_conseil_regional", "binding": "44", "prompt": "Qui est le président du conseil régional du Grand Est ?", "expected": "Franck LEROY"}
+{"template_id": "r1_president_conseil_regional", "binding": "52", "prompt": "Qui est le président du conseil régional des Pays de la Loire ?", "expected": "Christelle MORANÇAIS"}
+{"template_id": "r1_president_conseil_regional", "binding": "53", "prompt": "Qui est le président du conseil régional de Bretagne ?", "expected": "Loïg CHESNAIS-GIRARD"}
+{"template_id": "r1_president_conseil_regional", "binding": "75", "prompt": "Qui est le président du conseil régional de Nouvelle-Aquitaine ?", "expected": "Alain ROUSSET"}
+{"template_id": "r1_president_conseil_regional", "binding": "76", "prompt": "Qui est le président du conseil régional d'Occitanie ?", "expected": "Carole DELGA"}
+{"template_id": "r1_president_conseil_regional", "binding": "84", "prompt": "Qui est le président du conseil régional d'Auvergne-Rhône-Alpes ?", "expected": "Fabrice PANNEKOUCKE"}
+{"template_id": "r1_president_conseil_regional", "binding": "93", "prompt": "Qui est le président du conseil régional de Provence-Alpes-Côte d'Azur ?", "expected": "Renaud MUSELIER"}

@@ -1,0 +1,55 @@
+{
+  "note": "bindings NOT asked - the body does not exist, so the question would presuppose something false",
+  "d3": [
+    {
+      "code": "2A",
+      "reason": "no conseil départemental exists - Collectivité de Corse"
+    },
+    {
+      "code": "2B",
+      "reason": "no conseil départemental exists - Collectivité de Corse"
+    },
+    {
+      "code": "67",
+      "reason": "no conseil départemental exists - Collectivité européenne d'Alsace"
+    },
+    {
+      "code": "68",
+      "reason": "no conseil départemental exists - Collectivité européenne d'Alsace"
+    },
+    {
+      "code": "75",
+      "reason": "no conseil départemental exists - Ville de Paris (Conseil de Paris)"
+    },
+    {
+      "code": "972",
+      "reason": "no conseil départemental exists - Assemblée de Martinique"
+    },
+    {
+      "code": "973",
+      "reason": "no conseil départemental exists - Assemblée de Guyane"
+    },
+    {
+      "code": "976",
+      "reason": "no conseil départemental exists - Assemblée de Mayotte (Département-Région de Mayotte)"
+    }
+  ],
+  "r1": [
+    {
+      "code": "02",
+      "reason": "no conseil régional exists - Assemblée de Martinique"
+    },
+    {
+      "code": "03",
+      "reason": "no conseil régional exists - Assemblée de Guyane"
+    },
+    {
+      "code": "06",
+      "reason": "no conseil régional exists - Département-Région de Mayotte"
+    },
+    {
+      "code": "94",
+      "reason": "no conseil régional exists - Collectivité de Corse"
+    }
+  ]
+}

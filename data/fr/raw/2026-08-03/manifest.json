@@ -1,0 +1,68 @@
+{
+  "fetched": "2026-08-03",
+  "files": {
+    "elus-senateurs-sen.csv": {
+      "url": "https://static.data.gouv.fr/resources/repertoire-national-des-elus-1/20260505-152040/elus-senateurs-sen.csv",
+      "http_date": "Mon, 03 Aug 2026 13:07:32 GMT",
+      "sha256": "c18e9c8467d37efc9e3d51c8a985d8c4901e6b0a45a579c1538e8189c36e09cf",
+      "bytes": 38122,
+      "rows": 348
+    },
+    "elus-deputes-dep.csv": {
+      "url": "https://static.data.gouv.fr/resources/repertoire-national-des-elus-1/20260505-152059/elus-deputes-dep.csv",
+      "http_date": "Mon, 03 Aug 2026 13:07:35 GMT",
+      "sha256": "828cfb96dc373112885c843b7d6ec83b6166a373fd529af86eb177897cb8eae8",
+      "bytes": 80357,
+      "rows": 577
+    },
+    "elus-conseillers-departementaux-cd.csv": {
+      "url": "https://static.data.gouv.fr/resources/repertoire-national-des-elus-1/20260505-151941/elus-conseillers-departementaux-cd.csv",
+      "http_date": "Mon, 03 Aug 2026 13:07:45 GMT",
+      "sha256": "6f56694f5ebcdd5c1d8a7b5c3a89e693c2cb63a0950fb03692d39b8925f31dca",
+      "bytes": 584228,
+      "rows": 4037
+    },
+    "elus-conseillers-regionaux-cr.csv": {
+      "url": "https://static.data.gouv.fr/resources/repertoire-national-des-elus-1/20260505-151954/elus-conseillers-regionaux-cr.csv",
+      "http_date": "Mon, 03 Aug 2026 13:07:48 GMT",
+      "sha256": "28558e465c7b673d3ef5e1a3ffca8551061f8a44fd096d19b9e6412dc6bb710d",
+      "bytes": 240848,
+      "rows": 1744
+    },
+    "elus-membres-assemblee-ma.csv": {
+      "url": "https://static.data.gouv.fr/resources/repertoire-national-des-elus-1/20260505-152008/elus-membres-dune-assemblee-ma.csv",
+      "http_date": "Mon, 03 Aug 2026 13:07:50 GMT",
+      "sha256": "d60062373616d2a1a6cf52d9cd5606860bec43c8df261e0368f1a8a07c0ec1dd",
+      "bytes": 97681,
+      "rows": 588
+    },
+    "departements.json": {
+      "url": "https://geo.api.gouv.fr/departements",
+      "http_date": "Mon, 03 Aug 2026 13:07:52 GMT",
+      "sha256": "f2b5f93b288effd230d0ae5e1f721a741d4ba2984389090d03d241519459c4f9",
+      "bytes": 5083,
+      "rows": 101
+    },
+    "regions.json": {
+      "url": "https://geo.api.gouv.fr/regions",
+      "http_date": "Mon, 03 Aug 2026 13:07:52 GMT",
+      "sha256": "9d35c4a69354199ab65e26ed7772802a60af8d78ea65bc978a4cf49eb178301b",
+      "bytes": 653,
+      "rows": 18
+    },
+    "elus-maires-mai.csv": {
+      "url": "https://static.data.gouv.fr/resources/repertoire-national-des-elus-1/20260505-152119/elus-maires-mai.csv",
+      "http_date": "Mon, 03 Aug 2026 13:07:53 GMT",
+      "sha256": "c7d9748be7557f71e3323844117b3591477b783c1a6dd2da51c42241b5982782",
+      "bytes": 4646004,
+      "rows": 34637
+    },
+    "communes.json": {
+      "url": "https://geo.api.gouv.fr/communes?fields=nom,code,population,codeDepartement",
+      "http_date": "Mon, 03 Aug 2026 13:07:56 GMT",
+      "sha256": "09742371ba48215dab30556bd29a8f7d5c5ff70c2f6c56e03381bc702471dd96",
+      "bytes": 2736189,
+      "rows": 34969
+    }
+  }
+}

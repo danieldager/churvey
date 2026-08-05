@@ -1,0 +1,3357 @@
+[
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "01"
+    },
+    "rendered_slot": "l'Ain",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Florence Blatrix Contat",
+      "Patrick Chaize",
+      "Sylvie Goy-Chavent"
+    ],
+    "accepted_forms": {
+      "Florence Blatrix Contat": [
+        "Florence BLATRIX CONTAT",
+        "Florence Blatrix Contat"
+      ],
+      "Patrick Chaize": [
+        "Patrick CHAIZE",
+        "Patrick Chaize"
+      ],
+      "Sylvie Goy-Chavent": [
+        "Sylvie GOY-CHAVENT",
+        "Sylvie Goy-Chavent"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "02"
+    },
+    "rendered_slot": "l'Aisne",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Antoine Lefèvre",
+      "Pascale Gruny",
+      "Pierre-Jean Verzelen"
+    ],
+    "accepted_forms": {
+      "Antoine Lefèvre": [
+        "Antoine LEFÈVRE",
+        "Antoine Lefèvre"
+      ],
+      "Pascale Gruny": [
+        "Pascale GRUNY",
+        "Pascale Gruny"
+      ],
+      "Pierre-Jean Verzelen": [
+        "Pierre-Jean VERZELEN",
+        "Pierre-Jean Verzelen"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "03"
+    },
+    "rendered_slot": "l'Allier",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Bruno Rojouan",
+      "Claude Malhuret"
+    ],
+    "accepted_forms": {
+      "Bruno Rojouan": [
+        "Bruno ROJOUAN",
+        "Bruno Rojouan"
+      ],
+      "Claude Malhuret": [
+        "Claude MALHURET",
+        "Claude Malhuret"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "04"
+    },
+    "rendered_slot": "les Alpes-de-Haute-Provence",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Jean-Yves Roux"
+    ],
+    "accepted_forms": {
+      "Jean-Yves Roux": [
+        "Jean-Yves ROUX",
+        "Jean-Yves Roux"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "05"
+    },
+    "rendered_slot": "les Hautes-Alpes",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Jean-Michel Arnaud"
+    ],
+    "accepted_forms": {
+      "Jean-Michel Arnaud": [
+        "Jean-Michel ARNAUD",
+        "Jean-Michel Arnaud"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "06"
+    },
+    "rendered_slot": "les Alpes-Maritimes",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Alexandra Borchio Fontimp",
+      "Dominique Estrosi Sassone",
+      "Henri Leroy",
+      "Patricia Demas",
+      "Sandra Paire"
+    ],
+    "accepted_forms": {
+      "Alexandra Borchio Fontimp": [
+        "Alexandra BORCHIO FONTIMP",
+        "Alexandra Borchio Fontimp"
+      ],
+      "Dominique Estrosi Sassone": [
+        "Dominique ESTROSI-SASSONE",
+        "Dominique Estrosi Sassone"
+      ],
+      "Henri Leroy": [
+        "Henri LEROY",
+        "Henri Leroy"
+      ],
+      "Patricia Demas": [
+        "Patricia DEMAS",
+        "Patricia Demas"
+      ],
+      "Sandra Paire": [
+        "Sandra PAIRE",
+        "Sandra Paire"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "07"
+    },
+    "rendered_slot": "l'Ardèche",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Anne Ventalon",
+      "Mathieu Darnaud"
+    ],
+    "accepted_forms": {
+      "Anne Ventalon": [
+        "Anne VENTALON",
+        "Anne Ventalon"
+      ],
+      "Mathieu Darnaud": [
+        "Mathieu DARNAUD",
+        "Mathieu Darnaud"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "08"
+    },
+    "rendered_slot": "les Ardennes",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Else Joseph",
+      "Marc Laménie"
+    ],
+    "accepted_forms": {
+      "Else Joseph": [
+        "Else JOSEPH",
+        "Else Joseph"
+      ],
+      "Marc Laménie": [
+        "Marc LAMÉNIE",
+        "Marc Laménie"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "09"
+    },
+    "rendered_slot": "l'Ariège",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Jean-Jacques Michau"
+    ],
+    "accepted_forms": {
+      "Jean-Jacques Michau": [
+        "Jean-Jacques MICHAU",
+        "Jean-Jacques Michau"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "10"
+    },
+    "rendered_slot": "l'Aube",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Vanina Paoli-Gagin",
+      "Évelyne Perrot"
+    ],
+    "accepted_forms": {
+      "Vanina Paoli-Gagin": [
+        "Vanina PAOLI-GAGIN",
+        "Vanina Paoli-Gagin"
+      ],
+      "Évelyne Perrot": [
+        "Evelyne PERROT",
+        "Évelyne Perrot"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "11"
+    },
+    "rendered_slot": "l'Aude",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Gisèle Jourda",
+      "Sebastien Pla"
+    ],
+    "accepted_forms": {
+      "Gisèle Jourda": [
+        "Gisèle JOURDA",
+        "Gisèle Jourda"
+      ],
+      "Sebastien Pla": [
+        "Sebastien PLA",
+        "Sebastien Pla"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "12"
+    },
+    "rendered_slot": "l'Aveyron",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Alain Marc",
+      "Jean-Claude Anglars"
+    ],
+    "accepted_forms": {
+      "Alain Marc": [
+        "Alain MARC",
+        "Alain Marc"
+      ],
+      "Jean-Claude Anglars": [
+        "Jean-Claude ANGLARS",
+        "Jean-Claude Anglars"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "13"
+    },
+    "rendered_slot": "les Bouches-du-Rhône",
+    "shape": "list",
+    "expected_cardinality": 8,
+    "expected": [
+      "Brigitte Devésa",
+      "Guy Benarroche",
+      "Jérémy Bacchi",
+      "Marie-Arlette Carlotti",
+      "Mireille Jouve",
+      "Stéphane Le Rudulier",
+      "Stéphane Ravier",
+      "Valérie Boyer"
+    ],
+    "accepted_forms": {
+      "Brigitte Devésa": [
+        "Brigitte DEVESA",
+        "Brigitte Devésa"
+      ],
+      "Guy Benarroche": [
+        "Guy BENARROCHE",
+        "Guy Benarroche"
+      ],
+      "Jérémy Bacchi": [
+        "Jérémy BACCHI",
+        "Jérémy Bacchi"
+      ],
+      "Marie-Arlette Carlotti": [
+        "Marie-Arlette CARLOTTI",
+        "Marie-Arlette Carlotti"
+      ],
+      "Mireille Jouve": [
+        "Mireille JOUVE",
+        "Mireille Jouve"
+      ],
+      "Stéphane Le Rudulier": [
+        "Stéphane LE RUDULIER",
+        "Stéphane Le Rudulier"
+      ],
+      "Stéphane Ravier": [
+        "Stéphane RAVIER",
+        "Stéphane Ravier"
+      ],
+      "Valérie Boyer": [
+        "Valérie BOYER",
+        "Valérie Boyer"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "14"
+    },
+    "rendered_slot": "le Calvados",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Corinne Féret",
+      "Pascal Allizard",
+      "Sonia de La Provôté"
+    ],
+    "accepted_forms": {
+      "Corinne Féret": [
+        "Corinne FÉRET",
+        "Corinne Féret"
+      ],
+      "Pascal Allizard": [
+        "Pascal ALLIZARD",
+        "Pascal Allizard"
+      ],
+      "Sonia de La Provôté": [
+        "Sonia DE LA PROVÔTÉ",
+        "Sonia de La Provôté"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "15"
+    },
+    "rendered_slot": "le Cantal",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Bernard Delcros",
+      "Stéphane Sautarel"
+    ],
+    "accepted_forms": {
+      "Bernard Delcros": [
+        "Bernard DELCROS",
+        "Bernard Delcros"
+      ],
+      "Stéphane Sautarel": [
+        "Stéphane SAUTAREL",
+        "Stéphane Sautarel"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "16"
+    },
+    "rendered_slot": "la Charente",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "François Bonneau",
+      "Nicole Bonnefoy"
+    ],
+    "accepted_forms": {
+      "François Bonneau": [
+        "François BONNEAU",
+        "François Bonneau"
+      ],
+      "Nicole Bonnefoy": [
+        "Nicole BONNEFOY",
+        "Nicole Bonnefoy"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "17"
+    },
+    "rendered_slot": "la Charente-Maritime",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Corinne Imbert",
+      "Daniel Laurent",
+      "Mickaël Vallet"
+    ],
+    "accepted_forms": {
+      "Corinne Imbert": [
+        "Corinne IMBERT",
+        "Corinne Imbert"
+      ],
+      "Daniel Laurent": [
+        "Daniel LAURENT",
+        "Daniel Laurent"
+      ],
+      "Mickaël Vallet": [
+        "Mickaël VALLET",
+        "Mickaël Vallet"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "18"
+    },
+    "rendered_slot": "le Cher",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Marie-Pierre Richer",
+      "Rémy Pointereau"
+    ],
+    "accepted_forms": {
+      "Marie-Pierre Richer": [
+        "Marie-Pierre RICHER",
+        "Marie-Pierre Richer"
+      ],
+      "Rémy Pointereau": [
+        "Rémy POINTEREAU",
+        "Rémy Pointereau"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "19"
+    },
+    "rendered_slot": "la Corrèze",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Claude Nougein",
+      "Daniel Chasseing"
+    ],
+    "accepted_forms": {
+      "Claude Nougein": [
+        "Claude NOUGEIN",
+        "Claude Nougein"
+      ],
+      "Daniel Chasseing": [
+        "Daniel CHASSEING",
+        "Daniel Chasseing"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "21"
+    },
+    "rendered_slot": "la Côte-d'Or",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Alain Houpert",
+      "Anne-Catherine Loisier",
+      "François Patriat"
+    ],
+    "accepted_forms": {
+      "Alain Houpert": [
+        "Alain HOUPERT",
+        "Alain Houpert"
+      ],
+      "Anne-Catherine Loisier": [
+        "Anne-Catherine LOISIER",
+        "Anne-Catherine Loisier"
+      ],
+      "François Patriat": [
+        "François PATRIAT",
+        "François Patriat"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "22"
+    },
+    "rendered_slot": "les Côtes-d'Armor",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Alain Cadec",
+      "Annie Le Houerou",
+      "Gérard Lahellec"
+    ],
+    "accepted_forms": {
+      "Alain Cadec": [
+        "Alain CADEC",
+        "Alain Cadec"
+      ],
+      "Annie Le Houerou": [
+        "Annie LE HOUEROU",
+        "Annie Le Houerou"
+      ],
+      "Gérard Lahellec": [
+        "Gérard LAHELLEC",
+        "Gérard Lahellec"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "23"
+    },
+    "rendered_slot": "la Creuse",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Jean-Jacques Lozach",
+      "Éric Jeansannetas"
+    ],
+    "accepted_forms": {
+      "Jean-Jacques Lozach": [
+        "Jean-Jacques LOZACH",
+        "Jean-Jacques Lozach"
+      ],
+      "Éric Jeansannetas": [
+        "Eric JEANSANNETAS",
+        "Éric Jeansannetas"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "24"
+    },
+    "rendered_slot": "la Dordogne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Marie-Claude Varaillas",
+      "Serge Mérillou"
+    ],
+    "accepted_forms": {
+      "Marie-Claude Varaillas": [
+        "Marie-Claude VARAILLAS",
+        "Marie-Claude Varaillas"
+      ],
+      "Serge Mérillou": [
+        "Serge MERILLOU",
+        "Serge Mérillou"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "25"
+    },
+    "rendered_slot": "le Doubs",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Annick Jacquemet",
+      "Jacques Grosperrin",
+      "Jean-François Longeot"
+    ],
+    "accepted_forms": {
+      "Annick Jacquemet": [
+        "Annick JACQUEMET",
+        "Annick Jacquemet"
+      ],
+      "Jacques Grosperrin": [
+        "Jacques GROSPERRIN",
+        "Jacques Grosperrin"
+      ],
+      "Jean-François Longeot": [
+        "Jean-François LONGEOT",
+        "Jean-François Longeot"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "26"
+    },
+    "rendered_slot": "la Drôme",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Bernard Buis",
+      "Marie-Pierre Monier",
+      "Marie-Pierre Mouton"
+    ],
+    "accepted_forms": {
+      "Bernard Buis": [
+        "Bernard BUIS",
+        "Bernard Buis"
+      ],
+      "Marie-Pierre Monier": [
+        "Marie-Pierre MONIER",
+        "Marie-Pierre Monier"
+      ],
+      "Marie-Pierre Mouton": [
+        "Marie-Pierre MOUTON",
+        "Marie-Pierre Mouton"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "27"
+    },
+    "rendered_slot": "l'Eure",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Hervé Maurey",
+      "Kristina Pluchet",
+      "Nicole Duranton"
+    ],
+    "accepted_forms": {
+      "Hervé Maurey": [
+        "Hervé MAUREY",
+        "Hervé Maurey"
+      ],
+      "Kristina Pluchet": [
+        "Kristina PLUCHET",
+        "Kristina Pluchet"
+      ],
+      "Nicole Duranton": [
+        "Nicole DURANTON",
+        "Nicole Duranton"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "28"
+    },
+    "rendered_slot": "l'Eure-et-Loir",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Albéric de Montgolfier",
+      "Chantal Deseyne",
+      "Daniel Gueret"
+    ],
+    "accepted_forms": {
+      "Albéric de Montgolfier": [
+        "Albéric DE MONTGOLFIER",
+        "Albéric de Montgolfier"
+      ],
+      "Chantal Deseyne": [
+        "Chantal DESEYNE",
+        "Chantal Deseyne"
+      ],
+      "Daniel Gueret": [
+        "Daniel GUERET",
+        "Daniel Gueret"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "29"
+    },
+    "rendered_slot": "le Finistère",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Jean-Luc Fichet",
+      "Michel Canévet",
+      "Nadège Havet",
+      "Philippe Paul"
+    ],
+    "accepted_forms": {
+      "Jean-Luc Fichet": [
+        "Jean-Luc FICHET",
+        "Jean-Luc Fichet"
+      ],
+      "Michel Canévet": [
+        "Michel CANÉVET",
+        "Michel Canévet"
+      ],
+      "Nadège Havet": [
+        "Nadège HAVET",
+        "Nadège Havet"
+      ],
+      "Philippe Paul": [
+        "Philippe PAUL",
+        "Philippe Paul"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "2A"
+    },
+    "rendered_slot": "la Corse-du-Sud",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Jean-Jacques Panunzi"
+    ],
+    "accepted_forms": {
+      "Jean-Jacques Panunzi": [
+        "Jean-Jacques PANUNZI",
+        "Jean-Jacques Panunzi"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "2B"
+    },
+    "rendered_slot": "la Haute-Corse",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Paul Toussaint Parigi"
+    ],
+    "accepted_forms": {
+      "Paul Toussaint Parigi": [
+        "Paul Toussaint PARIGI",
+        "Paul Toussaint Parigi"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "30"
+    },
+    "rendered_slot": "le Gard",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Denis Bouad",
+      "Laurent Burgoa",
+      "Vivette Lopez"
+    ],
+    "accepted_forms": {
+      "Denis Bouad": [
+        "Denis BOUAD",
+        "Denis Bouad"
+      ],
+      "Laurent Burgoa": [
+        "Laurent BURGOA",
+        "Laurent Burgoa"
+      ],
+      "Vivette Lopez": [
+        "Vivette LOPEZ",
+        "Vivette Lopez"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "31"
+    },
+    "rendered_slot": "la Haute-Garonne",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Alain Chatillon",
+      "Brigitte Micouleau",
+      "Claude Raynal",
+      "Pierre Médevielle",
+      "Émilienne Poumirol"
+    ],
+    "accepted_forms": {
+      "Alain Chatillon": [
+        "Alain CHATILLON",
+        "Alain Chatillon"
+      ],
+      "Brigitte Micouleau": [
+        "Brigitte MICOULEAU",
+        "Brigitte Micouleau"
+      ],
+      "Claude Raynal": [
+        "Claude RAYNAL",
+        "Claude Raynal"
+      ],
+      "Pierre Médevielle": [
+        "Pierre MEDEVIELLE",
+        "Pierre Médevielle"
+      ],
+      "Émilienne Poumirol": [
+        "Emilienne POUMIROL",
+        "Émilienne Poumirol"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "32"
+    },
+    "rendered_slot": "le Gers",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Alain Duffourg",
+      "Franck Montaugé"
+    ],
+    "accepted_forms": {
+      "Alain Duffourg": [
+        "Alain DUFFOURG",
+        "Alain Duffourg"
+      ],
+      "Franck Montaugé": [
+        "Franck MONTAUGE",
+        "Franck Montaugé"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "33"
+    },
+    "rendered_slot": "la Gironde",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Alain Cazabonne",
+      "Florence Lassarade",
+      "Hervé Gillé",
+      "Laurence Harribey",
+      "Monique de Marco",
+      "Nathalie Delattre"
+    ],
+    "accepted_forms": {
+      "Alain Cazabonne": [
+        "Alain CAZABONNE",
+        "Alain Cazabonne"
+      ],
+      "Florence Lassarade": [
+        "Florence LASSARADE",
+        "Florence Lassarade"
+      ],
+      "Hervé Gillé": [
+        "Hervé GILLÉ",
+        "Hervé Gillé"
+      ],
+      "Laurence Harribey": [
+        "Laurence HARRIBEY",
+        "Laurence Harribey"
+      ],
+      "Monique de Marco": [
+        "Monique DE MARCO",
+        "Monique de Marco"
+      ],
+      "Nathalie Delattre": [
+        "Nathalie DELATTRE",
+        "Nathalie Delattre"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "34"
+    },
+    "rendered_slot": "l'Hérault",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Christian Bilhac",
+      "Henri Cabanel",
+      "Hussein Bourgi",
+      "Jean-Pierre Grand"
+    ],
+    "accepted_forms": {
+      "Christian Bilhac": [
+        "Christian BILHAC",
+        "Christian Bilhac"
+      ],
+      "Henri Cabanel": [
+        "Henri CABANEL",
+        "Henri Cabanel"
+      ],
+      "Hussein Bourgi": [
+        "Hussein BOURGI",
+        "Hussein Bourgi"
+      ],
+      "Jean-Pierre Grand": [
+        "Jean-Pierre GRAND",
+        "Jean-Pierre Grand"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "35"
+    },
+    "rendered_slot": "l'Ille-et-Vilaine",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Anne-Sophie Patru",
+      "Daniel Salmon",
+      "Dominique de Legge",
+      "Sylvie Robert"
+    ],
+    "accepted_forms": {
+      "Anne-Sophie Patru": [
+        "Anne-Sophie PATRU",
+        "Anne-Sophie Patru"
+      ],
+      "Daniel Salmon": [
+        "Daniel SALMON",
+        "Daniel Salmon"
+      ],
+      "Dominique de Legge": [
+        "Dominique DE LEGGE",
+        "Dominique de Legge"
+      ],
+      "Sylvie Robert": [
+        "Sylvie ROBERT",
+        "Sylvie Robert"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "36"
+    },
+    "rendered_slot": "l'Indre",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Frédérique Gerbaud",
+      "Nadine Bellurot"
+    ],
+    "accepted_forms": {
+      "Frédérique Gerbaud": [
+        "Frédérique GERBAUD",
+        "Frédérique Gerbaud"
+      ],
+      "Nadine Bellurot": [
+        "Nadine BELLUROT",
+        "Nadine Bellurot"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "37"
+    },
+    "rendered_slot": "l'Indre-et-Loire",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Jean-Gérard Paumier",
+      "Pierre-Alain Roiron",
+      "Vincent Louault"
+    ],
+    "accepted_forms": {
+      "Jean-Gérard Paumier": [
+        "Jean-Gérard PAUMIER",
+        "Jean-Gérard Paumier"
+      ],
+      "Pierre-Alain Roiron": [
+        "Pierre-Alain ROIRON",
+        "Pierre-Alain Roiron"
+      ],
+      "Vincent Louault": [
+        "Vincent LOUAULT",
+        "Vincent Louault"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "38"
+    },
+    "rendered_slot": "l'Isère",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Damien Michallet",
+      "Didier Rambaud",
+      "Frédérique Puissat",
+      "Guillaume Gontard",
+      "Michel Savin"
+    ],
+    "accepted_forms": {
+      "Damien Michallet": [
+        "Damien MICHALLET",
+        "Damien Michallet"
+      ],
+      "Didier Rambaud": [
+        "Didier RAMBAUD",
+        "Didier Rambaud"
+      ],
+      "Frédérique Puissat": [
+        "Frédérique PUISSAT",
+        "Frédérique Puissat"
+      ],
+      "Guillaume Gontard": [
+        "Guillaume GONTARD",
+        "Guillaume Gontard"
+      ],
+      "Michel Savin": [
+        "Michel SAVIN",
+        "Michel Savin"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "39"
+    },
+    "rendered_slot": "le Jura",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Clément Pernot",
+      "Sylvie Vermeillet"
+    ],
+    "accepted_forms": {
+      "Clément Pernot": [
+        "Clément PERNOT",
+        "Clément Pernot"
+      ],
+      "Sylvie Vermeillet": [
+        "Sylvie VERMEILLET",
+        "Sylvie Vermeillet"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "40"
+    },
+    "rendered_slot": "les Landes",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Monique Lubin",
+      "Éric Kerrouche"
+    ],
+    "accepted_forms": {
+      "Monique Lubin": [
+        "Monique LUBIN",
+        "Monique Lubin"
+      ],
+      "Éric Kerrouche": [
+        "Éric KERROUCHE",
+        "Éric Kerrouche"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "41"
+    },
+    "rendered_slot": "le Loir-et-Cher",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Bernard Pillefer",
+      "Jean-Luc Brault"
+    ],
+    "accepted_forms": {
+      "Bernard Pillefer": [
+        "Bernard PILLEFER",
+        "Bernard Pillefer"
+      ],
+      "Jean-Luc Brault": [
+        "Jean-Luc BRAULT",
+        "Jean-Luc Brault"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "42"
+    },
+    "rendered_slot": "la Loire",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Cécile Cukierman",
+      "Hervé Reynaud",
+      "Jean-Claude Tissot",
+      "Pierre Jean Rochette"
+    ],
+    "accepted_forms": {
+      "Cécile Cukierman": [
+        "Cécile CUKIERMAN",
+        "Cécile Cukierman"
+      ],
+      "Hervé Reynaud": [
+        "Hervé REYNAUD",
+        "Hervé Reynaud"
+      ],
+      "Jean-Claude Tissot": [
+        "Jean-Claude TISSOT",
+        "Jean-Claude Tissot"
+      ],
+      "Pierre Jean Rochette": [
+        "Pierre Jean Rochette",
+        "Pierre-Jean ROCHETTE"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "43"
+    },
+    "rendered_slot": "la Haute-Loire",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Laurent Duplomb",
+      "Olivier Cigolotti"
+    ],
+    "accepted_forms": {
+      "Laurent Duplomb": [
+        "Laurent DUPLOMB",
+        "Laurent Duplomb"
+      ],
+      "Olivier Cigolotti": [
+        "Olivier CIGOLOTTI",
+        "Olivier Cigolotti"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "44"
+    },
+    "rendered_slot": "la Loire-Atlantique",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Karine Daniel",
+      "Laurence Garnier",
+      "Marie-Pierre Bessin-Guérin",
+      "Philippe Grosvalet",
+      "Ronan Dantec"
+    ],
+    "accepted_forms": {
+      "Karine Daniel": [
+        "Karine DANIEL",
+        "Karine Daniel"
+      ],
+      "Laurence Garnier": [
+        "Laurence GARNIER",
+        "Laurence Garnier"
+      ],
+      "Marie-Pierre Bessin-Guérin": [
+        "Marie-Pierre Bessin-Guérin",
+        "Marie-Pierre GUERIN"
+      ],
+      "Philippe Grosvalet": [
+        "Philippe GROSVALET",
+        "Philippe Grosvalet"
+      ],
+      "Ronan Dantec": [
+        "Ronan DANTEC",
+        "Ronan Dantec"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "45"
+    },
+    "rendered_slot": "le Loiret",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Christophe Chaillou",
+      "Hugues Saury",
+      "Pauline Martin"
+    ],
+    "accepted_forms": {
+      "Christophe Chaillou": [
+        "Christophe CHAILLOU",
+        "Christophe Chaillou"
+      ],
+      "Hugues Saury": [
+        "Hugues SAURY",
+        "Hugues Saury"
+      ],
+      "Pauline Martin": [
+        "Pauline MARTIN",
+        "Pauline Martin"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "46"
+    },
+    "rendered_slot": "le Lot",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Jean-Marc Vayssouze-Faure",
+      "Raphaël Daubet"
+    ],
+    "accepted_forms": {
+      "Jean-Marc Vayssouze-Faure": [
+        "Jean-Marc VAYSSOUZE-FAURE",
+        "Jean-Marc Vayssouze-Faure"
+      ],
+      "Raphaël Daubet": [
+        "Raphaël DAUBET",
+        "Raphaël Daubet"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "47"
+    },
+    "rendered_slot": "le Lot-et-Garonne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Christine Bonfanti-Dossat",
+      "Michel Masset"
+    ],
+    "accepted_forms": {
+      "Christine Bonfanti-Dossat": [
+        "Christine BONFANTI-DOSSAT",
+        "Christine Bonfanti-Dossat"
+      ],
+      "Michel Masset": [
+        "Michel MASSET",
+        "Michel Masset"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "48"
+    },
+    "rendered_slot": "la Lozère",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Guylène Pantel"
+    ],
+    "accepted_forms": {
+      "Guylène Pantel": [
+        "Guylène PANTEL",
+        "Guylène Pantel"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "49"
+    },
+    "rendered_slot": "le Maine-et-Loire",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Corinne Bourcier",
+      "Emmanuel Capus",
+      "Grégory Blanc",
+      "Stéphane Piednoir"
+    ],
+    "accepted_forms": {
+      "Corinne Bourcier": [
+        "Corinne BOURCIER",
+        "Corinne Bourcier"
+      ],
+      "Emmanuel Capus": [
+        "Emmanuel CAPUS",
+        "Emmanuel Capus"
+      ],
+      "Grégory Blanc": [
+        "Grégory BLANC",
+        "Grégory Blanc"
+      ],
+      "Stéphane Piednoir": [
+        "Stéphane PIEDNOIR",
+        "Stéphane Piednoir"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "50"
+    },
+    "rendered_slot": "la Manche",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Béatrice Gosselin",
+      "David Margueritte",
+      "Sébastien Fagnen"
+    ],
+    "accepted_forms": {
+      "Béatrice Gosselin": [
+        "Béatrice GOSSELIN",
+        "Béatrice Gosselin"
+      ],
+      "David Margueritte": [
+        "David MARGUERITTE",
+        "David Margueritte"
+      ],
+      "Sébastien Fagnen": [
+        "Sébastien FAGNEN",
+        "Sébastien Fagnen"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "51"
+    },
+    "rendered_slot": "la Marne",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Anne-Sophie Romagny",
+      "Christian Bruyen",
+      "Cédric Chevalier"
+    ],
+    "accepted_forms": {
+      "Anne-Sophie Romagny": [
+        "Anne-Sophie ROMAGNY",
+        "Anne-Sophie Romagny"
+      ],
+      "Christian Bruyen": [
+        "Christian BRUYEN",
+        "Christian Bruyen"
+      ],
+      "Cédric Chevalier": [
+        "Cédric CHEVALIER",
+        "Cédric Chevalier"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "52"
+    },
+    "rendered_slot": "la Haute-Marne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Anne-Marie Nédélec",
+      "Bruno Sido"
+    ],
+    "accepted_forms": {
+      "Anne-Marie Nédélec": [
+        "Anne-Marie NÉDÉLEC",
+        "Anne-Marie Nédélec"
+      ],
+      "Bruno Sido": [
+        "Bruno SIDO",
+        "Bruno Sido"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "53"
+    },
+    "rendered_slot": "la Mayenne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Guillaume Chevrollier",
+      "Élisabeth Doineau"
+    ],
+    "accepted_forms": {
+      "Guillaume Chevrollier": [
+        "Guillaume CHEVROLLIER",
+        "Guillaume Chevrollier"
+      ],
+      "Élisabeth Doineau": [
+        "Elisabeth DOINEAU",
+        "Élisabeth Doineau"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "54"
+    },
+    "rendered_slot": "la Meurthe-et-Moselle",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Jean-François Husson",
+      "Olivier Jacquin",
+      "Pierre Boileau",
+      "Silvana Silvani"
+    ],
+    "accepted_forms": {
+      "Jean-François Husson": [
+        "Jean-François HUSSON",
+        "Jean-François Husson"
+      ],
+      "Olivier Jacquin": [
+        "Olivier JACQUIN",
+        "Olivier Jacquin"
+      ],
+      "Pierre Boileau": [
+        "Pierre BOILEAU",
+        "Pierre Boileau"
+      ],
+      "Silvana Silvani": [
+        "Silvana SILVANI",
+        "Silvana Silvani"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "55"
+    },
+    "rendered_slot": "la Meuse",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Franck Menonville",
+      "Jocelyne Antoine"
+    ],
+    "accepted_forms": {
+      "Franck Menonville": [
+        "Franck MENONVILLE",
+        "Franck Menonville"
+      ],
+      "Jocelyne Antoine": [
+        "Jocelyne ANTOINE",
+        "Jocelyne Antoine"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "56"
+    },
+    "rendered_slot": "le Morbihan",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Muriel Jourda",
+      "Simon Uzenat",
+      "Yves Bleunven"
+    ],
+    "accepted_forms": {
+      "Muriel Jourda": [
+        "Muriel JOURDA",
+        "Muriel Jourda"
+      ],
+      "Simon Uzenat": [
+        "Simon UZENAT",
+        "Simon Uzenat"
+      ],
+      "Yves Bleunven": [
+        "Yves BLEUNVEN",
+        "Yves Bleunven"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "57"
+    },
+    "rendered_slot": "la Moselle",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Catherine Belrhiti",
+      "Christine Herzog",
+      "Jean-Marie Mizzon",
+      "Khalifé Khalifé",
+      "Michaël Weber"
+    ],
+    "accepted_forms": {
+      "Catherine Belrhiti": [
+        "Catherine BELRHITI",
+        "Catherine Belrhiti"
+      ],
+      "Christine Herzog": [
+        "Christine HERZOG",
+        "Christine Herzog"
+      ],
+      "Jean-Marie Mizzon": [
+        "Jean-Marie MIZZON",
+        "Jean-Marie Mizzon"
+      ],
+      "Khalifé Khalifé": [
+        "Khalifé KHALIFÉ",
+        "Khalifé Khalifé"
+      ],
+      "Michaël Weber": [
+        "Michaël WEBER",
+        "Michaël Weber"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "58"
+    },
+    "rendered_slot": "la Nièvre",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Nadia Sollogoub",
+      "Patrice Joly"
+    ],
+    "accepted_forms": {
+      "Nadia Sollogoub": [
+        "Nadia SOLLOGOUB",
+        "Nadia Sollogoub"
+      ],
+      "Patrice Joly": [
+        "Patrice JOLY",
+        "Patrice Joly"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "59"
+    },
+    "rendered_slot": "le Nord",
+    "shape": "list",
+    "expected_cardinality": 11,
+    "expected": [
+      "Alexandre Basquin",
+      "Audrey Linkenheld",
+      "Dany Wattebled",
+      "Franck Dhersin",
+      "Guislain Cambier",
+      "Joshua Hochart",
+      "Marc-Philippe Daubresse",
+      "Marie-Claude Lermytte",
+      "Michelle Gréaume",
+      "Olivier Henno",
+      "Patrick Kanner"
+    ],
+    "accepted_forms": {
+      "Alexandre Basquin": [
+        "Alexandre BASQUIN",
+        "Alexandre Basquin"
+      ],
+      "Audrey Linkenheld": [
+        "Audrey LINKENHELD",
+        "Audrey Linkenheld"
+      ],
+      "Dany Wattebled": [
+        "Dany WATTEBLED",
+        "Dany Wattebled"
+      ],
+      "Franck Dhersin": [
+        "Franck DHERSIN",
+        "Franck Dhersin"
+      ],
+      "Guislain Cambier": [
+        "Guislain CAMBIER",
+        "Guislain Cambier"
+      ],
+      "Joshua Hochart": [
+        "Joshua HOCHART",
+        "Joshua Hochart"
+      ],
+      "Marc-Philippe Daubresse": [
+        "Marc-Philippe DAUBRESSE",
+        "Marc-Philippe Daubresse"
+      ],
+      "Marie-Claude Lermytte": [
+        "Marie-Claude LERMYTTE",
+        "Marie-Claude Lermytte"
+      ],
+      "Michelle Gréaume": [
+        "Michelle GRÉAUME",
+        "Michelle Gréaume"
+      ],
+      "Olivier Henno": [
+        "Olivier HENNO",
+        "Olivier Henno"
+      ],
+      "Patrick Kanner": [
+        "Patrick KANNER",
+        "Patrick Kanner"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "60"
+    },
+    "rendered_slot": "l'Oise",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Alexandre Ouizille",
+      "Olivier Paccaud",
+      "Sylvie Valente Le Hir",
+      "Édouard Courtial"
+    ],
+    "accepted_forms": {
+      "Alexandre Ouizille": [
+        "Alexandre OUIZILLE",
+        "Alexandre Ouizille"
+      ],
+      "Olivier Paccaud": [
+        "Olivier PACCAUD",
+        "Olivier Paccaud"
+      ],
+      "Sylvie Valente Le Hir": [
+        "Sylvie VALENTE LE HIR",
+        "Sylvie Valente Le Hir"
+      ],
+      "Édouard Courtial": [
+        "Edouard COURTIAL",
+        "Édouard Courtial"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "61"
+    },
+    "rendered_slot": "l'Orne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Nathalie Goulet",
+      "Olivier Bitz"
+    ],
+    "accepted_forms": {
+      "Nathalie Goulet": [
+        "Nathalie GOULET",
+        "Nathalie Goulet"
+      ],
+      "Olivier Bitz": [
+        "Olivier BITZ",
+        "Olivier Bitz"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "62"
+    },
+    "rendered_slot": "le Pas-de-Calais",
+    "shape": "list",
+    "expected_cardinality": 7,
+    "expected": [
+      "Amel Gacquerre",
+      "Brigitte Bourguignon",
+      "Cathy Apourceau-Poly",
+      "Christopher Szczurek",
+      "Jean-François Rapin",
+      "Jean-Pierre Corbisez",
+      "Jérôme Darras"
+    ],
+    "accepted_forms": {
+      "Amel Gacquerre": [
+        "Amel GACQUERRE",
+        "Amel Gacquerre"
+      ],
+      "Brigitte Bourguignon": [
+        "Brigitte BOURGUIGNON",
+        "Brigitte Bourguignon"
+      ],
+      "Cathy Apourceau-Poly": [
+        "Cathy APOURCEAU-POLY",
+        "Cathy Apourceau-Poly"
+      ],
+      "Christopher Szczurek": [
+        "Christopher SZCZUREK",
+        "Christopher Szczurek"
+      ],
+      "Jean-François Rapin": [
+        "Jean-François RAPIN",
+        "Jean-François Rapin"
+      ],
+      "Jean-Pierre Corbisez": [
+        "Jean-Pierre CORBISEZ",
+        "Jean-Pierre Corbisez"
+      ],
+      "Jérôme Darras": [
+        "Jérôme DARRAS",
+        "Jérôme Darras"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "63"
+    },
+    "rendered_slot": "le Puy-de-Dôme",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Jean-Marc Boyer",
+      "Marion Canalès",
+      "Éric Gold"
+    ],
+    "accepted_forms": {
+      "Jean-Marc Boyer": [
+        "Jean-Marc BOYER",
+        "Jean-Marc Boyer"
+      ],
+      "Marion Canalès": [
+        "Marion CANALÈS",
+        "Marion Canalès"
+      ],
+      "Éric Gold": [
+        "Éric GOLD",
+        "Éric Gold"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "64"
+    },
+    "rendered_slot": "les Pyrénées-Atlantiques",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Denise Saint-Pé",
+      "Frédérique Espagnac",
+      "Max Brisson"
+    ],
+    "accepted_forms": {
+      "Denise Saint-Pé": [
+        "Denise SAINT-PÉ",
+        "Denise Saint-Pé"
+      ],
+      "Frédérique Espagnac": [
+        "Frédérique ESPAGNAC",
+        "Frédérique Espagnac"
+      ],
+      "Max Brisson": [
+        "Max BRISSON",
+        "Max Brisson"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "65"
+    },
+    "rendered_slot": "les Hautes-Pyrénées",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Maryse Carrère",
+      "Viviane Artigalas"
+    ],
+    "accepted_forms": {
+      "Maryse Carrère": [
+        "Maryse CARRÈRE",
+        "Maryse Carrère"
+      ],
+      "Viviane Artigalas": [
+        "Viviane ARTIGALAS",
+        "Viviane Artigalas"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "66"
+    },
+    "rendered_slot": "les Pyrénées-Orientales",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Jean Sol",
+      "Lauriane Josende"
+    ],
+    "accepted_forms": {
+      "Jean Sol": [
+        "Jean SOL",
+        "Jean Sol"
+      ],
+      "Lauriane Josende": [
+        "Lauriane JOSENDE",
+        "Lauriane Josende"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "67"
+    },
+    "rendered_slot": "le Bas-Rhin",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Claude Kern",
+      "Elsa Schalck",
+      "Jacques Fernique",
+      "Laurence Muller-Bronn",
+      "Marc Séné"
+    ],
+    "accepted_forms": {
+      "Claude Kern": [
+        "Claude KERN",
+        "Claude Kern"
+      ],
+      "Elsa Schalck": [
+        "Elsa SCHALCK",
+        "Elsa Schalck"
+      ],
+      "Jacques Fernique": [
+        "Jacques FERNIQUE",
+        "Jacques Fernique"
+      ],
+      "Laurence Muller-Bronn": [
+        "Laurence MULLER-BRONN",
+        "Laurence Muller-Bronn"
+      ],
+      "Marc Séné": [
+        "Marc SÉNÉ",
+        "Marc Séné"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "68"
+    },
+    "rendered_slot": "le Haut-Rhin",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Christian Klinger",
+      "Ludovic Haye",
+      "Patricia Schillinger",
+      "Sabine Drexler"
+    ],
+    "accepted_forms": {
+      "Christian Klinger": [
+        "Christian KLINGER",
+        "Christian Klinger"
+      ],
+      "Ludovic Haye": [
+        "Ludovic HAYE",
+        "Ludovic Haye"
+      ],
+      "Patricia Schillinger": [
+        "Patricia SCHILLINGER",
+        "Patricia Schillinger"
+      ],
+      "Sabine Drexler": [
+        "Sabine DREXLER",
+        "Sabine Drexler"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "69"
+    },
+    "rendered_slot": "le Rhône",
+    "shape": "list",
+    "expected_cardinality": 7,
+    "expected": [
+      "Bernard Fialaire",
+      "Catherine Di Folco",
+      "Gilbert-Luc Devinaz",
+      "Paul Vidal",
+      "Raymonde Poncet Monge",
+      "Thomas Dossus",
+      "Étienne Blanc"
+    ],
+    "accepted_forms": {
+      "Bernard Fialaire": [
+        "Bernard FIALAIRE",
+        "Bernard Fialaire"
+      ],
+      "Catherine Di Folco": [
+        "Catherine DI FOLCO",
+        "Catherine Di Folco"
+      ],
+      "Gilbert-Luc Devinaz": [
+        "Gilbert-Luc DEVINAZ",
+        "Gilbert-Luc Devinaz"
+      ],
+      "Paul Vidal": [
+        "Paul Vidal"
+      ],
+      "Raymonde Poncet Monge": [
+        "Raymonde PONCET",
+        "Raymonde Poncet Monge"
+      ],
+      "Thomas Dossus": [
+        "Thomas DOSSUS",
+        "Thomas Dossus"
+      ],
+      "Étienne Blanc": [
+        "Étienne BLANC",
+        "Étienne Blanc"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "70"
+    },
+    "rendered_slot": "la Haute-Saône",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Alain Joyandet",
+      "Olivier Rietmann"
+    ],
+    "accepted_forms": {
+      "Alain Joyandet": [
+        "Alain JOYANDET",
+        "Alain Joyandet"
+      ],
+      "Olivier Rietmann": [
+        "Olivier RIETMANN",
+        "Olivier Rietmann"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "71"
+    },
+    "rendered_slot": "la Saône-et-Loire",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Fabien Genet",
+      "Marie Mercier",
+      "Paulette Matray"
+    ],
+    "accepted_forms": {
+      "Fabien Genet": [
+        "Fabien GENET",
+        "Fabien Genet"
+      ],
+      "Marie Mercier": [
+        "Marie MERCIER",
+        "Marie Mercier"
+      ],
+      "Paulette Matray": [
+        "Paulette MATRAY",
+        "Paulette Matray"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "72"
+    },
+    "rendered_slot": "la Sarthe",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Jean Pierre Vogel",
+      "Louis-Jean de Nicolaÿ",
+      "Thierry Cozic"
+    ],
+    "accepted_forms": {
+      "Jean Pierre Vogel": [
+        "Jean Pierre VOGEL",
+        "Jean Pierre Vogel"
+      ],
+      "Louis-Jean de Nicolaÿ": [
+        "Louis-Jean DE NICOLAY",
+        "Louis-Jean de Nicolaÿ"
+      ],
+      "Thierry Cozic": [
+        "Thierry COZIC",
+        "Thierry Cozic"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "73"
+    },
+    "rendered_slot": "la Savoie",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Cédric Vial",
+      "Martine Berthet"
+    ],
+    "accepted_forms": {
+      "Cédric Vial": [
+        "Cédric VIAL",
+        "Cédric Vial"
+      ],
+      "Martine Berthet": [
+        "Martine BERTHET",
+        "Martine Berthet"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "74"
+    },
+    "rendered_slot": "la Haute-Savoie",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Cyril Pellevat",
+      "Loïc Hervé",
+      "Sylviane Noël"
+    ],
+    "accepted_forms": {
+      "Cyril Pellevat": [
+        "Cyril PELLEVAT",
+        "Cyril Pellevat"
+      ],
+      "Loïc Hervé": [
+        "Loïc HERVÉ",
+        "Loïc Hervé"
+      ],
+      "Sylviane Noël": [
+        "Sylviane NOEL",
+        "Sylviane Noël"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "75"
+    },
+    "rendered_slot": "Paris",
+    "shape": "list",
+    "expected_cardinality": 12,
+    "expected": [
+      "Agnès Evren",
+      "Anne Souyris",
+      "Antoinette Guhl",
+      "Bernard Jomier",
+      "Catherine Dumas",
+      "Colombe Brossel",
+      "Francis Szpiner",
+      "Ian Brossat",
+      "Marie-Claire Carrère-Gée",
+      "Marie-Pierre de La Gontrie",
+      "Rémi Féraud",
+      "Yannick Jadot"
+    ],
+    "accepted_forms": {
+      "Agnès Evren": [
+        "Agnès EVREN",
+        "Agnès Evren"
+      ],
+      "Anne Souyris": [
+        "Anne SOUYRIS",
+        "Anne Souyris"
+      ],
+      "Antoinette Guhl": [
+        "Antoinette GUHL",
+        "Antoinette Guhl"
+      ],
+      "Bernard Jomier": [
+        "Bernard JOMIER",
+        "Bernard Jomier"
+      ],
+      "Catherine Dumas": [
+        "Catherine DUMAS",
+        "Catherine Dumas"
+      ],
+      "Colombe Brossel": [
+        "Colombe BROSSEL",
+        "Colombe Brossel"
+      ],
+      "Francis Szpiner": [
+        "Francis SZPINER",
+        "Francis Szpiner"
+      ],
+      "Ian Brossat": [
+        "Ian BROSSAT",
+        "Ian Brossat"
+      ],
+      "Marie-Claire Carrère-Gée": [
+        "Marie-Claire CARRERE-GEE",
+        "Marie-Claire Carrère-Gée"
+      ],
+      "Marie-Pierre de La Gontrie": [
+        "Marie-Pierre DE LA GONTRIE",
+        "Marie-Pierre de La Gontrie"
+      ],
+      "Rémi Féraud": [
+        "Rémi FÉRAUD",
+        "Rémi Féraud"
+      ],
+      "Yannick Jadot": [
+        "Yannick JADOT",
+        "Yannick Jadot"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "76"
+    },
+    "rendered_slot": "la Seine-Maritime",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Agnès Canayer",
+      "Catherine Morin-Desailly",
+      "Céline Brulin",
+      "Didier Marie",
+      "Pascal Martin",
+      "Patrick Chauvet"
+    ],
+    "accepted_forms": {
+      "Agnès Canayer": [
+        "Agnès CANAYER",
+        "Agnès Canayer"
+      ],
+      "Catherine Morin-Desailly": [
+        "Catherine MORIN-DESAILLY",
+        "Catherine Morin-Desailly"
+      ],
+      "Céline Brulin": [
+        "Céline BRULIN",
+        "Céline Brulin"
+      ],
+      "Didier Marie": [
+        "Didier MARIE",
+        "Didier Marie"
+      ],
+      "Pascal Martin": [
+        "Pascal MARTIN",
+        "Pascal Martin"
+      ],
+      "Patrick Chauvet": [
+        "Patrick CHAUVET",
+        "Patrick Chauvet"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "77"
+    },
+    "rendered_slot": "la Seine-et-Marne",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Anne Chain-Larché",
+      "Aymeric Durox",
+      "Louis Vogel",
+      "Marianne Margaté",
+      "Pierre Cuypers",
+      "Vincent Éblé"
+    ],
+    "accepted_forms": {
+      "Anne Chain-Larché": [
+        "Anne CHAIN-LARCHÉ",
+        "Anne Chain-Larché"
+      ],
+      "Aymeric Durox": [
+        "Aymeric DUROX",
+        "Aymeric Durox"
+      ],
+      "Louis Vogel": [
+        "Louis VOGEL",
+        "Louis Vogel"
+      ],
+      "Marianne Margaté": [
+        "Marianne MARGATÉ",
+        "Marianne Margaté"
+      ],
+      "Pierre Cuypers": [
+        "Pierre CUYPERS",
+        "Pierre Cuypers"
+      ],
+      "Vincent Éblé": [
+        "Vincent ÉBLÉ",
+        "Vincent Éblé"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "78"
+    },
+    "rendered_slot": "les Yvelines",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Ghislaine Senée",
+      "Gérard Larcher",
+      "Marta de Cidrac",
+      "Martin Lévrier",
+      "Michel Laugier",
+      "Sophie Primas"
+    ],
+    "accepted_forms": {
+      "Ghislaine Senée": [
+        "Ghislaine SENÉE",
+        "Ghislaine Senée"
+      ],
+      "Gérard Larcher": [
+        "Gérard LARCHER",
+        "Gérard Larcher"
+      ],
+      "Marta de Cidrac": [
+        "Marta DE CIDRAC",
+        "Marta de Cidrac"
+      ],
+      "Martin Lévrier": [
+        "Martin LÉVRIER",
+        "Martin Lévrier"
+      ],
+      "Michel Laugier": [
+        "Michel LAUGIER",
+        "Michel Laugier"
+      ],
+      "Sophie Primas": [
+        "Sophie PRIMAS",
+        "Sophie Primas"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "79"
+    },
+    "rendered_slot": "les Deux-Sèvres",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Gilbert Favreau",
+      "Philippe Mouiller"
+    ],
+    "accepted_forms": {
+      "Gilbert Favreau": [
+        "Gilbert FAVREAU",
+        "Gilbert Favreau"
+      ],
+      "Philippe Mouiller": [
+        "Philippe MOUILLER",
+        "Philippe Mouiller"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "80"
+    },
+    "rendered_slot": "la Somme",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Laurent Somon",
+      "Rémi Cardon",
+      "Stéphane Demilly"
+    ],
+    "accepted_forms": {
+      "Laurent Somon": [
+        "Laurent SOMON",
+        "Laurent Somon"
+      ],
+      "Rémi Cardon": [
+        "Rémi CARDON",
+        "Rémi Cardon"
+      ],
+      "Stéphane Demilly": [
+        "Stéphane DEMILLY",
+        "Stéphane Demilly"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "81"
+    },
+    "rendered_slot": "le Tarn",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Marie-Lise Housseau",
+      "Philippe Folliot"
+    ],
+    "accepted_forms": {
+      "Marie-Lise Housseau": [
+        "Marie-Lise HOUSSEAU",
+        "Marie-Lise Housseau"
+      ],
+      "Philippe Folliot": [
+        "Philippe FOLLIOT",
+        "Philippe Folliot"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "82"
+    },
+    "rendered_slot": "le Tarn-et-Garonne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "François Bonhomme",
+      "Pierre-Antoine Levi"
+    ],
+    "accepted_forms": {
+      "François Bonhomme": [
+        "François BONHOMME",
+        "François Bonhomme"
+      ],
+      "Pierre-Antoine Levi": [
+        "Pierre-Antoine LEVI",
+        "Pierre-Antoine Levi"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "83"
+    },
+    "rendered_slot": "le Var",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "André Guiol",
+      "Françoise Dumont",
+      "Jean Bacci",
+      "Michel Bonnus"
+    ],
+    "accepted_forms": {
+      "André Guiol": [
+        "André GUIOL",
+        "André Guiol"
+      ],
+      "Françoise Dumont": [
+        "Françoise DUMONT",
+        "Françoise Dumont"
+      ],
+      "Jean Bacci": [
+        "Jean BACCI",
+        "Jean Bacci"
+      ],
+      "Michel Bonnus": [
+        "Michel BONNUS",
+        "Michel Bonnus"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "84"
+    },
+    "rendered_slot": "le Vaucluse",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Alain Milon",
+      "Jean-Baptiste Blanc",
+      "Lucien Stanzione"
+    ],
+    "accepted_forms": {
+      "Alain Milon": [
+        "Alain MILON",
+        "Alain Milon"
+      ],
+      "Jean-Baptiste Blanc": [
+        "Jean-Baptiste BLANC",
+        "Jean-Baptiste Blanc"
+      ],
+      "Lucien Stanzione": [
+        "Lucien STANZIONE",
+        "Lucien Stanzione"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "85"
+    },
+    "rendered_slot": "la Vendée",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Annick Billon",
+      "Bruno Retailleau",
+      "Didier Mandelli"
+    ],
+    "accepted_forms": {
+      "Annick Billon": [
+        "Annick BILLON",
+        "Annick Billon"
+      ],
+      "Bruno Retailleau": [
+        "Bruno RETAILLEAU",
+        "Bruno Retailleau"
+      ],
+      "Didier Mandelli": [
+        "Didier MANDELLI",
+        "Didier Mandelli"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "86"
+    },
+    "rendered_slot": "la Vienne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Bruno Belin",
+      "Marie-Jeanne Bellamy"
+    ],
+    "accepted_forms": {
+      "Bruno Belin": [
+        "Bruno BELIN",
+        "Bruno Belin"
+      ],
+      "Marie-Jeanne Bellamy": [
+        "Marie-Jeanne BELLAMY",
+        "Marie-Jeanne Bellamy"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "87"
+    },
+    "rendered_slot": "la Haute-Vienne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Christian Redon-Sarrazy",
+      "Isabelle Briquet"
+    ],
+    "accepted_forms": {
+      "Christian Redon-Sarrazy": [
+        "Christian REDON-SARRAZY",
+        "Christian Redon-Sarrazy"
+      ],
+      "Isabelle Briquet": [
+        "Isabelle BRIQUET",
+        "Isabelle Briquet"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "88"
+    },
+    "rendered_slot": "les Vosges",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Daniel Gremillet",
+      "Jean Hingray"
+    ],
+    "accepted_forms": {
+      "Daniel Gremillet": [
+        "Daniel GREMILLET",
+        "Daniel Gremillet"
+      ],
+      "Jean Hingray": [
+        "Jean HINGRAY",
+        "Jean Hingray"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "89"
+    },
+    "rendered_slot": "l'Yonne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Dominique Vérien",
+      "Jean-Baptiste Lemoyne"
+    ],
+    "accepted_forms": {
+      "Dominique Vérien": [
+        "Dominique VERIEN",
+        "Dominique Vérien"
+      ],
+      "Jean-Baptiste Lemoyne": [
+        "Jean-Baptiste LEMOYNE",
+        "Jean-Baptiste Lemoyne"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "90"
+    },
+    "rendered_slot": "le Territoire de Belfort",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Cédric Perrin"
+    ],
+    "accepted_forms": {
+      "Cédric Perrin": [
+        "Cédric PERRIN",
+        "Cédric Perrin"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "91"
+    },
+    "rendered_slot": "l'Essonne",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "David Ros",
+      "Jean-Raymond Hugonet",
+      "Jocelyne Guidez",
+      "Laure Darcos",
+      "Vincent Delahaye"
+    ],
+    "accepted_forms": {
+      "David Ros": [
+        "David ROS",
+        "David Ros"
+      ],
+      "Jean-Raymond Hugonet": [
+        "Jean-Raymond HUGONET",
+        "Jean-Raymond Hugonet"
+      ],
+      "Jocelyne Guidez": [
+        "Jocelyne GUIDEZ",
+        "Jocelyne Guidez"
+      ],
+      "Laure Darcos": [
+        "Laure DARCOS",
+        "Laure Darcos"
+      ],
+      "Vincent Delahaye": [
+        "Vincent DELAHAYE",
+        "Vincent Delahaye"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "92"
+    },
+    "rendered_slot": "les Hauts-de-Seine",
+    "shape": "list",
+    "expected_cardinality": 7,
+    "expected": [
+      "Christine Lavarde",
+      "Hervé Marseille",
+      "Isabelle Florennes",
+      "Marie-Do Aeschlimann",
+      "Pierre Ouzoulias",
+      "Roger Karoutchi",
+      "Xavier Iacovelli"
+    ],
+    "accepted_forms": {
+      "Christine Lavarde": [
+        "Christine LAVARDE",
+        "Christine Lavarde"
+      ],
+      "Hervé Marseille": [
+        "Hervé MARSEILLE",
+        "Hervé Marseille"
+      ],
+      "Isabelle Florennes": [
+        "Isabelle FLORENNES",
+        "Isabelle Florennes"
+      ],
+      "Marie-Do Aeschlimann": [
+        "Marie-Do AESCHLIMANN",
+        "Marie-Do Aeschlimann"
+      ],
+      "Pierre Ouzoulias": [
+        "Pierre OUZOULIAS",
+        "Pierre Ouzoulias"
+      ],
+      "Roger Karoutchi": [
+        "Roger KAROUTCHI",
+        "Roger Karoutchi"
+      ],
+      "Xavier Iacovelli": [
+        "Xavier IACOVELLI",
+        "Xavier Iacovelli"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "93"
+    },
+    "rendered_slot": "la Seine-Saint-Denis",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Adel Ziane",
+      "Ahmed Laouedj",
+      "Corinne Narassiguin",
+      "Fabien Gay",
+      "Thierry Meignen",
+      "Vincent Capo-Canellas"
+    ],
+    "accepted_forms": {
+      "Adel Ziane": [
+        "Adel ZIANE",
+        "Adel Ziane"
+      ],
+      "Ahmed Laouedj": [
+        "Ahmed LAOUEDJ",
+        "Ahmed Laouedj"
+      ],
+      "Corinne Narassiguin": [
+        "Corinne NARASSIGUIN",
+        "Corinne Narassiguin"
+      ],
+      "Fabien Gay": [
+        "Fabien GAY",
+        "Fabien Gay"
+      ],
+      "Thierry Meignen": [
+        "Thierry MEIGNEN",
+        "Thierry Meignen"
+      ],
+      "Vincent Capo-Canellas": [
+        "Vincent CAPO-CANELLAS",
+        "Vincent Capo-Canellas"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "94"
+    },
+    "rendered_slot": "le Val-de-Marne",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Akli Mellouli",
+      "Christian Cambon",
+      "Laurence Rossignol",
+      "Laurent Lafon",
+      "Marie-Carole Ciuntu",
+      "Pascal Savoldelli"
+    ],
+    "accepted_forms": {
+      "Akli Mellouli": [
+        "Akli MELLOULI",
+        "Akli Mellouli"
+      ],
+      "Christian Cambon": [
+        "Christian CAMBON",
+        "Christian Cambon"
+      ],
+      "Laurence Rossignol": [
+        "Laurence ROSSIGNOL",
+        "Laurence Rossignol"
+      ],
+      "Laurent Lafon": [
+        "Laurent LAFON",
+        "Laurent Lafon"
+      ],
+      "Marie-Carole Ciuntu": [
+        "Marie-Carole CIUNTU",
+        "Marie-Carole Ciuntu"
+      ],
+      "Pascal Savoldelli": [
+        "Pascal SAVOLDELLI",
+        "Pascal Savoldelli"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "95"
+    },
+    "rendered_slot": "le Val-d'Oise",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Arnaud Bazin",
+      "Daniel Fargeot",
+      "Jacqueline Eustache-Brinio",
+      "Pierre Barros",
+      "Rachid Temal"
+    ],
+    "accepted_forms": {
+      "Arnaud Bazin": [
+        "Arnaud BAZIN",
+        "Arnaud Bazin"
+      ],
+      "Daniel Fargeot": [
+        "Daniel Fargeot"
+      ],
+      "Jacqueline Eustache-Brinio": [
+        "Jacqueline EUSTACHE-BRINIO",
+        "Jacqueline Eustache-Brinio"
+      ],
+      "Pierre Barros": [
+        "Pierre BARROS",
+        "Pierre Barros"
+      ],
+      "Rachid Temal": [
+        "Rachid TEMAL",
+        "Rachid Temal"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "971"
+    },
+    "rendered_slot": "la Guadeloupe",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Dominique Théophile",
+      "Solanges Nadille",
+      "Victorin Lurel"
+    ],
+    "accepted_forms": {
+      "Dominique Théophile": [
+        "Dominique THEOPHILE",
+        "Dominique Théophile"
+      ],
+      "Solanges Nadille": [
+        "Solanges NADILLE",
+        "Solanges Nadille"
+      ],
+      "Victorin Lurel": [
+        "Victorin LUREL",
+        "Victorin Lurel"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "972"
+    },
+    "rendered_slot": "la Martinique",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Catherine Conconne",
+      "Frédéric Buval"
+    ],
+    "accepted_forms": {
+      "Catherine Conconne": [
+        "Catherine CONCONNE",
+        "Catherine Conconne"
+      ],
+      "Frédéric Buval": [
+        "Frédéric BUVAL",
+        "Frédéric Buval"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "973"
+    },
+    "rendered_slot": "la Guyane",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Georges Patient",
+      "Marie-Laure Phinera-Horth"
+    ],
+    "accepted_forms": {
+      "Georges Patient": [
+        "Georges PATIENT",
+        "Georges Patient"
+      ],
+      "Marie-Laure Phinera-Horth": [
+        "Marie-Laure PHINÉRA-HORTH",
+        "Marie-Laure Phinera-Horth"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "974"
+    },
+    "rendered_slot": "La Réunion",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Audrey Bélim",
+      "Evelyne Corbière Naminzo",
+      "Stéphane Fouassin",
+      "Viviane Malet"
+    ],
+    "accepted_forms": {
+      "Audrey Bélim": [
+        "Audrey BELIM",
+        "Audrey Bélim"
+      ],
+      "Evelyne Corbière Naminzo": [
+        "Evelyne CORBIERE NAMINZO",
+        "Evelyne Corbière Naminzo"
+      ],
+      "Stéphane Fouassin": [
+        "Stéphane FOUASSIN",
+        "Stéphane Fouassin"
+      ],
+      "Viviane Malet": [
+        "Viviane MALET",
+        "Viviane Malet"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} au Sénat ?",
+    "bindings": {
+      "departement": "976"
+    },
+    "rendered_slot": "Mayotte",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Saïd Omar Oili",
+      "Thani Mohamed Soilihi"
+    ],
+    "accepted_forms": {
+      "Saïd Omar Oili": [
+        "Said OMAR OILI",
+        "Saïd Omar Oili"
+      ],
+      "Thani Mohamed Soilihi": [
+        "Thani MOHAMED SOILIHI",
+        "Thani Mohamed Soilihi"
+      ]
+    },
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  }
+]

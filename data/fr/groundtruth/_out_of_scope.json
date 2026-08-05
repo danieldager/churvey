@@ -1,0 +1,20 @@
+{
+  "note": "non-territorial constituencies - no {dep_prep} template applies",
+  "senateurs": {
+    "Français Établis Hors De France": 12,
+    "Nouvelle-Calédonie": 2,
+    "Polynésie Française": 2,
+    "Saint-Barthélemy": 1,
+    "Saint-Martin": 1,
+    "Saint-Pierre-Et-Miquelon": 1,
+    "Wallis Et Futuna": 1
+  },
+  "deputes": {
+    "Français Établis Hors De France": 11,
+    "Nouvelle-Calédonie": 2,
+    "Polynésie Française": 3,
+    "Saint-Martin / Saint-Barthélémy": 1,
+    "Saint-Pierre-Et-Miquelon": 1,
+    "Wallis Et Futuna": 1
+  }
+}

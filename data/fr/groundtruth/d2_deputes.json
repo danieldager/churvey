@@ -1,0 +1,4502 @@
+[
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "01"
+    },
+    "rendered_slot": "l'Ain",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Jérôme Buisson",
+      "Marc Chavent",
+      "Olga Givernet",
+      "Romain Daubié",
+      "Xavier Breton"
+    ],
+    "accepted_forms": {
+      "Jérôme Buisson": [
+        "Jérôme BUISSON",
+        "Jérôme Buisson"
+      ],
+      "Marc Chavent": [
+        "Marc CHAVENT",
+        "Marc Chavent"
+      ],
+      "Olga Givernet": [
+        "Olga GIVERNET",
+        "Olga Givernet"
+      ],
+      "Romain Daubié": [
+        "Romain DAUBIÉ",
+        "Romain Daubié"
+      ],
+      "Xavier Breton": [
+        "Xavier BRETON",
+        "Xavier Breton"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "02"
+    },
+    "rendered_slot": "l'Aisne",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Eddy Casterman",
+      "Jocelyn Dessigny",
+      "José Beaurain",
+      "Julien Dive",
+      "Nicolas Dragon"
+    ],
+    "accepted_forms": {
+      "Eddy Casterman": [
+        "Eddy CASTERMAN",
+        "Eddy Casterman"
+      ],
+      "Jocelyn Dessigny": [
+        "Jocelyn DESSIGNY",
+        "Jocelyn Dessigny"
+      ],
+      "José Beaurain": [
+        "José BEAURAIN",
+        "José Beaurain"
+      ],
+      "Julien Dive": [
+        "Julien DIVE",
+        "Julien Dive"
+      ],
+      "Nicolas Dragon": [
+        "Nicolas DRAGON",
+        "Nicolas Dragon"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "03"
+    },
+    "rendered_slot": "l'Allier",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Jorys Bovet",
+      "Nicolas Ray",
+      "Yannick Monnet"
+    ],
+    "accepted_forms": {
+      "Jorys Bovet": [
+        "Jorys BOVET",
+        "Jorys Bovet"
+      ],
+      "Nicolas Ray": [
+        "Nicolas RAY",
+        "Nicolas Ray"
+      ],
+      "Yannick Monnet": [
+        "Yannick MONNET",
+        "Yannick Monnet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "04"
+    },
+    "rendered_slot": "les Alpes-de-Haute-Provence",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Christian Girard",
+      "Sophie Ricourt Vaginay"
+    ],
+    "accepted_forms": {
+      "Christian Girard": [
+        "Christian GIRARD",
+        "Christian Girard"
+      ],
+      "Sophie Ricourt Vaginay": [
+        "Sophie Ricourt Vaginay",
+        "Sophie VAGINAY"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "05"
+    },
+    "rendered_slot": "les Hautes-Alpes",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Marie-José Allemand",
+      "Valérie Rossi"
+    ],
+    "accepted_forms": {
+      "Marie-José Allemand": [
+        "Marie-José ALLEMAND",
+        "Marie-José Allemand"
+      ],
+      "Valérie Rossi": [
+        "Valérie ROSSI",
+        "Valérie Rossi"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "06"
+    },
+    "rendered_slot": "les Alpes-Maritimes",
+    "shape": "list",
+    "expected_cardinality": 9,
+    "expected": [
+      "Alexandra Martin (Alpes-Maritimes)",
+      "Bernard Chaix",
+      "Christelle D'Intorni",
+      "Cyril Tribuiani",
+      "Gabriel Tomatis",
+      "Lionel Tivoli",
+      "Michèle Tabarot",
+      "Éric Ciotti",
+      "Éric Pauget"
+    ],
+    "accepted_forms": {
+      "Alexandra Martin (Alpes-Maritimes)": [
+        "Alexandra MARTIN",
+        "Alexandra Martin (Alpes-Maritimes)"
+      ],
+      "Bernard Chaix": [
+        "Bernard CHAIX",
+        "Bernard Chaix"
+      ],
+      "Christelle D'Intorni": [
+        "Christelle D'INTORNI",
+        "Christelle D'Intorni"
+      ],
+      "Cyril Tribuiani": [
+        "Cyril TRIBUIANI",
+        "Cyril Tribuiani"
+      ],
+      "Gabriel Tomatis": [
+        "Gabriel TOMATIS",
+        "Gabriel Tomatis"
+      ],
+      "Lionel Tivoli": [
+        "Lionel TIVOLI",
+        "Lionel Tivoli"
+      ],
+      "Michèle Tabarot": [
+        "Michèle TABAROT",
+        "Michèle Tabarot"
+      ],
+      "Éric Ciotti": [
+        "Eric CIOTTI",
+        "Éric Ciotti"
+      ],
+      "Éric Pauget": [
+        "Eric PAUGET",
+        "Éric Pauget"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "07"
+    },
+    "rendered_slot": "l'Ardèche",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Fabrice Brun",
+      "Hervé Saulignac",
+      "Vincent Trébuchet"
+    ],
+    "accepted_forms": {
+      "Fabrice Brun": [
+        "Fabrice BRUN",
+        "Fabrice Brun"
+      ],
+      "Hervé Saulignac": [
+        "Hervé SAULIGNAC",
+        "Hervé Saulignac"
+      ],
+      "Vincent Trébuchet": [
+        "Vincent TREBUCHET",
+        "Vincent Trébuchet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "08"
+    },
+    "rendered_slot": "les Ardennes",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Jean-Luc Warsmann",
+      "Lionel Vuibert",
+      "Pierre Cordier"
+    ],
+    "accepted_forms": {
+      "Jean-Luc Warsmann": [
+        "Jean-Luc WARSMANN",
+        "Jean-Luc Warsmann"
+      ],
+      "Lionel Vuibert": [
+        "Lionel VUIBERT",
+        "Lionel Vuibert"
+      ],
+      "Pierre Cordier": [
+        "Pierre CORDIER",
+        "Pierre Cordier"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "09"
+    },
+    "rendered_slot": "l'Ariège",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Audrey Abadie-Amiel",
+      "Martine Froger"
+    ],
+    "accepted_forms": {
+      "Audrey Abadie-Amiel": [
+        "Audrey ABADIE",
+        "Audrey Abadie-Amiel"
+      ],
+      "Martine Froger": [
+        "Martine FROGER",
+        "Martine Froger"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "10"
+    },
+    "rendered_slot": "l'Aube",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Angélique Ranc",
+      "Jordan Guitton",
+      "Valérie Bazin-Malgras"
+    ],
+    "accepted_forms": {
+      "Angélique Ranc": [
+        "Angélique RANC",
+        "Angélique Ranc"
+      ],
+      "Jordan Guitton": [
+        "Jordan GUITTON",
+        "Jordan Guitton"
+      ],
+      "Valérie Bazin-Malgras": [
+        "Valérie BAZIN-MALGRAS",
+        "Valérie Bazin-Malgras"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "11"
+    },
+    "rendered_slot": "l'Aude",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Frédéric Falcon",
+      "Julien Rancoule",
+      "Édouard Jordan"
+    ],
+    "accepted_forms": {
+      "Frédéric Falcon": [
+        "Frédéric FALCON",
+        "Frédéric Falcon"
+      ],
+      "Julien Rancoule": [
+        "Julien RANCOULE",
+        "Julien Rancoule"
+      ],
+      "Édouard Jordan": [
+        "Edouard JORDAN",
+        "Édouard Jordan"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "12"
+    },
+    "rendered_slot": "l'Aveyron",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Jean-François Rousset",
+      "Laurent Alexandre",
+      "Pauline Cestrières"
+    ],
+    "accepted_forms": {
+      "Jean-François Rousset": [
+        "Jean-François ROUSSET",
+        "Jean-François Rousset"
+      ],
+      "Laurent Alexandre": [
+        "Laurent ALEXANDRE",
+        "Laurent Alexandre"
+      ],
+      "Pauline Cestrières": [
+        "Pauline CESTRIERES",
+        "Pauline Cestrières"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "13"
+    },
+    "rendered_slot": "les Bouches-du-Rhône",
+    "shape": "list",
+    "expected_cardinality": 16,
+    "expected": [
+      "Emmanuel Fouquart",
+      "Emmanuel Taché",
+      "Franck Allisio",
+      "Gisèle Lelouis",
+      "Gérault Verny",
+      "Hendrik Davi",
+      "José Gonzalez",
+      "Joëlle Mélin",
+      "Laurent Lhardit",
+      "Manuel Bompard",
+      "Marc Pena",
+      "Monique Griseti",
+      "Olivier Fayssat",
+      "Romain Baubry",
+      "Romain Tonussi",
+      "Sébastien Delogu"
+    ],
+    "accepted_forms": {
+      "Emmanuel Fouquart": [
+        "Emmanuel FOUQUART",
+        "Emmanuel Fouquart"
+      ],
+      "Emmanuel Taché": [
+        "Emmanuel TACHE",
+        "Emmanuel Taché"
+      ],
+      "Franck Allisio": [
+        "Franck ALLISIO",
+        "Franck Allisio"
+      ],
+      "Gisèle Lelouis": [
+        "Gisèle LELOUIS",
+        "Gisèle Lelouis"
+      ],
+      "Gérault Verny": [
+        "Gérault VERNY",
+        "Gérault Verny"
+      ],
+      "Hendrik Davi": [
+        "Hendrik DAVI",
+        "Hendrik Davi"
+      ],
+      "José Gonzalez": [
+        "José GONZALEZ",
+        "José Gonzalez"
+      ],
+      "Joëlle Mélin": [
+        "Joëlle MELIN",
+        "Joëlle Mélin"
+      ],
+      "Laurent Lhardit": [
+        "Laurent LHARDIT",
+        "Laurent Lhardit"
+      ],
+      "Manuel Bompard": [
+        "Manuel BOMPARD",
+        "Manuel Bompard"
+      ],
+      "Marc Pena": [
+        "Marc PENA",
+        "Marc Pena"
+      ],
+      "Monique Griseti": [
+        "Monique GRISETI",
+        "Monique Griseti"
+      ],
+      "Olivier Fayssat": [
+        "Olivier FAYSSAT",
+        "Olivier Fayssat"
+      ],
+      "Romain Baubry": [
+        "Romain BAUBRY",
+        "Romain Baubry"
+      ],
+      "Romain Tonussi": [
+        "Romain TONUSSI",
+        "Romain Tonussi"
+      ],
+      "Sébastien Delogu": [
+        "Sébastien DELOGU",
+        "Sébastien Delogu"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "14"
+    },
+    "rendered_slot": "le Calvados",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Arthur Delaporte",
+      "Bertrand Bouyx",
+      "Christophe Blanchet",
+      "Joël Bruneau",
+      "Jérémie Patrier-Leitus",
+      "Élisabeth Borne"
+    ],
+    "accepted_forms": {
+      "Arthur Delaporte": [
+        "Arthur DELAPORTE",
+        "Arthur Delaporte"
+      ],
+      "Bertrand Bouyx": [
+        "Bertrand BOUYX",
+        "Bertrand Bouyx"
+      ],
+      "Christophe Blanchet": [
+        "Christophe BLANCHET",
+        "Christophe Blanchet"
+      ],
+      "Joël Bruneau": [
+        "Joël BRUNEAU",
+        "Joël Bruneau"
+      ],
+      "Jérémie Patrier-Leitus": [
+        "Jérémie PATRIER-LEITUS",
+        "Jérémie Patrier-Leitus"
+      ],
+      "Élisabeth Borne": [
+        "Elisabeth BORNE",
+        "Élisabeth Borne"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "15"
+    },
+    "rendered_slot": "le Cantal",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Jean-Yves Bony",
+      "Vincent Descoeur"
+    ],
+    "accepted_forms": {
+      "Jean-Yves Bony": [
+        "Jean Yves BONY",
+        "Jean-Yves Bony"
+      ],
+      "Vincent Descoeur": [
+        "Vincent DESCOEUR",
+        "Vincent Descoeur"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "16"
+    },
+    "rendered_slot": "la Charente",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Caroline Colombier",
+      "René Pilato",
+      "Sandra Marsaud"
+    ],
+    "accepted_forms": {
+      "Caroline Colombier": [
+        "Caroline COLOMBIER",
+        "Caroline Colombier"
+      ],
+      "René Pilato": [
+        "René PILATO",
+        "René Pilato"
+      ],
+      "Sandra Marsaud": [
+        "Sandra MARSAUD",
+        "Sandra Marsaud"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "17"
+    },
+    "rendered_slot": "la Charente-Maritime",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Benoît Biteau",
+      "Christophe Plassard",
+      "Fabrice Barusseau",
+      "Pascal Markowsky",
+      "Sabine Gervais"
+    ],
+    "accepted_forms": {
+      "Benoît Biteau": [
+        "Benoît BITEAU",
+        "Benoît Biteau"
+      ],
+      "Christophe Plassard": [
+        "Christophe PLASSARD",
+        "Christophe Plassard"
+      ],
+      "Fabrice Barusseau": [
+        "Fabrice BARUSSEAU",
+        "Fabrice Barusseau"
+      ],
+      "Pascal Markowsky": [
+        "Pascal MARKOWSKY",
+        "Pascal Markowsky"
+      ],
+      "Sabine Gervais": [
+        "Sabine GERVAIS",
+        "Sabine Gervais"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "18"
+    },
+    "rendered_slot": "le Cher",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "François Cormier-Bouligeon",
+      "Loïc Kervran",
+      "Nicolas Sansu"
+    ],
+    "accepted_forms": {
+      "François Cormier-Bouligeon": [
+        "François CORMIER-BOULIGEON",
+        "François Cormier-Bouligeon"
+      ],
+      "Loïc Kervran": [
+        "Loïc KERVRAN",
+        "Loïc Kervran"
+      ],
+      "Nicolas Sansu": [
+        "Nicolas SANSU",
+        "Nicolas Sansu"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "19"
+    },
+    "rendered_slot": "la Corrèze",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "François Hollande",
+      "Frédérique Meunier"
+    ],
+    "accepted_forms": {
+      "François Hollande": [
+        "François HOLLANDE",
+        "François Hollande"
+      ],
+      "Frédérique Meunier": [
+        "Frédérique MEUNIER",
+        "Frédérique Meunier"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "21"
+    },
+    "rendered_slot": "la Côte-d'Or",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Catherine Hervieu",
+      "Hubert Brigand",
+      "Océane Godard",
+      "Pierre Pribetich",
+      "René Lioret"
+    ],
+    "accepted_forms": {
+      "Catherine Hervieu": [
+        "Catherine HERVIEU",
+        "Catherine Hervieu"
+      ],
+      "Hubert Brigand": [
+        "Hubert BRIGAND",
+        "Hubert Brigand"
+      ],
+      "Océane Godard": [
+        "Océane GODARD",
+        "Océane Godard"
+      ],
+      "Pierre Pribetich": [
+        "Pierre PRIBETICH",
+        "Pierre Pribetich"
+      ],
+      "René Lioret": [
+        "René LIORET",
+        "René Lioret"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "22"
+    },
+    "rendered_slot": "les Côtes-d'Armor",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Corentin Le Fur",
+      "Hervé Berville",
+      "Mickaël Cosson",
+      "Murielle Lepvraud",
+      "Éric Bothorel"
+    ],
+    "accepted_forms": {
+      "Corentin Le Fur": [
+        "Corentin LE FUR",
+        "Corentin Le Fur"
+      ],
+      "Hervé Berville": [
+        "Hervé BERVILLE",
+        "Hervé Berville"
+      ],
+      "Mickaël Cosson": [
+        "Mickaël COSSON",
+        "Mickaël Cosson"
+      ],
+      "Murielle Lepvraud": [
+        "Murielle LEPVRAUD",
+        "Murielle Lepvraud"
+      ],
+      "Éric Bothorel": [
+        "Eric BOTHOREL",
+        "Éric Bothorel"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "23"
+    },
+    "rendered_slot": "la Creuse",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Bartolomé Lenoir"
+    ],
+    "accepted_forms": {
+      "Bartolomé Lenoir": [
+        "Bartolomé LENOIR",
+        "Bartolomé Lenoir"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "24"
+    },
+    "rendered_slot": "la Dordogne",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Florence Joubert",
+      "Nadine Lechon",
+      "Serge Muller",
+      "Sébastien Peytavie"
+    ],
+    "accepted_forms": {
+      "Florence Joubert": [
+        "Florence JOUBERT",
+        "Florence Joubert"
+      ],
+      "Nadine Lechon": [
+        "Nadine LECHON",
+        "Nadine Lechon"
+      ],
+      "Serge Muller": [
+        "Serge MULLER",
+        "Serge Muller"
+      ],
+      "Sébastien Peytavie": [
+        "Sébastien PEYTAVIE",
+        "Sébastien Peytavie"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "25"
+    },
+    "rendered_slot": "le Doubs",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Dominique Voynet",
+      "Eric Liégeon",
+      "Géraldine Grangier",
+      "Laurent Croizier",
+      "Matthieu Bloch"
+    ],
+    "accepted_forms": {
+      "Dominique Voynet": [
+        "Dominique VOYNET",
+        "Dominique Voynet"
+      ],
+      "Eric Liégeon": [
+        "Eric LIEGEON",
+        "Eric Liégeon"
+      ],
+      "Géraldine Grangier": [
+        "Géraldine GRANGIER",
+        "Géraldine Grangier"
+      ],
+      "Laurent Croizier": [
+        "Laurent CROIZIER",
+        "Laurent Croizier"
+      ],
+      "Matthieu Bloch": [
+        "Matthieu BLOCH",
+        "Matthieu Bloch"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "26"
+    },
+    "rendered_slot": "la Drôme",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Lisette Pollet",
+      "Marie Pochon",
+      "Paul Christophle",
+      "Thibaut Monnier"
+    ],
+    "accepted_forms": {
+      "Lisette Pollet": [
+        "Lisette POLLET",
+        "Lisette Pollet"
+      ],
+      "Marie Pochon": [
+        "Marie POCHON",
+        "Marie Pochon"
+      ],
+      "Paul Christophle": [
+        "Paul CHRISTOPHLE",
+        "Paul Christophle"
+      ],
+      "Thibaut Monnier": [
+        "Thibaut MONNIER",
+        "Thibaut Monnier"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "27"
+    },
+    "rendered_slot": "l'Eure",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Christine Loir",
+      "Katiana Levavasseur",
+      "Kévin Mauvieux",
+      "Philippe Brun",
+      "Timothée Houssin"
+    ],
+    "accepted_forms": {
+      "Christine Loir": [
+        "Christine LOIR",
+        "Christine Loir"
+      ],
+      "Katiana Levavasseur": [
+        "Katiana LEVAVASSEUR",
+        "Katiana Levavasseur"
+      ],
+      "Kévin Mauvieux": [
+        "Kévin MAUVIEUX",
+        "Kévin Mauvieux"
+      ],
+      "Philippe Brun": [
+        "Philippe BRUN",
+        "Philippe Brun"
+      ],
+      "Timothée Houssin": [
+        "Timothée HOUSSIN",
+        "Timothée Houssin"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "28"
+    },
+    "rendered_slot": "l'Eure-et-Loir",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Christelle Minard",
+      "Guillaume Kasbarian",
+      "Harold Huwart",
+      "Philippe Vigier"
+    ],
+    "accepted_forms": {
+      "Christelle Minard": [
+        "Christelle MINARD",
+        "Christelle Minard"
+      ],
+      "Guillaume Kasbarian": [
+        "Guillaume KASBARIAN",
+        "Guillaume Kasbarian"
+      ],
+      "Harold Huwart": [
+        "Harold HUWART",
+        "Harold Huwart"
+      ],
+      "Philippe Vigier": [
+        "Philippe VIGIER",
+        "Philippe Vigier"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "29"
+    },
+    "rendered_slot": "le Finistère",
+    "shape": "list",
+    "expected_cardinality": 8,
+    "expected": [
+      "Annaïg Le Meur",
+      "Didier Le Gac",
+      "Erwan Balanant",
+      "Graziella Melchior",
+      "Liliana Tanguy",
+      "Mélanie Thomin",
+      "Pierre-Yves Cadalen",
+      "Sandrine Le Feur"
+    ],
+    "accepted_forms": {
+      "Annaïg Le Meur": [
+        "Annaïg LE MEUR",
+        "Annaïg Le Meur"
+      ],
+      "Didier Le Gac": [
+        "Didier LE GAC",
+        "Didier Le Gac"
+      ],
+      "Erwan Balanant": [
+        "Erwan BALANANT",
+        "Erwan Balanant"
+      ],
+      "Graziella Melchior": [
+        "Graziella MELCHIOR",
+        "Graziella Melchior"
+      ],
+      "Liliana Tanguy": [
+        "Liliana TANGUY",
+        "Liliana Tanguy"
+      ],
+      "Mélanie Thomin": [
+        "Mélanie THOMIN",
+        "Mélanie Thomin"
+      ],
+      "Pierre-Yves Cadalen": [
+        "Pierre-Yves CADALEN",
+        "Pierre-Yves Cadalen"
+      ],
+      "Sandrine Le Feur": [
+        "Sandrine LE FEUR",
+        "Sandrine Le Feur"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "2A"
+    },
+    "rendered_slot": "la Corse-du-Sud",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Laurent Marcangeli",
+      "Paul-André Colombani"
+    ],
+    "accepted_forms": {
+      "Laurent Marcangeli": [
+        "Laurent MARCANGELI",
+        "Laurent Marcangeli"
+      ],
+      "Paul-André Colombani": [
+        "Paul-André COLOMBANI",
+        "Paul-André Colombani"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "2B"
+    },
+    "rendered_slot": "la Haute-Corse",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "François-Xavier Ceccoli",
+      "Michel Castellani"
+    ],
+    "accepted_forms": {
+      "François-Xavier Ceccoli": [
+        "François-Xavier CECCOLI",
+        "François-Xavier Ceccoli"
+      ],
+      "Michel Castellani": [
+        "Michel CASTELLANI",
+        "Michel Castellani"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "30"
+    },
+    "rendered_slot": "le Gard",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Alexandre Allegret-Pilot",
+      "Catherine Dellong Meng",
+      "Nicolas Meizonnet",
+      "Pierre Meurin",
+      "Sylvie Josserand",
+      "Yoann Gillet"
+    ],
+    "accepted_forms": {
+      "Alexandre Allegret-Pilot": [
+        "Alexandre ALLEGRET-PILOT",
+        "Alexandre Allegret-Pilot"
+      ],
+      "Catherine Dellong Meng": [
+        "Catherine DELLONG MENG",
+        "Catherine Dellong Meng"
+      ],
+      "Nicolas Meizonnet": [
+        "Nicolas MEIZONNET",
+        "Nicolas Meizonnet"
+      ],
+      "Pierre Meurin": [
+        "Pierre MEURIN",
+        "Pierre Meurin"
+      ],
+      "Sylvie Josserand": [
+        "Sylvie JOSSERAND",
+        "Sylvie Josserand"
+      ],
+      "Yoann Gillet": [
+        "Yoann GILLET",
+        "Yoann Gillet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "31"
+    },
+    "rendered_slot": "la Haute-Garonne",
+    "shape": "list",
+    "expected_cardinality": 10,
+    "expected": [
+      "Anne Stambach-Terrenoir",
+      "Arnaud Simion",
+      "Christine Arrighi",
+      "Christophe Bex",
+      "Corinne Vignon",
+      "François Piquemal",
+      "Hadrien Clouet",
+      "Jacques Oberti",
+      "Jean-François Portarrieu",
+      "Joël Aviragnet"
+    ],
+    "accepted_forms": {
+      "Anne Stambach-Terrenoir": [
+        "Anne STAMBACH-TERRENOIR",
+        "Anne Stambach-Terrenoir"
+      ],
+      "Arnaud Simion": [
+        "Arnaud SIMION",
+        "Arnaud Simion"
+      ],
+      "Christine Arrighi": [
+        "Christine ARRIGHI",
+        "Christine Arrighi"
+      ],
+      "Christophe Bex": [
+        "Christophe BEX",
+        "Christophe Bex"
+      ],
+      "Corinne Vignon": [
+        "Corinne VIGNON",
+        "Corinne Vignon"
+      ],
+      "François Piquemal": [
+        "François PIQUEMAL",
+        "François Piquemal"
+      ],
+      "Hadrien Clouet": [
+        "Hadrien CLOUET",
+        "Hadrien Clouet"
+      ],
+      "Jacques Oberti": [
+        "Jacques OBERTI",
+        "Jacques Oberti"
+      ],
+      "Jean-François Portarrieu": [
+        "Jean-François PORTARRIEU",
+        "Jean-François Portarrieu"
+      ],
+      "Joël Aviragnet": [
+        "Joël AVIRAGNET",
+        "Joël Aviragnet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "32"
+    },
+    "rendered_slot": "le Gers",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "David Taupiac",
+      "Jean-René Cazeneuve"
+    ],
+    "accepted_forms": {
+      "David Taupiac": [
+        "David TAUPIAC",
+        "David Taupiac"
+      ],
+      "Jean-René Cazeneuve": [
+        "Jean-René CAZENEUVE",
+        "Jean-René Cazeneuve"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "33"
+    },
+    "rendered_slot": "la Gironde",
+    "shape": "list",
+    "expected_cardinality": 12,
+    "expected": [
+      "Alain David",
+      "Alexandra Martin (Gironde)",
+      "Edwige Diaz",
+      "Loïc Prud'homme",
+      "Marie Récalde",
+      "Marie-Sophie Bernadeau",
+      "Mathilde Feld",
+      "Nicolas Thierry",
+      "Pascale Got",
+      "Sophie Mette",
+      "Sophie Panonacle",
+      "Sébastien Saint-Pasteur"
+    ],
+    "accepted_forms": {
+      "Alain David": [
+        "Alain DAVID",
+        "Alain David"
+      ],
+      "Alexandra Martin (Gironde)": [
+        "Alexandra Martin (Gironde)"
+      ],
+      "Edwige Diaz": [
+        "Edwige DIAZ",
+        "Edwige Diaz"
+      ],
+      "Loïc Prud'homme": [
+        "Loïc PRUD'HOMME",
+        "Loïc Prud'homme"
+      ],
+      "Marie Récalde": [
+        "Marie RECALDE",
+        "Marie Récalde"
+      ],
+      "Marie-Sophie Bernadeau": [
+        "Marie-Sophie Bernadeau"
+      ],
+      "Mathilde Feld": [
+        "Mathilde FELD",
+        "Mathilde Feld"
+      ],
+      "Nicolas Thierry": [
+        "Nicolas THIERRY",
+        "Nicolas Thierry"
+      ],
+      "Pascale Got": [
+        "Pascale GOT",
+        "Pascale Got"
+      ],
+      "Sophie Mette": [
+        "Sophie METTE",
+        "Sophie Mette"
+      ],
+      "Sophie Panonacle": [
+        "Sophie PANONACLE",
+        "Sophie Panonacle"
+      ],
+      "Sébastien Saint-Pasteur": [
+        "Sébastien SAINT-PASTEUR",
+        "Sébastien Saint-Pasteur"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "34"
+    },
+    "rendered_slot": "l'Hérault",
+    "shape": "list",
+    "expected_cardinality": 9,
+    "expected": [
+      "Bernard Chaumeil",
+      "Charles Alloncle",
+      "Fanny Dombre Coste",
+      "Jean-Louis Roumégas",
+      "Julien Gabarron",
+      "Manon Bouquin",
+      "Nathalie Oziol",
+      "Stéphanie Galzy",
+      "Sylvain Carrière"
+    ],
+    "accepted_forms": {
+      "Bernard Chaumeil": [
+        "Bernard CHAUMEIL",
+        "Bernard Chaumeil"
+      ],
+      "Charles Alloncle": [
+        "Charles ALLONCLE",
+        "Charles Alloncle"
+      ],
+      "Fanny Dombre Coste": [
+        "Fanny DOMBRE COSTE",
+        "Fanny Dombre Coste"
+      ],
+      "Jean-Louis Roumégas": [
+        "Jean-Louis ROUMEGAS",
+        "Jean-Louis Roumégas"
+      ],
+      "Julien Gabarron": [
+        "Julien GABARRON",
+        "Julien Gabarron"
+      ],
+      "Manon Bouquin": [
+        "Manon BOUQUIN",
+        "Manon Bouquin"
+      ],
+      "Nathalie Oziol": [
+        "Nathalie OZIOL",
+        "Nathalie Oziol"
+      ],
+      "Stéphanie Galzy": [
+        "Stéphanie GALZY",
+        "Stéphanie Galzy"
+      ],
+      "Sylvain Carrière": [
+        "Sylvain CARRIERE",
+        "Sylvain Carrière"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "35"
+    },
+    "rendered_slot": "l'Ille-et-Vilaine",
+    "shape": "list",
+    "expected_cardinality": 8,
+    "expected": [
+      "Christine Le Nabour",
+      "Claudia Rouaux",
+      "Jean-Luc Bourgeaux",
+      "Marie Mesmeur",
+      "Mathilde Hignet",
+      "Mickaël Bouloux",
+      "Thierry Benoit",
+      "Tristan Lahais"
+    ],
+    "accepted_forms": {
+      "Christine Le Nabour": [
+        "Christine LE NABOUR",
+        "Christine Le Nabour"
+      ],
+      "Claudia Rouaux": [
+        "Claudia ROUAUX",
+        "Claudia Rouaux"
+      ],
+      "Jean-Luc Bourgeaux": [
+        "Jean-Luc BOURGEAUX",
+        "Jean-Luc Bourgeaux"
+      ],
+      "Marie Mesmeur": [
+        "Marie MESMEUR",
+        "Marie Mesmeur"
+      ],
+      "Mathilde Hignet": [
+        "Mathilde HIGNET",
+        "Mathilde Hignet"
+      ],
+      "Mickaël Bouloux": [
+        "Mickaël BOULOUX",
+        "Mickaël Bouloux"
+      ],
+      "Thierry Benoit": [
+        "Thierry BENOIT",
+        "Thierry Benoit"
+      ],
+      "Tristan Lahais": [
+        "Tristan LAHAIS",
+        "Tristan Lahais"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "36"
+    },
+    "rendered_slot": "l'Indre",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Alix Fruchon",
+      "François Jolivet"
+    ],
+    "accepted_forms": {
+      "Alix Fruchon": [
+        "Alix FRUCHON",
+        "Alix Fruchon"
+      ],
+      "François Jolivet": [
+        "François JOLIVET",
+        "François Jolivet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "37"
+    },
+    "rendered_slot": "l'Indre-et-Loire",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Charles Fournier",
+      "Daniel Labaronne",
+      "Henri Alfandari",
+      "Laurent Baumel",
+      "Sabine Thillaye"
+    ],
+    "accepted_forms": {
+      "Charles Fournier": [
+        "Charles FOURNIER",
+        "Charles Fournier"
+      ],
+      "Daniel Labaronne": [
+        "Daniel LABARONNE",
+        "Daniel Labaronne"
+      ],
+      "Henri Alfandari": [
+        "Henri ALFANDARI",
+        "Henri Alfandari"
+      ],
+      "Laurent Baumel": [
+        "Laurent BAUMEL",
+        "Laurent Baumel"
+      ],
+      "Sabine Thillaye": [
+        "Sabine THILLAYE",
+        "Sabine Thillaye"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "38"
+    },
+    "rendered_slot": "l'Isère",
+    "shape": "list",
+    "expected_cardinality": 10,
+    "expected": [
+      "Alexis Jolly",
+      "Alim Latrèche",
+      "Cyrielle Chatelain",
+      "Hanane Mansouri",
+      "Jérémie Iordanoff",
+      "Marie-Noëlle Battistel",
+      "Sandrine Nosbé",
+      "Thierry Perez",
+      "Yannick Neuder",
+      "Élisa Martin"
+    ],
+    "accepted_forms": {
+      "Alexis Jolly": [
+        "Alexis JOLLY",
+        "Alexis Jolly"
+      ],
+      "Alim Latrèche": [
+        "Alim LATRECHE",
+        "Alim Latrèche"
+      ],
+      "Cyrielle Chatelain": [
+        "Cyrielle CHATELAIN",
+        "Cyrielle Chatelain"
+      ],
+      "Hanane Mansouri": [
+        "Hanane MANSOURI",
+        "Hanane Mansouri"
+      ],
+      "Jérémie Iordanoff": [
+        "Jérémie IORDANOFF",
+        "Jérémie Iordanoff"
+      ],
+      "Marie-Noëlle Battistel": [
+        "Marie-Noëlle BATTISTEL",
+        "Marie-Noëlle Battistel"
+      ],
+      "Sandrine Nosbé": [
+        "Sandrine NOSBÉ",
+        "Sandrine Nosbé"
+      ],
+      "Thierry Perez": [
+        "Thierry PEREZ",
+        "Thierry Perez"
+      ],
+      "Yannick Neuder": [
+        "Yannick NEUDER",
+        "Yannick Neuder"
+      ],
+      "Élisa Martin": [
+        "Élisa MARTIN",
+        "Élisa Martin"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "39"
+    },
+    "rendered_slot": "le Jura",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Danielle Brulebois",
+      "Justine Gruet",
+      "Marie-Christine Dalloz"
+    ],
+    "accepted_forms": {
+      "Danielle Brulebois": [
+        "Danielle BRULEBOIS",
+        "Danielle Brulebois"
+      ],
+      "Justine Gruet": [
+        "Justine GRUET",
+        "Justine Gruet"
+      ],
+      "Marie-Christine Dalloz": [
+        "Marie-Christine DALLOZ",
+        "Marie-Christine Dalloz"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "40"
+    },
+    "rendered_slot": "les Landes",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Boris Vallaud",
+      "Geneviève Darrieussecq",
+      "Lionel Causse"
+    ],
+    "accepted_forms": {
+      "Boris Vallaud": [
+        "Boris VALLAUD",
+        "Boris Vallaud"
+      ],
+      "Geneviève Darrieussecq": [
+        "Geneviève DARRIEUSSECQ",
+        "Geneviève Darrieussecq"
+      ],
+      "Lionel Causse": [
+        "Lionel CAUSSE",
+        "Lionel Causse"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "41"
+    },
+    "rendered_slot": "le Loir-et-Cher",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Christophe Marion",
+      "Marc Fesneau",
+      "Roger Chudeau"
+    ],
+    "accepted_forms": {
+      "Christophe Marion": [
+        "Christophe MARION",
+        "Christophe Marion"
+      ],
+      "Marc Fesneau": [
+        "Marc FESNEAU",
+        "Marc Fesneau"
+      ],
+      "Roger Chudeau": [
+        "Roger CHUDEAU",
+        "Roger Chudeau"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "42"
+    },
+    "rendered_slot": "la Loire",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Andrée Taurinya",
+      "Antoine Vermorel-Marques",
+      "Emmanuel Mandon",
+      "Jean-Yves Bonnefoy",
+      "Pierrick Courbon",
+      "Sylvie Bonnet"
+    ],
+    "accepted_forms": {
+      "Andrée Taurinya": [
+        "Andrée TAURINYA",
+        "Andrée Taurinya"
+      ],
+      "Antoine Vermorel-Marques": [
+        "Antoine VERMOREL-MARQUES",
+        "Antoine Vermorel-Marques"
+      ],
+      "Emmanuel Mandon": [
+        "Emmanuel MANDON",
+        "Emmanuel Mandon"
+      ],
+      "Jean-Yves Bonnefoy": [
+        "Jean-Yves Bonnefoy"
+      ],
+      "Pierrick Courbon": [
+        "Pierrick COURBON",
+        "Pierrick Courbon"
+      ],
+      "Sylvie Bonnet": [
+        "Sylvie BONNET",
+        "Sylvie Bonnet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "43"
+    },
+    "rendered_slot": "la Haute-Loire",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Jean-Pierre Vigier",
+      "Laurent Wauquiez"
+    ],
+    "accepted_forms": {
+      "Jean-Pierre Vigier": [
+        "Jean-Pierre Vigier",
+        "Peter VIGIER"
+      ],
+      "Laurent Wauquiez": [
+        "Laurent WAUQUIEZ",
+        "Laurent Wauquiez"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "44"
+    },
+    "rendered_slot": "la Loire-Atlantique",
+    "shape": "list",
+    "expected_cardinality": 10,
+    "expected": [
+      "Andy Kerbrat",
+      "Fabrice Roussel",
+      "Jean-Claude Raux",
+      "Jean-Michel Brard",
+      "Julie Laernoes",
+      "Karim Benbrahim",
+      "Matthias Tavel",
+      "Sandrine Josso",
+      "Sophie Errante",
+      "Ségolène Amiot"
+    ],
+    "accepted_forms": {
+      "Andy Kerbrat": [
+        "Andy KERBRAT",
+        "Andy Kerbrat"
+      ],
+      "Fabrice Roussel": [
+        "Fabrice ROUSSEL",
+        "Fabrice Roussel"
+      ],
+      "Jean-Claude Raux": [
+        "Jean-Claude RAUX",
+        "Jean-Claude Raux"
+      ],
+      "Jean-Michel Brard": [
+        "Jean-Michel BRARD",
+        "Jean-Michel Brard"
+      ],
+      "Julie Laernoes": [
+        "Julie LAERNOES",
+        "Julie Laernoes"
+      ],
+      "Karim Benbrahim": [
+        "Karim BENBRAHIM",
+        "Karim Benbrahim"
+      ],
+      "Matthias Tavel": [
+        "Matthias TAVEL",
+        "Matthias Tavel"
+      ],
+      "Sandrine Josso": [
+        "Sandrine JOSSO",
+        "Sandrine Josso"
+      ],
+      "Sophie Errante": [
+        "Sophie ERRANTE",
+        "Sophie Errante"
+      ],
+      "Ségolène Amiot": [
+        "Ségolène AMIOT",
+        "Ségolène Amiot"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "45"
+    },
+    "rendered_slot": "le Loiret",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Anthony Brosse",
+      "Constance de Pélichy",
+      "Emmanuel Duplessy",
+      "Marie-Philippe Lubet",
+      "Richard Ramos",
+      "Thomas Ménagé"
+    ],
+    "accepted_forms": {
+      "Anthony Brosse": [
+        "Anthony BROSSE",
+        "Anthony Brosse"
+      ],
+      "Constance de Pélichy": [
+        "Constance DE PÉLICHY",
+        "Constance de Pélichy"
+      ],
+      "Emmanuel Duplessy": [
+        "Emmanuel DUPLESSY",
+        "Emmanuel Duplessy"
+      ],
+      "Marie-Philippe Lubet": [
+        "Marie-Philippe Lubet"
+      ],
+      "Richard Ramos": [
+        "Richard RAMOS",
+        "Richard Ramos"
+      ],
+      "Thomas Ménagé": [
+        "Thomas MÉNAGÉ",
+        "Thomas Ménagé"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "46"
+    },
+    "rendered_slot": "le Lot",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Aurélien Pradié",
+      "Christophe Proença"
+    ],
+    "accepted_forms": {
+      "Aurélien Pradié": [
+        "Aurélien PRADIÉ",
+        "Aurélien Pradié"
+      ],
+      "Christophe Proença": [
+        "Christophe PROENÇA",
+        "Christophe Proença"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "47"
+    },
+    "rendered_slot": "le Lot-et-Garonne",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Emeline Rey-Rinchet",
+      "Hélène Laporte",
+      "Michel Lauzzana"
+    ],
+    "accepted_forms": {
+      "Emeline Rey-Rinchet": [
+        "Emeline REY",
+        "Emeline Rey-Rinchet"
+      ],
+      "Hélène Laporte": [
+        "Hélène LAPORTE",
+        "Hélène Laporte"
+      ],
+      "Michel Lauzzana": [
+        "Michel LAUZZANA",
+        "Michel Lauzzana"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "48"
+    },
+    "rendered_slot": "la Lozère",
+    "shape": "list",
+    "expected_cardinality": 1,
+    "expected": [
+      "Sophie Pantel"
+    ],
+    "accepted_forms": {
+      "Sophie Pantel": [
+        "Sophie PANTEL",
+        "Sophie Pantel"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "49"
+    },
+    "rendered_slot": "le Maine-et-Loire",
+    "shape": "list",
+    "expected_cardinality": 7,
+    "expected": [
+      "Anne-Laure Blin",
+      "Denis Masséglia",
+      "François Gernigon",
+      "Laetitia Saint-Paul",
+      "Nicole Dubré-Chirat",
+      "Patricia Maussion",
+      "Stella Dupont"
+    ],
+    "accepted_forms": {
+      "Anne-Laure Blin": [
+        "Anne-Laure BLIN",
+        "Anne-Laure Blin"
+      ],
+      "Denis Masséglia": [
+        "Denis MASSEGLIA",
+        "Denis Masséglia"
+      ],
+      "François Gernigon": [
+        "François GERNIGON",
+        "François Gernigon"
+      ],
+      "Laetitia Saint-Paul": [
+        "Laetitia Saint-Paul",
+        "Laëtitia SAINT-PAUL"
+      ],
+      "Nicole Dubré-Chirat": [
+        "Nicole DUBRE CHIRAT",
+        "Nicole Dubré-Chirat"
+      ],
+      "Patricia Maussion": [
+        "Patricia MAUSSION",
+        "Patricia Maussion"
+      ],
+      "Stella Dupont": [
+        "Stella DUPONT",
+        "Stella Dupont"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "50"
+    },
+    "rendered_slot": "la Manche",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Anna Pic",
+      "Bertrand Sorre",
+      "Philippe Gosselin",
+      "Stéphane Travert"
+    ],
+    "accepted_forms": {
+      "Anna Pic": [
+        "Anna PIC",
+        "Anna Pic"
+      ],
+      "Bertrand Sorre": [
+        "Bertrand SORRE",
+        "Bertrand Sorre"
+      ],
+      "Philippe Gosselin": [
+        "Philippe GOSSELIN",
+        "Philippe Gosselin"
+      ],
+      "Stéphane Travert": [
+        "Stéphane TRAVERT",
+        "Stéphane Travert"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "51"
+    },
+    "rendered_slot": "la Marne",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Charles de Courson",
+      "Laure Miller",
+      "Lise Magnier",
+      "Maxime Michelet",
+      "Xavier Albertini"
+    ],
+    "accepted_forms": {
+      "Charles de Courson": [
+        "Charles DE COURSON",
+        "Charles de Courson"
+      ],
+      "Laure Miller": [
+        "Laure MILLER",
+        "Laure Miller"
+      ],
+      "Lise Magnier": [
+        "Lise MAGNIER",
+        "Lise Magnier"
+      ],
+      "Maxime Michelet": [
+        "Maxime MICHELET",
+        "Maxime Michelet"
+      ],
+      "Xavier Albertini": [
+        "Xavier ALBERTINI",
+        "Xavier Albertini"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "52"
+    },
+    "rendered_slot": "la Haute-Marne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Christophe Bentz",
+      "Laurence Robert-Dehault"
+    ],
+    "accepted_forms": {
+      "Christophe Bentz": [
+        "Christophe BENTZ",
+        "Christophe Bentz"
+      ],
+      "Laurence Robert-Dehault": [
+        "Laurence ROBERT-DEHAULT",
+        "Laurence Robert-Dehault"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "53"
+    },
+    "rendered_slot": "la Mayenne",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Guillaume Garot",
+      "Géraldine Bannier",
+      "Yannick Favennec-Bécot"
+    ],
+    "accepted_forms": {
+      "Guillaume Garot": [
+        "Guillaume GAROT",
+        "Guillaume Garot"
+      ],
+      "Géraldine Bannier": [
+        "Géraldine BANNIER",
+        "Géraldine Bannier"
+      ],
+      "Yannick Favennec-Bécot": [
+        "Yannick FAVENNEC",
+        "Yannick Favennec-Bécot"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "54"
+    },
+    "rendered_slot": "la Meurthe-et-Moselle",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Anthony Boulogne",
+      "Dominique Potier",
+      "Estelle Mercier",
+      "Frédéric Weber",
+      "Stéphane Hablot",
+      "Thibault Bazin"
+    ],
+    "accepted_forms": {
+      "Anthony Boulogne": [
+        "Anthony BOULOGNE",
+        "Anthony Boulogne"
+      ],
+      "Dominique Potier": [
+        "Dominique POTIER",
+        "Dominique Potier"
+      ],
+      "Estelle Mercier": [
+        "Estelle MERCIER",
+        "Estelle Mercier"
+      ],
+      "Frédéric Weber": [
+        "Frédéric WEBER",
+        "Frédéric Weber"
+      ],
+      "Stéphane Hablot": [
+        "Stéphane HABLOT",
+        "Stéphane Hablot"
+      ],
+      "Thibault Bazin": [
+        "Thibault BAZIN",
+        "Thibault Bazin"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "55"
+    },
+    "rendered_slot": "la Meuse",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Florence Goulet",
+      "Maxime Amblard"
+    ],
+    "accepted_forms": {
+      "Florence Goulet": [
+        "Florence GOULET",
+        "Florence Goulet"
+      ],
+      "Maxime Amblard": [
+        "Maxime AMBLARD",
+        "Maxime Amblard"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "56"
+    },
+    "rendered_slot": "le Morbihan",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Damien Girard",
+      "Jean-Michel Jacques",
+      "Jimmy Pahun",
+      "Michel Criaud",
+      "Nicole Le Peih",
+      "Paul Molac"
+    ],
+    "accepted_forms": {
+      "Damien Girard": [
+        "Damien GIRARD",
+        "Damien Girard"
+      ],
+      "Jean-Michel Jacques": [
+        "Jean-Michel JACQUES",
+        "Jean-Michel Jacques"
+      ],
+      "Jimmy Pahun": [
+        "Jimmy PAHUN",
+        "Jimmy Pahun"
+      ],
+      "Michel Criaud": [
+        "Michel CRIAUD",
+        "Michel Criaud"
+      ],
+      "Nicole Le Peih": [
+        "Nicole LE PEIH",
+        "Nicole Le Peih"
+      ],
+      "Paul Molac": [
+        "Paul MOLAC",
+        "Paul Molac"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "57"
+    },
+    "rendered_slot": "la Moselle",
+    "shape": "list",
+    "expected_cardinality": 9,
+    "expected": [
+      "Alexandre Loubet",
+      "Belkhir Belhaddad",
+      "Isabelle Rauch",
+      "Jérôme End",
+      "Kévin Pfeffer",
+      "Laurent Jacobelli",
+      "Ludovic Mendes",
+      "Nathalie Colin-Oesterlé",
+      "Pascal Jenft"
+    ],
+    "accepted_forms": {
+      "Alexandre Loubet": [
+        "Alexandre LOUBET",
+        "Alexandre Loubet"
+      ],
+      "Belkhir Belhaddad": [
+        "Belkhir BELHADDAD",
+        "Belkhir Belhaddad"
+      ],
+      "Isabelle Rauch": [
+        "Isabelle RAUCH",
+        "Isabelle Rauch"
+      ],
+      "Jérôme End": [
+        "Jérôme END",
+        "Jérôme End"
+      ],
+      "Kévin Pfeffer": [
+        "Kévin PFEFFER",
+        "Kévin Pfeffer"
+      ],
+      "Laurent Jacobelli": [
+        "Laurent JACOBELLI",
+        "Laurent Jacobelli"
+      ],
+      "Ludovic Mendes": [
+        "Ludovic MENDES",
+        "Ludovic Mendes"
+      ],
+      "Nathalie Colin-Oesterlé": [
+        "Nathalie COLIN-OESTERLÉ",
+        "Nathalie Colin-Oesterlé"
+      ],
+      "Pascal Jenft": [
+        "Pascal JENFT",
+        "Pascal Jenft"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "58"
+    },
+    "rendered_slot": "la Nièvre",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Julien Guibert",
+      "Perrine Goulet"
+    ],
+    "accepted_forms": {
+      "Julien Guibert": [
+        "Julien GUIBERT",
+        "Julien Guibert"
+      ],
+      "Perrine Goulet": [
+        "Perrine GOULET",
+        "Perrine Goulet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "59"
+    },
+    "rendered_slot": "le Nord",
+    "shape": "list",
+    "expected_cardinality": 21,
+    "expected": [
+      "Alexandre Dufosset",
+      "Aurélien Le Coq",
+      "Brigitte Liso",
+      "Charlotte Parmentier-Lecocq",
+      "Félicie Gérard",
+      "Guillaume Florquin",
+      "Jean Bodart",
+      "Jean-Pierre Bataille",
+      "Matthieu Marchio",
+      "Michaël Taverne",
+      "Pierre Marle",
+      "Roger Vicot",
+      "Sandra Delannoy",
+      "Shéhérazade Bentorki",
+      "Sébastien Chenu",
+      "Sébastien Huyghe",
+      "Thierry Tesson",
+      "Ugo Bernalicis",
+      "Valérie Létard",
+      "Vincent Ledoux",
+      "Violette Spillebout"
+    ],
+    "accepted_forms": {
+      "Alexandre Dufosset": [
+        "Alexandre DUFOSSET",
+        "Alexandre Dufosset"
+      ],
+      "Aurélien Le Coq": [
+        "Aurélien LE COQ",
+        "Aurélien Le Coq"
+      ],
+      "Brigitte Liso": [
+        "Brigitte LISO",
+        "Brigitte Liso"
+      ],
+      "Charlotte Parmentier-Lecocq": [
+        "Charlotte Parmentier-Lecocq"
+      ],
+      "Félicie Gérard": [
+        "Félicie GERARD",
+        "Félicie Gérard"
+      ],
+      "Guillaume Florquin": [
+        "Guillaume FLORQUIN",
+        "Guillaume Florquin"
+      ],
+      "Jean Bodart": [
+        "Jean BODART",
+        "Jean Bodart"
+      ],
+      "Jean-Pierre Bataille": [
+        "Jean-Pierre BATAILLE",
+        "Jean-Pierre Bataille"
+      ],
+      "Matthieu Marchio": [
+        "Matthieu MARCHIO",
+        "Matthieu Marchio"
+      ],
+      "Michaël Taverne": [
+        "Michael TAVERNE",
+        "Michaël Taverne"
+      ],
+      "Pierre Marle": [
+        "Pierre MARLE",
+        "Pierre Marle"
+      ],
+      "Roger Vicot": [
+        "Roger VICOT",
+        "Roger Vicot"
+      ],
+      "Sandra Delannoy": [
+        "Sandra DELANNOY",
+        "Sandra Delannoy"
+      ],
+      "Shéhérazade Bentorki": [
+        "Shéhérazade BENTORKI",
+        "Shéhérazade Bentorki"
+      ],
+      "Sébastien Chenu": [
+        "Sébastien CHENU",
+        "Sébastien Chenu"
+      ],
+      "Sébastien Huyghe": [
+        "Sébastien HUYGHE",
+        "Sébastien Huyghe"
+      ],
+      "Thierry Tesson": [
+        "Thierry TESSON",
+        "Thierry Tesson"
+      ],
+      "Ugo Bernalicis": [
+        "Ugo BERNALICIS",
+        "Ugo Bernalicis"
+      ],
+      "Valérie Létard": [
+        "Valérie LÉTARD",
+        "Valérie Létard"
+      ],
+      "Vincent Ledoux": [
+        "Vincent LEDOUX",
+        "Vincent Ledoux"
+      ],
+      "Violette Spillebout": [
+        "Violette SPILLEBOUT",
+        "Violette Spillebout"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "60"
+    },
+    "rendered_slot": "l'Oise",
+    "shape": "list",
+    "expected_cardinality": 7,
+    "expected": [
+      "Alexandre Sabatou",
+      "Claire Marais-Beuil",
+      "David Magnier",
+      "Frédéric-Pierre Vos",
+      "Michel Guiniot",
+      "Philippe Ballard",
+      "Véronique Ludmann"
+    ],
+    "accepted_forms": {
+      "Alexandre Sabatou": [
+        "Alexandre SABATOU",
+        "Alexandre Sabatou"
+      ],
+      "Claire Marais-Beuil": [
+        "Claire MARAIS-BEUIL",
+        "Claire Marais-Beuil"
+      ],
+      "David Magnier": [
+        "David MAGNIER",
+        "David Magnier"
+      ],
+      "Frédéric-Pierre Vos": [
+        "Frédéric VOS",
+        "Frédéric-Pierre Vos"
+      ],
+      "Michel Guiniot": [
+        "Michel GUINIOT",
+        "Michel Guiniot"
+      ],
+      "Philippe Ballard": [
+        "Philippe BALLARD",
+        "Philippe Ballard"
+      ],
+      "Véronique Ludmann": [
+        "Véronique LUDMANN",
+        "Véronique Ludmann"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "61"
+    },
+    "rendered_slot": "l'Orne",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Cendrine Chazé",
+      "Chantal Jourdan",
+      "Thierry Liger"
+    ],
+    "accepted_forms": {
+      "Cendrine Chazé": [
+        "Cendrine Chazé",
+        "Cendrine FOUCHER CHAZÉ"
+      ],
+      "Chantal Jourdan": [
+        "Chantal JOURDAN",
+        "Chantal Jourdan"
+      ],
+      "Thierry Liger": [
+        "Thierry LIGER",
+        "Thierry Liger"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "62"
+    },
+    "rendered_slot": "le Pas-de-Calais",
+    "shape": "list",
+    "expected_cardinality": 12,
+    "expected": [
+      "Agnès Pannier-Runacher",
+      "Antoine Golliot",
+      "Auguste Evrard",
+      "Bruno Bilde",
+      "Bruno Clavet",
+      "Caroline Parmentier",
+      "Christine Engrand",
+      "Emmanuel Blairy",
+      "Marc de Fleurian",
+      "Marine Le Pen",
+      "Philippe Fait",
+      "Thierry Frappé"
+    ],
+    "accepted_forms": {
+      "Agnès Pannier-Runacher": [
+        "Agnès PANNIER-RUNACHER",
+        "Agnès Pannier-Runacher"
+      ],
+      "Antoine Golliot": [
+        "Antoine GOLLIOT",
+        "Antoine Golliot"
+      ],
+      "Auguste Evrard": [
+        "Auguste EVRARD",
+        "Auguste Evrard"
+      ],
+      "Bruno Bilde": [
+        "Bruno BILDE",
+        "Bruno Bilde"
+      ],
+      "Bruno Clavet": [
+        "Bruno CLAVET",
+        "Bruno Clavet"
+      ],
+      "Caroline Parmentier": [
+        "Caroline PARMENTIER",
+        "Caroline Parmentier"
+      ],
+      "Christine Engrand": [
+        "Christine ENGRAND",
+        "Christine Engrand"
+      ],
+      "Emmanuel Blairy": [
+        "Emmanuel BLAIRY",
+        "Emmanuel Blairy"
+      ],
+      "Marc de Fleurian": [
+        "Marc DE FLEURIAN",
+        "Marc de Fleurian"
+      ],
+      "Marine Le Pen": [
+        "Marine LE PEN",
+        "Marine Le Pen"
+      ],
+      "Philippe Fait": [
+        "Philippe FAIT",
+        "Philippe Fait"
+      ],
+      "Thierry Frappé": [
+        "Thierry FRAPPÉ",
+        "Thierry Frappé"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "63"
+    },
+    "rendered_slot": "le Puy-de-Dôme",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Christine Pirès Beaune",
+      "Delphine Lingemann",
+      "Julien Brugerolles",
+      "Marianne Maximi",
+      "Nicolas Bonnet"
+    ],
+    "accepted_forms": {
+      "Christine Pirès Beaune": [
+        "Christine PIRÈS BEAUNE",
+        "Christine Pirès Beaune"
+      ],
+      "Delphine Lingemann": [
+        "Delphine LINGEMANN",
+        "Delphine Lingemann"
+      ],
+      "Julien Brugerolles": [
+        "Julien BRUGEROLLES",
+        "Julien Brugerolles"
+      ],
+      "Marianne Maximi": [
+        "Marianne MAXIMI",
+        "Marianne Maximi"
+      ],
+      "Nicolas Bonnet": [
+        "Nicolas BONNET",
+        "Nicolas Bonnet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "64"
+    },
+    "rendered_slot": "les Pyrénées-Atlantiques",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Colette Capdevielle",
+      "David Habib",
+      "Iñaki Echaniz",
+      "Jean-Paul Mattei",
+      "Josy Poueyto",
+      "Peio Dufau"
+    ],
+    "accepted_forms": {
+      "Colette Capdevielle": [
+        "Colette CAPDEVIELLE",
+        "Colette Capdevielle"
+      ],
+      "David Habib": [
+        "David HABIB",
+        "David Habib"
+      ],
+      "Iñaki Echaniz": [
+        "Iñaki ECHANIZ",
+        "Iñaki Echaniz"
+      ],
+      "Jean-Paul Mattei": [
+        "Jean-Paul MATTEÏ",
+        "Jean-Paul Mattei"
+      ],
+      "Josy Poueyto": [
+        "Josy POUEYTO",
+        "Josy Poueyto"
+      ],
+      "Peio Dufau": [
+        "Peio DUFAU",
+        "Peio Dufau"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "65"
+    },
+    "rendered_slot": "les Hautes-Pyrénées",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Denis Fégné",
+      "Sylvie Ferrer"
+    ],
+    "accepted_forms": {
+      "Denis Fégné": [
+        "Denis FÉGNÉ",
+        "Denis Fégné"
+      ],
+      "Sylvie Ferrer": [
+        "Sylvie FERRER",
+        "Sylvie Ferrer"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "66"
+    },
+    "rendered_slot": "les Pyrénées-Orientales",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Anaïs Sabatini",
+      "Michèle Martinez",
+      "Sandrine Dogor-Such",
+      "Sophie Blanc"
+    ],
+    "accepted_forms": {
+      "Anaïs Sabatini": [
+        "Anaïs SABATINI",
+        "Anaïs Sabatini"
+      ],
+      "Michèle Martinez": [
+        "Michèle MARTINEZ",
+        "Michèle Martinez"
+      ],
+      "Sandrine Dogor-Such": [
+        "Sandrine DOGOR-SUCH",
+        "Sandrine Dogor-Such"
+      ],
+      "Sophie Blanc": [
+        "Sophie BLANC",
+        "Sophie Blanc"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "67"
+    },
+    "rendered_slot": "le Bas-Rhin",
+    "shape": "list",
+    "expected_cardinality": 9,
+    "expected": [
+      "Charles Sitzenstuhl",
+      "Emmanuel Fernandes",
+      "Françoise Buffet",
+      "Louise Morel",
+      "Patrick Hetzel",
+      "Sandra Regol",
+      "Thierry Sother",
+      "Théo Bernhardt",
+      "Vincent Thiébaut"
+    ],
+    "accepted_forms": {
+      "Charles Sitzenstuhl": [
+        "Charles SITZENSTUHL",
+        "Charles Sitzenstuhl"
+      ],
+      "Emmanuel Fernandes": [
+        "Emmanuel FERNANDES",
+        "Emmanuel Fernandes"
+      ],
+      "Françoise Buffet": [
+        "Françoise BUFFET",
+        "Françoise Buffet"
+      ],
+      "Louise Morel": [
+        "Louise MOREL",
+        "Louise Morel"
+      ],
+      "Patrick Hetzel": [
+        "Patrick HETZEL",
+        "Patrick Hetzel"
+      ],
+      "Sandra Regol": [
+        "Sandra REGOL",
+        "Sandra Regol"
+      ],
+      "Thierry Sother": [
+        "Thierry SOTHER",
+        "Thierry Sother"
+      ],
+      "Théo Bernhardt": [
+        "Théo BERNHARDT",
+        "Théo Bernhardt"
+      ],
+      "Vincent Thiébaut": [
+        "Vincent THIEBAUT",
+        "Vincent Thiébaut"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "68"
+    },
+    "rendered_slot": "le Haut-Rhin",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Brigitte Klinkert",
+      "Bruno Fuchs",
+      "Didier Lemaire",
+      "Hubert Ott",
+      "Olivier Becht",
+      "Raphaël Schellenberger"
+    ],
+    "accepted_forms": {
+      "Brigitte Klinkert": [
+        "Brigitte KLINKERT",
+        "Brigitte Klinkert"
+      ],
+      "Bruno Fuchs": [
+        "Bruno FUCHS",
+        "Bruno Fuchs"
+      ],
+      "Didier Lemaire": [
+        "Didier LEMAIRE",
+        "Didier Lemaire"
+      ],
+      "Hubert Ott": [
+        "Hubert OTT",
+        "Hubert Ott"
+      ],
+      "Olivier Becht": [
+        "Olivier BECHT",
+        "Olivier Becht"
+      ],
+      "Raphaël Schellenberger": [
+        "Raphaël SCHELLENBERGER",
+        "Raphaël Schellenberger"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "69"
+    },
+    "rendered_slot": "le Rhône",
+    "shape": "list",
+    "expected_cardinality": 14,
+    "expected": [
+      "Abdelkader Lahmar",
+      "Alexandre Portier",
+      "Anaïs Belouassa-Cherifi",
+      "Blandine Brocard",
+      "Boris Tavernier",
+      "Cyrille Isaac-Sibille",
+      "Gabriel Amard",
+      "Idir Boumertit",
+      "Jean-Luc Fugit",
+      "Jonathan Gery",
+      "Marie-Charlotte Garin",
+      "Sandrine Runel",
+      "Thomas Gassilloud",
+      "Tiffany Joncour"
+    ],
+    "accepted_forms": {
+      "Abdelkader Lahmar": [
+        "Abdelkader LAHMAR",
+        "Abdelkader Lahmar"
+      ],
+      "Alexandre Portier": [
+        "Alexandre PORTIER",
+        "Alexandre Portier"
+      ],
+      "Anaïs Belouassa-Cherifi": [
+        "Anaïs BELOUASSA-CHERIFI",
+        "Anaïs Belouassa-Cherifi"
+      ],
+      "Blandine Brocard": [
+        "Blandine BROCARD",
+        "Blandine Brocard"
+      ],
+      "Boris Tavernier": [
+        "Boris TAVERNIER",
+        "Boris Tavernier"
+      ],
+      "Cyrille Isaac-Sibille": [
+        "Cyrille ISAAC-SIBILLE",
+        "Cyrille Isaac-Sibille"
+      ],
+      "Gabriel Amard": [
+        "Gabriel AMARD",
+        "Gabriel Amard"
+      ],
+      "Idir Boumertit": [
+        "Idir BOUMERTIT",
+        "Idir Boumertit"
+      ],
+      "Jean-Luc Fugit": [
+        "Jean-Luc FUGIT",
+        "Jean-Luc Fugit"
+      ],
+      "Jonathan Gery": [
+        "Jonathan GERY",
+        "Jonathan Gery"
+      ],
+      "Marie-Charlotte Garin": [
+        "Marie-Charlotte GARIN",
+        "Marie-Charlotte Garin"
+      ],
+      "Sandrine Runel": [
+        "Sandrine RUNEL",
+        "Sandrine Runel"
+      ],
+      "Thomas Gassilloud": [
+        "Thomas GASSILLOUD",
+        "Thomas Gassilloud"
+      ],
+      "Tiffany Joncour": [
+        "Tiffany JONCOUR",
+        "Tiffany Joncour"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "70"
+    },
+    "rendered_slot": "la Haute-Saône",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Antoine Villedieu",
+      "Emeric Salmon"
+    ],
+    "accepted_forms": {
+      "Antoine Villedieu": [
+        "Antoine VILLEDIEU",
+        "Antoine Villedieu"
+      ],
+      "Emeric Salmon": [
+        "Emeric SALMON",
+        "Emeric Salmon"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "71"
+    },
+    "rendered_slot": "la Saône-et-Loire",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Aurélien Dutremble",
+      "Benjamin Dirx",
+      "Josiane Corneloup",
+      "Lionel Duparay",
+      "Éric Michoux"
+    ],
+    "accepted_forms": {
+      "Aurélien Dutremble": [
+        "Aurélien DUTREMBLE",
+        "Aurélien Dutremble"
+      ],
+      "Benjamin Dirx": [
+        "Benjamin DIRX",
+        "Benjamin Dirx"
+      ],
+      "Josiane Corneloup": [
+        "Josiane CORNELOUP",
+        "Josiane Corneloup"
+      ],
+      "Lionel Duparay": [
+        "Lionel Duparay"
+      ],
+      "Éric Michoux": [
+        "Eric MICHOUX",
+        "Éric Michoux"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "72"
+    },
+    "rendered_slot": "la Sarthe",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Jean-Carles Grelier",
+      "Julie Delpech",
+      "Marietta Karamanli",
+      "Élise Leboucher",
+      "Éric Martineau"
+    ],
+    "accepted_forms": {
+      "Jean-Carles Grelier": [
+        "Jean-Carles GRELIER",
+        "Jean-Carles Grelier"
+      ],
+      "Julie Delpech": [
+        "Julie DELPECH",
+        "Julie Delpech"
+      ],
+      "Marietta Karamanli": [
+        "Marietta KARAMANLI",
+        "Marietta Karamanli"
+      ],
+      "Élise Leboucher": [
+        "Elise LEBOUCHER",
+        "Élise Leboucher"
+      ],
+      "Éric Martineau": [
+        "Eric MARTINEAU",
+        "Éric Martineau"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "73"
+    },
+    "rendered_slot": "la Savoie",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Didier Padey",
+      "Jean-François Coulomme",
+      "Vincent Rolland",
+      "Émilie Bonnivard"
+    ],
+    "accepted_forms": {
+      "Didier Padey": [
+        "Didier PADEY",
+        "Didier Padey"
+      ],
+      "Jean-François Coulomme": [
+        "Jean-François COULOMME",
+        "Jean-François Coulomme"
+      ],
+      "Vincent Rolland": [
+        "Vincent ROLLAND",
+        "Vincent Rolland"
+      ],
+      "Émilie Bonnivard": [
+        "Emilie BONNIVARD",
+        "Émilie Bonnivard"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "74"
+    },
+    "rendered_slot": "la Haute-Savoie",
+    "shape": "list",
+    "expected_cardinality": 6,
+    "expected": [
+      "Anne-Cécile Violland",
+      "Antoine Valentin",
+      "Danièle Carteron",
+      "Virginie Duby-Muller",
+      "Véronique Riotton",
+      "Xavier Roseren"
+    ],
+    "accepted_forms": {
+      "Anne-Cécile Violland": [
+        "Anne-Cécile VIOLLAND",
+        "Anne-Cécile Violland"
+      ],
+      "Antoine Valentin": [
+        "Antoine VALENTIN",
+        "Antoine Valentin"
+      ],
+      "Danièle Carteron": [
+        "Danièle CARTERON",
+        "Danièle Carteron"
+      ],
+      "Virginie Duby-Muller": [
+        "Virginie DUBY-MULLER",
+        "Virginie Duby-Muller"
+      ],
+      "Véronique Riotton": [
+        "Véronique RIOTTON",
+        "Véronique Riotton"
+      ],
+      "Xavier Roseren": [
+        "Xavier ROSEREN",
+        "Xavier Roseren"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "75"
+    },
+    "rendered_slot": "Paris",
+    "shape": "list",
+    "expected_cardinality": 18,
+    "expected": [
+      "Astrid Panosyan-Bouvet",
+      "Aymeric Caron",
+      "Catherine Ibled",
+      "Céline Hervieu",
+      "Danielle Simonnet",
+      "Danièle Obono",
+      "Dorine Bregman",
+      "Eva Sas",
+      "Joséphine Missoffe",
+      "Léa Balage El Mariky",
+      "Michel Barnier",
+      "Olivia Grégoire",
+      "Pouria Amirshahi",
+      "Rodrigo Arenas",
+      "Sandrine Rousseau",
+      "Sarah Legrain",
+      "Sophia Chikirou",
+      "Sylvain Maillard"
+    ],
+    "accepted_forms": {
+      "Astrid Panosyan-Bouvet": [
+        "Astrid PANOSYAN-BOUVET",
+        "Astrid Panosyan-Bouvet"
+      ],
+      "Aymeric Caron": [
+        "Aymeric CARON",
+        "Aymeric Caron"
+      ],
+      "Catherine Ibled": [
+        "Catherine IBLED",
+        "Catherine Ibled"
+      ],
+      "Céline Hervieu": [
+        "Céline HERVIEU",
+        "Céline Hervieu"
+      ],
+      "Danielle Simonnet": [
+        "Danielle SIMONNET",
+        "Danielle Simonnet"
+      ],
+      "Danièle Obono": [
+        "Danièle OBONO",
+        "Danièle Obono"
+      ],
+      "Dorine Bregman": [
+        "Dorine BREGMAN",
+        "Dorine Bregman"
+      ],
+      "Eva Sas": [
+        "Eva SAS",
+        "Eva Sas"
+      ],
+      "Joséphine Missoffe": [
+        "Joséphine MISSOFFE",
+        "Joséphine Missoffe"
+      ],
+      "Léa Balage El Mariky": [
+        "Léa BALAGE EL MARIKY",
+        "Léa Balage El Mariky"
+      ],
+      "Michel Barnier": [
+        "Michel BARNIER",
+        "Michel Barnier"
+      ],
+      "Olivia Grégoire": [
+        "Olivia GREGOIRE",
+        "Olivia Grégoire"
+      ],
+      "Pouria Amirshahi": [
+        "Pouria AMIRSHAHI",
+        "Pouria Amirshahi"
+      ],
+      "Rodrigo Arenas": [
+        "Rodrigo ARENAS",
+        "Rodrigo Arenas"
+      ],
+      "Sandrine Rousseau": [
+        "Sandrine ROUSSEAU",
+        "Sandrine Rousseau"
+      ],
+      "Sarah Legrain": [
+        "Sarah LEGRAIN",
+        "Sarah Legrain"
+      ],
+      "Sophia Chikirou": [
+        "Sophia CHIKIROU",
+        "Sophia Chikirou"
+      ],
+      "Sylvain Maillard": [
+        "Sylvain MAILLARD",
+        "Sylvain Maillard"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "76"
+    },
+    "rendered_slot": "la Seine-Maritime",
+    "shape": "list",
+    "expected_cardinality": 10,
+    "expected": [
+      "Agnès Firmin Le Bodo",
+      "Alma Dufour",
+      "Annie Vidal",
+      "Florence Herouin-Léautey",
+      "Gérard Leseul",
+      "Jean-Paul Lecoq",
+      "Marie-Agnès Poussier-Winsback",
+      "Patrice Martin",
+      "Robert Le Bourgeois",
+      "Édouard Bénard"
+    ],
+    "accepted_forms": {
+      "Agnès Firmin Le Bodo": [
+        "Agnès FIRMIN LE BODO",
+        "Agnès Firmin Le Bodo"
+      ],
+      "Alma Dufour": [
+        "Alma DUFOUR",
+        "Alma Dufour"
+      ],
+      "Annie Vidal": [
+        "Annie VIDAL",
+        "Annie Vidal"
+      ],
+      "Florence Herouin-Léautey": [
+        "Florence HEROUIN-LEAUTEY",
+        "Florence Herouin-Léautey"
+      ],
+      "Gérard Leseul": [
+        "Gérard LESEUL",
+        "Gérard Leseul"
+      ],
+      "Jean-Paul Lecoq": [
+        "Jean-Paul LECOQ",
+        "Jean-Paul Lecoq"
+      ],
+      "Marie-Agnès Poussier-Winsback": [
+        "Marie-Agnes POUSSIER-WINSBACK",
+        "Marie-Agnès Poussier-Winsback"
+      ],
+      "Patrice Martin": [
+        "Patrice MARTIN",
+        "Patrice Martin"
+      ],
+      "Robert Le Bourgeois": [
+        "Robert LE BOURGEOIS",
+        "Robert Le Bourgeois"
+      ],
+      "Édouard Bénard": [
+        "Edouard BÉNARD",
+        "Édouard Bénard"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "77"
+    },
+    "rendered_slot": "la Seine-et-Marne",
+    "shape": "list",
+    "expected_cardinality": 11,
+    "expected": [
+      "Arnaud Bonnet",
+      "Arnaud Saint-Martin",
+      "Béatrice Roullaud",
+      "Céline Thiébault-Martinez",
+      "Ersilia Soudais",
+      "Frédéric Valletoux",
+      "Jean-Louis Thiériot",
+      "Julien Limongi",
+      "Maxime Laisney",
+      "Olivier Faure",
+      "Patricia Lemoine"
+    ],
+    "accepted_forms": {
+      "Arnaud Bonnet": [
+        "Arnaud BONNET",
+        "Arnaud Bonnet"
+      ],
+      "Arnaud Saint-Martin": [
+        "Arnaud SAINT-MARTIN",
+        "Arnaud Saint-Martin"
+      ],
+      "Béatrice Roullaud": [
+        "Béatrice ROULLAUD",
+        "Béatrice Roullaud"
+      ],
+      "Céline Thiébault-Martinez": [
+        "Céline THIEBAULT-MARTINEZ",
+        "Céline Thiébault-Martinez"
+      ],
+      "Ersilia Soudais": [
+        "Ersilia SOUDAIS",
+        "Ersilia Soudais"
+      ],
+      "Frédéric Valletoux": [
+        "Frédéric VALLETOUX",
+        "Frédéric Valletoux"
+      ],
+      "Jean-Louis Thiériot": [
+        "Jean-Louis THIERIOT",
+        "Jean-Louis Thiériot"
+      ],
+      "Julien Limongi": [
+        "Julien LIMONGI",
+        "Julien Limongi"
+      ],
+      "Maxime Laisney": [
+        "Maxime LAISNEY",
+        "Maxime Laisney"
+      ],
+      "Olivier Faure": [
+        "Olivier FAURE",
+        "Olivier Faure"
+      ],
+      "Patricia Lemoine": [
+        "Patricia LEMOINE",
+        "Patricia Lemoine"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "78"
+    },
+    "rendered_slot": "les Yvelines",
+    "shape": "list",
+    "expected_cardinality": 12,
+    "expected": [
+      "Anne Bergantz",
+      "Anne-Sophie Ronceret",
+      "Aurélien Rousseau",
+      "Benjamin Lucas-Lundy",
+      "Béatrice Piron",
+      "Charles Rodwell",
+      "Dieynaba Diop",
+      "Karl Olive",
+      "Laurent Mazaury",
+      "Marie Lebec",
+      "Natalia Pouzyreff",
+      "Yaël Braun-Pivet"
+    ],
+    "accepted_forms": {
+      "Anne Bergantz": [
+        "Anne BERGANTZ",
+        "Anne Bergantz"
+      ],
+      "Anne-Sophie Ronceret": [
+        "Anne-Sophie RONCERET",
+        "Anne-Sophie Ronceret"
+      ],
+      "Aurélien Rousseau": [
+        "Aurélien ROUSSEAU",
+        "Aurélien Rousseau"
+      ],
+      "Benjamin Lucas-Lundy": [
+        "Benjamin LUCAS",
+        "Benjamin Lucas-Lundy"
+      ],
+      "Béatrice Piron": [
+        "Béatrice PIRON",
+        "Béatrice Piron"
+      ],
+      "Charles Rodwell": [
+        "Charles RODWELL",
+        "Charles Rodwell"
+      ],
+      "Dieynaba Diop": [
+        "Dieynaba DIOP",
+        "Dieynaba Diop"
+      ],
+      "Karl Olive": [
+        "Karl OLIVE",
+        "Karl Olive"
+      ],
+      "Laurent Mazaury": [
+        "Laurent MAZAURY",
+        "Laurent Mazaury"
+      ],
+      "Marie Lebec": [
+        "Marie LEBEC",
+        "Marie Lebec"
+      ],
+      "Natalia Pouzyreff": [
+        "Natalia POUZYREFF",
+        "Natalia Pouzyreff"
+      ],
+      "Yaël Braun-Pivet": [
+        "Yaël BRAUN-PIVET",
+        "Yaël Braun-Pivet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "79"
+    },
+    "rendered_slot": "les Deux-Sèvres",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Bastien Marchive",
+      "Delphine Batho",
+      "Jean-Marie Fiévet"
+    ],
+    "accepted_forms": {
+      "Bastien Marchive": [
+        "Bastien MARCHIVE",
+        "Bastien Marchive"
+      ],
+      "Delphine Batho": [
+        "Delphine BATHO",
+        "Delphine Batho"
+      ],
+      "Jean-Marie Fiévet": [
+        "Jean-Marie FIÉVET",
+        "Jean-Marie Fiévet"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "80"
+    },
+    "rendered_slot": "la Somme",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "François Ruffin",
+      "Jean-Philippe Tanguy",
+      "Matthias Renault",
+      "Yaël Ménaché",
+      "Zahia Hamdane"
+    ],
+    "accepted_forms": {
+      "François Ruffin": [
+        "François RUFFIN",
+        "François Ruffin"
+      ],
+      "Jean-Philippe Tanguy": [
+        "Jean-Philippe TANGUY",
+        "Jean-Philippe Tanguy"
+      ],
+      "Matthias Renault": [
+        "Matthias RENAULT",
+        "Matthias Renault"
+      ],
+      "Yaël Ménaché": [
+        "Yaël MENACHE",
+        "Yaël Ménaché"
+      ],
+      "Zahia Hamdane": [
+        "Zahia HAMDANE",
+        "Zahia Hamdane"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "81"
+    },
+    "rendered_slot": "le Tarn",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Jean Terlier",
+      "Karen Erodi",
+      "Philippe Bonnecarrère"
+    ],
+    "accepted_forms": {
+      "Jean Terlier": [
+        "Jean TERLIER",
+        "Jean Terlier"
+      ],
+      "Karen Erodi": [
+        "Karen ERODI",
+        "Karen Erodi"
+      ],
+      "Philippe Bonnecarrère": [
+        "Philippe BONNECARRERE",
+        "Philippe Bonnecarrère"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "82"
+    },
+    "rendered_slot": "le Tarn-et-Garonne",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Marine Hamelet",
+      "Pierre-Henri Carbonnel"
+    ],
+    "accepted_forms": {
+      "Marine Hamelet": [
+        "Marine HAMELET",
+        "Marine Hamelet"
+      ],
+      "Pierre-Henri Carbonnel": [
+        "Pierre-Henri CARBONNEL",
+        "Pierre-Henri Carbonnel"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "83"
+    },
+    "rendered_slot": "le Var",
+    "shape": "list",
+    "expected_cardinality": 8,
+    "expected": [
+      "Frank Giletti",
+      "Frédéric Boccaletti",
+      "Julie Lechanteux",
+      "Laure Lavalette",
+      "Philippe Lottiaux",
+      "Philippe Schreck",
+      "Stéphane Rambaud",
+      "Yannick Chenevard"
+    ],
+    "accepted_forms": {
+      "Frank Giletti": [
+        "Frank GILETTI",
+        "Frank Giletti"
+      ],
+      "Frédéric Boccaletti": [
+        "Frédéric BOCCALETTI",
+        "Frédéric Boccaletti"
+      ],
+      "Julie Lechanteux": [
+        "Julie LECHANTEUX",
+        "Julie Lechanteux"
+      ],
+      "Laure Lavalette": [
+        "Laure LAVALETTE",
+        "Laure Lavalette"
+      ],
+      "Philippe Lottiaux": [
+        "Philippe LOTTIAUX",
+        "Philippe Lottiaux"
+      ],
+      "Philippe Schreck": [
+        "Philippe SCHRECK",
+        "Philippe Schreck"
+      ],
+      "Stéphane Rambaud": [
+        "Stéphane RAMBAUD",
+        "Stéphane Rambaud"
+      ],
+      "Yannick Chenevard": [
+        "Yannick CHENEVARD",
+        "Yannick Chenevard"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "84"
+    },
+    "rendered_slot": "le Vaucluse",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Bénédicte Auzanot",
+      "Catherine Rimbert",
+      "Hervé de Lépinau",
+      "Marie-France Lorho",
+      "Raphaël Arnault"
+    ],
+    "accepted_forms": {
+      "Bénédicte Auzanot": [
+        "Bénédicte AUZANOT",
+        "Bénédicte Auzanot"
+      ],
+      "Catherine Rimbert": [
+        "Catherine RIMBERT",
+        "Catherine Rimbert"
+      ],
+      "Hervé de Lépinau": [
+        "Hervé DE LÉPINAU",
+        "Hervé de Lépinau"
+      ],
+      "Marie-France Lorho": [
+        "Marie-France LORHO",
+        "Marie-France Lorho"
+      ],
+      "Raphaël Arnault": [
+        "Raphaël ARNAULT",
+        "Raphaël Arnault"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "85"
+    },
+    "rendered_slot": "la Vendée",
+    "shape": "list",
+    "expected_cardinality": 5,
+    "expected": [
+      "Dominique Paillat",
+      "Philippe Latombe",
+      "Pierre Henriet",
+      "Stéphane Buchou",
+      "Véronique Besse"
+    ],
+    "accepted_forms": {
+      "Dominique Paillat": [
+        "Dominique Paillat"
+      ],
+      "Philippe Latombe": [
+        "Philippe LATOMBE",
+        "Philippe Latombe"
+      ],
+      "Pierre Henriet": [
+        "Pierre HENRIET",
+        "Pierre Henriet"
+      ],
+      "Stéphane Buchou": [
+        "Stéphane BUCHOU",
+        "Stéphane Buchou"
+      ],
+      "Véronique Besse": [
+        "Véronique BESSE",
+        "Véronique Besse"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "86"
+    },
+    "rendered_slot": "la Vienne",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Lisa Belluco",
+      "Nicolas Turquois",
+      "Pascal Lecamp",
+      "Sacha Houlié"
+    ],
+    "accepted_forms": {
+      "Lisa Belluco": [
+        "Lisa BELLUCO",
+        "Lisa Belluco"
+      ],
+      "Nicolas Turquois": [
+        "Nicolas TURQUOIS",
+        "Nicolas Turquois"
+      ],
+      "Pascal Lecamp": [
+        "Pascal LECAMP",
+        "Pascal Lecamp"
+      ],
+      "Sacha Houlié": [
+        "Sacha HOULIÉ",
+        "Sacha Houlié"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "87"
+    },
+    "rendered_slot": "la Haute-Vienne",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Damien Maudet",
+      "Manon Meunier",
+      "Stéphane Delautrette"
+    ],
+    "accepted_forms": {
+      "Damien Maudet": [
+        "Damien MAUDET",
+        "Damien Maudet"
+      ],
+      "Manon Meunier": [
+        "Manon MEUNIER",
+        "Manon Meunier"
+      ],
+      "Stéphane Delautrette": [
+        "Stéphane DELAUTRETTE",
+        "Stéphane Delautrette"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "88"
+    },
+    "rendered_slot": "les Vosges",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Christophe Naegelen",
+      "Gaëtan Dussausaye",
+      "Stéphane Viry",
+      "Sébastien Humbert"
+    ],
+    "accepted_forms": {
+      "Christophe Naegelen": [
+        "Christophe NAEGELEN",
+        "Christophe Naegelen"
+      ],
+      "Gaëtan Dussausaye": [
+        "Gaëtan DUSSAUSAYE",
+        "Gaëtan Dussausaye"
+      ],
+      "Stéphane Viry": [
+        "Stéphane VIRY",
+        "Stéphane Viry"
+      ],
+      "Sébastien Humbert": [
+        "Sébastien HUMBERT",
+        "Sébastien Humbert"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "89"
+    },
+    "rendered_slot": "l'Yonne",
+    "shape": "list",
+    "expected_cardinality": 3,
+    "expected": [
+      "Daniel Grenon",
+      "Julien Odoul",
+      "Sophie-Laurence Roy"
+    ],
+    "accepted_forms": {
+      "Daniel Grenon": [
+        "Daniel GRENON",
+        "Daniel Grenon"
+      ],
+      "Julien Odoul": [
+        "Julien ODOUL",
+        "Julien Odoul"
+      ],
+      "Sophie-Laurence Roy": [
+        "Sophie-Laurence ROY",
+        "Sophie-Laurence Roy"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "90"
+    },
+    "rendered_slot": "le Territoire de Belfort",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Guillaume Bigot",
+      "Ian Boucard"
+    ],
+    "accepted_forms": {
+      "Guillaume Bigot": [
+        "Guillaume BIGOT",
+        "Guillaume Bigot"
+      ],
+      "Ian Boucard": [
+        "Ian BOUCARD",
+        "Ian Boucard"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "91"
+    },
+    "rendered_slot": "l'Essonne",
+    "shape": "list",
+    "expected_cardinality": 10,
+    "expected": [
+      "Antoine Léaument",
+      "Bérenger Cernon",
+      "Claire Lejeune",
+      "Farida Amrani",
+      "Julie Ozenne",
+      "Jérôme Guedj",
+      "Marie-Pierre Rixain",
+      "Nathalie Da Conceicao Carvalho",
+      "Paul Midy",
+      "Steevy Gustave"
+    ],
+    "accepted_forms": {
+      "Antoine Léaument": [
+        "Antoine LÉAUMENT",
+        "Antoine Léaument"
+      ],
+      "Bérenger Cernon": [
+        "Bérenger CERNON",
+        "Bérenger Cernon"
+      ],
+      "Claire Lejeune": [
+        "Claire LEJEUNE",
+        "Claire Lejeune"
+      ],
+      "Farida Amrani": [
+        "Farida AMRANI",
+        "Farida Amrani"
+      ],
+      "Julie Ozenne": [
+        "Julie OZENNE",
+        "Julie Ozenne"
+      ],
+      "Jérôme Guedj": [
+        "Jérôme GUEDJ",
+        "Jérôme Guedj"
+      ],
+      "Marie-Pierre Rixain": [
+        "Marie-Pierre RIXAIN",
+        "Marie-Pierre Rixain"
+      ],
+      "Nathalie Da Conceicao Carvalho": [
+        "Nathalie DA CONCEICAO CARVALHO",
+        "Nathalie Da Conceicao Carvalho"
+      ],
+      "Paul Midy": [
+        "Paul MIDY",
+        "Paul Midy"
+      ],
+      "Steevy Gustave": [
+        "Steevy GUSTAVE",
+        "Steevy Gustave"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "92"
+    },
+    "rendered_slot": "les Hauts-de-Seine",
+    "shape": "list",
+    "expected_cardinality": 13,
+    "expected": [
+      "Aurélien Saintoul",
+      "Carole Guillerm",
+      "Christophe Mongardien",
+      "Constance Le Grip",
+      "Céline Calvez",
+      "Elsa Faucillon",
+      "Gabriel Attal",
+      "Philippe Juvin",
+      "Pierre Cazeneuve",
+      "Prisca Thevenot",
+      "Sabrina Sebaihi",
+      "Thomas Lam",
+      "Élisabeth de Maistre"
+    ],
+    "accepted_forms": {
+      "Aurélien Saintoul": [
+        "Aurélien SAINTOUL",
+        "Aurélien Saintoul"
+      ],
+      "Carole Guillerm": [
+        "Carole GUILLERM",
+        "Carole Guillerm"
+      ],
+      "Christophe Mongardien": [
+        "Christophe MONGARDIEN",
+        "Christophe Mongardien"
+      ],
+      "Constance Le Grip": [
+        "Constance LE GRIP",
+        "Constance Le Grip"
+      ],
+      "Céline Calvez": [
+        "Céline CALVEZ",
+        "Céline Calvez"
+      ],
+      "Elsa Faucillon": [
+        "Elsa FAUCILLON",
+        "Elsa Faucillon"
+      ],
+      "Gabriel Attal": [
+        "Gabriel ATTAL",
+        "Gabriel Attal"
+      ],
+      "Philippe Juvin": [
+        "Philippe JUVIN",
+        "Philippe Juvin"
+      ],
+      "Pierre Cazeneuve": [
+        "Pierre CAZENEUVE",
+        "Pierre Cazeneuve"
+      ],
+      "Prisca Thevenot": [
+        "Prisca THEVENOT",
+        "Prisca Thevenot"
+      ],
+      "Sabrina Sebaihi": [
+        "Sabrina SEBAIHI",
+        "Sabrina Sebaihi"
+      ],
+      "Thomas Lam": [
+        "Thomas LAM",
+        "Thomas Lam"
+      ],
+      "Élisabeth de Maistre": [
+        "Elisabeth DE MAISTRE",
+        "Élisabeth de Maistre"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "93"
+    },
+    "rendered_slot": "la Seine-Saint-Denis",
+    "shape": "list",
+    "expected_cardinality": 12,
+    "expected": [
+      "Alexis Corbière",
+      "Aly Diouara",
+      "Aurélie Trouvé",
+      "Bastien Lachaud",
+      "Clémentine Autain",
+      "Fatiha Keloua Hachi",
+      "Jérôme Legavre",
+      "Nadège Abomangoli",
+      "Soumya Bourouaha",
+      "Stéphane Peu",
+      "Thomas Portes",
+      "Éric Coquerel"
+    ],
+    "accepted_forms": {
+      "Alexis Corbière": [
+        "Alexis CORBIÈRE",
+        "Alexis Corbière"
+      ],
+      "Aly Diouara": [
+        "Aly DIOUARA",
+        "Aly Diouara"
+      ],
+      "Aurélie Trouvé": [
+        "Aurélie TROUVÉ",
+        "Aurélie Trouvé"
+      ],
+      "Bastien Lachaud": [
+        "Bastien LACHAUD",
+        "Bastien Lachaud"
+      ],
+      "Clémentine Autain": [
+        "Clémentine AUTAIN",
+        "Clémentine Autain"
+      ],
+      "Fatiha Keloua Hachi": [
+        "Fatiha KELOUA HACHI",
+        "Fatiha Keloua Hachi"
+      ],
+      "Jérôme Legavre": [
+        "Jérôme LEGAVRE",
+        "Jérôme Legavre"
+      ],
+      "Nadège Abomangoli": [
+        "Nadège ABOMANGOLI",
+        "Nadège Abomangoli"
+      ],
+      "Soumya Bourouaha": [
+        "Soumya BOUROUAHA",
+        "Soumya Bourouaha"
+      ],
+      "Stéphane Peu": [
+        "Stéphane PEU",
+        "Stéphane Peu"
+      ],
+      "Thomas Portes": [
+        "Thomas PORTES",
+        "Thomas Portes"
+      ],
+      "Éric Coquerel": [
+        "Éric COQUEREL",
+        "Éric Coquerel"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "94"
+    },
+    "rendered_slot": "le Val-de-Marne",
+    "shape": "list",
+    "expected_cardinality": 11,
+    "expected": [
+      "Clémence Guetté",
+      "Guillaume Gouffier Valente",
+      "Isabelle Santiago",
+      "Louis Boyard",
+      "Mathilde Panot",
+      "Maud Petit",
+      "Michel Herbillon",
+      "Nicolas Tryzna",
+      "Sandrine Lalanne",
+      "Sophie Taillé-Polian",
+      "Sylvain Berrios"
+    ],
+    "accepted_forms": {
+      "Clémence Guetté": [
+        "Clémence GUETTÉ",
+        "Clémence Guetté"
+      ],
+      "Guillaume Gouffier Valente": [
+        "Guillaume GOUFFIER VALENTE",
+        "Guillaume Gouffier Valente"
+      ],
+      "Isabelle Santiago": [
+        "Isabelle SANTIAGO",
+        "Isabelle Santiago"
+      ],
+      "Louis Boyard": [
+        "Louis BOYARD",
+        "Louis Boyard"
+      ],
+      "Mathilde Panot": [
+        "Mathilde PANOT",
+        "Mathilde Panot"
+      ],
+      "Maud Petit": [
+        "Maud PETIT",
+        "Maud Petit"
+      ],
+      "Michel Herbillon": [
+        "Michel HERBILLON",
+        "Michel Herbillon"
+      ],
+      "Nicolas Tryzna": [
+        "Nicolas TRYZNA",
+        "Nicolas Tryzna"
+      ],
+      "Sandrine Lalanne": [
+        "Sandrine LALANNE",
+        "Sandrine Lalanne"
+      ],
+      "Sophie Taillé-Polian": [
+        "Sophie TAILLÉ-POLIAN",
+        "Sophie Taillé-Polian"
+      ],
+      "Sylvain Berrios": [
+        "Sylvain BERRIOS",
+        "Sylvain Berrios"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "95"
+    },
+    "rendered_slot": "le Val-d'Oise",
+    "shape": "list",
+    "expected_cardinality": 10,
+    "expected": [
+      "Anne Sicard",
+      "Arnaud Le Gall",
+      "Aurélien Taché",
+      "Ayda Hadizadeh",
+      "Benoît Blanchard",
+      "Carlos Martens Bilongo",
+      "Emmanuel Maurel",
+      "Gabrielle Cathala",
+      "Paul Vannier",
+      "Romain Eskenazi"
+    ],
+    "accepted_forms": {
+      "Anne Sicard": [
+        "Anne SICARD",
+        "Anne Sicard"
+      ],
+      "Arnaud Le Gall": [
+        "Arnaud LE GALL",
+        "Arnaud Le Gall"
+      ],
+      "Aurélien Taché": [
+        "Aurélien TACHÉ",
+        "Aurélien Taché"
+      ],
+      "Ayda Hadizadeh": [
+        "Ayda HADIZADEH",
+        "Ayda Hadizadeh"
+      ],
+      "Benoît Blanchard": [
+        "Benoît BLANCHARD",
+        "Benoît Blanchard"
+      ],
+      "Carlos Martens Bilongo": [
+        "Carlos Martens BILONGO",
+        "Carlos Martens Bilongo"
+      ],
+      "Emmanuel Maurel": [
+        "Emmanuel MAUREL",
+        "Emmanuel Maurel"
+      ],
+      "Gabrielle Cathala": [
+        "Gabrielle CATHALA",
+        "Gabrielle Cathala"
+      ],
+      "Paul Vannier": [
+        "Paul VANNIER",
+        "Paul Vannier"
+      ],
+      "Romain Eskenazi": [
+        "Romain ESKENAZI",
+        "Romain Eskenazi"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "971"
+    },
+    "rendered_slot": "la Guadeloupe",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Christian Baptiste",
+      "Elie Califer",
+      "Max Mathiasin",
+      "Olivier Serva"
+    ],
+    "accepted_forms": {
+      "Christian Baptiste": [
+        "Christian BAPTISTE",
+        "Christian Baptiste"
+      ],
+      "Elie Califer": [
+        "Elie CALIFER",
+        "Elie Califer"
+      ],
+      "Max Mathiasin": [
+        "Max MATHIASIN",
+        "Max Mathiasin"
+      ],
+      "Olivier Serva": [
+        "Olivier SERVA",
+        "Olivier Serva"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "972"
+    },
+    "rendered_slot": "la Martinique",
+    "shape": "list",
+    "expected_cardinality": 4,
+    "expected": [
+      "Béatrice Bellay",
+      "Jean-Philippe Nilor",
+      "Jiovanny William",
+      "Marcellin Nadeau"
+    ],
+    "accepted_forms": {
+      "Béatrice Bellay": [
+        "Beatrice BELLAY",
+        "Béatrice Bellay"
+      ],
+      "Jean-Philippe Nilor": [
+        "Jean-Philippe NILOR",
+        "Jean-Philippe Nilor"
+      ],
+      "Jiovanny William": [
+        "Jiovanny WILLIAM",
+        "Jiovanny William"
+      ],
+      "Marcellin Nadeau": [
+        "Marcellin NADEAU",
+        "Marcellin Nadeau"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "973"
+    },
+    "rendered_slot": "la Guyane",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Davy Rimane",
+      "Jean-Victor Castor"
+    ],
+    "accepted_forms": {
+      "Davy Rimane": [
+        "Davy RIMANE",
+        "Davy Rimane"
+      ],
+      "Jean-Victor Castor": [
+        "Jean-Victor CASTOR",
+        "Jean-Victor Castor"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "974"
+    },
+    "rendered_slot": "La Réunion",
+    "shape": "list",
+    "expected_cardinality": 7,
+    "expected": [
+      "Frédéric Maillot",
+      "Jean-Hugues Ratenon",
+      "Joseph Rivière",
+      "Karine Lebon",
+      "Perceval Gaillard",
+      "Philippe Naillet",
+      "Émeline K/Bidi"
+    ],
+    "accepted_forms": {
+      "Frédéric Maillot": [
+        "Frédéric MAILLOT",
+        "Frédéric Maillot"
+      ],
+      "Jean-Hugues Ratenon": [
+        "Jean-Hugues RATENON",
+        "Jean-Hugues Ratenon"
+      ],
+      "Joseph Rivière": [
+        "Joseph RIVIERE",
+        "Joseph Rivière"
+      ],
+      "Karine Lebon": [
+        "Karine LEBON",
+        "Karine Lebon"
+      ],
+      "Perceval Gaillard": [
+        "Perceval GAILLARD",
+        "Perceval Gaillard"
+      ],
+      "Philippe Naillet": [
+        "Philippe NAILLET",
+        "Philippe Naillet"
+      ],
+      "Émeline K/Bidi": [
+        "Emeline KBIDI",
+        "Émeline K/Bidi"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Qui représente {dep_article} à l'Assemblée nationale ?",
+    "bindings": {
+      "departement": "976"
+    },
+    "rendered_slot": "Mayotte",
+    "shape": "list",
+    "expected_cardinality": 2,
+    "expected": [
+      "Anchya Bamana",
+      "Estelle Youssouffa"
+    ],
+    "accepted_forms": {
+      "Anchya Bamana": [
+        "Anchya BAMANA",
+        "Anchya Bamana"
+      ],
+      "Estelle Youssouffa": [
+        "Estelle YOUSSOUFFA",
+        "Estelle Youssouffa"
+      ]
+    },
+    "authority": "data.assemblee-nationale.fr (AMO10, législature 17)",
+    "cross_checked_against": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  }
+]

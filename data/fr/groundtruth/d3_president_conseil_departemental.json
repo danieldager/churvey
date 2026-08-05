@@ -1,0 +1,1256 @@
+[
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "01"
+    },
+    "rendered_slot": "de l'Ain",
+    "shape": "name",
+    "expected": "Jean DEGUERRY",
+    "expected_source_spelling": "DEGUERRY Jean",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "02"
+    },
+    "rendered_slot": "de l'Aisne",
+    "shape": "name",
+    "expected": "Pierre-Jean VERZELEN",
+    "authority": "operator (external verification, 2026-08-03)",
+    "as_of": "2026-08-03",
+    "valid": "current",
+    "in_office_since": "2026-07-16",
+    "superseded_rne_answer": "Nicolas FRICOTEAUX",
+    "externally_verified": {
+      "status": "VERIFIED",
+      "note": "Fricoteaux resigned; Verzelen elected 16 July 2026 (30 votes v 6). ⚠ ANOMALY: Verzelen is a sitting senator and senat.fr still showed an unterminated mandate on 2026-08-03. Senator + président de conseil départemental is incompatible (LO141-1); press describes him not seeking re-election in Sept 2026 rather than resigning. Re-check after 27 Sept 2026.",
+      "url": "https://www.aisne.com/actualites/pierre-jean-verzelen-elu-president-conseil-departemental-laisne"
+    }
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "03"
+    },
+    "rendered_slot": "de l'Allier",
+    "shape": "name",
+    "expected": "Claude RIBOULET",
+    "expected_source_spelling": "RIBOULET Claude",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "04"
+    },
+    "rendered_slot": "des Alpes-de-Haute-Provence",
+    "shape": "name",
+    "expected": "Eliane BARREILLE",
+    "expected_source_spelling": "BARREILLE Eliane",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "05"
+    },
+    "rendered_slot": "des Hautes-Alpes",
+    "shape": "name",
+    "expected": "Jean-Marie BERNARD",
+    "expected_source_spelling": "BERNARD Jean-Marie",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "06"
+    },
+    "rendered_slot": "des Alpes-Maritimes",
+    "shape": "name",
+    "expected": "Charles Ange GINESY",
+    "expected_source_spelling": "GINESY Charles Ange",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "07"
+    },
+    "rendered_slot": "de l'Ardèche",
+    "shape": "name",
+    "expected": "Olivier AMRANE",
+    "expected_source_spelling": "AMRANE Olivier",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "08"
+    },
+    "rendered_slot": "des Ardennes",
+    "shape": "name",
+    "expected": "Noël BOURGEOIS",
+    "expected_source_spelling": "BOURGEOIS Noël",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "09"
+    },
+    "rendered_slot": "de l'Ariège",
+    "shape": "name",
+    "expected": "Christine TEQUI",
+    "expected_source_spelling": "TEQUI Christine",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "10"
+    },
+    "rendered_slot": "de l'Aube",
+    "shape": "name",
+    "expected": "Philippe DALLEMAGNE",
+    "expected_source_spelling": "DALLEMAGNE Philippe",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "11"
+    },
+    "rendered_slot": "de l'Aude",
+    "shape": "name",
+    "expected": "Hélène SANDRAGNÉ",
+    "expected_source_spelling": "SANDRAGNÉ Hélène",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "12"
+    },
+    "rendered_slot": "de l'Aveyron",
+    "shape": "name",
+    "expected": "Arnaud VIALA",
+    "expected_source_spelling": "VIALA Arnaud",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "13"
+    },
+    "rendered_slot": "des Bouches-du-Rhône",
+    "shape": "name",
+    "expected": "Martine VASSAL",
+    "expected_source_spelling": "VASSAL Martine",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "14"
+    },
+    "rendered_slot": "du Calvados",
+    "shape": "name",
+    "expected": "Jean-Léonce DUPONT",
+    "expected_source_spelling": "DUPONT Jean-Léonce",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "15"
+    },
+    "rendered_slot": "du Cantal",
+    "shape": "name",
+    "expected": "Bruno FAURE",
+    "expected_source_spelling": "FAURE Bruno",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "16"
+    },
+    "rendered_slot": "de la Charente",
+    "shape": "name",
+    "expected": "Jérôme SOURISSEAU",
+    "in_office_since": "2025-09-16",
+    "authority": "operator (external verification, 2026-08-03)",
+    "as_of": "2026-08-03",
+    "valid": "current",
+    "externally_verified": {
+      "status": "VERIFIED",
+      "note": "Elected 16 Sept 2025 (3rd round, 18 of 38) after Philippe Bouty resigned 1 Sept 2025 following three budget rejections and prefectoral takeover. A co-governance charter of Dec 2025 styles Nicole BONNEFOY (PS senator) *co-présidente* on the département's own site; the CGCT recognises one président and that is Sourisseau. RESOLVED 2026-08-04 (user): Sourisseau is the answer, full stop. The grading rule he wants once graders read more than exact match is in france/DEFERRED.md - it does not ship as an answer key.",
+      "url": "https://www.lacharente.fr/le-departement-de-la-charente/lorganisation-de-la-collectivite"
+    }
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "17"
+    },
+    "rendered_slot": "de la Charente-Maritime",
+    "shape": "name",
+    "expected": "Sylvie MARCILLY",
+    "expected_source_spelling": "MARCILLY Sylvie",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "18"
+    },
+    "rendered_slot": "du Cher",
+    "shape": "name",
+    "expected": "Jacques FLEURY",
+    "expected_source_spelling": "FLEURY Jacques",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "19"
+    },
+    "rendered_slot": "de la Corrèze",
+    "shape": "name",
+    "expected": "Pascal COSTE",
+    "expected_source_spelling": "COSTE Pascal",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "21"
+    },
+    "rendered_slot": "de la Côte-d'Or",
+    "shape": "name",
+    "expected": "François SAUVADET",
+    "expected_source_spelling": "SAUVADET François",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "22"
+    },
+    "rendered_slot": "des Côtes-d'Armor",
+    "shape": "name",
+    "expected": "Christian COAIL",
+    "expected_source_spelling": "COAIL Christian",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "23"
+    },
+    "rendered_slot": "de la Creuse",
+    "shape": "name",
+    "expected": "Valérie SIMONET",
+    "expected_source_spelling": "SIMONET Valérie",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "24"
+    },
+    "rendered_slot": "de la Dordogne",
+    "shape": "name",
+    "expected": "Germinal PEIRO",
+    "expected_source_spelling": "PEIRO Germinal",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "25"
+    },
+    "rendered_slot": "du Doubs",
+    "shape": "name",
+    "expected": "Christine BOUQUIN",
+    "expected_source_spelling": "BOUQUIN Christine",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "26"
+    },
+    "rendered_slot": "de la Drôme",
+    "shape": "name",
+    "expected": "Franck SOULIGNAC",
+    "in_office_since": "2025-11-17",
+    "authority": "operator (external verification, 2026-08-03)",
+    "as_of": "2026-08-03",
+    "valid": "current",
+    "externally_verified": {
+      "status": "VERIFIED",
+      "note": "Elected 17 Nov 2025 (26 for / 12 blank) after Marie-Pierre Mouton left on 30 Oct 2025 to become a senator. Weakest of the five as-of checks: ladrome.fr blocked on a TLS error, so currency rests on Wikipedia FR showing no successor.",
+      "url": "https://www.ladrome.fr/actualites/franck-soulignac-elu-president/"
+    }
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "27"
+    },
+    "rendered_slot": "de l'Eure",
+    "shape": "name",
+    "expected": "Alexandre RASSAËRT",
+    "expected_source_spelling": "RASSAËRT Alexandre",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "28"
+    },
+    "rendered_slot": "d'Eure-et-Loir",
+    "shape": "name",
+    "expected": "Christophe LE DORVEN",
+    "expected_source_spelling": "LE DORVEN Christophe",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "29"
+    },
+    "rendered_slot": "du Finistère",
+    "shape": "name",
+    "expected": "Maël DE CALAN",
+    "expected_source_spelling": "DE CALAN Maël",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "30"
+    },
+    "rendered_slot": "du Gard",
+    "shape": "name",
+    "expected": "Françoise LAURENT-PERRIGOT",
+    "expected_source_spelling": "LAURENT-PERRIGOT Françoise",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "31"
+    },
+    "rendered_slot": "de la Haute-Garonne",
+    "shape": "name",
+    "expected": "Sebastien VINCINI",
+    "expected_source_spelling": "VINCINI Sebastien",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "32"
+    },
+    "rendered_slot": "du Gers",
+    "shape": "name",
+    "expected": "Philippe DUPOUY",
+    "expected_source_spelling": "DUPOUY Philippe",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "33"
+    },
+    "rendered_slot": "de la Gironde",
+    "shape": "name",
+    "expected": "Jean-Luc GLEYZE",
+    "expected_source_spelling": "GLEYZE Jean-Luc",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "34"
+    },
+    "rendered_slot": "de l'Hérault",
+    "shape": "name",
+    "expected": "Kléber MESQUIDA",
+    "expected_source_spelling": "MESQUIDA Kléber",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "35"
+    },
+    "rendered_slot": "d'Ille-et-Vilaine",
+    "shape": "name",
+    "expected": "Jean-Luc CHENUT",
+    "expected_source_spelling": "CHENUT Jean-Luc",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "36"
+    },
+    "rendered_slot": "de l'Indre",
+    "shape": "name",
+    "expected": "Marc FLEURET",
+    "expected_source_spelling": "FLEURET Marc",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "37"
+    },
+    "rendered_slot": "d'Indre-et-Loire",
+    "shape": "name",
+    "expected": "Nadège ARNAULT",
+    "expected_source_spelling": "ARNAULT Nadège",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "38"
+    },
+    "rendered_slot": "de l'Isère",
+    "shape": "name",
+    "expected": "Jean-Pierre BARBIER",
+    "expected_source_spelling": "BARBIER Jean-Pierre",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "39"
+    },
+    "rendered_slot": "du Jura",
+    "shape": "name",
+    "expected": "Gérôme FASSENET",
+    "expected_source_spelling": "FASSENET Gérôme",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "40"
+    },
+    "rendered_slot": "des Landes",
+    "shape": "name",
+    "expected": "Xavier FORTINON",
+    "expected_source_spelling": "FORTINON Xavier",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "41"
+    },
+    "rendered_slot": "de Loir-et-Cher",
+    "shape": "name",
+    "expected": "Philippe GOUET",
+    "expected_source_spelling": "GOUET Philippe",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "42"
+    },
+    "rendered_slot": "de la Loire",
+    "shape": "name",
+    "expected": "Georges ZIEGLER",
+    "expected_source_spelling": "ZIEGLER Georges",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "43"
+    },
+    "rendered_slot": "de la Haute-Loire",
+    "shape": "name",
+    "expected": "Marie-Agnès PETIT",
+    "expected_source_spelling": "PETIT Marie-Agnès",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "44"
+    },
+    "rendered_slot": "de la Loire-Atlantique",
+    "shape": "name",
+    "expected": "Michel MENARD",
+    "expected_source_spelling": "MENARD Michel",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "45"
+    },
+    "rendered_slot": "du Loiret",
+    "shape": "name",
+    "expected": "Marc GAUDET",
+    "expected_source_spelling": "GAUDET Marc",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "46"
+    },
+    "rendered_slot": "du Lot",
+    "shape": "name",
+    "expected": "Serge RIGAL",
+    "expected_source_spelling": "RIGAL Serge",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "47"
+    },
+    "rendered_slot": "de Lot-et-Garonne",
+    "shape": "name",
+    "expected": "Sophie BORDERIE",
+    "expected_source_spelling": "BORDERIE Sophie",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "48"
+    },
+    "rendered_slot": "de la Lozère",
+    "shape": "name",
+    "expected": "Laurent SUAU",
+    "expected_source_spelling": "SUAU Laurent",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "49"
+    },
+    "rendered_slot": "de Maine-et-Loire",
+    "shape": "name",
+    "expected": "Florence DABIN",
+    "expected_source_spelling": "DABIN Florence",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "50"
+    },
+    "rendered_slot": "de la Manche",
+    "shape": "name",
+    "expected": "Jean MORIN",
+    "expected_source_spelling": "MORIN Jean",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "51"
+    },
+    "rendered_slot": "de la Marne",
+    "shape": "name",
+    "expected": "Jean-Marc ROZE",
+    "expected_source_spelling": "ROZE Jean-Marc",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "52"
+    },
+    "rendered_slot": "de la Haute-Marne",
+    "shape": "name",
+    "expected": "Nicolas LACROIX",
+    "expected_source_spelling": "LACROIX Nicolas",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "53"
+    },
+    "rendered_slot": "de la Mayenne",
+    "shape": "name",
+    "expected": "Olivier RICHEFOU",
+    "expected_source_spelling": "RICHEFOU Olivier",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "54"
+    },
+    "rendered_slot": "de Meurthe-et-Moselle",
+    "shape": "name",
+    "expected": "Chaynesse KHIROUNI",
+    "expected_source_spelling": "KHIROUNI Chaynesse",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "55"
+    },
+    "rendered_slot": "de la Meuse",
+    "shape": "name",
+    "expected": "Jérôme DUMONT",
+    "expected_source_spelling": "DUMONT Jérôme",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "56"
+    },
+    "rendered_slot": "du Morbihan",
+    "shape": "name",
+    "expected": "David LAPPARTIENT",
+    "in_office_since": "2021-07-01",
+    "authority": "operator (external verification, 2026-08-03)",
+    "as_of": "2026-08-03",
+    "valid": "current",
+    "externally_verified": {
+      "status": "VERIFIED",
+      "note": "The other 7 RNE rows are ordinary conseillers départementaux - checked against the official VP roster, none of them appear on it.",
+      "url": "https://www.morbihan.fr/le-conseil-departemental/lassemblee-departementale/les-elus-et-cantons/nom/david-lappartient"
+    }
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "57"
+    },
+    "rendered_slot": "de la Moselle",
+    "shape": "name",
+    "expected": "Patrick WEITEN",
+    "expected_source_spelling": "WEITEN Patrick",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "58"
+    },
+    "rendered_slot": "de la Nièvre",
+    "shape": "name",
+    "expected": "Fabien BAZIN",
+    "expected_source_spelling": "BAZIN Fabien",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "59"
+    },
+    "rendered_slot": "du Nord",
+    "shape": "name",
+    "expected": "Christian POIRET",
+    "expected_source_spelling": "POIRET Christian",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "60"
+    },
+    "rendered_slot": "de l'Oise",
+    "shape": "name",
+    "expected": "Nadège LEFEBVRE",
+    "expected_source_spelling": "LEFEBVRE Nadège",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "61"
+    },
+    "rendered_slot": "de l'Orne",
+    "shape": "name",
+    "expected": "Christophe DE BALORRE",
+    "expected_source_spelling": "DE BALORRE Christophe",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "62"
+    },
+    "rendered_slot": "du Pas-de-Calais",
+    "shape": "name",
+    "expected": "Jean-Claude LEROY",
+    "expected_source_spelling": "LEROY Jean-Claude",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "63"
+    },
+    "rendered_slot": "du Puy-de-Dôme",
+    "shape": "name",
+    "expected": "Lionel CHAUVIN",
+    "expected_source_spelling": "CHAUVIN Lionel",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "64"
+    },
+    "rendered_slot": "des Pyrénées-Atlantiques",
+    "shape": "name",
+    "expected": "Jean-Jacques LASSERRE",
+    "expected_source_spelling": "LASSERRE Jean-Jacques",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "65"
+    },
+    "rendered_slot": "des Hautes-Pyrénées",
+    "shape": "name",
+    "expected": "Michel PÉLIEU",
+    "expected_source_spelling": "PÉLIEU Michel",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "66"
+    },
+    "rendered_slot": "des Pyrénées-Orientales",
+    "shape": "name",
+    "expected": "Hermeline MALHERBE",
+    "expected_source_spelling": "MALHERBE Hermeline",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "69"
+    },
+    "rendered_slot": "du Rhône",
+    "shape": "name",
+    "expected": "Christophe GUILLOTEAU",
+    "expected_source_spelling": "GUILLOTEAU Christophe",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current",
+    "scope_note": "the conseil départemental du Rhône covers the Nouveau Rhône; the Métropole de Lyon holds departmental competences over Lyon itself and is deliberately not a binding",
+    "externally_verified": {
+      "status": "VERIFIED",
+      "note": "Président du conseil départemental du Rhône since 2 April 2015; departmental elections were NOT part of the March 2026 round. ⚠ VOLATILE: reported May 2026 to be seeking a Senate seat in the September 2026 sénatoriales - re-check after 27 Sept 2026.",
+      "url": "https://fr.wikipedia.org/wiki/Conseil_départemental_du_Rhône"
+    }
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "70"
+    },
+    "rendered_slot": "de la Haute-Saône",
+    "shape": "name",
+    "expected": "Laurent SEGUIN",
+    "expected_source_spelling": "SEGUIN Laurent",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "71"
+    },
+    "rendered_slot": "de Saône-et-Loire",
+    "shape": "name",
+    "expected": "André ACCARY",
+    "expected_source_spelling": "ACCARY André",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "72"
+    },
+    "rendered_slot": "de la Sarthe",
+    "shape": "name",
+    "expected": "Dominique LE MENER",
+    "expected_source_spelling": "LE MENER Dominique",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "73"
+    },
+    "rendered_slot": "de la Savoie",
+    "shape": "name",
+    "expected": "Hervé GAYMARD",
+    "expected_source_spelling": "GAYMARD Hervé",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "74"
+    },
+    "rendered_slot": "de la Haute-Savoie",
+    "shape": "name",
+    "expected": "Martial SADDIER",
+    "expected_source_spelling": "SADDIER Martial",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "76"
+    },
+    "rendered_slot": "de la Seine-Maritime",
+    "shape": "name",
+    "expected": "Bertrand BELLANGER",
+    "expected_source_spelling": "BELLANGER Bertrand",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "77"
+    },
+    "rendered_slot": "de Seine-et-Marne",
+    "shape": "name",
+    "expected": "Jean-François PARIGI",
+    "expected_source_spelling": "PARIGI Jean-François",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "78"
+    },
+    "rendered_slot": "des Yvelines",
+    "shape": "name",
+    "expected": "Pierre BEDIER",
+    "expected_source_spelling": "BEDIER Pierre",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "79"
+    },
+    "rendered_slot": "des Deux-Sèvres",
+    "shape": "name",
+    "expected": "Coralie DENOUES",
+    "expected_source_spelling": "DENOUES Coralie",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "80"
+    },
+    "rendered_slot": "de la Somme",
+    "shape": "name",
+    "expected": "Christelle HIVER",
+    "expected_source_spelling": "HIVER Christelle",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "81"
+    },
+    "rendered_slot": "du Tarn",
+    "shape": "name",
+    "expected": "Christophe RAMOND",
+    "expected_source_spelling": "RAMOND Christophe",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "82"
+    },
+    "rendered_slot": "de Tarn-et-Garonne",
+    "shape": "name",
+    "expected": "Jean-Claude BERTELLI",
+    "authority": "operator (external verification, 2026-08-03)",
+    "as_of": "2026-08-03",
+    "valid": "current",
+    "in_office_since": "2026-04-13",
+    "superseded_rne_answer": "Michel WEILL",
+    "externally_verified": {
+      "status": "VERIFIED",
+      "note": "Weill resigned after becoming maire de Montbeton in the March 2026 municipales (CGCT incompatibility). Bertelli elected 13 April 2026 after a 15-15 tie with Valérie Rabault, won *au bénéfice de l'âge*.",
+      "url": "https://france3-regions.franceinfo.fr/occitanie/tarn-et-garonne/montauban/le-tarn-et-garonne-bascule-a-droite-le-nouveau-president-du-conseil-departemental-elu-au-benefice-de-l-age-3334379.html"
+    },
+    "elaborate_answer": {
+      "canonical": "Jean-Claude BERTELLI",
+      "also_accept": [
+        "Valérie RABAULT"
+      ],
+      "explain": "Bertelli is président, but minutes after his election the left slate took all nine vice-presidencies 15-14 and the permanent commission was enlarged to all 30 members. A right-wing president sits with a left-wing executive - reported as unprecedented cohabitation. Rabault tied him on votes and controls the executive, so naming her is defensible."
+    }
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "83"
+    },
+    "rendered_slot": "du Var",
+    "shape": "name",
+    "expected": "Jean-Louis MASSON",
+    "expected_source_spelling": "MASSON Jean-Louis",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "84"
+    },
+    "rendered_slot": "du Vaucluse",
+    "shape": "name",
+    "expected": "Dominique SANTONI",
+    "expected_source_spelling": "SANTONI Dominique",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "85"
+    },
+    "rendered_slot": "de la Vendée",
+    "shape": "name",
+    "expected": "Alain LEBŒUF",
+    "in_office_since": "2021-07-01",
+    "authority": "operator (external verification, 2026-08-03)",
+    "as_of": "2026-08-03",
+    "valid": "current",
+    "externally_verified": {
+      "status": "VERIFIED",
+      "note": "Pascreau, Duranteau and de Rugy are commission presidents, not vice-presidents and not the président.",
+      "url": "https://www.vendee.fr/le-conseil-departemental/lorganisation-et-les-decisions/les-elus"
+    }
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "86"
+    },
+    "rendered_slot": "de la Vienne",
+    "shape": "name",
+    "expected": "Alain PICHON",
+    "expected_source_spelling": "PICHON Alain",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "87"
+    },
+    "rendered_slot": "de la Haute-Vienne",
+    "shape": "name",
+    "expected": "Jean-Claude LEBLOIS",
+    "expected_source_spelling": "LEBLOIS Jean-Claude",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "88"
+    },
+    "rendered_slot": "des Vosges",
+    "shape": "name",
+    "expected": "François VANNSON",
+    "expected_source_spelling": "VANNSON François",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "89"
+    },
+    "rendered_slot": "de l'Yonne",
+    "shape": "name",
+    "expected": "Grégory DORTE",
+    "expected_source_spelling": "DORTE Grégory",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "90"
+    },
+    "rendered_slot": "du Territoire de Belfort",
+    "shape": "name",
+    "expected": "Florian BOUQUET",
+    "expected_source_spelling": "BOUQUET Florian",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "91"
+    },
+    "rendered_slot": "de l'Essonne",
+    "shape": "name",
+    "expected": "François DUROVRAY",
+    "expected_source_spelling": "DUROVRAY François",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "92"
+    },
+    "rendered_slot": "des Hauts-de-Seine",
+    "shape": "name",
+    "expected": "Georges SIFFREDI",
+    "expected_source_spelling": "SIFFREDI Georges",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "93"
+    },
+    "rendered_slot": "de la Seine-Saint-Denis",
+    "shape": "name",
+    "expected": "Stéphane TROUSSEL",
+    "expected_source_spelling": "TROUSSEL Stéphane",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "94"
+    },
+    "rendered_slot": "du Val-de-Marne",
+    "shape": "name",
+    "expected": "Olivier CAPITANIO",
+    "expected_source_spelling": "CAPITANIO Olivier",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "95"
+    },
+    "rendered_slot": "du Val-d'Oise",
+    "shape": "name",
+    "expected": "Marie-Christine CAVECCHI",
+    "expected_source_spelling": "CAVECCHI Marie-Christine",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "971"
+    },
+    "rendered_slot": "de la Guadeloupe",
+    "shape": "name",
+    "expected": "Guy LOSBAR",
+    "expected_source_spelling": "LOSBAR Guy",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  },
+  {
+    "template": "Qui est le président du conseil départemental {dep_prep} ?",
+    "bindings": {
+      "departement": "974"
+    },
+    "rendered_slot": "de La Réunion",
+    "shape": "name",
+    "expected": "Cyrille MELCHIOR",
+    "expected_source_spelling": "MELCHIOR Cyrille",
+    "authority": "RNE (Ministère de l'Intérieur, data.gouv.fr)",
+    "as_of": "2026-05-05",
+    "valid": "current"
+  }
+]

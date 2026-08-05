@@ -1,0 +1,1744 @@
+[
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "01"
+    },
+    "rendered_slot": "de l'Ain",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Florence Blatrix Contat",
+      "Patrick Chaize",
+      "Sylvie Goy-Chavent"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "02"
+    },
+    "rendered_slot": "de l'Aisne",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Antoine Lefèvre",
+      "Pascale Gruny",
+      "Pierre-Jean Verzelen"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "03"
+    },
+    "rendered_slot": "de l'Allier",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Bruno Rojouan",
+      "Claude Malhuret"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "04"
+    },
+    "rendered_slot": "des Alpes-de-Haute-Provence",
+    "shape": "number",
+    "expected": 1,
+    "expected_names": [
+      "Jean-Yves Roux"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "05"
+    },
+    "rendered_slot": "des Hautes-Alpes",
+    "shape": "number",
+    "expected": 1,
+    "expected_names": [
+      "Jean-Michel Arnaud"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "06"
+    },
+    "rendered_slot": "des Alpes-Maritimes",
+    "shape": "number",
+    "expected": 5,
+    "expected_names": [
+      "Alexandra Borchio Fontimp",
+      "Dominique Estrosi Sassone",
+      "Henri Leroy",
+      "Patricia Demas",
+      "Sandra Paire"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "07"
+    },
+    "rendered_slot": "de l'Ardèche",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Anne Ventalon",
+      "Mathieu Darnaud"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "08"
+    },
+    "rendered_slot": "des Ardennes",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Else Joseph",
+      "Marc Laménie"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "09"
+    },
+    "rendered_slot": "de l'Ariège",
+    "shape": "number",
+    "expected": 1,
+    "expected_names": [
+      "Jean-Jacques Michau"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "10"
+    },
+    "rendered_slot": "de l'Aube",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Vanina Paoli-Gagin",
+      "Évelyne Perrot"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "11"
+    },
+    "rendered_slot": "de l'Aude",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Gisèle Jourda",
+      "Sebastien Pla"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "12"
+    },
+    "rendered_slot": "de l'Aveyron",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Alain Marc",
+      "Jean-Claude Anglars"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "13"
+    },
+    "rendered_slot": "des Bouches-du-Rhône",
+    "shape": "number",
+    "expected": 8,
+    "expected_names": [
+      "Brigitte Devésa",
+      "Guy Benarroche",
+      "Jérémy Bacchi",
+      "Marie-Arlette Carlotti",
+      "Mireille Jouve",
+      "Stéphane Le Rudulier",
+      "Stéphane Ravier",
+      "Valérie Boyer"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "14"
+    },
+    "rendered_slot": "du Calvados",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Corinne Féret",
+      "Pascal Allizard",
+      "Sonia de La Provôté"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "15"
+    },
+    "rendered_slot": "du Cantal",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Bernard Delcros",
+      "Stéphane Sautarel"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "16"
+    },
+    "rendered_slot": "de la Charente",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "François Bonneau",
+      "Nicole Bonnefoy"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "17"
+    },
+    "rendered_slot": "de la Charente-Maritime",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Corinne Imbert",
+      "Daniel Laurent",
+      "Mickaël Vallet"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "18"
+    },
+    "rendered_slot": "du Cher",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Marie-Pierre Richer",
+      "Rémy Pointereau"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "19"
+    },
+    "rendered_slot": "de la Corrèze",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Claude Nougein",
+      "Daniel Chasseing"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "21"
+    },
+    "rendered_slot": "de la Côte-d'Or",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Alain Houpert",
+      "Anne-Catherine Loisier",
+      "François Patriat"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "22"
+    },
+    "rendered_slot": "des Côtes-d'Armor",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Alain Cadec",
+      "Annie Le Houerou",
+      "Gérard Lahellec"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "23"
+    },
+    "rendered_slot": "de la Creuse",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Jean-Jacques Lozach",
+      "Éric Jeansannetas"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "24"
+    },
+    "rendered_slot": "de la Dordogne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Marie-Claude Varaillas",
+      "Serge Mérillou"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "25"
+    },
+    "rendered_slot": "du Doubs",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Annick Jacquemet",
+      "Jacques Grosperrin",
+      "Jean-François Longeot"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "26"
+    },
+    "rendered_slot": "de la Drôme",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Bernard Buis",
+      "Marie-Pierre Monier",
+      "Marie-Pierre Mouton"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "27"
+    },
+    "rendered_slot": "de l'Eure",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Hervé Maurey",
+      "Kristina Pluchet",
+      "Nicole Duranton"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "28"
+    },
+    "rendered_slot": "d'Eure-et-Loir",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Albéric de Montgolfier",
+      "Chantal Deseyne",
+      "Daniel Gueret"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "29"
+    },
+    "rendered_slot": "du Finistère",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Jean-Luc Fichet",
+      "Michel Canévet",
+      "Nadège Havet",
+      "Philippe Paul"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "2A"
+    },
+    "rendered_slot": "de Corse-du-Sud",
+    "shape": "number",
+    "expected": 1,
+    "expected_names": [
+      "Jean-Jacques Panunzi"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "2B"
+    },
+    "rendered_slot": "de Haute-Corse",
+    "shape": "number",
+    "expected": 1,
+    "expected_names": [
+      "Paul Toussaint Parigi"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "30"
+    },
+    "rendered_slot": "du Gard",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Denis Bouad",
+      "Laurent Burgoa",
+      "Vivette Lopez"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "31"
+    },
+    "rendered_slot": "de la Haute-Garonne",
+    "shape": "number",
+    "expected": 5,
+    "expected_names": [
+      "Alain Chatillon",
+      "Brigitte Micouleau",
+      "Claude Raynal",
+      "Pierre Médevielle",
+      "Émilienne Poumirol"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "32"
+    },
+    "rendered_slot": "du Gers",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Alain Duffourg",
+      "Franck Montaugé"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "33"
+    },
+    "rendered_slot": "de la Gironde",
+    "shape": "number",
+    "expected": 6,
+    "expected_names": [
+      "Alain Cazabonne",
+      "Florence Lassarade",
+      "Hervé Gillé",
+      "Laurence Harribey",
+      "Monique de Marco",
+      "Nathalie Delattre"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "34"
+    },
+    "rendered_slot": "de l'Hérault",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Christian Bilhac",
+      "Henri Cabanel",
+      "Hussein Bourgi",
+      "Jean-Pierre Grand"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "35"
+    },
+    "rendered_slot": "d'Ille-et-Vilaine",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Anne-Sophie Patru",
+      "Daniel Salmon",
+      "Dominique de Legge",
+      "Sylvie Robert"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "36"
+    },
+    "rendered_slot": "de l'Indre",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Frédérique Gerbaud",
+      "Nadine Bellurot"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "37"
+    },
+    "rendered_slot": "d'Indre-et-Loire",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Jean-Gérard Paumier",
+      "Pierre-Alain Roiron",
+      "Vincent Louault"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "38"
+    },
+    "rendered_slot": "de l'Isère",
+    "shape": "number",
+    "expected": 5,
+    "expected_names": [
+      "Damien Michallet",
+      "Didier Rambaud",
+      "Frédérique Puissat",
+      "Guillaume Gontard",
+      "Michel Savin"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "39"
+    },
+    "rendered_slot": "du Jura",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Clément Pernot",
+      "Sylvie Vermeillet"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "40"
+    },
+    "rendered_slot": "des Landes",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Monique Lubin",
+      "Éric Kerrouche"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "41"
+    },
+    "rendered_slot": "de Loir-et-Cher",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Bernard Pillefer",
+      "Jean-Luc Brault"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "42"
+    },
+    "rendered_slot": "de la Loire",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Cécile Cukierman",
+      "Hervé Reynaud",
+      "Jean-Claude Tissot",
+      "Pierre Jean Rochette"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "43"
+    },
+    "rendered_slot": "de la Haute-Loire",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Laurent Duplomb",
+      "Olivier Cigolotti"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "44"
+    },
+    "rendered_slot": "de la Loire-Atlantique",
+    "shape": "number",
+    "expected": 5,
+    "expected_names": [
+      "Karine Daniel",
+      "Laurence Garnier",
+      "Marie-Pierre Bessin-Guérin",
+      "Philippe Grosvalet",
+      "Ronan Dantec"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "45"
+    },
+    "rendered_slot": "du Loiret",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Christophe Chaillou",
+      "Hugues Saury",
+      "Pauline Martin"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "46"
+    },
+    "rendered_slot": "du Lot",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Jean-Marc Vayssouze-Faure",
+      "Raphaël Daubet"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "47"
+    },
+    "rendered_slot": "de Lot-et-Garonne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Christine Bonfanti-Dossat",
+      "Michel Masset"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "48"
+    },
+    "rendered_slot": "de la Lozère",
+    "shape": "number",
+    "expected": 1,
+    "expected_names": [
+      "Guylène Pantel"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "49"
+    },
+    "rendered_slot": "de Maine-et-Loire",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Corinne Bourcier",
+      "Emmanuel Capus",
+      "Grégory Blanc",
+      "Stéphane Piednoir"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "50"
+    },
+    "rendered_slot": "de la Manche",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Béatrice Gosselin",
+      "David Margueritte",
+      "Sébastien Fagnen"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "51"
+    },
+    "rendered_slot": "de la Marne",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Anne-Sophie Romagny",
+      "Christian Bruyen",
+      "Cédric Chevalier"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "52"
+    },
+    "rendered_slot": "de la Haute-Marne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Anne-Marie Nédélec",
+      "Bruno Sido"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "53"
+    },
+    "rendered_slot": "de la Mayenne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Guillaume Chevrollier",
+      "Élisabeth Doineau"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "54"
+    },
+    "rendered_slot": "de Meurthe-et-Moselle",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Jean-François Husson",
+      "Olivier Jacquin",
+      "Pierre Boileau",
+      "Silvana Silvani"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "55"
+    },
+    "rendered_slot": "de la Meuse",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Franck Menonville",
+      "Jocelyne Antoine"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "56"
+    },
+    "rendered_slot": "du Morbihan",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Muriel Jourda",
+      "Simon Uzenat",
+      "Yves Bleunven"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "57"
+    },
+    "rendered_slot": "de la Moselle",
+    "shape": "number",
+    "expected": 5,
+    "expected_names": [
+      "Catherine Belrhiti",
+      "Christine Herzog",
+      "Jean-Marie Mizzon",
+      "Khalifé Khalifé",
+      "Michaël Weber"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "58"
+    },
+    "rendered_slot": "de la Nièvre",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Nadia Sollogoub",
+      "Patrice Joly"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "59"
+    },
+    "rendered_slot": "du Nord",
+    "shape": "number",
+    "expected": 11,
+    "expected_names": [
+      "Alexandre Basquin",
+      "Audrey Linkenheld",
+      "Dany Wattebled",
+      "Franck Dhersin",
+      "Guislain Cambier",
+      "Joshua Hochart",
+      "Marc-Philippe Daubresse",
+      "Marie-Claude Lermytte",
+      "Michelle Gréaume",
+      "Olivier Henno",
+      "Patrick Kanner"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "60"
+    },
+    "rendered_slot": "de l'Oise",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Alexandre Ouizille",
+      "Olivier Paccaud",
+      "Sylvie Valente Le Hir",
+      "Édouard Courtial"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "61"
+    },
+    "rendered_slot": "de l'Orne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Nathalie Goulet",
+      "Olivier Bitz"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "62"
+    },
+    "rendered_slot": "du Pas-de-Calais",
+    "shape": "number",
+    "expected": 7,
+    "expected_names": [
+      "Amel Gacquerre",
+      "Brigitte Bourguignon",
+      "Cathy Apourceau-Poly",
+      "Christopher Szczurek",
+      "Jean-François Rapin",
+      "Jean-Pierre Corbisez",
+      "Jérôme Darras"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "63"
+    },
+    "rendered_slot": "du Puy-de-Dôme",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Jean-Marc Boyer",
+      "Marion Canalès",
+      "Éric Gold"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "64"
+    },
+    "rendered_slot": "des Pyrénées-Atlantiques",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Denise Saint-Pé",
+      "Frédérique Espagnac",
+      "Max Brisson"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "65"
+    },
+    "rendered_slot": "des Hautes-Pyrénées",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Maryse Carrère",
+      "Viviane Artigalas"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "66"
+    },
+    "rendered_slot": "des Pyrénées-Orientales",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Jean Sol",
+      "Lauriane Josende"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "67"
+    },
+    "rendered_slot": "du Bas-Rhin",
+    "shape": "number",
+    "expected": 5,
+    "expected_names": [
+      "Claude Kern",
+      "Elsa Schalck",
+      "Jacques Fernique",
+      "Laurence Muller-Bronn",
+      "Marc Séné"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "68"
+    },
+    "rendered_slot": "du Haut-Rhin",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Christian Klinger",
+      "Ludovic Haye",
+      "Patricia Schillinger",
+      "Sabine Drexler"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "69"
+    },
+    "rendered_slot": "du Rhône",
+    "shape": "number",
+    "expected": 7,
+    "expected_names": [
+      "Bernard Fialaire",
+      "Catherine Di Folco",
+      "Gilbert-Luc Devinaz",
+      "Paul Vidal",
+      "Raymonde Poncet Monge",
+      "Thomas Dossus",
+      "Étienne Blanc"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "70"
+    },
+    "rendered_slot": "de la Haute-Saône",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Alain Joyandet",
+      "Olivier Rietmann"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "71"
+    },
+    "rendered_slot": "de Saône-et-Loire",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Fabien Genet",
+      "Marie Mercier",
+      "Paulette Matray"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "72"
+    },
+    "rendered_slot": "de la Sarthe",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Jean Pierre Vogel",
+      "Louis-Jean de Nicolaÿ",
+      "Thierry Cozic"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "73"
+    },
+    "rendered_slot": "de la Savoie",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Cédric Vial",
+      "Martine Berthet"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "74"
+    },
+    "rendered_slot": "de la Haute-Savoie",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Cyril Pellevat",
+      "Loïc Hervé",
+      "Sylviane Noël"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "75"
+    },
+    "rendered_slot": "de Paris",
+    "shape": "number",
+    "expected": 12,
+    "expected_names": [
+      "Agnès Evren",
+      "Anne Souyris",
+      "Antoinette Guhl",
+      "Bernard Jomier",
+      "Catherine Dumas",
+      "Colombe Brossel",
+      "Francis Szpiner",
+      "Ian Brossat",
+      "Marie-Claire Carrère-Gée",
+      "Marie-Pierre de La Gontrie",
+      "Rémi Féraud",
+      "Yannick Jadot"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "76"
+    },
+    "rendered_slot": "de la Seine-Maritime",
+    "shape": "number",
+    "expected": 6,
+    "expected_names": [
+      "Agnès Canayer",
+      "Catherine Morin-Desailly",
+      "Céline Brulin",
+      "Didier Marie",
+      "Pascal Martin",
+      "Patrick Chauvet"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "77"
+    },
+    "rendered_slot": "de Seine-et-Marne",
+    "shape": "number",
+    "expected": 6,
+    "expected_names": [
+      "Anne Chain-Larché",
+      "Aymeric Durox",
+      "Louis Vogel",
+      "Marianne Margaté",
+      "Pierre Cuypers",
+      "Vincent Éblé"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "78"
+    },
+    "rendered_slot": "des Yvelines",
+    "shape": "number",
+    "expected": 6,
+    "expected_names": [
+      "Ghislaine Senée",
+      "Gérard Larcher",
+      "Marta de Cidrac",
+      "Martin Lévrier",
+      "Michel Laugier",
+      "Sophie Primas"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "79"
+    },
+    "rendered_slot": "des Deux-Sèvres",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Gilbert Favreau",
+      "Philippe Mouiller"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "80"
+    },
+    "rendered_slot": "de la Somme",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Laurent Somon",
+      "Rémi Cardon",
+      "Stéphane Demilly"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "81"
+    },
+    "rendered_slot": "du Tarn",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Marie-Lise Housseau",
+      "Philippe Folliot"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "82"
+    },
+    "rendered_slot": "de Tarn-et-Garonne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "François Bonhomme",
+      "Pierre-Antoine Levi"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "83"
+    },
+    "rendered_slot": "du Var",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "André Guiol",
+      "Françoise Dumont",
+      "Jean Bacci",
+      "Michel Bonnus"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "84"
+    },
+    "rendered_slot": "du Vaucluse",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Alain Milon",
+      "Jean-Baptiste Blanc",
+      "Lucien Stanzione"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "85"
+    },
+    "rendered_slot": "de la Vendée",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Annick Billon",
+      "Bruno Retailleau",
+      "Didier Mandelli"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "86"
+    },
+    "rendered_slot": "de la Vienne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Bruno Belin",
+      "Marie-Jeanne Bellamy"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "87"
+    },
+    "rendered_slot": "de la Haute-Vienne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Christian Redon-Sarrazy",
+      "Isabelle Briquet"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "88"
+    },
+    "rendered_slot": "des Vosges",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Daniel Gremillet",
+      "Jean Hingray"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "89"
+    },
+    "rendered_slot": "de l'Yonne",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Dominique Vérien",
+      "Jean-Baptiste Lemoyne"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "90"
+    },
+    "rendered_slot": "du Territoire de Belfort",
+    "shape": "number",
+    "expected": 1,
+    "expected_names": [
+      "Cédric Perrin"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "91"
+    },
+    "rendered_slot": "de l'Essonne",
+    "shape": "number",
+    "expected": 5,
+    "expected_names": [
+      "David Ros",
+      "Jean-Raymond Hugonet",
+      "Jocelyne Guidez",
+      "Laure Darcos",
+      "Vincent Delahaye"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "92"
+    },
+    "rendered_slot": "des Hauts-de-Seine",
+    "shape": "number",
+    "expected": 7,
+    "expected_names": [
+      "Christine Lavarde",
+      "Hervé Marseille",
+      "Isabelle Florennes",
+      "Marie-Do Aeschlimann",
+      "Pierre Ouzoulias",
+      "Roger Karoutchi",
+      "Xavier Iacovelli"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "93"
+    },
+    "rendered_slot": "de la Seine-Saint-Denis",
+    "shape": "number",
+    "expected": 6,
+    "expected_names": [
+      "Adel Ziane",
+      "Ahmed Laouedj",
+      "Corinne Narassiguin",
+      "Fabien Gay",
+      "Thierry Meignen",
+      "Vincent Capo-Canellas"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "94"
+    },
+    "rendered_slot": "du Val-de-Marne",
+    "shape": "number",
+    "expected": 6,
+    "expected_names": [
+      "Akli Mellouli",
+      "Christian Cambon",
+      "Laurence Rossignol",
+      "Laurent Lafon",
+      "Marie-Carole Ciuntu",
+      "Pascal Savoldelli"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "95"
+    },
+    "rendered_slot": "du Val-d'Oise",
+    "shape": "number",
+    "expected": 5,
+    "expected_names": [
+      "Arnaud Bazin",
+      "Daniel Fargeot",
+      "Jacqueline Eustache-Brinio",
+      "Pierre Barros",
+      "Rachid Temal"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "971"
+    },
+    "rendered_slot": "de la Guadeloupe",
+    "shape": "number",
+    "expected": 3,
+    "expected_names": [
+      "Dominique Théophile",
+      "Solanges Nadille",
+      "Victorin Lurel"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "972"
+    },
+    "rendered_slot": "de la Martinique",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Catherine Conconne",
+      "Frédéric Buval"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "973"
+    },
+    "rendered_slot": "de la Guyane",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Georges Patient",
+      "Marie-Laure Phinera-Horth"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "974"
+    },
+    "rendered_slot": "de La Réunion",
+    "shape": "number",
+    "expected": 4,
+    "expected_names": [
+      "Audrey Bélim",
+      "Evelyne Corbière Naminzo",
+      "Stéphane Fouassin",
+      "Viviane Malet"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  },
+  {
+    "template": "Combien y a-t-il de sénateurs {dep_prep} ?",
+    "bindings": {
+      "departement": "976"
+    },
+    "rendered_slot": "de Mayotte",
+    "shape": "number",
+    "expected": 2,
+    "expected_names": [
+      "Saïd Omar Oili",
+      "Thani Mohamed Soilihi"
+    ],
+    "authority": "senat.fr api-senat/senateurs.json (Sénat, live register)",
+    "as_of": "2026-08-03",
+    "valid": "current"
+  }
+]

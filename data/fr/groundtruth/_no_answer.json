@@ -1,0 +1,6 @@
+{
+  "note": "bindings we ASK but have no answer key for - these must not reach a batch",
+  "count": 0,
+  "d3": [],
+  "r1": []
+}
