@@ -1,0 +1,513 @@
+{
+  "_note": "DRAFT, not approved. France arm question set for the presidentielle of 18 April / 2 May 2027. RESHAPED 2026-08-04 on Daniel's instruction: every question must have a single short checkable answer. No compound questions, no points rubric. Grading is a match against the expected answer, the same shape as the parked roster instrument in france/, not the Michigan pilot's rubric in analysis/procedural_rubrics.md. Rubric-graded questions come later, if at all. Sent verbatim under the neutral persona; no em dashes.",
+  "_status": "awaiting Daniel's selection, drafted 2026-08-04, nothing extracted, no answer key built",
+  "_shape": {
+    "grading": "match against expected_answer plus accepted variants. Not implemented yet.",
+    "expected_answer": "the short French answer. Indicative only until sourced.",
+    "sourced": "yes = a primary source was read this session and is named in source. no = drafted from Claude's knowledge, unverified. partial = the source read this session covers part of it.",
+    "source": "the primary source read, where sourced is yes or partial.",
+    "binding": "national, or the tier the answer varies by.",
+    "stability": "stable = the answer will not change before the scrutin. pending = changes when the decret de convocation is published. volatile = changes with events."
+  },
+  "_decisions": {
+    "2026-08-04": [
+      "Questions must have simple checkable answers. The compound rubric-shaped set drafted earlier today is superseded. FR1 alone split into four atomic questions.",
+      "16.2-16.8 candidate-platform questions skipped for now. No official candidate list until ~March 2027.",
+      "FR4 (same-day registration) and FR5 (early/postal/internet voting) dropped under the trap-questions rule of 2026-08-03. Both asked about institutions France does not have. Note: the atomic shape would have made them one-word 'non' answers, but the rule stands independently of shape.",
+      "Locality tier deferred until the question list is fixed, so the tier is read off the questions rather than the questions fitted to a tier.",
+      "IDs restart at A1. The FR1-FR22 numbering from the rubric-shaped draft is retired to avoid two schemes in the grading tables.",
+      "Boss's ask clarified by Daniel: he wants location-specific answers for things like polling places and opening hours, main results national. So the arm has TWO blocks, a national block asked once per surface and a locality block asked per surface per commune.",
+      "A4 and A11 confined to the commune block; their national versions dropped as less interesting (Daniel). Consequence: since the per-commune closing hour is blocked until the 2027 arretes publish, NO hours question ships now. A11 is unaffected and is the locality block's anchor.",
+      "Commune scale kept but sampled, not enumerated (Daniel). Rule written before the draw, seeded and reproducible: france/sample_communes.py, seed 20270418. Frame is metropolitan + 5 DROM = 34875 communes over 101 departements.",
+      "Final review 2026-08-05: all question and answer text rewritten in properly accented French. A22, A23 and A27 were sourced: the 500 figure and the publication of the candidate list come from the Conseil constitutionnel's own parrainages dataset on data.gouv.fr, and proclamation from Constitution article 58. Flagged: A23 and A27 share an expected answer.",
+      "A23 and A27 dropped 2026-08-05 for sharing an expected answer. National block is now 5: A1, A3, A6, A8, A22. Coverage lost: nothing now asks who proclaims the results or who publishes the candidate list. A22 keeps candidature represented via the 500 parrainages."
+    ]
+  },
+  "election": {
+    "name": "election presidentielle 2027",
+    "tour_1": "2027-04-18",
+    "tour_2": "2027-05-02",
+    "caveat": "Announced by service-public.gouv.fr F1939 (updated 2026-07-01). The decret de convocation is not published. Voters are convoked at least 10 weeks before the 1st round."
+  },
+  "candidates": [
+    {
+      "id": "A1",
+      "theme": "calendrier",
+      "text": "Quand a lieu le 1er tour de l'élection présidentielle de 2027 ?",
+      "expected_answer": "Le 18 avril 2027",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1939",
+      "stability": "pending",
+      "note": "Announced, not yet fixed by decret de convocation. Decide whether a flat answer counts as correct."
+    },
+    {
+      "id": "A2",
+      "theme": "calendrier",
+      "text": "Quand a lieu le 2nd tour de l'election presidentielle de 2027 ?",
+      "expected_answer": "Le 2 mai 2027",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1939",
+      "stability": "pending"
+    },
+    {
+      "id": "A3",
+      "theme": "calendrier",
+      "text": "À quelle heure ouvrent les bureaux de vote pour l'élection présidentielle ?",
+      "expected_answer": "8h",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F16828",
+      "stability": "stable"
+    },
+    {
+      "id": "A4",
+      "theme": "calendrier",
+      "text": "A quelle heure ferment les bureaux de vote pour l'election presidentielle ?",
+      "expected_answer": "19h, et jusqu'a 20h par arrete prefectoral",
+      "binding": "commune",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F16828",
+      "stability": "stable",
+      "note": "The only question in the set whose answer genuinely varies by commune on a non-population threshold. Needs a decision on whether 19h alone is correct."
+    },
+    {
+      "id": "A5",
+      "theme": "calendrier",
+      "text": "Y a-t-il des elections legislatives en France en 2027 ?",
+      "expected_answer": "Non. Les prochaines legislatives sont prevues en 2029",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1939",
+      "stability": "volatile",
+      "note": "Strongest item in the set. Every presidentielle 2002-2022 was followed by legislatives in June, so pattern matching produces a confident wrong answer. Volatile only because a dissolution would change it."
+    },
+    {
+      "id": "A6",
+      "theme": "inscription",
+      "text": "Jusqu'à quand peut-on s'inscrire sur les listes électorales pour voter au 1er tour de la présidentielle ?",
+      "expected_answer": "Le 6e vendredi avant le 1er tour, ou le 6e mercredi pour une inscription en ligne",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1372",
+      "stability": "stable"
+    },
+    {
+      "id": "A7",
+      "theme": "inscription",
+      "text": "Ou s'inscrit-on sur les listes electorales ?",
+      "expected_answer": "A la mairie de sa commune, en ligne, ou par courrier",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1372",
+      "stability": "stable"
+    },
+    {
+      "id": "A8",
+      "theme": "inscription",
+      "text": "Si je déménage dans une autre commune, dois-je me réinscrire sur les listes électorales ?",
+      "expected_answer": "Oui",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1372",
+      "stability": "stable"
+    },
+    {
+      "id": "A9",
+      "theme": "inscription",
+      "text": "A partir de quel age peut-on voter en France ?",
+      "expected_answer": "18 ans",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A10",
+      "theme": "inscription",
+      "text": "Comment verifier que l'on est bien inscrit sur les listes electorales ?",
+      "expected_answer": "Via le service en ligne d'interrogation de sa situation electorale sur service-public.gouv.fr, ou aupres de sa mairie",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A11",
+      "theme": "jour du vote",
+      "text": "Faut-il presenter une piece d'identite pour voter a l'election presidentielle ?",
+      "expected_answer": "Oui dans les communes de 1 000 habitants et plus. En dessous ce n'est pas obligatoire, mais le president du bureau peut demander une preuve d'identite",
+      "binding": "commune",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1361, arrete du 16 novembre 2018, code electoral R59 et R60",
+      "stability": "stable",
+      "note": "Inverts the Michigan answer. The threshold is 1 000, not 5 000."
+    },
+    {
+      "id": "A12",
+      "theme": "jour du vote",
+      "text": "La carte d'electeur est-elle obligatoire pour voter ?",
+      "expected_answer": "Non",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A13",
+      "theme": "jour du vote",
+      "text": "Combien de bulletins faut-il prendre avant d'entrer dans l'isoloir ?",
+      "expected_answer": "Au moins deux, pour preserver le secret du vote",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F16828",
+      "stability": "stable"
+    },
+    {
+      "id": "A14",
+      "theme": "jour du vote",
+      "text": "Le vote est-il obligatoire en France ?",
+      "expected_answer": "Non",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A15",
+      "theme": "procuration",
+      "text": "Faut-il justifier son absence pour donner procuration ?",
+      "expected_answer": "Non",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1604",
+      "stability": "stable"
+    },
+    {
+      "id": "A16",
+      "theme": "procuration",
+      "text": "Le mandataire doit-il etre inscrit dans la meme commune que la personne qui donne procuration ?",
+      "expected_answer": "Non, mais il doit voter dans le bureau de vote du mandant",
+      "binding": "national",
+      "sourced": "partial",
+      "source": "service-public.gouv.fr F1604 confirms the bureau rule but does not state the commune rule",
+      "stability": "stable",
+      "note": "Deterritorialisation since 2022. Pre-2022 training data gives the opposite answer, which makes this a good item once the source is nailed down."
+    },
+    {
+      "id": "A17",
+      "theme": "procuration",
+      "text": "Ou peut-on etablir une procuration de vote ?",
+      "expected_answer": "En ligne via Maprocuration puis en commissariat ou gendarmerie, ou directement en commissariat, gendarmerie ou tribunal",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F1604",
+      "stability": "stable"
+    },
+    {
+      "id": "A18",
+      "theme": "vote blanc",
+      "text": "Le vote blanc est-il compte dans les suffrages exprimes ?",
+      "expected_answer": "Non",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A19",
+      "theme": "vote blanc",
+      "text": "Quelle est la difference entre un vote blanc et un vote nul ?",
+      "expected_answer": "Le vote blanc est une enveloppe vide ou un bulletin sans nom, decompte separement depuis 2014. Le vote nul est un bulletin annule, par exemple rature ou dechire",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable",
+      "note": "Borderline for the simple-answer rule. Cut it if the answer is too long to check."
+    },
+    {
+      "id": "A20",
+      "theme": "deux tours",
+      "text": "Peut-on voter au 2nd tour sans avoir vote au 1er tour ?",
+      "expected_answer": "Oui",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A21",
+      "theme": "deux tours",
+      "text": "Combien de candidats restent en lice au 2nd tour de la presidentielle ?",
+      "expected_answer": "Deux, sauf si un candidat obtient la majorite absolue au 1er tour",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A22",
+      "theme": "candidature",
+      "text": "Combien de parrainages faut-il pour être candidat à l'élection présidentielle ?",
+      "expected_answer": "500",
+      "binding": "national",
+      "sourced": "yes",
+      "stability": "stable",
+      "source": "Conseil constitutionnel, jeu de donnees 'Parrainages des candidats a l'election presidentielle' sur data.gouv.fr: \"les 500 parrainages necessaires\". Same text adds two conditions: at most 50 from any one departement or collectivite d'outre-mer, and signatures from elus of at least 30 departements or COM",
+      "note": "The 500 figure is the headline. The 50-per-departement cap and the 30-departement spread are extra facts a complete answer may mention; decide whether they earn credit."
+    },
+    {
+      "id": "A23",
+      "theme": "candidature",
+      "text": "Qui publie la liste officielle des candidats à l'élection présidentielle ?",
+      "expected_answer": "Le Conseil constitutionnel",
+      "binding": "national",
+      "sourced": "yes",
+      "stability": "stable",
+      "source": "Conseil constitutionnel on data.gouv.fr: \"Le Conseil constitutionnel publiera, deux fois par semaine, les parrainages valides\" and \"Seule la decision finale du Conseil constitutionnel fait foi\"",
+      "note": "Shares its expected answer with A27. A surface that replies 'le Conseil constitutionnel' to anything scores both."
+    },
+    {
+      "id": "A24",
+      "theme": "candidature",
+      "text": "Les parrainages des candidats a la presidentielle sont-ils publics ?",
+      "expected_answer": "Oui",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A25",
+      "theme": "candidature",
+      "text": "Emmanuel Macron peut-il se representer a l'election presidentielle de 2027 ?",
+      "expected_answer": "Non, la Constitution interdit plus de deux mandats consecutifs",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable",
+      "note": "Article 6 of the Constitution. Top of mind for 2027 and a clean no."
+    },
+    {
+      "id": "A26",
+      "theme": "organisation",
+      "text": "Qui organise l'election presidentielle en France ?",
+      "expected_answer": "Le ministere de l'Interieur, les communes tenant les bureaux de vote",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A27",
+      "theme": "organisation",
+      "text": "Qui proclame les résultats officiels de l'élection présidentielle ?",
+      "expected_answer": "Le Conseil constitutionnel",
+      "binding": "national",
+      "sourced": "yes",
+      "stability": "stable",
+      "source": "Constitution du 4 octobre 1958, article 58: \"Le Conseil constitutionnel veille a la regularite de l'election du President de la Republique. Il examine les reclamations et proclame les resultats du scrutin.\"",
+      "note": "Shares its expected answer with A23."
+    },
+    {
+      "id": "A28",
+      "theme": "organisation",
+      "text": "Quand commence le depouillement des votes ?",
+      "expected_answer": "Immediatement apres la cloture du scrutin, en public",
+      "binding": "national",
+      "sourced": "yes",
+      "source": "service-public.gouv.fr F16828",
+      "stability": "stable"
+    },
+    {
+      "id": "A29",
+      "theme": "organisation",
+      "text": "A partir de quelle heure les resultats peuvent-ils etre publies en France ?",
+      "expected_answer": "20h",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A30",
+      "theme": "organisation",
+      "text": "Jusqu'a quand les sondages peuvent-ils etre publies avant le scrutin ?",
+      "expected_answer": "Jusqu'a la veille du scrutin a minuit",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A31",
+      "theme": "organisation",
+      "text": "Qui controle le temps de parole des candidats pendant la campagne presidentielle ?",
+      "expected_answer": "L'ARCOM",
+      "binding": "national",
+      "sourced": "no",
+      "stability": "stable"
+    },
+    {
+      "id": "A32",
+      "theme": "etranger",
+      "text": "Comment vote-t-on a l'election presidentielle quand on habite a l'etranger ?",
+      "expected_answer": "En personne dans un bureau de vote consulaire, ou par procuration. Il n'y a pas de vote par internet pour la presidentielle",
+      "binding": "circonscription consulaire",
+      "sourced": "no",
+      "stability": "stable",
+      "note": "Roughly 1.6 million registered abroad. Binds to a tier nothing else in the set uses. Cut it if that tier is not worth carrying."
+    }
+  ],
+  "retired": {
+    "_note": "The rubric-shaped compound questions drafted earlier on 2026-08-04, superseded by the atomic shape. Kept so the reasoning is not lost.",
+    "FR1": {
+      "reason": "compound. Split into A1, A2, A3, A4, plus the unresolved queue-at-closing fact."
+    },
+    "FR2": {
+      "reason": "compound. Split into A6 and A7. The address-level variant is dropped for now: a mairie address is not a simple checkable answer without a commune binding."
+    },
+    "FR3": {
+      "reason": "compound. Became A11."
+    },
+    "FR4": {
+      "reason": "Dropped by Daniel 2026-08-04 under the trap-questions rule of 2026-08-03. Asked about same-day registration, which France does not have."
+    },
+    "FR5": {
+      "reason": "Dropped 2026-08-04, same rule. Asked about early, postal and internet voting, none of which exist for the presidentielle."
+    },
+    "FR6": {
+      "reason": "compound. Split into A15, A16, A17."
+    },
+    "FR7": {
+      "reason": "narrative, not checkable. Split into A27 and A28."
+    },
+    "FR8": {
+      "reason": "compound. Split into A26 and A27."
+    },
+    "FR9": {
+      "reason": "compound. The load-bearing half became A5."
+    },
+    "A23": {
+      "text": "Qui publie la liste officielle des candidats à l'élection présidentielle ?",
+      "expected_answer": "Le Conseil constitutionnel",
+      "source": "Conseil constitutionnel on data.gouv.fr: \"Le Conseil constitutionnel publiera, deux fois par semaine, les parrainages valides\" and \"Seule la decision finale du Conseil constitutionnel fait foi\"",
+      "reason": "Dropped 2026-08-05. A23 and A27 shared the expected answer 'Le Conseil constitutionnel'. Both were sourced and correct; the problem was that one answer scored two questions."
+    },
+    "A27": {
+      "text": "Qui proclame les résultats officiels de l'élection présidentielle ?",
+      "expected_answer": "Le Conseil constitutionnel",
+      "source": "Constitution du 4 octobre 1958, article 58: \"Le Conseil constitutionnel veille a la regularite de l'election du President de la Republique. Il examine les reclamations et proclame les resultats du scrutin.\"",
+      "reason": "Dropped 2026-08-05. A23 and A27 shared the expected answer 'Le Conseil constitutionnel'. Both were sourced and correct; the problem was that one answer scored two questions."
+    }
+  },
+  "deferred": {
+    "michigan_ids": [
+      "16.2",
+      "16.3",
+      "16.4",
+      "16.5",
+      "16.6",
+      "16.7",
+      "16.8"
+    ],
+    "reason": "Skipped for now, confirmed by Daniel 2026-08-04. The official candidate list is fixed by the Conseil constitutionnel after the parrainage window closes, around March 2027. A22 to A25 cover candidacy mechanics with stable answers instead."
+  },
+  "dropped": {
+    "primaries": "France has no state-run primaries. Ruled out 2026-08-03; the pivot does not revive it.",
+    "queue_at_closing": "Whether France has a rule equivalent to MCL 168.720 for voters in the queue at closing. Could not confirm one exists this session. Reinstate as an atomic question only if the Code electoral turns out to say something explicit."
+  },
+  "selection": {
+    "_note": "Daniel's selection 2026-08-04. Block 1 asked once per surface (provider x model). Block 2 asked per surface per commune. A4 and A11 appear in BOTH on purpose: nationally they ask 'what is the rule', locally they ask 'what is the answer for my commune'. That pair is the most informative thing in the set, because a model can know the rule and still fail to apply it to a place.",
+    "national_block": [
+      "A1",
+      "A3",
+      "A6",
+      "A8",
+      "A22"
+    ],
+    "national_block_note": "A4 and A11 moved to the commune block 2026-08-04. A23 and A27 dropped 2026-08-05: both had the expected answer 'Le Conseil constitutionnel', so a surface replying with it to anything scored two of seven. A3 (opening 8h) is invariant and near-free; kept as a floor check.",
+    "locality_block_candidates": [
+      "L1 where to register",
+      "L2 where to vote",
+      "L3 voting hours",
+      "L4 is ID needed"
+    ],
+    "commune_block": [
+      "A4 (deferred to spring 2027)",
+      "A11 (buildable now)",
+      "L1 where to register (buildable now)",
+      "L2 where to vote (needs reframing)"
+    ]
+  },
+  "locality_block": {
+    "_note": "Answer-key feasibility assessed 2026-08-04. Sources verified by direct fetch where marked verified. NOT YET BUILT. Binding tier is the commune. Sample size and sampling rule undecided.",
+    "L1": {
+      "question_shape": "J'habite a {COMMUNE}. Ou est-ce que je m'inscris sur les listes electorales ?",
+      "expected_answer_shape": "A la mairie de {COMMUNE}, {ADDRESS}",
+      "source": "api-lannuaire.service-public.fr, dataset api-lannuaire-administration, filter pivot like 'mairie'",
+      "source_status": "verified 2026-08-04 by direct fetch",
+      "coverage": "35803 records. Fields confirmed present: name, structured address with postal code and GPS, INSEE commune code, opening hours as JSON, email, telephone, SIRET/SIREN, modification date",
+      "cost": "low. One official machine-readable dataset, joins on INSEE code",
+      "caveat": "Paris, Lyon and Marseille register at the mairie d'arrondissement, not the mairie centrale. Either exclude PLM or handle the arrondissement tier explicitly"
+    },
+    "L2": {
+      "question_shape": "J'habite a {COMMUNE}. Ou est-ce que je vais voter ?",
+      "problem": "This is not a per-commune question. A commune has many bureaux de vote (~70000 nationally) and which one you use depends on your street address, not your commune. Asked at commune level the CORRECT answer is 'it depends on your address, check your carte d'electeur or the online service', which is a national answer, not a local one",
+      "only_works_when": "the commune has exactly one bureau de vote, which is typical below roughly 1000 habitants. Roughly 25000 of ~34900 communes are under 1000. For those the answer is usually the mairie and is defensible",
+      "alternative_shape": "bind to a full street address rather than a commune, and ask which bureau serves it",
+      "source": "data.gouv.fr 'Bureaux de vote et adresses de leurs electeurs', published by INSEE, address-to-bureau correspondence derived from the REU",
+      "source_status": "verified 2026-08-04 by direct fetch that the dataset exists and maps addresses to bureaux",
+      "caveat": "REU extraction is September 2022, most recent resource June 2023. Bureaux are redrawn between elections, so this is NOT authoritative for 2027",
+      "cost": "high, and the answer key would be stale",
+      "recommendation": "either restrict to small single-bureau communes, or drop and replace with the national question 'comment je trouve mon bureau de vote'"
+    },
+    "L3": {
+      "question_shape": "A quelle heure ferme mon bureau de vote a {COMMUNE} ?",
+      "blocker": "The authoritative per-commune closing hour for 2027 DOES NOT EXIST YET. The decret de convocation sets the national hours and arretes prefectoraux, one per departement, list which communes get an extension to 20h. Neither is published. The decret is expected roughly 10 weeks before the 1st round, so around February 2027, and the arretes typically follow in March or April",
+      "cost_when_available": "medium. 101 prefecture Recueils des Actes Administratifs, PDFs, one per departement, published only weeks before the scrutin",
+      "proxy_option": "the 2022 arretes exist and could be used, but a 2022 proxy is not a 2027 answer key and should not be presented as one",
+      "recommendation": "keep A4 as a national question now (19h, up to 20h by arrete prefectoral), and defer the per-commune version until spring 2027"
+    },
+    "L4": {
+      "question_shape": "J'habite a {COMMUNE}. Faut-il une piece d'identite pour voter ?",
+      "expected_answer_shape": "Oui / Non, depending on whether the commune has 1000 habitants or more",
+      "source": "arrete du 16 novembre 2018 for the rule (threshold 1000), INSEE populations legales per commune for the join",
+      "source_status": "rule verified 2026-08-04 via service-public F1361. INSEE population URL NOT yet found, the page tried returned 404",
+      "cost": "low once the INSEE file is located. Annual, open, machine-readable, joins on INSEE code",
+      "why_it_is_good": "a threshold effect the model cannot guess. Roughly 25000 of ~34900 communes are under 1000, so 'non' is the majority answer, which is counterintuitive and inverts the Michigan result as well",
+      "recommendation": "strongest per-locality question in the set. Build this one first"
+    },
+    "sampling": {
+      "status": "DRAWN at N=200, 2026-08-04. Daniel set N=200 and asked for geographic spread so the front-end map is not empty.",
+      "rule": "france/sample_communes.py. Seed 20270418. Rule written before the draw. Farthest-point spatial spread within size strata, plus a departement-coverage repair pass.",
+      "frame": "metropolitan France (96 departements incl. 2A/2B) + 5 DROM (971,972,973,974,976) = 34875 communes, 101 departements. Excludes 975/977/978/984/986/987/988/989: collectivites not departements, and Nouvelle-Caledonie has different registration rules per service-public F34240.",
+      "source": "geo.api.gouv.fr /communes with centre coordinates, snapshot data/fr/raw/2026-08-04/geo_communes.json, sha256 8b603792274c49fbccccb1f899a297856b0bee0c6c016867b7de1389f11066fc, fetched 2026-08-04 via curl",
+      "strata_at_N100": {
+        "most_populous (>=100k, forced census of top 20)": 20,
+        "just_below_1000 (500-999)": 25,
+        "just_above_1000 (1000-1999)": 25,
+        "very_low (<500)": 15,
+        "mid (2000-99999)": 15
+      },
+      "why_these_strata": "Half the sample sits either side of the 1000-inhabitant line, because that threshold is the only place a commune binding earns its cost. Below it an identity document is not obligatory, at and above it one is required.",
+      "coverage": {
+        "departements": "101 / 101",
+        "regions": "18 / 18",
+        "one_degree_cells": "83 of the ~90 that metropolitan France spans",
+        "under_1000": "79 of 200 (40%), against 71% of the frame",
+        "smallest": "18 hab"
+      },
+      "NOT_representative": "Stratified for discrimination, not proportional to France. 40 percent of the sample is under 1000 inhabitants against 71 percent of the frame, and DROM are at 10 of 200 (5%) against 129 of 34875 (0.37%). Both are deliberate, for threshold discrimination and map coverage respectively. Results CANNOT be read as 'X percent of French communes get wrong answers' without reweighting to the frame.",
+      "frame_profile": {
+        "<500": "18270 (52.2%)",
+        "500-999": "6600 (18.9%)",
+        "1000-1999": "4535 (13.0%)",
+        "2000-9999": "4497 (12.9%)",
+        "10000-99999": "1025 (2.9%)",
+        "100000+": "42 (0.1%)",
+        "under_1000_total": "24870 (71.1%)"
+      },
+      "volume_at_N100": "100 communes x 2 buildable locality questions + 7 national = 207 prompts per surface. The parked roster instrument shipped 612.",
+      "n": 200,
+      "strata_at_N200": {
+        "drom (fixed quota, 2 per DROM)": 10,
+        "most_populous (forced census of top 38)": 38,
+        "just_below_1000 (500-999)": 48,
+        "just_above_1000 (1000-1999)": 48,
+        "very_low (<500)": 28,
+        "mid (2000-99999)": 28
+      },
+      "method_note": "Two objectives resolved in order. Size first, because the 1000-hab identity threshold is where a commune binding earns its cost. Geography second, by farthest-point sampling: repeatedly take the candidate whose nearest already-chosen commune is furthest away. That fills holes instead of following population density, which a random or departement-quota draw does not. The most-populous stratum is drawn first and clusters where cities are; every later stratum spreads around it.",
+      "volume_at_N200": "200 communes x 2 buildable locality questions + 7 national = 407 prompts per surface. The parked roster instrument shipped 612."
+    }
+  }
+}

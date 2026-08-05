@@ -1,0 +1,3009 @@
+{
+  "_status": "DRAFT, not approved. Drawn 2026-08-04.",
+  "rule": "france/sample_communes.py, seed 20270418, farthest-point spatial spread",
+  "source": "geo.api.gouv.fr /communes, snapshot data/fr/raw/2026-08-04/geo_communes.json sha256 8b603792274c49fbccccb1f899a297856b0bee0c6c016867b7de1389f11066fc",
+  "not_representative": "Stratified for discrimination around the 1 000-hab identity threshold, and DROM are over-quota for map coverage. Reweight to the frame before reporting any rate.",
+  "n": 200,
+  "communes": [
+    {
+      "nom": "Terre-de-Bas",
+      "code": "97130",
+      "codeDepartement": "971",
+      "codeRegion": "01",
+      "population": 873,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -61.6326,
+          15.8554
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Baie-Mahault",
+      "code": "97103",
+      "codeDepartement": "971",
+      "codeRegion": "01",
+      "population": 30924,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -61.5951,
+          16.2498
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Grand'Rivière",
+      "code": "97211",
+      "codeDepartement": "972",
+      "codeRegion": "02",
+      "population": 487,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -61.1836,
+          14.847
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Fort-de-France",
+      "code": "97209",
+      "codeDepartement": "972",
+      "codeRegion": "02",
+      "population": 75506,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -61.0686,
+          14.6492
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Ouanary",
+      "code": "97314",
+      "codeDepartement": "973",
+      "codeRegion": "03",
+      "population": 150,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -51.8262,
+          4.2104
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Cayenne",
+      "code": "97302",
+      "codeDepartement": "973",
+      "codeRegion": "03",
+      "population": 62675,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -52.3319,
+          4.9464
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Cilaos",
+      "code": "97424",
+      "codeDepartement": "974",
+      "codeRegion": "04",
+      "population": 5040,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          55.4555,
+          -21.1403
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Saint-Denis",
+      "code": "97411",
+      "codeDepartement": "974",
+      "codeRegion": "04",
+      "population": 155634,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          55.4444,
+          -20.9434
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Acoua",
+      "code": "97601",
+      "codeDepartement": "976",
+      "codeRegion": "06",
+      "population": 5192,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          45.0678,
+          -12.7249
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Mamoudzou",
+      "code": "97611",
+      "codeDepartement": "976",
+      "codeRegion": "06",
+      "population": 71437,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          45.1964,
+          -12.7875
+        ]
+      },
+      "stratum": "drom"
+    },
+    {
+      "nom": "Paris",
+      "code": "75056",
+      "codeDepartement": "75",
+      "codeRegion": "11",
+      "population": 2103778,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.347,
+          48.8589
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Marseille",
+      "code": "13055",
+      "codeDepartement": "13",
+      "codeRegion": "93",
+      "population": 886040,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.3806,
+          43.2803
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Lyon",
+      "code": "69123",
+      "codeDepartement": "69",
+      "codeRegion": "84",
+      "population": 519127,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.8351,
+          45.758
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Toulouse",
+      "code": "31555",
+      "codeDepartement": "31",
+      "codeRegion": "76",
+      "population": 514819,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.4328,
+          43.6007
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Nice",
+      "code": "06088",
+      "codeDepartement": "06",
+      "codeRegion": "93",
+      "population": 357737,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          7.2528,
+          43.7032
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Nantes",
+      "code": "44109",
+      "codeDepartement": "44",
+      "codeRegion": "52",
+      "population": 327734,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.5603,
+          47.2382
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Montpellier",
+      "code": "34172",
+      "codeDepartement": "34",
+      "codeRegion": "76",
+      "population": 310240,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.8742,
+          43.61
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Strasbourg",
+      "code": "67482",
+      "codeDepartement": "67",
+      "codeRegion": "44",
+      "population": 293771,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          7.7621,
+          48.5691
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Bordeaux",
+      "code": "33063",
+      "codeDepartement": "33",
+      "codeRegion": "75",
+      "population": 267991,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.5848,
+          44.8624
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Lille",
+      "code": "59350",
+      "codeDepartement": "59",
+      "codeRegion": "32",
+      "population": 238246,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.0468,
+          50.6311
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Rennes",
+      "code": "35238",
+      "codeDepartement": "35",
+      "codeRegion": "53",
+      "population": 230890,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.6884,
+          48.1159
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Toulon",
+      "code": "83137",
+      "codeDepartement": "83",
+      "codeRegion": "93",
+      "population": 179116,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.9334,
+          43.1364
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Reims",
+      "code": "51454",
+      "codeDepartement": "51",
+      "codeRegion": "44",
+      "population": 177674,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.0551,
+          49.2535
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Saint-Étienne",
+      "code": "42218",
+      "codeDepartement": "42",
+      "codeRegion": "84",
+      "population": 173136,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.3665,
+          45.4241
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Le Havre",
+      "code": "76351",
+      "codeDepartement": "76",
+      "codeRegion": "28",
+      "population": 166687,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.1312,
+          49.4958
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Villeurbanne",
+      "code": "69266",
+      "codeDepartement": "69",
+      "codeRegion": "84",
+      "population": 163684,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.8898,
+          45.7719
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Dijon",
+      "code": "21231",
+      "codeDepartement": "21",
+      "codeRegion": "27",
+      "population": 161830,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.0322,
+          47.3319
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Angers",
+      "code": "49007",
+      "codeDepartement": "49",
+      "codeRegion": "52",
+      "population": 159022,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.5629,
+          47.4819
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Grenoble",
+      "code": "38185",
+      "codeDepartement": "38",
+      "codeRegion": "84",
+      "population": 156140,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.7155,
+          45.1842
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Nîmes",
+      "code": "30189",
+      "codeDepartement": "30",
+      "codeRegion": "76",
+      "population": 151839,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.3429,
+          43.8322
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Aix-en-Provence",
+      "code": "13001",
+      "codeDepartement": "13",
+      "codeRegion": "93",
+      "population": 149695,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.3879,
+          43.536
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Saint-Denis",
+      "code": "93066",
+      "codeDepartement": "93",
+      "codeRegion": "11",
+      "population": 149077,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.3657,
+          48.9378
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Clermont-Ferrand",
+      "code": "63113",
+      "codeDepartement": "63",
+      "codeRegion": "84",
+      "population": 146351,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.1127,
+          45.787
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Le Mans",
+      "code": "72181",
+      "codeDepartement": "72",
+      "codeRegion": "52",
+      "population": 146249,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.1957,
+          47.9819
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Brest",
+      "code": "29019",
+      "codeDepartement": "29",
+      "codeRegion": "53",
+      "population": 142346,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -4.4996,
+          48.4085
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Tours",
+      "code": "37261",
+      "codeDepartement": "37",
+      "codeRegion": "24",
+      "population": 139259,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.6949,
+          47.3943
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Amiens",
+      "code": "80021",
+      "codeDepartement": "80",
+      "codeRegion": "32",
+      "population": 136449,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.2847,
+          49.8987
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Annecy",
+      "code": "74010",
+      "codeDepartement": "74",
+      "codeRegion": "84",
+      "population": 132117,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.1264,
+          45.9024
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Limoges",
+      "code": "87085",
+      "codeDepartement": "87",
+      "codeRegion": "75",
+      "population": 129937,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.226,
+          45.8567
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Metz",
+      "code": "57463",
+      "codeDepartement": "57",
+      "codeRegion": "44",
+      "population": 122572,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.1962,
+          49.1048
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Perpignan",
+      "code": "66136",
+      "codeDepartement": "66",
+      "codeRegion": "76",
+      "population": 121616,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.9045,
+          42.699
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Boulogne-Billancourt",
+      "code": "92012",
+      "codeDepartement": "92",
+      "codeRegion": "11",
+      "population": 119019,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.2429,
+          48.8375
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Besançon",
+      "code": "25056",
+      "codeDepartement": "25",
+      "codeRegion": "27",
+      "population": 118489,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.0123,
+          47.2602
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Rouen",
+      "code": "76540",
+      "codeDepartement": "76",
+      "codeRegion": "28",
+      "population": 117662,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.0912,
+          49.4412
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Orléans",
+      "code": "45234",
+      "codeDepartement": "45",
+      "codeRegion": "24",
+      "population": 116357,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.9122,
+          47.8734
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Montreuil",
+      "code": "93048",
+      "codeDepartement": "93",
+      "codeRegion": "11",
+      "population": 111934,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.4491,
+          48.8637
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Caen",
+      "code": "14118",
+      "codeDepartement": "14",
+      "codeRegion": "28",
+      "population": 109400,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.3722,
+          49.1846
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Argenteuil",
+      "code": "95018",
+      "codeDepartement": "95",
+      "codeRegion": "11",
+      "population": 106130,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.2478,
+          48.9501
+        ]
+      },
+      "stratum": "most_populous"
+    },
+    {
+      "nom": "Pianottoli-Caldarello",
+      "code": "2A215",
+      "codeDepartement": "2A",
+      "codeRegion": "94",
+      "population": 749,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          9.0457,
+          41.5209
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Uhart-Cize",
+      "code": "64538",
+      "codeDepartement": "64",
+      "codeRegion": "75",
+      "population": 816,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.2537,
+          43.1289
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Rogliano",
+      "code": "2B261",
+      "codeDepartement": "2B",
+      "codeRegion": "94",
+      "population": 530,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          9.4323,
+          42.974
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "La Foye-Monjault",
+      "code": "79127",
+      "codeDepartement": "79",
+      "codeRegion": "75",
+      "population": 839,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.5359,
+          46.1849
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Montigny-aux-Amognes",
+      "code": "58176",
+      "codeDepartement": "58",
+      "codeRegion": "27",
+      "population": 621,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.2792,
+          47.0243
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Saint-Lary-Soulan",
+      "code": "65388",
+      "codeDepartement": "65",
+      "codeRegion": "76",
+      "population": 837,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.266,
+          42.7483
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Saint-Mards-en-Othe",
+      "code": "10350",
+      "codeDepartement": "10",
+      "codeRegion": "44",
+      "population": 635,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.7919,
+          48.1608
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Daglan",
+      "code": "24150",
+      "codeDepartement": "24",
+      "codeRegion": "75",
+      "population": 570,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.1896,
+          44.7453
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Gâvres",
+      "code": "56062",
+      "codeDepartement": "56",
+      "codeRegion": "53",
+      "population": 696,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -3.3305,
+          47.6948
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Neuwiller",
+      "code": "68232",
+      "codeDepartement": "68",
+      "codeRegion": "44",
+      "population": 525,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          7.5133,
+          47.5248
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Estang",
+      "code": "32127",
+      "codeDepartement": "32",
+      "codeRegion": "76",
+      "population": 668,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.1043,
+          43.8761
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Kerfot",
+      "code": "22086",
+      "codeDepartement": "22",
+      "codeRegion": "53",
+      "population": 642,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -3.033,
+          48.7357
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Siouville-Hague",
+      "code": "50576",
+      "codeDepartement": "50",
+      "codeRegion": "28",
+      "population": 931,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.8303,
+          49.5602
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Rancennes",
+      "code": "08353",
+      "codeDepartement": "08",
+      "codeRegion": "44",
+      "population": 709,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.8253,
+          50.1221
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Mâron",
+      "code": "36112",
+      "codeDepartement": "36",
+      "codeRegion": "24",
+      "population": 735,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.8655,
+          46.7992
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Roches-Bettaincourt",
+      "code": "52044",
+      "codeDepartement": "52",
+      "codeRegion": "44",
+      "population": 521,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.2625,
+          48.2951
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Audinghen",
+      "code": "62054",
+      "codeDepartement": "62",
+      "codeRegion": "32",
+      "population": 617,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.6142,
+          50.8514
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Vars",
+      "code": "05177",
+      "codeDepartement": "05",
+      "codeRegion": "93",
+      "population": 588,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.7211,
+          44.5907
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "La Baffe",
+      "code": "88028",
+      "codeDepartement": "88",
+      "codeRegion": "44",
+      "population": 631,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.5584,
+          48.165
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Bias",
+      "code": "40043",
+      "codeDepartement": "40",
+      "codeRegion": "75",
+      "population": 809,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.2379,
+          44.1347
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Pouilloux",
+      "code": "71356",
+      "codeDepartement": "71",
+      "codeRegion": "27",
+      "population": 946,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.3558,
+          46.6016
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Anglès",
+      "code": "81014",
+      "codeDepartement": "81",
+      "codeRegion": "76",
+      "population": 515,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.5921,
+          43.5368
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "La Laupie",
+      "code": "26157",
+      "codeDepartement": "26",
+      "codeRegion": "84",
+      "population": 789,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.8494,
+          44.6161
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Boisné-La Tude",
+      "code": "16082",
+      "codeDepartement": "16",
+      "codeRegion": "75",
+      "population": 662,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.1976,
+          45.4697
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Soursac",
+      "code": "19264",
+      "codeDepartement": "19",
+      "codeRegion": "75",
+      "population": 526,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.2008,
+          45.2657
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Saint-Maurice-Saint-Germain",
+      "code": "28354",
+      "codeDepartement": "28",
+      "codeRegion": "24",
+      "population": 528,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.0748,
+          48.4941
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "La Chailleuse",
+      "code": "39021",
+      "codeDepartement": "39",
+      "codeRegion": "27",
+      "population": 587,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.5233,
+          46.5822
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Bel-Air-Val-d'Ance",
+      "code": "48038",
+      "codeDepartement": "48",
+      "codeRegion": "76",
+      "population": 532,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.6279,
+          44.8424
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Étaves-et-Bocquiaux",
+      "code": "02293",
+      "codeDepartement": "02",
+      "codeRegion": "32",
+      "population": 543,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.4519,
+          49.931
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Saint-Hilaire-la-Forêt",
+      "code": "85231",
+      "codeDepartement": "85",
+      "codeRegion": "52",
+      "population": 846,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.5272,
+          46.4553
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Hudimesnil",
+      "code": "50252",
+      "codeDepartement": "50",
+      "codeRegion": "28",
+      "population": 928,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.4652,
+          48.8709
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Aubignosc",
+      "code": "04013",
+      "codeDepartement": "04",
+      "codeRegion": "93",
+      "population": 616,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.9542,
+          44.1211
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Mouzay",
+      "code": "55364",
+      "codeDepartement": "55",
+      "codeRegion": "44",
+      "population": 651,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.2435,
+          49.4531
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Talais",
+      "code": "33521",
+      "codeDepartement": "33",
+      "codeRegion": "75",
+      "population": 764,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.0353,
+          45.499
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Chénérailles",
+      "code": "23061",
+      "codeDepartement": "23",
+      "codeRegion": "75",
+      "population": 728,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.1734,
+          46.1106
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Pralognan-la-Vanoise",
+      "code": "73206",
+      "codeDepartement": "73",
+      "codeRegion": "84",
+      "population": 689,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.7305,
+          45.3431
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Saint-Privé",
+      "code": "89365",
+      "codeDepartement": "89",
+      "codeRegion": "27",
+      "population": 515,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.0046,
+          47.6865
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Le Pas",
+      "code": "53176",
+      "codeDepartement": "53",
+      "codeRegion": "52",
+      "population": 517,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.6969,
+          48.4198
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Saint-Jean-de-Thurac",
+      "code": "47248",
+      "codeDepartement": "47",
+      "codeRegion": "75",
+      "population": 563,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.7406,
+          44.1552
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Guillon-Terre-Plaine",
+      "code": "89197",
+      "codeDepartement": "89",
+      "codeRegion": "27",
+      "population": 703,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.0701,
+          47.5243
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Saint-Gingolph",
+      "code": "74237",
+      "codeDepartement": "74",
+      "codeRegion": "84",
+      "population": 903,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.7768,
+          46.389
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Narcastet",
+      "code": "64413",
+      "codeDepartement": "64",
+      "codeRegion": "75",
+      "population": 753,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.3203,
+          43.2417
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Varen",
+      "code": "82187",
+      "codeDepartement": "82",
+      "codeRegion": "76",
+      "population": 640,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.8858,
+          44.1605
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Glénay",
+      "code": "79134",
+      "codeDepartement": "79",
+      "codeRegion": "75",
+      "population": 523,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.245,
+          46.8564
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Limerzel",
+      "code": "56111",
+      "codeDepartement": "56",
+      "codeRegion": "53",
+      "population": 1370,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -2.36,
+          47.6391
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Ouches",
+      "code": "42162",
+      "codeDepartement": "42",
+      "codeRegion": "84",
+      "population": 1138,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.9921,
+          46.011
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Masseube",
+      "code": "32242",
+      "codeDepartement": "32",
+      "codeRegion": "76",
+      "population": 1511,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.5857,
+          43.4268
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Gardonne",
+      "code": "24194",
+      "codeDepartement": "24",
+      "codeRegion": "75",
+      "population": 1608,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.3296,
+          44.8293
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Gros-Réderching",
+      "code": "57261",
+      "codeDepartement": "57",
+      "codeRegion": "44",
+      "population": 1266,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          7.2198,
+          49.0686
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Frignicourt",
+      "code": "51262",
+      "codeDepartement": "51",
+      "codeRegion": "44",
+      "population": 1747,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.5941,
+          48.7004
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Villemaréchal",
+      "code": "77504",
+      "codeDepartement": "77",
+      "codeRegion": "11",
+      "population": 1055,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.8784,
+          48.2731
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Étalondes",
+      "code": "76252",
+      "codeDepartement": "76",
+      "codeRegion": "28",
+      "population": 1068,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.3902,
+          50.0325
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Neuvy-sur-Barangeon",
+      "code": "18165",
+      "codeDepartement": "18",
+      "codeRegion": "24",
+      "population": 1126,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.2558,
+          47.3259
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Nant",
+      "code": "12168",
+      "codeDepartement": "12",
+      "codeRegion": "76",
+      "population": 1026,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.2887,
+          44.0204
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Le Plessis-Brion",
+      "code": "60501",
+      "codeDepartement": "60",
+      "codeRegion": "32",
+      "population": 1298,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.907,
+          49.4618
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Gacé",
+      "code": "61181",
+      "codeDepartement": "61",
+      "codeRegion": "28",
+      "population": 1766,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.3118,
+          48.7895
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Esternay",
+      "code": "51237",
+      "codeDepartement": "51",
+      "codeRegion": "44",
+      "population": 1748,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.5839,
+          48.7281
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Cléden-Poher",
+      "code": "29029",
+      "codeDepartement": "29",
+      "codeRegion": "53",
+      "population": 1130,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -3.6639,
+          48.2431
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Bessay-sur-Allier",
+      "code": "03025",
+      "codeDepartement": "03",
+      "codeRegion": "84",
+      "population": 1382,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.371,
+          46.4507
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Montferrat",
+      "code": "83082",
+      "codeDepartement": "83",
+      "codeRegion": "93",
+      "population": 1719,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.4774,
+          43.6336
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Jussey",
+      "code": "70292",
+      "codeDepartement": "70",
+      "codeRegion": "27",
+      "population": 1558,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.8921,
+          47.822
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Zuydcoote",
+      "code": "59668",
+      "codeDepartement": "59",
+      "codeRegion": "32",
+      "population": 1630,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.4881,
+          51.0629
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Espéraza",
+      "code": "11129",
+      "codeDepartement": "11",
+      "codeRegion": "76",
+      "population": 1774,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.2204,
+          42.9297
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Mormoiron",
+      "code": "84082",
+      "codeDepartement": "84",
+      "codeRegion": "93",
+      "population": 1884,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.1918,
+          44.0686
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Saint-Gonnery",
+      "code": "56215",
+      "codeDepartement": "56",
+      "codeRegion": "53",
+      "population": 1087,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -2.8208,
+          48.1248
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "La Ville-aux-Clercs",
+      "code": "41275",
+      "codeDepartement": "41",
+      "codeRegion": "24",
+      "population": 1200,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.0977,
+          47.9185
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Villers-Sire-Nicole",
+      "code": "59627",
+      "codeDepartement": "59",
+      "codeRegion": "32",
+      "population": 1009,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.012,
+          50.3407
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "L'Épine",
+      "code": "85083",
+      "codeDepartement": "85",
+      "codeRegion": "52",
+      "population": 1636,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -2.2616,
+          46.9799
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Créhen",
+      "code": "22049",
+      "codeDepartement": "22",
+      "codeRegion": "53",
+      "population": 1671,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -2.1869,
+          48.5447
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Excideuil",
+      "code": "24164",
+      "codeDepartement": "24",
+      "codeRegion": "75",
+      "population": 1201,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.0602,
+          45.3296
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Pomarez",
+      "code": "40228",
+      "codeDepartement": "40",
+      "codeRegion": "75",
+      "population": 1642,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.8394,
+          43.6208
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Widensolen",
+      "code": "68367",
+      "codeDepartement": "68",
+      "codeRegion": "44",
+      "population": 1215,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          7.4832,
+          48.0583
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Lacapelle-Marival",
+      "code": "46143",
+      "codeDepartement": "46",
+      "codeRegion": "76",
+      "population": 1268,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.9346,
+          44.7275
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Breuilpont",
+      "code": "27114",
+      "codeDepartement": "27",
+      "codeRegion": "28",
+      "population": 1201,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.4398,
+          48.9657
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Vallon-en-Sully",
+      "code": "03297",
+      "codeDepartement": "03",
+      "codeRegion": "84",
+      "population": 1457,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.6012,
+          46.5467
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Châtillon-sur-Cher",
+      "code": "41043",
+      "codeDepartement": "41",
+      "codeRegion": "24",
+      "population": 1700,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.4812,
+          47.2895
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Frahier-et-Chatebier",
+      "code": "70248",
+      "codeDepartement": "70",
+      "codeRegion": "27",
+      "population": 1378,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.7509,
+          47.6555
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Auchy-lès-Hesdin",
+      "code": "62050",
+      "codeDepartement": "62",
+      "codeRegion": "32",
+      "population": 1513,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.0973,
+          50.4096
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Saint-Aubin-en-Bray",
+      "code": "60567",
+      "codeDepartement": "60",
+      "codeRegion": "32",
+      "population": 1174,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.8913,
+          49.4247
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Bainville-sur-Madon",
+      "code": "54043",
+      "codeDepartement": "54",
+      "codeRegion": "44",
+      "population": 1441,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.0814,
+          48.5903
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Osséja",
+      "code": "66130",
+      "codeDepartement": "66",
+      "codeRegion": "76",
+      "population": 1390,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.0006,
+          42.3923
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Labergement-Sainte-Marie",
+      "code": "25320",
+      "codeDepartement": "25",
+      "codeRegion": "27",
+      "population": 1273,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.282,
+          46.7817
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Gagnières",
+      "code": "30120",
+      "codeDepartement": "30",
+      "codeRegion": "76",
+      "population": 1102,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.1175,
+          44.3157
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Massiac",
+      "code": "15119",
+      "codeDepartement": "15",
+      "codeRegion": "84",
+      "population": 1796,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.1954,
+          45.2439
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Armissan",
+      "code": "11014",
+      "codeDepartement": "11",
+      "codeRegion": "76",
+      "population": 1461,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.0888,
+          43.1888
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Chaillac",
+      "code": "36035",
+      "codeDepartement": "36",
+      "codeRegion": "24",
+      "population": 1021,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.2879,
+          46.427
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Signy-l'Abbaye",
+      "code": "08419",
+      "codeDepartement": "08",
+      "codeRegion": "44",
+      "population": 1344,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.4004,
+          49.7015
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Bernos-Beaulac",
+      "code": "33046",
+      "codeDepartement": "33",
+      "codeRegion": "75",
+      "population": 1131,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.259,
+          44.3641
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Tréméoc",
+      "code": "29296",
+      "codeDepartement": "29",
+      "codeRegion": "53",
+      "population": 1503,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -4.2165,
+          47.9064
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Saint-Jean-sur-Veyle",
+      "code": "01365",
+      "codeDepartement": "01",
+      "codeRegion": "84",
+      "population": 1143,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.9203,
+          46.2687
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Saint-Paul-en-Pareds",
+      "code": "85259",
+      "codeDepartement": "85",
+      "codeRegion": "52",
+      "population": 1377,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.9684,
+          46.8308
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Réquista",
+      "code": "12197",
+      "codeDepartement": "12",
+      "codeRegion": "76",
+      "population": 1924,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.5526,
+          44.0292
+        ]
+      },
+      "stratum": "just_above_1000"
+    },
+    {
+      "nom": "Bioussac",
+      "code": "16044",
+      "codeDepartement": "16",
+      "codeRegion": "75",
+      "population": 206,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.2671,
+          46.0296
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Brion-sur-Ource",
+      "code": "21109",
+      "codeDepartement": "21",
+      "codeRegion": "27",
+      "population": 215,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.6719,
+          47.902
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Rupt-devant-Saint-Mihiel",
+      "code": "55448",
+      "codeDepartement": "55",
+      "codeRegion": "44",
+      "population": 39,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.3981,
+          48.8872
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Saint-Julien-en-Beauchêne",
+      "code": "05146",
+      "codeDepartement": "05",
+      "codeRegion": "93",
+      "population": 140,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.7214,
+          44.6205
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Morainville",
+      "code": "28268",
+      "codeDepartement": "28",
+      "codeRegion": "24",
+      "population": 18,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.8314,
+          48.3794
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Bathernay",
+      "code": "26028",
+      "codeDepartement": "26",
+      "codeRegion": "84",
+      "population": 221,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.9974,
+          45.1836
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Sauze",
+      "code": "06133",
+      "codeDepartement": "06",
+      "codeRegion": "93",
+      "population": 67,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.7987,
+          44.0862
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Tanconville",
+      "code": "54512",
+      "codeDepartement": "54",
+      "codeRegion": "44",
+      "population": 105,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.9363,
+          48.6045
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Géfosse-Fontenay",
+      "code": "14298",
+      "codeDepartement": "14",
+      "codeRegion": "28",
+      "population": 129,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.083,
+          49.3643
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Carbay",
+      "code": "49056",
+      "codeDepartement": "49",
+      "codeRegion": "52",
+      "population": 277,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.2257,
+          47.7308
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Chanéac",
+      "code": "07054",
+      "codeDepartement": "07",
+      "codeRegion": "84",
+      "population": 254,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.3127,
+          44.9313
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Fournet-Blancheroche",
+      "code": "25255",
+      "codeDepartement": "25",
+      "codeRegion": "27",
+      "population": 353,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.8249,
+          47.1649
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Saint-Sylvain",
+      "code": "76651",
+      "codeDepartement": "76",
+      "codeRegion": "28",
+      "population": 133,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.661,
+          49.8501
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Arbas",
+      "code": "31011",
+      "codeDepartement": "31",
+      "codeRegion": "76",
+      "population": 285,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.9036,
+          42.9925
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Voudenay",
+      "code": "21715",
+      "codeDepartement": "21",
+      "codeRegion": "27",
+      "population": 194,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.3835,
+          47.0924
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Île-d'Aix",
+      "code": "17004",
+      "codeDepartement": "17",
+      "codeRegion": "75",
+      "population": 186,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.1792,
+          46.0122
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Rempnat",
+      "code": "87123",
+      "codeDepartement": "87",
+      "codeRegion": "75",
+      "population": 141,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.8665,
+          45.6861
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Charnizay",
+      "code": "37061",
+      "codeDepartement": "37",
+      "codeRegion": "24",
+      "population": 461,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.9889,
+          46.9205
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Île-de-Batz",
+      "code": "29082",
+      "codeDepartement": "29",
+      "codeRegion": "53",
+      "population": 458,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -4.0051,
+          48.7443
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Issel",
+      "code": "11175",
+      "codeDepartement": "11",
+      "codeRegion": "76",
+      "population": 483,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.0012,
+          43.3681
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "La Cropte",
+      "code": "53087",
+      "codeDepartement": "53",
+      "codeRegion": "52",
+      "population": 235,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.4911,
+          47.9541
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Thiolières",
+      "code": "63431",
+      "codeDepartement": "63",
+      "codeRegion": "84",
+      "population": 164,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.6965,
+          45.5817
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Nivollet-Montgriffon",
+      "code": "01277",
+      "codeDepartement": "01",
+      "codeRegion": "84",
+      "population": 122,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.4567,
+          46.0002
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Hœdic",
+      "code": "56085",
+      "codeDepartement": "56",
+      "codeRegion": "53",
+      "population": 104,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -2.862,
+          47.3364
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Boyelles",
+      "code": "62172",
+      "codeDepartement": "62",
+      "codeRegion": "32",
+      "population": 366,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.8206,
+          50.1955
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Rott",
+      "code": "67416",
+      "codeDepartement": "67",
+      "codeRegion": "44",
+      "population": 462,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          7.9072,
+          49.0175
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Coux",
+      "code": "17130",
+      "codeDepartement": "17",
+      "codeRegion": "75",
+      "population": 480,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.4094,
+          45.3216
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Algajola",
+      "code": "2B010",
+      "codeDepartement": "2B",
+      "codeRegion": "94",
+      "population": 363,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          8.8587,
+          42.6051
+        ]
+      },
+      "stratum": "very_low"
+    },
+    {
+      "nom": "Chamonix-Mont-Blanc",
+      "code": "74056",
+      "codeDepartement": "74",
+      "codeRegion": "84",
+      "population": 8705,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.9291,
+          45.9296
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Arcachon",
+      "code": "33009",
+      "codeDepartement": "33",
+      "codeRegion": "75",
+      "population": 11092,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.1718,
+          44.6515
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Ondres",
+      "code": "40209",
+      "codeDepartement": "40",
+      "codeRegion": "75",
+      "population": 6533,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.4581,
+          43.5624
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Ajaccio",
+      "code": "2A004",
+      "codeDepartement": "2A",
+      "codeRegion": "94",
+      "population": 76320,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          8.7058,
+          41.9228
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Brain-sur-Allonnes",
+      "code": "49041",
+      "codeDepartement": "49",
+      "codeRegion": "52",
+      "population": 2056,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.0743,
+          47.3041
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Gex",
+      "code": "01173",
+      "codeDepartement": "01",
+      "codeRegion": "84",
+      "population": 13627,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.0488,
+          46.3515
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Val-de-Cognac",
+      "code": "16097",
+      "codeDepartement": "16",
+      "codeRegion": "75",
+      "population": 3471,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.374,
+          45.748
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "La Tour-du-Pin",
+      "code": "38509",
+      "codeDepartement": "38",
+      "codeRegion": "84",
+      "population": 8111,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.4459,
+          45.5743
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Gergy",
+      "code": "71215",
+      "codeDepartement": "71",
+      "codeRegion": "27",
+      "population": 2566,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.9159,
+          46.8724
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Port-Saint-Louis-du-Rhône",
+      "code": "13078",
+      "codeDepartement": "13",
+      "codeRegion": "93",
+      "population": 8573,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.826,
+          43.4066
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Cosnac",
+      "code": "19063",
+      "codeDepartement": "19",
+      "codeRegion": "75",
+      "population": 3044,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.5837,
+          45.1301
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Saint-Éloy-les-Mines",
+      "code": "63338",
+      "codeDepartement": "63",
+      "codeRegion": "84",
+      "population": 3480,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.8439,
+          46.162
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Bédarieux",
+      "code": "34028",
+      "codeDepartement": "34",
+      "codeRegion": "76",
+      "population": 5804,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.1637,
+          43.6113
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Thil",
+      "code": "54521",
+      "codeDepartement": "54",
+      "codeRegion": "44",
+      "population": 2016,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.9033,
+          49.4716
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Saint-Julien",
+      "code": "83113",
+      "codeDepartement": "83",
+      "codeRegion": "93",
+      "population": 2453,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          5.9143,
+          43.7045
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Lizy-sur-Ourcq",
+      "code": "77257",
+      "codeDepartement": "77",
+      "codeRegion": "11",
+      "population": 3627,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.0189,
+          49.0344
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Bourgs sur Colagne",
+      "code": "48099",
+      "codeDepartement": "48",
+      "codeRegion": "76",
+      "population": 2091,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          3.2317,
+          44.5323
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Les Portes du Coglais",
+      "code": "35191",
+      "codeDepartement": "35",
+      "codeRegion": "53",
+      "population": 2208,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -1.3403,
+          48.4523
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Saint-Germain-du-Corbéis",
+      "code": "61397",
+      "codeDepartement": "61",
+      "codeRegion": "28",
+      "population": 3636,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.0587,
+          48.4178
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Avord",
+      "code": "18018",
+      "codeDepartement": "18",
+      "codeRegion": "24",
+      "population": 2909,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.6635,
+          47.0313
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Gassin",
+      "code": "83065",
+      "codeDepartement": "83",
+      "codeRegion": "93",
+      "population": 2687,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.5876,
+          43.2385
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Montbeton",
+      "code": "82124",
+      "codeDepartement": "82",
+      "codeRegion": "76",
+      "population": 4400,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.2661,
+          44.0139
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Lucciana",
+      "code": "2B148",
+      "codeDepartement": "2B",
+      "codeRegion": "94",
+      "population": 6923,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          9.465,
+          42.5393
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Valgelon-La Rochette",
+      "code": "73215",
+      "codeDepartement": "73",
+      "codeRegion": "84",
+      "population": 4207,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.1253,
+          45.462
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Rouillé",
+      "code": "86213",
+      "codeDepartement": "86",
+      "codeRegion": "75",
+      "population": 2533,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          0.0282,
+          46.422
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Putanges-le-Lac",
+      "code": "61339",
+      "codeDepartement": "61",
+      "codeRegion": "28",
+      "population": 2093,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          -0.2889,
+          48.7711
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Saint-Jean-du-Falga",
+      "code": "09265",
+      "codeDepartement": "09",
+      "codeRegion": "76",
+      "population": 2851,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.6229,
+          43.0848
+        ]
+      },
+      "stratum": "mid"
+    },
+    {
+      "nom": "Raucoules",
+      "code": "43159",
+      "codeDepartement": "43",
+      "codeRegion": "84",
+      "population": 948,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          4.2825,
+          45.1887
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Raizeux",
+      "code": "78516",
+      "codeDepartement": "78",
+      "codeRegion": "11",
+      "population": 970,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          1.6849,
+          48.6375
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Éloie",
+      "code": "90037",
+      "codeDepartement": "90",
+      "codeRegion": "27",
+      "population": 952,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          6.873,
+          47.687
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Ormoy-la-Rivière",
+      "code": "91469",
+      "codeDepartement": "91",
+      "codeRegion": "11",
+      "population": 943,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.1652,
+          48.4024
+        ]
+      },
+      "stratum": "just_below_1000"
+    },
+    {
+      "nom": "Vitry-sur-Seine",
+      "code": "94081",
+      "codeDepartement": "94",
+      "codeRegion": "11",
+      "population": 93963,
+      "centre": {
+        "type": "Point",
+        "coordinates": [
+          2.3951,
+          48.7893
+        ]
+      },
+      "stratum": "mid"
+    }
+  ]
+}
