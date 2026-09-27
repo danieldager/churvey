@@ -45,7 +45,7 @@ One question, on voter ID, never named Michigan, so it was dropped from the scor
 
 <p align="center"><img src="figures/five_states.png" width="640" alt="Which state each chatbot assumed for the voter-ID question"></p>
 
-## What auditing chatbots taught us about auditing
+## Method notes
 
 - **The grader drifts.** The same six answers graded six out of six on one day and zero out of six four days later, on a hosted model with no version change announced. Everything is now graded in one batch, and the batch date is recorded.
 - **Rubrics have bugs too.** One check was worded so that it failed correct answers and passed wrong ones. It was caught by reading grades against answers by hand, which is why the grades file ships with the answer text.
