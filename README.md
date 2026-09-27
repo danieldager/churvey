@@ -10,65 +10,52 @@ People now ask chatbots about the news. They ask in the apps, not through the AP
 
 Every day, thousands of people on X tag a chatbot under a post to ask whether it is true. Those requests are a live feed of what the public wants checked. The harvester follows each one back to the post, and a filter rewrites it as a single self-contained, dated question with a checkable answer, dropping opinion polls, predictions and anything about a private individual.
 
-<p align="center"><img src="docs/figures/funnel.png" width="720" alt="From harvested requests to checkable questions"></p>
-<p align="center"><sub>One run, 14.5 hours of feed: 2,038 requests harvested, 275 questions kept, about 19 an hour. Filtering cost under a dollar.</sub></p>
+<p align="center"><img src="docs/figures/funnel.png" width="640" alt="From harvested requests to checkable questions"></p>
+<p align="center"><sub>One run, 14.5 hours of feed, filter v1.2: 2,038 requests harvested, 275 questions kept, about 19 an hour. Filtering cost under a dollar.</sub></p>
 
-Questions kept in that run, as the filter rewrote them:
+Four of the questions kept in that run, as the filter rewrote them:
 
-- *Le rendement de l'OAT française à 10 ans a-t-il grimpé vers 4,7 % le 24 septembre 2026, un plus haut depuis 2008 ?*<br>Did the 10-year French government bond yield climb toward 4.7% on 24 September 2026, its highest since 2008?
-- *Est-ce que le président Emmanuel Macron a déclenché l'article 16 de la Constitution le 24 septembre 2026 ?*<br>Did President Emmanuel Macron invoke Article 16 of the Constitution (emergency powers) on 24 September 2026?
-- *La France a-t-elle déclaré le 24 septembre 2026 être prête à déployer des troupes en Ukraine en cas de cessez-le-feu, comme le rapporte Europe 1 ?*<br>Did France say on 24 September 2026 that it is ready to send troops to Ukraine in the event of a ceasefire, as Europe 1 reports?
-- *La Turquie a-t-elle devancé la France dans les trois domaines (mathématiques, lecture, sciences) du classement PISA 2025, publié en septembre 2026 ?*<br>Did Turkey outscore France in all three PISA 2025 domains (maths, reading, science), published in September 2026?
-- *Est-il vrai qu'au 24 septembre 2026, 11 % des stations-service en France sont en difficulté sur au moins un carburant et que certaines stations Total limitent les quantités à 20 litres d'essence ou 40 litres de gazole en raison de ruptures locales ?*<br>As of 24 September 2026, are 11% of petrol stations in France short of at least one fuel, with some Total stations capping sales at 20 litres of petrol or 40 of diesel?
-- *Le déficit public de la France a-t-il atteint plus de 6 % du PIB avec un trou de 54 milliards d'euros en septembre 2026 ?*<br>Did France's public deficit exceed 6% of GDP, with a 54-billion-euro shortfall, in September 2026?
-- *Est-il vrai que TotalEnergies a enregistré 11 milliards de dollars de bénéfices au premier semestre 2026, soit une hausse de 72 % par rapport à l'année précédente ?*<br>Did TotalEnergies book 11 billion dollars of profit in the first half of 2026, up 72% on the year before?
-- *Est-il vrai qu'en septembre 2026, Everllence, qui fournit les moteurs diesel de secours de tous les sous-marins nucléaires français, passe majoritairement sous le contrôle d'un fonds d'investissement américain ?*<br>In September 2026, is Everllence, which supplies the backup diesel engines for every French nuclear submarine, passing into majority control of a US investment fund?
+- *Le rendement de l'OAT française à 10 ans a-t-il grimpé vers 4,7 % le 24 septembre 2026, un plus haut depuis 2008 ?* — Did the 10-year French government bond yield climb toward 4.7% on 24 September 2026, its highest since 2008?
+- *Est-ce que le président Emmanuel Macron a déclenché l'article 16 de la Constitution le 24 septembre 2026 ?* — Did President Emmanuel Macron invoke Article 16 of the Constitution (emergency powers) on 24 September 2026?
+- *La Turquie a-t-elle devancé la France dans les trois domaines (mathématiques, lecture, sciences) du classement PISA 2025, publié en septembre 2026 ?* — Did Turkey outscore France in all three PISA 2025 domains (maths, reading, science), published in September 2026?
+- *Le déficit public de la France a-t-il atteint plus de 6 % du PIB avec un trou de 54 milliards d'euros en septembre 2026 ?* — Did France's public deficit exceed 6% of GDP, with a 54-billion-euro shortfall, in September 2026?
+
+Eight sample questions with glosses are in [docs/questions_sample.md](docs/questions_sample.md).
 
 ## 2. Survey: ask the apps, not the API
 
 A Firefox extension runs in an ordinary logged-in browser. For each question and each chatbot it opens a fresh chat, types the question, and captures the answer and its citations from the network stream rather than the rendered page. Questions are repeated, because the same app gives different answers on different days. Requests are paced to keep load low and back off on any limit.
 
-<p align="center"><img src="docs/figures/extension.png" width="380" alt="The extension mid-run"></p>
-
 This stage has been through one full audit. Before the August 2026 Michigan primary it put fourteen election questions to ChatGPT, Claude, Gemini, Grok and DeepSeek, five times each, and every answer was graded against a checklist quoted from official sources.
 
-<p align="center"><img src="docs/figures/accuracy_vs_false.png" width="680" alt="Completeness against false claims, one point per chatbot"></p>
+<p align="center"><img src="docs/figures/extension.png" width="300" alt="The extension mid-run"> <img src="docs/figures/accuracy_vs_false.png" width="600" alt="Completeness against false claims, one point per chatbot"></p>
 <p align="center"><sub>Completeness is not truthfulness. Grok covered the most facts; ChatGPT made the fewest false claims; Claude made the most, including sending a voter to the building where ballots are counted instead of the clerk's office. Gemini is hollow: a capture bug kept it in one running conversation.</sub></p>
 
-The full case study, with every graded answer, the checklists and their sources, is at [docs/michigan_2026.md](docs/michigan_2026.md). It is also where the method's lessons come from: a hosted grader that changed its verdicts between days on identical inputs, a rubric bug that graded both ways, contamination hiding in plumbing.
+The full case study, with every graded answer and the method's lessons, is at [docs/michigan_2026.md](docs/michigan_2026.md).
 
 ## 3. Decompose: from an answer to its claims
 
 A chatbot's answer to a political question is a few hundred words of facts, forecasts, hedges and framing. Only the facts can be checked. This stage splits each answer into atomic claims, each carrying the context it needs to stand alone (who, when, where), and sets aside what cannot be verified: predictions, opinions, and statements about what "many" think.
 
-**Illustrative decomposition, produced by hand for this page.** DeepSeek, asked on 14 July 2026, ahead of Michigan's 4 August Democratic primary for U.S. Senate: *"How do Abdul El-Sayed and Haley Stevens differ on immigration?"* (question C4, repeat 5 in [`data/michigan_2026/grades.csv`](data/michigan_2026/grades.csv)).
+**Illustrative decomposition, produced by hand for this page.** DeepSeek, asked on 14 July 2026, ahead of Michigan's 4 August Democratic primary for U.S. Senate: *"How do Abdul El-Sayed and Haley Stevens differ on immigration?"* (question C4, repeat 5 in [`data/michigan_2026/grades.csv`](data/michigan_2026/grades.csv)). Excerpt:
 
-> Based on available information, their specific policy differences on immigration are not directly summarized in a single source. However, their broad political contexts suggest where they might diverge:
->
 > - **Abdul El-Sayed**: As a progressive figure, he generally aligns with comprehensive immigration reform, pathways to citizenship, and immigrant rights, often emphasizing humanitarian and public health perspectives.
 > - **Haley Stevens**: As a moderate Democrat in a competitive district, she typically supports immigration reform but often emphasizes economic contributions and border security, reflecting her district's diverse, suburban makeup.
 >
-> While they share many broad Democratic Party values on this issue, it's likely that **Abdul El-Sayed takes a more left-wing stance** (e.g., favoring fewer enforcement measures), while **Haley Stevens adopts a more centrist approach** (e.g., supporting some border security measures). Their official campaign websites or recent voting records (for Stevens) would provide the most up-to-date specifics.
+> [...] it's likely that **Abdul El-Sayed takes a more left-wing stance** (e.g., favoring fewer enforcement measures) [...]
 
 Atomic claims, each checkable on its own:
 
-1. As of July 2026, Abdul El-Sayed and Haley Stevens, candidates in Michigan's 4 August 2026 Democratic primary for U.S. Senate, are both members of the Democratic Party.
-2. As of July 2026, Abdul El-Sayed supports comprehensive immigration reform.
-3. As of July 2026, Abdul El-Sayed supports a pathway to citizenship for undocumented immigrants.
-4. As of July 2026, Haley Stevens supports immigration reform.
-5. As of July 2026, Haley Stevens represents a competitive U.S. House district in Michigan.
-6. As of July 2026, Haley Stevens's U.S. House district is largely suburban.
-7. As of July 2026, Haley Stevens has a voting record as a member of the U.S. House of Representatives.
+1. As of July 2026, Abdul El-Sayed, a candidate in Michigan's 4 August 2026 Democratic primary for U.S. Senate, supports comprehensive immigration reform.
+2. As of July 2026, Abdul El-Sayed supports a pathway to citizenship for undocumented immigrants.
+3. As of July 2026, Haley Stevens, his opponent in that primary, supports immigration reform.
+4. As of July 2026, Haley Stevens represents a competitive U.S. House district in Michigan.
 
 Set aside, not scored:
 
-- "their specific policy differences on immigration are not directly summarized in a single source" (hedge, about the chatbot's sources, not the candidates)
-- "their broad political contexts suggest where they might diverge" (hedge)
 - "often emphasizing humanitarian and public health perspectives" (framing)
-- "often emphasizes economic contributions and border security, reflecting her district's diverse, suburban makeup" (framing: an unattributed motive)
+- "reflecting her district's diverse, suburban makeup" (framing: an unattributed motive)
 - "it's likely that Abdul El-Sayed takes a more left-wing stance" (speculation)
-- "Haley Stevens adopts a more centrist approach (e.g., supporting some border security measures)" (speculation)
-- "Their official campaign websites or recent voting records would provide the most up-to-date specifics" (advice)
 
 The extractor is Claimify [1], chosen because it is the only method tested head to head on the step that matters most here: deciding what in a sentence is checkable at all. It keeps a claim only when three independent readings agree it is verifiable, rewrites mixed sentences to keep the factual part, and gives up on anything it cannot disambiguate rather than guess. On top of it runs a narrow repair pass in the spirit of VeriFact [2], which checks each claim for a missing time period, condition or comparison and fills it in from the answer and the question date. The extractor matters more than it looks: on the same 396 answers, published extractors produce anywhere from 7,400 to 27,700 claims [1], and the same responses score 76 under one factuality pipeline and 57 under another [3]. So the decomposer is fixed, versioned and published with every result, and a sensitivity check across extractors ships next to the scores.
 
@@ -84,58 +71,34 @@ Two honest limits shape the design. Automated verdicts on single claims are nois
 
 ## Why the app and not the API
 
-<p align="center"><img src="docs/figures/reach.png" width="720" alt="People reaching frontier models through consumer apps versus developers on the APIs, log scale"></p>
+<p align="center"><img src="docs/figures/reach.png" width="640" alt="People reaching frontier models through consumer apps versus developers on the APIs, log scale"></p>
 <p align="center"><sub>Who reaches the models. Apps count people (weekly or monthly users); APIs count registered developers, the only public figure. Order of magnitude only; sources in <a href="docs/reach.md">docs/reach.md</a>.</sub></p>
 
 The app is a different product from the model behind it, and the vendors say so.
 
-- Anthropic publishes the system prompts used in the Claude apps and notes they do not apply to the API.
-- ChatGPT routes each message between models in real time, and moves sensitive conversations to a reasoning model mid-chat.
-- OpenAI tests changes on live ChatGPT users before, and sometimes instead of, changing the API.
-- Memory and personal context are on by default in ChatGPT and Gemini. Web search is on by default in the apps and a separately declared tool on the API.
+Anthropic publishes the system prompts used in the Claude apps and notes they do not apply to the API; ChatGPT routes each message between models in real time and tests changes on live users; memory and web search are on by default in the apps and opt-in on the API.
 
-Sources, in the order of the list above:
-
-1. Anthropic, system prompt release notes: https://platform.claude.com/docs/en/release-notes/system-prompts
-2. OpenAI, Introducing GPT-5 (real-time router): https://openai.com/index/introducing-gpt-5/
-3. OpenAI, routing sensitive conversations: https://openai.com/index/building-more-helpful-chatgpt-experiences-for-everyone/
-4. OpenAI, A/B tests on ChatGPT users: https://openai.com/index/expanding-on-sycophancy/
-5. OpenAI, ChatGPT memory FAQ: https://help.openai.com/en/articles/8590148-memory-faq
-6. Google, Gemini personal context: https://blog.google/products-and-platforms/products/gemini/temporary-chats-privacy-controls/
-7. Anthropic, web search as an API tool: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
+Sources for every figure and claim in this section: [docs/reach.md](docs/reach.md).
 
 ## Scope and ethics
 
-- Questions come from public posts only, and the filter drops anything about a private individual or an ongoing criminal case.
-- Surveys use the auditor's own accounts at low volume, paced, with backoff on any limit. No captcha, fingerprint or automation-evasion tooling of any kind.
-- Only the auditor's questions and the chatbots' answers are collected. No other users' data is touched.
-- Every verdict ships with its evidence, and every contradicted claim is human-reviewed before publication.
+- Questions come from public posts only; the filter drops private individuals and ongoing criminal cases.
+- Surveys use the auditor's own accounts, paced, with backoff; no captcha, fingerprint or evasion tooling.
+- Only the auditor's questions and the chatbots' answers are collected; contradicted claims are human-reviewed.
 - This is research software in development. Nothing here is a ranking yet.
-
-## Status
-
-| Stage | State | Evidence |
-|---|---|---|
-| Source | Running | 275 questions from one 14.5-hour run, filter v1.2 |
-| Survey | Built, audited once | Michigan 2026 pilot, 350 graded answers |
-| Decompose | In progress | method chosen (Claimify plus repair), see §3 |
-| Check | In progress | search-and-read verifier smoke-tested |
-| Score | Planned | dashboard design drafted |
 
 ## In the repo
 
-- `ff/` the Firefox extension that runs the survey.
-- `analysis/` grading pipeline and report builders.
+- `ff/` the Firefox extension that runs the survey; `analysis/` grading pipeline and report builders.
 - `data/michigan_2026/` every graded answer from the pilot, the questions, the checklists and their sources.
-- [docs/michigan_2026.md](docs/michigan_2026.md) the pilot write-up. [docs/reach.md](docs/reach.md) the numbers behind the reach figure.
+- `docs/`: [the Michigan case study](docs/michigan_2026.md), [sample questions](docs/questions_sample.md), [reach sources](docs/reach.md), [references](docs/references.md).
 
 ## References
 
 1. Dasha Metropolitansky and Jonathan Larson. 2025. Towards Effective Extraction and Evaluation of Factual Claims. In *Proceedings of ACL 2025 (Volume 1: Long Papers)*. https://arxiv.org/abs/2502.10855
 2. Xin Liu, Lechen Zhang, Sheza Munir, Yiyang Gu, and Lu Wang. 2025. VeriFact: Enhancing Long-Form Factuality Evaluation with Refined Fact Extraction and Reference Facts. In *Proceedings of EMNLP 2025*, pages 17908-17925. https://arxiv.org/abs/2505.09701
 3. Farima Fatahi Bayat, Lechen Zhang, Sheza Munir, and Lu Wang. 2025. FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation. In *Proceedings of ACL 2025 (Volume 1: Long Papers)*. https://arxiv.org/abs/2410.22257
-4. Jerry Wei, Chengrun Yang, Xinying Song, Yifeng Lu, Nathan Hu, Jie Huang, Dustin Tran, Daiyi Peng, Ruibo Liu, Da Huang, Cosmo Du, and Quoc V. Le. 2024. Long-form factuality in large language models. In *NeurIPS 2024*. https://arxiv.org/abs/2403.18802
-5. Yixiao Song, Yekyung Kim, and Mohit Iyyer. 2024. VeriScore: Evaluating the factuality of verifiable claims in long-form text generation. In *Findings of EMNLP 2024*. https://arxiv.org/abs/2406.19276
-6. Sewon Min, Kalpesh Krishna, Xinxi Lyu, Mike Lewis, Wen-tau Yih, Pang Wei Koh, Mohit Iyyer, Luke Zettlemoyer, and Hannaneh Hajishirzi. 2023. FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation. In *EMNLP 2023*. https://arxiv.org/abs/2305.14251
+
+Full list, including the related work not cited above: [docs/references.md](docs/references.md).
 
 Issues and pull requests are welcome.
