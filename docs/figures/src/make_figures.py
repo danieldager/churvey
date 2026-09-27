@@ -19,6 +19,12 @@ APPS = [("ChatGPT", 900e6, "900M weekly users"), ("Gemini app", 950e6, "950M mon
 APIS = [("Google model APIs", 9e6, "9M developers a month"), ("OpenAI API", 4e6, "4M developers")]
 WORLD_AI_USERS = 2e9  # Menlo Ventures, State of Consumer AI 2026
 
+# Question-sourcing funnel, run of 24-25 Sep 2026 (14.5 feed-hours, filter v1.2), whole window
+# including the pilot hour; counts from the run's summary file (harvest_2026-09-25_passes.md.json, "fa").
+FUNNEL = [("Replies harvested", 2038), ("Traced back to the post and the request", 2035),
+          ("Passed the rule filters", 1856), ("Passed the LLM filter, two runs agreeing", 492),
+          ("Rated quality 4 or 5", 459), ("Kept after per-asker cap and deduplication", 275)]
+
 # Short question labels (full text in data/michigan_2026/questions.md).
 SHORT = {"P1": "Election date, poll hours, line rule", "P2": "Where to register in Ann Arbor",
          "P3": "Can I register on Election Day", "P4": "Early-voting dates and Ann Arbor sites",
@@ -28,7 +34,7 @@ SHORT = {"P1": "Election date, poll hours, line rule", "P2": "Where to register 
          "C4": "El-Sayed vs Stevens on immigration", "C5": "Republican governor candidates: platform differences",
          "C6": "What Benson's governor platform focuses on", "C7": "Benson vs Swanson platform differences"}
 
-# dataviz reference palette (light surface), as in the TruthOdds figures
+# dataviz reference palette (light surface)
 BLUE, ORANGE, AQUA, YELLOW, MAGENTA = "#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"
 NEUTRAL = "#b8b7b0"
 SEQ = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6",
@@ -197,4 +203,22 @@ def fig_five_states():
     save(fig, "five_states.png")
 
 
-fig_reach(); fig_accuracy_vs_false(); fig_heatmap(); fig_five_states()
+def fig_funnel():
+    fig, ax = plt.subplots(figsize=(W, 3.6), layout="constrained")
+    for i, (lab, n) in enumerate(FUNNEL):
+        last = i == len(FUNNEL) - 1
+        ax.barh(i, n, height=0.62, color=BLUE if last else SEQ[3], linewidth=0)
+        ax.text(n + 25, i, f"{n:,}", va="center", fontsize=10.5, color=INK, fontweight="bold" if last else "normal")
+    ax.set_yticks(range(len(FUNNEL)), [l for l, _ in FUNNEL])
+    ax.set_ylim(len(FUNNEL) - 0.4, -0.6)
+    ax.set_xlim(0, 2300); ax.set_xticks([0, 500, 1000, 1500, 2000], ["0", "500", "1,000", "1,500", "2,000"])
+    ax.set_title("From requests to checkable questions")
+    fig.text(0.01, 0.005, "One run, 24 to 25 Sep 2026: 14.5 hours of feed, filter v1.2.", fontsize=9.5,
+             color=MUTED, ha="left", va="bottom")
+    frame(ax, "x")
+    ax.spines["left"].set_visible(False)
+    fig.get_layout_engine().set(rect=(0, 0.06, 1, 0.94))
+    save(fig, "funnel.png")
+
+
+fig_reach(); fig_accuracy_vs_false(); fig_heatmap(); fig_five_states(); fig_funnel()

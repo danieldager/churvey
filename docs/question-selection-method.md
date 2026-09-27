@@ -11,7 +11,7 @@ Produce a **principled, reproducible, provenance-tracked** set of questions to p
 - **Phase 1 — misinformation rate:** is the answer accurate / complete / harmful?
 - **Phase 2 — evidence validity:** do cited sources exist, are they relevant, and do they genuinely support the claim? (Scored *independently* of answer correctness.)
 
-Scope: **US first, then France**, timed before elections. **In scope:** chatbot accuracy on civic/policy/current-events questions + evidence validity. **Out of scope:** ideological-lean / narrative-bias measurement (we borrow AIDAS's framing *generator* but not its narrative-lean *scorer* — see §4).
+Scope: **US first, then other countries**, timed before elections. **In scope:** chatbot accuracy on civic/policy/current-events questions + evidence validity. **Out of scope:** ideological-lean / narrative-bias measurement (we borrow AIDAS's framing *generator* but not its narrative-lean *scorer* — see §4).
 
 ---
 

@@ -1,13 +1,91 @@
 <h1 align="center">churvey</h1>
-<p align="center"><b>Survey chatbots where people actually use them.</b></p>
-<p align="center"><a href="analysis/pyproject.toml"><img src="https://img.shields.io/badge/python-3.11%2B-3776AB" alt="Python 3.11+"></a> <a href="ff/"><img src="https://img.shields.io/badge/Firefox-extension-FF7139" alt="Firefox extension"></a> <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-2ea44f" alt="Licence: MIT"></a> <img src="https://img.shields.io/badge/status-pilot-8c959f" alt="Status: pilot"></p>
+<p align="center"><b>Which chatbot can you trust on the news? Ask them where people ask, check every claim, show the evidence.</b></p>
+<p align="center"><a href="analysis/pyproject.toml"><img src="https://img.shields.io/badge/python-3.11%2B-3776AB" alt="Python 3.11+"></a> <a href="ff/"><img src="https://img.shields.io/badge/Firefox-extension-FF7139" alt="Firefox extension"></a> <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-2ea44f" alt="Licence: MIT"></a> <img src="https://img.shields.io/badge/status-in%20development-8c959f" alt="Status: in development"></p>
 
-Almost every evaluation of a frontier model goes through its API. Almost nobody talks to the API. Roughly a billion people a week use the consumer apps, which wrap the same models in system prompts, web search, memory, safety layers, live model routing and A/B tests, none of which an API benchmark sees. churvey is a pipeline for auditing the apps themselves. It sources current, high-stakes questions automatically, asks them through the real chat interfaces in a real browser, repeats each one, and grades every answer against a documented public record. Its first case study put fourteen election questions to ChatGPT, Claude, Gemini, Grok and DeepSeek before the 2026 Michigan primary. One assistant sent a voter to the ballot-counting warehouse instead of the clerk's office.
+People now ask chatbots about the news. They ask in the apps, not through the API, and the apps wrap the same models in system prompts, web search, memory, live model routing and A/B tests that no API benchmark sees. churvey is a pipeline for measuring how reliable each chatbot is on the political questions people are actually asking this week. It harvests those questions from public "is this true?" requests, puts each one to five chatbots through their real interfaces, splits every answer into checkable claims, verifies each claim against the open web, and publishes a per-chatbot score with every piece of evidence one click away. The method is borrowed from the long-form factuality literature. What is new is the subject, live political questions, the surface, the consumer apps, and the transparency: no verdict without a browsable trail.
 
-<p align="center"><img src="docs/figures/reach.png" width="760" alt="People reaching frontier models through consumer apps versus developers on the APIs, log scale"></p>
-<p align="center"><sub>Who reaches the models. Apps count people (weekly or monthly users); APIs count registered developers, the only public figure. Order of magnitude only; sources in <a href="docs/reach.md">docs/reach.md</a>.</sub></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/figures/pipeline-dark.svg"><img src="docs/figures/pipeline.svg" width="100%" alt="Pipeline: Source (public 'is this true?' requests, running), Survey (real browser, fresh chat, repeated; built, audited), Decompose (atomic checkable claims, in progress), Check (web search, one LLM reads all evidence, in progress), Score (per-chatbot, evidence attached, planned)"></picture></p>
+
+## 1. Source: the questions people are asking
+
+Every day, thousands of people on X tag a chatbot under a post to ask whether it is true. Those requests are a live feed of what the public wants checked. The harvester follows each one back to the post, and a filter rewrites it as a single self-contained, dated question with a checkable answer, dropping opinion polls, predictions and anything about a private individual.
+
+<p align="center"><img src="docs/figures/funnel.png" width="720" alt="From harvested requests to checkable questions"></p>
+<p align="center"><sub>One run, 14.5 hours of feed: 2,038 requests harvested, 275 questions kept, about 19 an hour. Filtering cost under a dollar.</sub></p>
+
+Questions kept in that run, as the filter rewrote them:
+
+- *Le rendement de l'OAT française à 10 ans a-t-il grimpé vers 4,7 % le 24 septembre 2026, un plus haut depuis 2008 ?*<br>Did the 10-year French government bond yield climb toward 4.7% on 24 September 2026, its highest since 2008?
+- *Est-ce que le président Emmanuel Macron a déclenché l'article 16 de la Constitution le 24 septembre 2026 ?*<br>Did President Emmanuel Macron invoke Article 16 of the Constitution (emergency powers) on 24 September 2026?
+- *La France a-t-elle déclaré le 24 septembre 2026 être prête à déployer des troupes en Ukraine en cas de cessez-le-feu, comme le rapporte Europe 1 ?*<br>Did France say on 24 September 2026 that it is ready to send troops to Ukraine in the event of a ceasefire, as Europe 1 reports?
+- *La Turquie a-t-elle devancé la France dans les trois domaines (mathématiques, lecture, sciences) du classement PISA 2025, publié en septembre 2026 ?*<br>Did Turkey outscore France in all three PISA 2025 domains (maths, reading, science), published in September 2026?
+- *Est-il vrai qu'au 24 septembre 2026, 11 % des stations-service en France sont en difficulté sur au moins un carburant et que certaines stations Total limitent les quantités à 20 litres d'essence ou 40 litres de gazole en raison de ruptures locales ?*<br>As of 24 September 2026, are 11% of petrol stations in France short of at least one fuel, with some Total stations capping sales at 20 litres of petrol or 40 of diesel?
+- *Le déficit public de la France a-t-il atteint plus de 6 % du PIB avec un trou de 54 milliards d'euros en septembre 2026 ?*<br>Did France's public deficit exceed 6% of GDP, with a 54-billion-euro shortfall, in September 2026?
+- *Est-il vrai que TotalEnergies a enregistré 11 milliards de dollars de bénéfices au premier semestre 2026, soit une hausse de 72 % par rapport à l'année précédente ?*<br>Did TotalEnergies book 11 billion dollars of profit in the first half of 2026, up 72% on the year before?
+- *Est-il vrai qu'en septembre 2026, Everllence, qui fournit les moteurs diesel de secours de tous les sous-marins nucléaires français, passe majoritairement sous le contrôle d'un fonds d'investissement américain ?*<br>In September 2026, is Everllence, which supplies the backup diesel engines for every French nuclear submarine, passing into majority control of a US investment fund?
+
+## 2. Survey: ask the apps, not the API
+
+A Firefox extension runs in an ordinary logged-in browser. For each question and each chatbot it opens a fresh chat, types the question, and captures the answer and its citations from the network stream rather than the rendered page. Questions are repeated, because the same app gives different answers on different days. Requests are paced to keep load low and back off on any limit.
+
+<p align="center"><img src="docs/figures/extension.png" width="380" alt="The extension mid-run"></p>
+
+This stage has been through one full audit. Before the August 2026 Michigan primary it put fourteen election questions to ChatGPT, Claude, Gemini, Grok and DeepSeek, five times each, and every answer was graded against a checklist quoted from official sources.
+
+<p align="center"><img src="docs/figures/accuracy_vs_false.png" width="680" alt="Completeness against false claims, one point per chatbot"></p>
+<p align="center"><sub>Completeness is not truthfulness. Grok covered the most facts; ChatGPT made the fewest false claims; Claude made the most, including sending a voter to the building where ballots are counted instead of the clerk's office. Gemini is hollow: a capture bug kept it in one running conversation.</sub></p>
+
+The full case study, with every graded answer, the checklists and their sources, is at [docs/michigan_2026.md](docs/michigan_2026.md). It is also where the method's lessons come from: a hosted grader that changed its verdicts between days on identical inputs, a rubric bug that graded both ways, contamination hiding in plumbing.
+
+## 3. Decompose: from an answer to its claims
+
+A chatbot's answer to a political question is a few hundred words of facts, forecasts, hedges and framing. Only the facts can be checked. This stage splits each answer into atomic claims, each carrying the context it needs to stand alone (who, when, where), and sets aside what cannot be verified: predictions, opinions, and statements about what "many" think.
+
+**Illustrative decomposition, produced by hand for this page.** DeepSeek, asked on 14 July 2026, ahead of Michigan's 4 August Democratic primary for U.S. Senate: *"How do Abdul El-Sayed and Haley Stevens differ on immigration?"* (question C4, repeat 5 in [`data/michigan_2026/grades.csv`](data/michigan_2026/grades.csv)).
+
+> Based on available information, their specific policy differences on immigration are not directly summarized in a single source. However, their broad political contexts suggest where they might diverge:
+>
+> - **Abdul El-Sayed**: As a progressive figure, he generally aligns with comprehensive immigration reform, pathways to citizenship, and immigrant rights, often emphasizing humanitarian and public health perspectives.
+> - **Haley Stevens**: As a moderate Democrat in a competitive district, she typically supports immigration reform but often emphasizes economic contributions and border security, reflecting her district's diverse, suburban makeup.
+>
+> While they share many broad Democratic Party values on this issue, it's likely that **Abdul El-Sayed takes a more left-wing stance** (e.g., favoring fewer enforcement measures), while **Haley Stevens adopts a more centrist approach** (e.g., supporting some border security measures). Their official campaign websites or recent voting records (for Stevens) would provide the most up-to-date specifics.
+
+Atomic claims, each checkable on its own:
+
+1. As of July 2026, Abdul El-Sayed and Haley Stevens, candidates in Michigan's 4 August 2026 Democratic primary for U.S. Senate, are both members of the Democratic Party.
+2. As of July 2026, Abdul El-Sayed supports comprehensive immigration reform.
+3. As of July 2026, Abdul El-Sayed supports a pathway to citizenship for undocumented immigrants.
+4. As of July 2026, Haley Stevens supports immigration reform.
+5. As of July 2026, Haley Stevens represents a competitive U.S. House district in Michigan.
+6. As of July 2026, Haley Stevens's U.S. House district is largely suburban.
+7. As of July 2026, Haley Stevens has a voting record as a member of the U.S. House of Representatives.
+
+Set aside, not scored:
+
+- "their specific policy differences on immigration are not directly summarized in a single source" (hedge, about the chatbot's sources, not the candidates)
+- "their broad political contexts suggest where they might diverge" (hedge)
+- "often emphasizing humanitarian and public health perspectives" (framing)
+- "often emphasizes economic contributions and border security, reflecting her district's diverse, suburban makeup" (framing: an unattributed motive)
+- "it's likely that Abdul El-Sayed takes a more left-wing stance" (speculation)
+- "Haley Stevens adopts a more centrist approach (e.g., supporting some border security measures)" (speculation)
+- "Their official campaign websites or recent voting records would provide the most up-to-date specifics" (advice)
+
+The extractor is Claimify [1], chosen because it is the only method tested head to head on the step that matters most here: deciding what in a sentence is checkable at all. It keeps a claim only when three independent readings agree it is verifiable, rewrites mixed sentences to keep the factual part, and gives up on anything it cannot disambiguate rather than guess. On top of it runs a narrow repair pass in the spirit of VeriFact [2], which checks each claim for a missing time period, condition or comparison and fills it in from the answer and the question date. The extractor matters more than it looks: on the same 396 answers, published extractors produce anywhere from 7,400 to 27,700 claims [1], and the same responses score 76 under one factuality pipeline and 57 under another [3]. So the decomposer is fixed, versioned and published with every result, and a sensitivity check across extractors ships next to the scores.
+
+## 4. Check: every claim against the open web
+
+Each claim goes out as a web search. A language model then reads all the evidence together, including every page the chatbot itself cited, and returns one of three verdicts: supported, contradicted, or unverifiable. Two rules follow from the literature and from our own pilot. A claim is never marked contradicted on a single page, and every contradicted claim is read by a person before it is published.
+
+## 5. Score: rank chatbots, don't rule on sentences
+
+For each chatbot: the share of its claims supported, contradicted and unverifiable, the share of its citations that actually support what they are cited for, and the trend over time. Saying "I don't know" is never penalised.
+
+Two honest limits shape the design. Automated verdicts on single claims are noisy, so the unit of trust is the ranking across hundreds of claims, never a verdict on one sentence. And because the extractor alone can double or halve the number of claims an answer yields, scores are only comparable within one published pipeline version.
 
 ## Why the app and not the API
+
+<p align="center"><img src="docs/figures/reach.png" width="720" alt="People reaching frontier models through consumer apps versus developers on the APIs, log scale"></p>
+<p align="center"><sub>Who reaches the models. Apps count people (weekly or monthly users); APIs count registered developers, the only public figure. Order of magnitude only; sources in <a href="docs/reach.md">docs/reach.md</a>.</sub></p>
 
 The app is a different product from the model behind it, and the vendors say so.
 
@@ -26,88 +104,38 @@ Sources, in the order of the list above:
 6. Google, Gemini personal context: https://blog.google/products-and-platforms/products/gemini/temporary-chats-privacy-controls/
 7. Anthropic, web search as an API tool: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
 
-So a benchmark run through the API measures a model. A voter, a patient or a student is talking to something else.
-
-## How it works
-
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/figures/pipeline-dark.svg"><img src="docs/figures/pipeline.svg" width="100%" alt="Pipeline: Source (trending questions, filtered), Survey (real browser, fresh chat, repeated), Grade (checklist from official record)"></picture></p>
-
-1. **Source.** Trending questions are pulled from public signals (Grok's trending topics, Google Trends), then filtered: political, current, high stakes, and answerable against a record someone can point to. A question that would not be graded the same way twice does not survive.
-2. **Survey.** A Firefox extension runs in an ordinary logged-in browser. For each question and each chatbot it opens a fresh private chat, types the question, and captures the answer from the network stream rather than the rendered page. Every question is repeated several times, because the same app gives different answers on different days. Requests are paced to keep load low and back off on any limit.
-3. **Grade.** Each question carries a checklist of facts, every one quoted from an official source: the city clerk, the Secretary of State, the statute. A cheap model grades every answer against the checklist in a single batch, and the rubric, the sources and every graded answer are published.
-
-<p align="center"><img src="docs/figures/extension.png" width="380" alt="The extension mid-run, with five chatbots and one paused"></p>
-<p align="center"><sub>The extension mid-run. One provider is paused after a rate limit; the others continue.</sub></p>
-
-## Case study: the Michigan primary, August 2026
-
-Fourteen questions a Michigan voter might ask in July 2026, seven on logistics (registration, early voting, vote counting, what is on the ballot) and seven on the candidates, each asked five times of each chatbot: 350 answers, graded against [the answer key](https://danieldager.github.io/churvey/michigan_answer_key.html).
-
-<p align="center"><img src="docs/figures/accuracy_vs_false.png" width="720" alt="Completeness against false claims, one point per chatbot"></p>
-<p align="center"><sub>Completeness is not truthfulness. Grok covered the most checklist facts; ChatGPT made the fewest false claims; Claude made the most. Gemini is shown hollow: a capture bug kept it in one running conversation, so its answers were not independent.</sub></p>
-
-| Chatbot | Checklist facts covered | Answers with a false claim | Critical errors |
-|---|---|---|---|
-| Grok | 94% | 3 of 70 | 2 |
-| Gemini * | 81% | 3 of 70 | 2 |
-| ChatGPT | 80% | 1 of 70 | 1 |
-| Claude | 75% | 8 of 70 | 5 |
-| DeepSeek | 53% | 6 of 70 | 0 |
-
-<sub>* Not comparable: contaminated by the capture bug described above. A critical error is one that would send a voter to the wrong place, the wrong day, or the wrong race.</sub>
-
-<p align="center"><img src="docs/figures/heatmap.png" width="760" alt="Accuracy by question and chatbot"></p>
-<p align="center"><sub>Where each chatbot fell down. DeepSeek scores 82% on logistics and 23% on candidates: it declines to discuss them.</sub></p>
-
-### What they got wrong
-
-**Claude, asked where to register in person in Ann Arbor**
-> "you'd go to the City of Ann Arbor Election Center, 3021 Miller Rd."
-
-Record: the City Clerk's Office, 301 E. Huron St, 2nd floor. The Miller Rd building is where ballots are counted. [a2gov.org/city-clerk/elections](https://www.a2gov.org/city-clerk/elections/)
-
-**ChatGPT, asked where an Ann Arbor resident can vote early**
-> "One of the main locations is: Washtenaw County Learning Resource Center — 4135 Washtenaw Ave ... Scio Township Hall"
-
-Record: city voters use City Hall or the Traverwood, Malletts Creek or Westgate libraries. [a2gov.org/city-clerk/elections/early-voting](https://www.a2gov.org/city-clerk/elections/early-voting/)
-
-**Grok, asked what is on the primary ballot**
-> "Attorney General, Secretary of State, and other state executive positions (primaries in parties)."
-
-Record: both are nominated at party conventions and are not on the primary ballot. [MCL 168.72](https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-168-72)
-
-### The question with no state in it
-
-One question, on voter ID, never named Michigan, so it was dropped from the scores. It is the most revealing one. Asked the same thing, ChatGPT answered for Florida three times out of five, DeepSeek for Virginia or Missouri, Grok for Kansas, and Claude asked which state four times out of five. The apps guess where you are, and they guess differently.
-
-<p align="center"><img src="docs/figures/five_states.png" width="640" alt="Which state each chatbot assumed for the voter-ID question"></p>
-
-## What auditing chatbots taught us about auditing
-
-- **The grader drifts.** The same six answers graded six out of six on one day and zero out of six four days later, on a hosted model with no version change announced. Everything is now graded in one batch, and the batch date is recorded.
-- **Rubrics have bugs too.** One check was worded so that it failed correct answers and passed wrong ones. It was caught by reading grades against answers by hand, which is why the grades file ships with the answer text.
-- **Contamination hides in plumbing.** The Gemini result looked fine until a log showed every question landing in the same conversation.
-- **Claims get retracted.** An early finding that one chatbot fabricated a source did not survive a second reading, and was withdrawn.
-
 ## Scope and ethics
 
-- The surveys use the auditor's own accounts, at low volume (roughly a hundred questions per provider over four days), paced, with backoff on any limit. No captcha, fingerprint or automation-evasion tooling of any kind.
+- Questions come from public posts only, and the filter drops anything about a private individual or an ongoing criminal case.
+- Surveys use the auditor's own accounts at low volume, paced, with backoff on any limit. No captcha, fingerprint or automation-evasion tooling of any kind.
 - Only the auditor's questions and the chatbots' answers are collected. No other users' data is touched.
-- Grading sources are official public records, quoted verbatim and linked. News coverage was used for context and is not redistributed.
-- Findings are from a pilot: five repeats per question, one grading pass, one model as grader. The data is published so anyone can regrade it.
+- Every verdict ships with its evidence, and every contradicted claim is human-reviewed before publication.
+- This is research software in development. Nothing here is a ranking yet.
+
+## Status
+
+| Stage | State | Evidence |
+|---|---|---|
+| Source | Running | 275 questions from one 14.5-hour run, filter v1.2 |
+| Survey | Built, audited once | Michigan 2026 pilot, 350 graded answers |
+| Decompose | In progress | method chosen (Claimify plus repair), see §3 |
+| Check | In progress | search-and-read verifier smoke-tested |
+| Score | Planned | dashboard design drafted |
 
 ## In the repo
 
 - `ff/` the Firefox extension that runs the survey.
-- `analysis/` the grading pipeline and report builder.
-- `data/michigan_2026/` every graded answer, the questions, the checklists and their sources.
-- [docs/michigan_answer_key.html](https://danieldager.github.io/churvey/michigan_answer_key.html) the official record each check was built from.
-- [docs/reach.md](docs/reach.md) the numbers behind the first figure.
+- `analysis/` grading pipeline and report builders.
+- `data/michigan_2026/` every graded answer from the pilot, the questions, the checklists and their sources.
+- [docs/michigan_2026.md](docs/michigan_2026.md) the pilot write-up. [docs/reach.md](docs/reach.md) the numbers behind the reach figure.
 
-## Roadmap
+## References
 
-- Paired runs: the same question through the API and through the app, side by side.
-- Ten repeats per question, and a second grader for the false-claim calls.
-- New question sources and a second jurisdiction.
+1. Dasha Metropolitansky and Jonathan Larson. 2025. Towards Effective Extraction and Evaluation of Factual Claims. In *Proceedings of ACL 2025 (Volume 1: Long Papers)*. https://arxiv.org/abs/2502.10855
+2. Xin Liu, Lechen Zhang, Sheza Munir, Yiyang Gu, and Lu Wang. 2025. VeriFact: Enhancing Long-Form Factuality Evaluation with Refined Fact Extraction and Reference Facts. In *Proceedings of EMNLP 2025*, pages 17908-17925. https://arxiv.org/abs/2505.09701
+3. Farima Fatahi Bayat, Lechen Zhang, Sheza Munir, and Lu Wang. 2025. FactBench: A Dynamic Benchmark for In-the-Wild Language Model Factuality Evaluation. In *Proceedings of ACL 2025 (Volume 1: Long Papers)*. https://arxiv.org/abs/2410.22257
+4. Jerry Wei, Chengrun Yang, Xinying Song, Yifeng Lu, Nathan Hu, Jie Huang, Dustin Tran, Daiyi Peng, Ruibo Liu, Da Huang, Cosmo Du, and Quoc V. Le. 2024. Long-form factuality in large language models. In *NeurIPS 2024*. https://arxiv.org/abs/2403.18802
+5. Yixiao Song, Yekyung Kim, and Mohit Iyyer. 2024. VeriScore: Evaluating the factuality of verifiable claims in long-form text generation. In *Findings of EMNLP 2024*. https://arxiv.org/abs/2406.19276
+6. Sewon Min, Kalpesh Krishna, Xinxi Lyu, Mike Lewis, Wen-tau Yih, Pang Wei Koh, Mohit Iyyer, Luke Zettlemoyer, and Hannaneh Hajishirzi. 2023. FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation. In *EMNLP 2023*. https://arxiv.org/abs/2305.14251
 
-Issues and pull requests are welcome, especially from people who run elections.
+Issues and pull requests are welcome.
