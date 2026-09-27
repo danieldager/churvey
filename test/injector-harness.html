@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Injector Harness</title>
+    <style>
+      body { font: 14px system-ui; max-width: 720px; margin: 2rem auto; }
+      .field { border: 1px solid #ccc; border-radius: 6px; padding: 10px; min-height: 40px; margin: 6px 0; }
+      .result { font-family: monospace; padding: 6px; border-radius: 4px; }
+      .pass { background: #d6f5e0; }
+      .fail { background: #f8d7da; }
+      button { padding: 6px 12px; }
+      h3 { margin: 18px 0 4px; }
+    </style>
+  </head>
+  <body>
+    <h1>Input-injector harness</h1>
+    <p>
+      Standalone test of <code>Probe.injector.type()</code> against a
+      contenteditable and a textarea. No extension load or login needed — open
+      this file directly in a browser. Watch that each field receives the text
+      and that real <code>input</code> events fire (count shown).
+    </p>
+
+    <button id="run">Run all</button>
+    <div id="summary" class="result"></div>
+
+    <h3>contenteditable (ProseMirror-like)</h3>
+    <div id="ce" class="field" contenteditable="true"></div>
+    <div id="ce-events" class="result"></div>
+    <div id="ce-result" class="result"></div>
+
+    <h3>textarea</h3>
+    <textarea id="ta" class="field" rows="3" style="width: 100%"></textarea>
+    <div id="ta-events" class="result"></div>
+    <div id="ta-result" class="result"></div>
+
+    <script src="../src/shared/namespace.js"></script>
+    <script src="../src/shared/logger.js"></script>
+    <script src="../src/shared/cadence.js"></script>
+    <script src="../src/content/input-injector.js"></script>
+    <script>
+      const SAMPLE = "Is immigration a problem in the United States?";
+      const counts = { ce: 0, ta: 0 };
+      document.getElementById("ce").addEventListener("input", () => {
+        document.getElementById("ce-events").textContent = `input events: ${++counts.ce}`;
+      });
+      document.getElementById("ta").addEventListener("input", () => {
+        document.getElementById("ta-events").textContent = `input events: ${++counts.ta}`;
+      });
+
+      async function testField(el, resultId) {
+        const out = document.getElementById(resultId);
+        try {
+          const strategy = await Probe.injector.type(el, SAMPLE, { retries: 1 });
+          const got = Probe.injector.readBack(el).trim();
+          const ok = got === SAMPLE;
+          out.className = "result " + (ok ? "pass" : "fail");
+          out.textContent = `${ok ? "PASS" : "FAIL"} via "${strategy}" — read back: "${got}"`;
+          return ok;
+        } catch (e) {
+          out.className = "result fail";
+          out.textContent = "FAIL — " + e.message;
+          return false;
+        }
+      }
+
+      document.getElementById("run").addEventListener("click", async () => {
+        counts.ce = counts.ta = 0;
+        const a = await testField(document.getElementById("ce"), "ce-result");
+        const b = await testField(document.getElementById("ta"), "ta-result");
+        const s = document.getElementById("summary");
+        s.className = "result " + (a && b ? "pass" : "fail");
+        s.textContent = a && b ? "ALL PASS" : "SOME FAILED — see below";
+      });
+    </script>
+  </body>
+</html>

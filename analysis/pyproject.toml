@@ -1,0 +1,9 @@
+[project]
+name = "churvey-analysis"
+version = "0.1.0"
+description = "Grading pipeline and report builder for churvey surveys"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.uv]
+package = false

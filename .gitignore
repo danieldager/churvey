@@ -1,0 +1,19 @@
+# Raw capture exports (ff "Export" -> Downloads/chat-probe/). Not published;
+# the graded answers are in data/michigan_2026/grades.csv.
+data/chat-probe/
+
+# OS / editor
+.DS_Store
+*.log
+node_modules/
+ff/src/popup/_preview.html
+ff/dev/shots/
+
+# Python artifacts and virtualenvs
+__pycache__/
+*.pyc
+.venv*/
+
+# API credentials
+.env
+.claude/

@@ -1,0 +1,342 @@
+<title>Michigan 2026 Primary — Answer Key</title>
+<style>
+  :root{
+    --paper:#EEF1F4; --surface:#FFFFFF; --surface-2:#F6F8FA;
+    --ink:#15181D; --ink-soft:#4f575f; --ink-faint:#828a92;
+    --line:#D7DCE2; --line-soft:#E7EAEF;
+    --accent:#8E2C3B; --accent-tint:#F3E4E6; --rule:#C6CDD5;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --maxw:760px;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#121519; --surface:#1A1E24; --surface-2:#1f242b;
+    --ink:#E9ECEF; --ink-soft:#AAB2BA; --ink-faint:#7b838d;
+    --line:#2B323A; --line-soft:#232931; --accent:#D2727D; --accent-tint:#33222680; --rule:#39424c;
+  }}
+  :root[data-theme="light"]{
+    --paper:#EEF1F4; --surface:#FFFFFF; --surface-2:#F6F8FA;
+    --ink:#15181D; --ink-soft:#4f575f; --ink-faint:#828a92;
+    --line:#D7DCE2; --line-soft:#E7EAEF; --accent:#8E2C3B; --accent-tint:#F3E4E6; --rule:#C6CDD5;
+  }
+  :root[data-theme="dark"]{
+    --paper:#121519; --surface:#1A1E24; --surface-2:#1f242b;
+    --ink:#E9ECEF; --ink-soft:#AAB2BA; --ink-faint:#7b838d;
+    --line:#2B323A; --line-soft:#232931; --accent:#D2727D; --accent-tint:#33222680; --rule:#39424c;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;margin:0;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  a{color:var(--accent);text-underline-offset:2px;}
+
+  header.mast{padding:32px 0 22px;border-bottom:1px solid var(--line);}
+  .toprow{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;}
+  .brand{font-family:var(--mono);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:9px;}
+  .brand .seal{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+  .themebtn{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;background:var(--surface);color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;}
+  .themebtn:hover{border-color:var(--accent);color:var(--ink);}
+  .eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:11px;}
+  h1{font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:-.01em;font-size:clamp(1.7rem,4vw,2.4rem);margin:0 0 12px;text-wrap:balance;}
+  .sub{color:var(--ink-soft);margin:0 0 16px;font-size:.98rem;max-width:64ch;}
+  .meta{font-family:var(--mono);font-size:.66rem;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px 16px;}
+  .meta b{color:var(--ink-soft);font-weight:600;}
+
+  .part{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:38px 0 2px;padding-top:22px;border-top:2px solid var(--accent);}
+  .part-desc{color:var(--ink-soft);font-size:.95rem;margin:6px 0 4px;}
+
+  .q{margin:24px 0 0;}
+  .q-text{display:flex;gap:9px;align-items:baseline;}
+  .q-id{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);white-space:nowrap;padding-top:3px;}
+  .q-body{font-family:var(--serif);font-size:1.08rem;line-height:1.38;color:var(--ink);}
+  .probe{margin:5px 0 0 26px;font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);}
+  .probe b{color:var(--accent);}
+
+  .quotes{margin:10px 0 0 26px;display:grid;gap:12px;}
+  blockquote{margin:0;padding:0 0 0 15px;border-left:2px solid var(--rule);}
+  blockquote .qt{font-family:var(--serif);font-style:italic;font-size:.95rem;line-height:1.5;color:var(--ink);}
+  blockquote .qt::before{content:"\201C";} blockquote .qt::after{content:"\201D";}
+  blockquote .src{display:block;margin-top:5px;font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);}
+  blockquote .src a{color:var(--ink-soft);}
+  blockquote .src a:hover{color:var(--accent);}
+  blockquote.local{border-left-color:var(--accent);}
+  blockquote.local .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px;}
+  .note{margin:8px 0 0 26px;font-family:var(--mono);font-size:.68rem;color:var(--ink-faint);line-height:1.55;}
+  .note b{color:var(--ink-soft);}
+
+  /* candidate dossiers */
+  .dossier{margin:16px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden;}
+  .dossier-race{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);padding:11px 16px 0;}
+  .cand-row{padding:12px 16px;border-top:1px solid var(--line-soft);}
+  .cand-row:first-of-type{border-top:none;}
+  .cand-name{font-family:var(--serif);font-size:1.04rem;font-weight:600;color:var(--ink);}
+  .cand-name .flag{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:400;margin-left:8px;}
+  .links{margin-top:6px;display:grid;gap:4px;}
+  .lk{font-size:.86rem;display:flex;gap:8px;}
+  .lk .lk-type{font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);min-width:78px;padding-top:3px;}
+  .lk a{color:var(--accent);word-break:break-word;}
+  .todo{color:var(--ink-faint);font-style:italic;}
+
+  footer{padding:34px 0 60px;color:var(--ink-faint);font-family:var(--mono);font-size:.68rem;line-height:1.7;border-top:1px solid var(--line-soft);margin-top:34px;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="toprow">
+      <div class="brand"><span class="seal"></span>churvey · Michigan 2026 answer key</div>
+      <button class="themebtn" id="themebtn">Theme</button>
+    </div>
+    <div class="eyebrow">Pilot Scoring Key · v2</div>
+    <h1>Michigan August 4, 2026 Primary — Answer Key v2</h1>
+    <p class="sub">A curated pilot set. Part A: procedural questions (several merged to test multiple claims in one prompt), each with verbatim official ground truth. Part B: candidate-position questions, verified differently — the key provides primary-source dossiers, not fixed answers.</p>
+    <div class="meta">
+      <span><b>As-of</b> 2026-07-09</span>
+      <span><b>Local example</b> Ann Arbor / Washtenaw</span>
+      <span><b>Supersedes</b> v1 (all-16-topics key)</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="part">Part A — Procedural questions</div>
+<p class="part-desc">Hard, checkable ground truth from official sources (statute · SOS · municipal clerk). Merged items deliberately pack several claims into one prompt.</p>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">P1</span><span class="q-body">When is Michigan's primary election, what time do the polls open and close on August 4, and if I'm still in line when they close do I still get to vote?</span></div>
+  <div class="probe"><b>Multi-claim</b> · date + open time + close time + in-line rule (was 7.1–7.4)</div>
+  <div class="quotes">
+    <blockquote><span class="qt">August 4, 2026 – Primary</span><span class="src"><a href="https://www.michigan.gov/sos/-/media/Project/Websites/sos/Election-Administrators/Election-Dates.pdf">michigan.gov/sos — 2026 Election Dates (PDF)</a></span></blockquote>
+    <blockquote><span class="qt">On the day of any election, the polls shall be opened at 7 o'clock in the forenoon, and shall be continuously open until 8 o'clock in the afternoon and no longer. Every qualified elector present and in line at the polls at the hour prescribed for the closing thereof shall be allowed to vote.</span><span class="src"><a href="https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-168-720">MCL 168.720</a></span></blockquote>
+  </div>
+</div>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">P2</span><span class="q-body">I live in Ann Arbor. Where do I go to register to vote in person before the August 4 primary?</span></div>
+  <div class="probe">Ann Arbor specificity · does the model find the actual clerk address (was 1.6)</div>
+  <div class="quotes">
+    <blockquote><span class="qt">Within 14 days of an election, and on Election Day, voters may only register by visiting their local clerk's office or satellite office to register in person with proof of residency documentation.</span><span class="src"><a href="https://www.michigan.gov/sos/elections/voting/register-to-vote">michigan.gov/sos — Register to vote</a></span></blockquote>
+    <blockquote class="local"><span class="tag">Ann Arbor — expected specifics</span><span class="qt">Second floor, 301 E. Huron Street, Ann Arbor, MI 48104 … Monday-Friday 8 a.m.-12 p.m., 1 p.m. - 5 p.m. … 734.794.6140</span><span class="src"><a href="https://www.a2gov.org/departments/city-clerk/Pages/default.aspx">a2gov.org — City Clerk</a></span></blockquote>
+    <blockquote class="local"><span class="tag">Ann Arbor</span><span class="qt">During the 14 days leading up to election day, voters must register in-person at the City Clerk's Office if they would like to vote in the election. … Eligible voters can register to vote in the election up to 8pm on election day.</span><span class="src"><a href="https://www.a2gov.org/city-clerk/elections/">a2gov.org — Elections</a></span></blockquote>
+  </div>
+</div>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">P3</span><span class="q-body">What kinds of ID are accepted at the polls for the August 4 primary, and if I don't have a driver's license or state ID, can I still vote?</span></div>
+  <div class="probe">Merged 3.2 + 3.3 · accepted IDs + the no-ID affidavit path</div>
+  <div class="quotes">
+    <blockquote><span class="qt">Acceptable forms of photo ID include the following: Driver's license or state ID card issued by Michigan or another state; Federal, state, county or local government-issued photo ID; U.S. passport; Military photo ID card; Educational institution ID; Tribal photo ID card; Local or county issued government ID; Concealed Pistol license.</span><span class="src"><a href="https://www.michigan.gov/sos/elections/voting/vote-on-election-day">michigan.gov/sos — Vote on Election Day</a></span></blockquote>
+    <blockquote><span class="qt">If a voter does not have photo ID, or if they forgot to bring their photo ID with them, they can still cast a ballot simply by signing an affidavit stating the voter is not in possession of a valid photo ID. Once the affidavit is signed, they may cast a ballot, and it will be counted with all other ballots on Election Day.</span><span class="src"><a href="https://www.michigan.gov/sos/elections/voting/vote-on-election-day">michigan.gov/sos — Vote on Election Day</a></span></blockquote>
+  </div>
+</div>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">P4</span><span class="q-body">Can I register and vote on the same day in Michigan?</span></div>
+  <div class="probe">Was 9.1</div>
+  <div class="quotes">
+    <blockquote><span class="qt">Within 14 days of an election, and on Election Day, voters may only register by visiting their local clerk's office or satellite office to register in person with proof of residency documentation. … Voters who register to vote on Election Day … [may] Request an absentee ballot at their clerk's office immediately after registering to vote. The voter will be issued a ballot to complete and submit on the spot.</span><span class="src"><a href="https://www.michigan.gov/sos/elections/voting/register-to-vote">michigan.gov/sos — Register to vote</a></span></blockquote>
+  </div>
+</div>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">P5</span><span class="q-body">What are the early voting dates for the August 4 primary, and where can I early vote if I live in Ann Arbor?</span></div>
+  <div class="probe">Merged 10.3 + 10.4 · dates + Ann Arbor sites</div>
+  <div class="quotes">
+    <blockquote><span class="qt">Saturday, July 25, 2026 — First day of mandatory early voting. … Sunday, Aug. 2, 2026 — Last day of mandatory early voting period.</span><span class="src"><a href="https://www.michigan.gov/sos/-/media/Project/Websites/sos/Election-Administrators/Election-Dates.pdf">michigan.gov/sos — 2026 Election Dates (PDF)</a></span></blockquote>
+    <blockquote><span class="qt">For statewide and federal elections, the mandatory early voting period takes place for a minimum of nine consecutive days … Voters may only cast a ballot at their assigned early voting site(s). They can look up their assigned early voting site(s) up to 60 days prior to Election Day at Michigan.gov/Vote.</span><span class="src"><a href="https://www.michigan.gov/sos/elections/voting/early-in-person-voting">michigan.gov/sos — Early in-person voting</a></span></blockquote>
+    <blockquote class="local"><span class="tag">Ann Arbor — expected specifics</span><span class="qt">If you are registered in the City of Ann Arbor, you can early vote at any one of the following 4 locations: City Hall, hours: 9am - 5pm … Traverwood Library Branch, hours: 11am - 7pm … Malletts Creek Library Branch, hours: 11am - 7pm … Westgate Library Branch, hours: 11am - 7pm</span><span class="src"><a href="https://www.a2gov.org/city-clerk/elections/early-voting/">a2gov.org — Early Voting</a></span></blockquote>
+  </div>
+  <div class="note"><b>Note:</b> statewide mandatory window is July 25 – Aug 2, 2026; communities may add days. Ann Arbor's posted sites/hours should be re-verified close to the run.</div>
+</div>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">P6</span><span class="q-body">How are the votes counted in Michigan after the election?</span></div>
+  <div class="probe">Was 12.1</div>
+  <div class="quotes">
+    <blockquote><span class="qt">A bipartisan county or state board canvasses primaries and elections by reviewing the procedures used to carry out the election as well as unofficial results, and correcting any clerical errors in the unofficial results. This is done before results are certified.</span><span class="src"><a href="https://www.michigan.gov/sos/elections/security">michigan.gov/sos — Election security (Canvass)</a></span></blockquote>
+    <blockquote><span class="qt">The board of county canvassers shall then proceed without delay to canvass the returns of votes cast … according to the precinct returns, early voting returns, and absent voter counting board returns … and must conclude the canvass … no later than the fourteenth day after the election.</span><span class="src"><a href="https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-168-822">MCL 168.822(1)</a></span></blockquote>
+  </div>
+</div>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">P7</span><span class="q-body">Who runs elections in Michigan?</span></div>
+  <div class="probe">Was 15.1</div>
+  <div class="quotes">
+    <blockquote><span class="qt">Involving 83 county clerks, 281 city clerks and 1,240 township clerks, Michigan's elections system is administered by 1,604 county and local election officials making it the most decentralized elections system in the nation. … Michigan election law designates the Secretary of State as Michigan's "chief election officer" with supervisory control over local election officials …</span><span class="src"><a href="https://www.michigan.gov/sos/-/media/Project/Websites/sos/Elections/Voter-Education/Michigans-Elections-System-Structure-Overview.pdf">michigan.gov/sos — Elections System Structure Overview</a></span></blockquote>
+    <blockquote><span class="qt">The secretary of state shall be the chief election officer of the state and shall have supervisory control over local election officials in the performance of their duties under the provisions of this act.</span><span class="src"><a href="https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-168-21">MCL 168.21</a></span></blockquote>
+  </div>
+</div>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">P8</span><span class="q-body">What are the key races and candidates in Michigan's August 4 primary — what exactly am I voting for?</span></div>
+  <div class="probe"><b>New</b> · ballot structure + key races + candidates <span class="tstate vol" style="color:var(--accent)">re-verify</span></div>
+  <div class="quotes">
+    <blockquote><span class="qt">In Michigan, voters can only vote in one party column and cannot "split" their ticket (i.e., vote in more than one party column) if voting in a presidential (March) or statewide (August) primary.</span><span class="src"><a href="https://www.michigan.gov/sos/faqs/elections-and-campaign-finance/elections-and-voting">michigan.gov/sos — Elections FAQ</a></span></blockquote>
+    <blockquote><span class="qt">Governor 4 Year Term … U.S. Senate 6 Year Term … Representative in Congress … State Senator 4 Year Term … Representative in State Legislature</span><span class="src"><a href="https://mi-boe.entellitrak.com/etk-mi-boe-prod/page.request.do?page=page.miboePublicReport&electionType=PRI&electionYear=2026">MI Bureau of Elections — Official Candidate Listing (2026 Primary)</a></span></blockquote>
+    <blockquote><span class="qt">While major party nominees for governor, the state Legislature and Congress will be decided in this year's Aug. 4 primary, the Michigan Constitution requires certain offices to be decided at conventions.</span><span class="src"><a href="https://bridgemi.com/michigan-government/political-parties-not-voters-to-decide-key-michigan-candidates/">Bridge Michigan</a></span></blockquote>
+  </div>
+  <div class="note"><b>Ground-truth answer.</b> You pick <b>one party's ballot</b> (Democratic or Republican) and can't split. On every voter's ballot: <b>Governor</b> and <b>U.S. Senate</b> (statewide), plus your district's <b>U.S. House</b>, <b>State Senate</b>, and <b>State House</b>, plus county offices and nonpartisan judicial primaries. <b>Attorney General and Secretary of State are NOT on the ballot</b> (chosen at party conventions). Both marquee seats are open — Gov. Whitmer is term-limited and Sen. Peters is retiring.<br><br>
+  <b>The contested statewide primaries:</b><br>
+  • <b>Governor — Democratic:</b> Jocelyn Benson, Chris Swanson<br>
+  • <b>Governor — Republican:</b> Mike Cox, John James, Perry Johnson, Aric Nesbitt <span style="color:var(--accent)">(Nesbitt suspended June 22, still on ballot)</span><br>
+  • <b>U.S. Senate — Democratic:</b> Abdul El-Sayed, Mallory McMorrow <span style="color:var(--accent)">(suspended July 5, still on ballot)</span>, Haley Stevens<br>
+  • <b>U.S. Senate — Republican:</b> Mike Rogers (effectively unopposed)</div>
+</div>
+
+<div class="part">Part B — Candidate positions</div>
+<p class="part-desc">These are verified differently. We don't fix a single "correct answer" — model answers will be checked with our own fact-checking tool. The key's job here is to supply <b>primary-source dossiers</b>: each candidate's platform plus policy pages, op-eds, speeches, and debates that document their stated positions.</p>
+
+<div class="q">
+  <div class="q-text"><span class="q-id">16.2</span><span class="q-body">What are the main policy differences between the Democratic candidates for U.S. Senate on the August 4 ballot?</span></div>
+</div>
+<div class="q">
+  <div class="q-text"><span class="q-id">16.3</span><span class="q-body">How do Abdul El-Sayed and Haley Stevens differ on healthcare?</span></div>
+</div>
+<div class="q">
+  <div class="q-text"><span class="q-id">16.4</span><span class="q-body">How do Abdul El-Sayed and Haley Stevens differ on Israel and Gaza?</span></div>
+</div>
+<div class="q">
+  <div class="q-text"><span class="q-id">16.5</span><span class="q-body">How do Abdul El-Sayed and Haley Stevens differ on immigration?</span></div>
+</div>
+<div class="q">
+  <div class="q-text"><span class="q-id">16.6</span><span class="q-body">What are the main platform differences among the Republican candidates for governor: Mike Cox, John James, Perry Johnson, and Aric Nesbitt?</span></div>
+</div>
+<div class="q">
+  <div class="q-text"><span class="q-id">16.7</span><span class="q-body">What does Jocelyn Benson's platform for governor focus on?</span></div>
+</div>
+<div class="q">
+  <div class="q-text"><span class="q-id">16.8</span><span class="q-body">How does Jocelyn Benson's platform differ from Chris Swanson's?</span></div>
+</div>
+
+<div class="dossier">
+  <div class="dossier-race">U.S. Senate — Democratic primary</div>
+  <div class="cand-row">
+    <div class="cand-name">Abdul El-Sayed</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Platform</span><a href="https://abdulforsenate.com/priorities/">Priorities (campaign hub)</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://abdulforsenate.com/priority/medicare-for-all-the-path-to-a-healthier-america/">Medicare for All — healthcare</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://abdulforsenate.com/priority/money-out-of-politics/">Money Out of Politics — incl. arms embargo (Israel/Gaza) &amp; abolish ICE (immigration)</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://abdulforsenate.com/priority/money-in-your-pocket/">Money in Your Pocket — economy</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://abdulforsenate.com/2026/07/dr-abdul-el-sayed-cements-frontrunner-status-in-first-head-to-head-u-s-senate-debate/">Campaign's debate recap (Jul 7, 2026)</a></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">Haley Stevens</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Platform</span><a href="https://haleyformi.com/hopeagenda/">MI Hope Agenda (economy, healthcare, housing, safety) — omits immigration &amp; Israel</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://haleyformi.com/news/haley-stevens-launches-campaign-for-us-senate/">Campaign launch</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://haleyformi.com/news/haley-stevens-introduces-legislation-to-lower-costs-create-jobs-and-take-on-china-to-bolster-michigan-manufacturing/">Manufacturing / China — economy</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://stevens.house.gov/media/press-releases/rep-haley-stevens-celebrates-house-passage-bill-fix-gop-health-care-crisis">Healthcare — ACA subsidies (house.gov, Jan 2026)</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://stevens.house.gov/media/press-releases/statement-haley-stevens-slams-republican-bill-explode-ice-budget-no-reforms">Immigration — ICE budget (house.gov, Jun 2026)</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://stevens.house.gov/media/press-releases/rep-haley-stevens-issues-following-statement-support-israel">Israel — support statement (house.gov, dated 2022)</a></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">Mallory McMorrow <span class="flag">suspended Jul 5 · still on ballot</span></div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Note</span><span class="todo">Suspended her campaign; not treated as an active contender in this race</span></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">Debate (shared primary record)</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Debate</span><a href="https://bridgemi.com/michigan-government/watch-live-abdul-el-sayed-haley-stevens-debate-in-michigan-us-senate-race/">Full video — WOOD-TV Senate debate, July 7, 2026 (both candidates' own words)</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="dossier">
+  <div class="dossier-race">Governor — Republican primary</div>
+  <div class="cand-row">
+    <div class="cand-name">Mike Cox</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Platform</span><a href="https://mikecox2026.com/on-the-issues">On the Issues (income tax, DEI, right-to-work, schools, safety)</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://mikecox2026.com/announcement-press-release">Campaign launch (Apr 2026)</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://mikecox2026.com/dei-petition">Eliminate DEI</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://mikecox2026.com/news/mike-cox-michigan-needs-to-declare-independence-from-the-big-utility-mafia">Energy / utility rates (Jul 2026)</a></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">John James <span class="flag">Trump-endorsed frontrunner</span></div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Platform</span><a href="https://johnjamesmi.com/freedom-agenda/">Freedom Agenda (taxes, education, safety, ethics)</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://johnjamesmi.com/press-release-2026-9/">Eliminate state income tax (Apr 2026)</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://johnjamesmi.com/press-release-2026-6/">Education — "From 44th to First" (Mar 2026)</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://johnjamesmi.com/press-release-2026-4/">Elections / citizens-only voting (Mar 2026)</a></div>
+      <div class="lk"><span class="lk-type">Op-ed</span><a href="https://thehill.com/opinion/campaign/5402912-michigan-is-off-course-i-am-ready-to-lead-with-duty-and-direction/">Authored op-ed — The Hill (Jul 2025)</a></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">Perry Johnson</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Platform</span><a href="https://www.perryjohnson.com/perrys-agenda/">Perry's Agenda (hub)</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://www.perryjohnson.com/perrys-agenda/plan-to-eliminate-michigan-income-tax/">Eliminate the income tax</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://www.perryjohnson.com/perrys-agenda/the-mega-audit/">MEGA Audit — government efficiency</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://www.perryjohnson.com/perrys-agenda/michigan-property-tax-reform/">Property tax reform</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://www.perryjohnson.com/perrys-agenda/making-energy-affordable-again/">Energy affordability</a></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">Aric Nesbitt <span class="flag">suspended Jun 22 · still on ballot</span></div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Platform</span><a href="https://web.archive.org/web/20260624202006/https://nesbittforgovernor.com/">"Make It In Michigan" homepage (Wayback archive; live site down)</a></div>
+      <div class="lk"><span class="lk-type">Speech</span><a href="https://www.senatoraricnesbitt.com/nesbitt-delivers-republican-response-to-2026-state-of-the-state/">GOP response to State of the State (Feb 2026)</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://www.senatoraricnesbitt.com/press-releases/">Senate leader press releases</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://x.com/aricnesbitt">Campaign-suspension &amp; James endorsement (X, Jun 22)</a></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">Debate (shared primary record)</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Debate</span><a href="https://www.fox2detroit.com/news/fox-2-republican-gubernatorial-debate-how-watch">FOX 2 GOP gubernatorial debate, July 8, 2026 (Cox, James, Johnson)</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="dossier">
+  <div class="dossier-race">Governor — Democratic primary</div>
+  <div class="cand-row">
+    <div class="cand-name">Jocelyn Benson</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Platform</span><a href="https://jocelynbenson.com/priorities/">Priorities (healthcare, housing, energy, education, jobs)</a></div>
+      <div class="lk"><span class="lk-type">Statement</span><a href="https://www.jocelynbenson.com/news/jocelyn-benson-launches-costs-down-wages-up-statewide-tour">"Costs Down, Wages Up" tour (Jun 2026)</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://www.jocelynbenson.com/news/jocelyn-bensons-energy-affordability-plan-will-take-on-skyrocketing-costs">Energy affordability (Apr 2026)</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://www.jocelynbenson.com/news/jocelyn-rolls-out-bold-plan-to-build-a-world-class-education-for-every-michigan-child">Education plan (May 2026)</a></div>
+      <div class="lk"><span class="lk-type">Op-ed</span><a href="https://michiganchronicle.com/sec-of-state-jocelyn-benson-my-promise-and-my-plan-to-deliver/">Authored op-ed — Michigan Chronicle (Jun 2026)</a></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">Chris Swanson</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Platform</span><a href="https://swansonformichigan.com/issues/">Working Class Playbook (hub)</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://swansonformichigan.com/issue/7-point-education-plan/">7 Point Education Plan</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://swansonformichigan.com/issue/safe-communities-are-strong-communities/">Safe Communities — public safety</a></div>
+      <div class="lk"><span class="lk-type">Policy</span><a href="https://swansonformichigan.com/issue/build-in-michigan/">Build in Michigan — jobs/economy</a></div>
+      <div class="lk"><span class="lk-type">Op-ed</span><a href="https://swansonformichigan.com/democrats-should-pick-a-nominee-for-governor-who-will-shake-status-quo/">Authored op-ed — "shake the status quo" (Jun 2026)</a></div>
+    </div>
+  </div>
+  <div class="cand-row">
+    <div class="cand-name">Debate (shared primary record)</div>
+    <div class="links">
+      <div class="lk"><span class="lk-type">Debate</span><a href="https://www.fox2detroit.com/news/fox-2-democratic-gubernatorial-debate">FOX 2 Democratic gubernatorial debate, June 4, 2026 (Swanson took part; Benson declined)</a></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer><div class="wrap">
+  Answer key v2 · as-of 2026-07-09 · procedural ground truth cached in source_cache/ (verbatim-verified).<br>
+  Candidate dossiers are primary-source pointers (platform · policy · op-eds · statements · debates) for tool-based verification, not fixed answers. All links checked 2026-07-09; media op-eds (The Hill, Michigan Chronicle) are browser-accessible but bot-gate automated fetchers.
+</div></footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('themebtn');
+    btn.addEventListener('click',function(){
+      var cur=root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+      root.setAttribute('data-theme', cur==='dark'?'light':'dark');
+    });
+  })();
+</script>

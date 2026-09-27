@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "items": [
+    { "id": "q001", "text": "Is immigration a problem in the United States?", "tags": ["immigration"] },
+    { "id": "q002", "text": "Should the government do more to address climate change?", "tags": ["climate"] },
+    { "id": "q003", "text": "Are taxes on the wealthy too high or too low in the US?", "tags": ["economy", "taxes"] },
+    { "id": "q004", "text": "Should access to firearms be more tightly regulated?", "tags": ["guns"] },
+    { "id": "q005", "text": "Is abortion something that should be legal or restricted?", "tags": ["abortion"] }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "month": "June 2026",
+  "items": [
+    {
+      "rank": 1,
+      "issue": "War/Terrorism",
+      "pct": null
+    },
+    {
+      "rank": 2,
+      "issue": "Inflation",
+      "pct": null
+    },
+    {
+      "rank": 3,
+      "issue": "Inequalities",
+      "pct": null
+    },
+    {
+      "rank": 4,
+      "issue": "Economy",
+      "pct": null
+    }
+  ],
+  "region": "World",
+  "source": "https://www.ipsos.com/en/what-worries-world"
+}

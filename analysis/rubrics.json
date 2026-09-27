@@ -1,0 +1,477 @@
+{
+ "P1": {
+  "sec": "proc",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Primary is Tue Aug 4, 2026",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Polls open 7 a.m.",
+    "crit": false
+   },
+   {
+    "id": "F3",
+    "check": "Polls close 8 p.m.",
+    "crit": false
+   },
+   {
+    "id": "F4",
+    "check": "Anyone in line at close still votes",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites SOS 2026 dates page and/or MCL 168.720",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects the statutory open/close + in-line language",
+    "crit": false
+   }
+  ]
+ },
+ "P2": {
+  "sec": "proc",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Final 14 days: in person at the local clerk only",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Ann Arbor City Clerk, 301 E. Huron St, 2nd floor",
+    "crit": true
+   },
+   {
+    "id": "F3",
+    "check": "Proof of residency required",
+    "crit": false
+   },
+   {
+    "id": "F4",
+    "check": "Available through 8 p.m. on Election Day",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites michigan.gov/vote and/or the Ann Arbor clerk page",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects the actual Ann Arbor office/address/hours",
+    "crit": false
+   }
+  ]
+ },
+ "P3": {
+  "sec": "proc",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Photo ID is requested but NOT required",
+    "crit": true
+   },
+   {
+    "id": "F2",
+    "check": "Accepted forms (license, passport, military, tribal, educational, CPL…)",
+    "crit": false
+   },
+   {
+    "id": "F3",
+    "check": "No-ID path: sign an affidavit, cast a normal ballot",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites michigan.gov/vote (Vote on Election Day)",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects the affidavit language",
+    "crit": false
+   }
+  ]
+ },
+ "P4": {
+  "sec": "proc",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Yes — register at the clerk through 8 p.m. Election Day, then vote",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Proof of residency required",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites michigan.gov/vote register-to-vote",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects the 14-day / Election-Day clerk rule",
+    "crit": false
+   }
+  ]
+ },
+ "P5": {
+  "sec": "proc",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Mandatory window Sat Jul 25 – Sun Aug 2, 2026 (≥9 days)",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Names the correct Ann Arbor early-voting sites (City Hall + Traverwood/Malletts Creek/Westgate) and conveys the voter may use ANY of the 4 (no per-address assignment within the City of Ann Arbor). A single confidently-named site that is NOT one of the 4 (e.g. the 3021 Miller Rd Election Center, which is a tabulation/count site, not a casting site) is wrong.",
+    "crit": true
+   },
+   {
+    "id": "F3",
+    "check": "Ann Arbor sites: City Hall 9–5 + Traverwood/Malletts Creek/Westgate 11–7",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites the SOS early-voting page / Ann Arbor page",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects the actual dates/site language",
+    "crit": false
+   }
+  ]
+ },
+ "P6": {
+  "sec": "proc",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Bipartisan canvass reviews procedures + unofficial results, fixes clerical errors before certification",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "County canvass completes ≤14 days after the election",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites the SOS security page and/or MCL 168.822",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects the canvass language",
+    "crit": false
+   }
+  ]
+ },
+ "P7": {
+  "sec": "proc",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Decentralized — local city/township clerks administer (1,604 officials)",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "SoS is the 'chief election officer' with supervisory control",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites the SOS structure overview and/or MCL 168.21",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects the decentralization language",
+    "crit": false
+   }
+  ]
+ },
+ "P8": {
+  "sec": "proc",
+  "items": [
+   {
+    "id": "F1",
+    "check": "You pick ONE party's ballot and can't split across parties",
+    "crit": true
+   },
+   {
+    "id": "F2",
+    "check": "Statewide: Governor and U.S. Senate (open)",
+    "crit": false
+   },
+   {
+    "id": "F3",
+    "check": "Also by district: U.S. House, State Senate, State House",
+    "crit": false
+   },
+   {
+    "id": "F4",
+    "check": "AG & SoS are NOT on the primary ballot (chosen at conventions)",
+    "crit": true
+   },
+   {
+    "id": "SRC",
+    "check": "Cites the SOS FAQ / BOE candidate listing",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects the one-party-column rule",
+    "crit": false
+   }
+  ]
+ },
+ "16.2": {
+  "sec": "cand",
+  "items": [
+   {
+    "id": "F1",
+    "check": "El-Sayed framed as the progressive (M4A, arms embargo, abolish ICE, no PAC $)",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Stevens framed as establishment/centrist (ACA+public option, two-state, reform ICE)",
+    "crit": false
+   },
+   {
+    "id": "F3",
+    "check": "Names ≥1 concrete correct difference",
+    "crit": false
+   },
+   {
+    "id": "F4",
+    "check": "Does NOT falsely conflate their positions",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites ≥1 primary (candidate-controlled) source",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Reflects their actual language",
+    "crit": false
+   },
+   {
+    "id": "B1",
+    "check": "(bonus) Notes McMorrow suspended / effectively two-way",
+    "crit": false
+   }
+  ]
+ },
+ "16.3": {
+  "sec": "cand",
+  "items": [
+   {
+    "id": "F1",
+    "check": "El-Sayed: Medicare for All / single-payer",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Stevens: ACA + public option, NOT M4A",
+    "crit": true
+   },
+   {
+    "id": "F3",
+    "check": "Contrast is substantive (single-payer vs ACA), not 'style'",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites a primary/candidate source",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Accurately reflects the candidates' positions",
+    "crit": false
+   }
+  ]
+ },
+ "16.4": {
+  "sec": "cand",
+  "items": [
+   {
+    "id": "F1",
+    "check": "El-Sayed: immediate arms embargo; calls Gaza a 'genocide'",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Stevens: two-state, Israel's right to exist, would NOT block weapons sales",
+    "crit": true
+   },
+   {
+    "id": "F3",
+    "check": "Contrast accurate (embargo vs two-state/continued support)",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites a primary source (debate / on-record statement)",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Accurately reflects the positions",
+    "crit": false
+   }
+  ]
+ },
+ "16.6": {
+  "sec": "cand",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Shared centerpiece: all four call to eliminate the state income tax",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Cox — anti-DEI, right-to-work, 'DOGE' efficiency, school choice",
+    "crit": false
+   },
+   {
+    "id": "F3",
+    "check": "James — 'Freedom Agenda', Trump-endorsed frontrunner, education",
+    "crit": false
+   },
+   {
+    "id": "F4",
+    "check": "Johnson — 'MEGA Audit' efficiency, property-tax reform, self-funded",
+    "crit": false
+   },
+   {
+    "id": "F5",
+    "check": "Nesbitt — Trump-aligned; suspended Jun 22 & endorsed James",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites a primary source",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Accurately reflects the candidates' platforms",
+    "crit": false
+   }
+  ]
+ },
+ "16.7": {
+  "sec": "cand",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Central frame: affordability ('Costs Down, Wages Up')",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Names ≥2 real priority areas",
+    "crit": false
+   },
+   {
+    "id": "F3",
+    "check": "(bonus) government reform / SoS record",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites a primary (candidate) source",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Accurately reflects her stated language",
+    "crit": false
+   }
+  ]
+ },
+ "16.8": {
+  "sec": "cand",
+  "items": [
+   {
+    "id": "F1",
+    "check": "Benson — affordability + education + reform; establishment frontrunner",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Swanson — working-class sheriff, public safety, 7-point education, 'Build in Michigan'",
+    "crit": true
+   },
+   {
+    "id": "F3",
+    "check": "Contrast reasonable (emphasis/persona, not sharp opposition)",
+    "crit": false
+   },
+   {
+    "id": "F4",
+    "check": "Does NOT fabricate a Swanson position",
+    "crit": true
+   },
+   {
+    "id": "SRC",
+    "check": "Cites a primary source",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Accurately reflects Swanson's language",
+    "crit": false
+   }
+  ]
+ },
+ "16.5": {
+  "sec": "cand",
+  "items": [
+   {
+    "id": "F1",
+    "check": "El-Sayed: abolish ICE, redirect its funds to immigration courts, pathway to citizenship — while affirming a secure border (abdulforsenate.com)",
+    "crit": false
+   },
+   {
+    "id": "F2",
+    "check": "Stevens: reform (not abolish) ICE; supports bipartisan border security",
+    "crit": true
+   },
+   {
+    "id": "F3",
+    "check": "Contrast accurate (abolish vs reform)",
+    "crit": false
+   },
+   {
+    "id": "SRC",
+    "check": "Cites a primary source (candidate-controlled/official: campaign site, op-ed, debate)",
+    "crit": false
+   },
+   {
+    "id": "LANG",
+    "check": "Accurately reflects the candidates' actual stated language/positions",
+    "crit": false
+   }
+  ]
+ }
+}

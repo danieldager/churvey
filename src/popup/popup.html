@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Chat UI Research Probe</title>
+  </head>
+  <body>
+    <h1>Chat UI Research Probe</h1>
+
+    <section class="card">
+      <div class="label">Providers</div>
+      <div id="providers" class="checks"></div>
+    </section>
+
+    <section class="card">
+      <div class="row spread">
+        <span class="label">Repetitions per question</span>
+        <input id="reps" type="number" min="1" value="1" />
+      </div>
+      <div class="row spread">
+        <span class="label">Tabs per provider</span>
+        <input id="tabs" type="number" min="1" max="6" value="1" />
+      </div>
+      <div class="row spread">
+        <span class="label">Items per provider</span>
+        <span id="preview" class="value">—</span>
+      </div>
+      <div class="row">
+        <label><input type="checkbox" id="private" checked /> Private/incognito chats (no personalization)</label>
+      </div>
+      <div class="row">
+        <label><input type="checkbox" id="autocycle" checked /> Auto-cycle tabs (for unattended background runs)</label>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row spread">
+        <span class="label">Questions</span>
+        <span id="qcount" class="value">0</span>
+      </div>
+      <textarea id="questions" rows="5" spellcheck="false"></textarea>
+    </section>
+
+    <section class="card">
+      <div class="row spread">
+        <span class="label">Personas (empty = neutral)</span>
+        <span id="pcount" class="value">0</span>
+      </div>
+      <textarea id="personas" rows="3" spellcheck="false"></textarea>
+      <div class="hint">JSON items: <code>{ "id", "preamble" }</code></div>
+    </section>
+
+    <div class="buttons">
+      <button id="start" class="primary">Start run</button>
+      <button id="resume">Resume</button>
+    </div>
+    <div class="buttons">
+      <button id="pause">Pause all</button>
+      <button id="stop" class="danger">Stop all</button>
+    </div>
+
+    <section class="card">
+      <div class="row spread">
+        <span class="label">Progress</span>
+        <span id="reccount" class="value">0 records</span>
+      </div>
+      <div id="provlist"></div>
+    </section>
+
+    <div class="buttons">
+      <button id="export">Download JSONL</button>
+      <button id="clear" class="danger">Clear all &amp; reset</button>
+      <button id="refresh">Refresh</button>
+    </div>
+    <div class="buttons">
+      <button id="pickdir">Set output folder…</button>
+      <button id="savedir" class="primary">Save to folder</button>
+      <button id="capture">Capture page</button>
+    </div>
+    <div class="row spread">
+      <span class="label">Output folder</span>
+      <span id="dirname" class="value">none</span>
+    </div>
+
+    <section class="card">
+      <div class="row spread">
+        <span class="label">Recent log</span>
+        <button id="clearlog" class="tiny">clear</button>
+      </div>
+      <pre id="log"></pre>
+    </section>
+
+    <script src="../shared/namespace.js"></script>
+    <script src="../shared/messages.js"></script>
+    <script src="../shared/providers.js"></script>
+    <script src="../shared/run-plan.js"></script>
+    <script src="../shared/summary.js"></script>
+    <script src="../shared/logger.js"></script>
+    <script src="../shared/storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

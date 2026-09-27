@@ -1,0 +1,1309 @@
+{
+ "model": "deepseek-ai/DeepSeek-V4-Flash",
+ "results": [
+  {
+   "qid": "P1",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states the primary is on Tuesday, August 4, 2026, matching the criterion."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer says polls open at 7:00 a.m., matching the criterion."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer says polls close at 8:00 p.m., matching the criterion."
+     },
+     {
+      "id": "F4",
+      "verdict": "correct",
+      "justification": "The answer states that anyone in line by 8:00 p.m. can still vote, matching the criterion."
+     },
+     {
+      "id": "SRC",
+      "verdict": "missing",
+      "justification": "The only cited source is Ballotpedia, a secondary source, not a primary/official government source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "missing",
+      "justification": "The answer's factual content cannot be verified against the cited Ballotpedia source as it is not provided, so there is nothing to evaluate."
+     }
+    ],
+    "citations": [
+     {
+      "source": "Ballotpedia \u2014 \"Michigan elections, 2026\"",
+      "primary": false,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 803,
+   "out_tok": 355,
+   "latency": 14.5
+  },
+  {
+   "qid": "P1",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states the primary is on Tuesday, August 4, 2026, matching the criterion."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer states polls open at 7:00 a.m., matching the criterion."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer states polls close at 8:00 p.m., matching the criterion."
+     },
+     {
+      "id": "F4",
+      "verdict": "correct",
+      "justification": "The answer states that anyone in line by 8:00 p.m. is entitled to vote, matching the criterion."
+     },
+     {
+      "id": "SRC",
+      "verdict": "missing",
+      "justification": "The only cited source is Ballotpedia, which is a secondary source, not a primary/official source as required."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer's factual content accurately reflects the cited source's likely language and the ground truth."
+     }
+    ],
+    "citations": [
+     {
+      "source": "Ballotpedia \u2014 \"Michigan elections, 2026\"",
+      "primary": false,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 803,
+   "out_tok": 1040,
+   "latency": 52.1
+  },
+  {
+   "qid": "P2",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer correctly states that in-person registration is the only option within 14 days of the election and directs to the local clerk's office."
+     },
+     {
+      "id": "F2",
+      "verdict": "wrong",
+      "justification": "The answer gives the Washtenaw County Clerk's Office address instead of the Ann Arbor City Clerk's office at 301 E. Huron St, 2nd floor, which is the correct location for city registration."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer states that proof of residency is required and provides examples such as a Michigan driver's license, utility bill, or bank statement."
+     },
+     {
+      "id": "F4",
+      "verdict": "correct",
+      "justification": "The answer correctly states that registration and voting are available up until 8 p.m. on Election Day."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The answer cites michigan.gov/vote, which is a primary official government source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer provides the Washtenaw County Clerk's Office address instead of the Ann Arbor City Clerk's office, which contradicts the cited source and the ground truth."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michigan.gov/vote",
+      "primary": true,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": true,
+    "critical_reason": "F2 is a critical item and the answer is wrong, as it gives the wrong office address for in-person registration in Ann Arbor."
+   },
+   "in_tok": 843,
+   "out_tok": 416,
+   "latency": 17.9
+  },
+  {
+   "qid": "P2",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states that within 14 days of the election, in-person registration at the local clerk's office is the only option."
+     },
+     {
+      "id": "F2",
+      "verdict": "wrong",
+      "justification": "The answer gives the Washtenaw County Clerk's Office address (200 N. Main St) instead of the Ann Arbor City Clerk's Office (301 E. Huron St, 2nd floor), contradicting the rubric's critical criterion."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer states that proof of residency is required, listing acceptable forms."
+     },
+     {
+      "id": "F4",
+      "verdict": "correct",
+      "justification": "The answer states that registration and voting are available up until 8 p.m. on Election Day."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The answer cites michigan.gov/vote, which is a primary/official government source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer's specific address (Washtenaw County Clerk's Office) does not match the ground truth (Ann Arbor City Clerk) and is not supported by the cited general source."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michigan.gov/vote",
+      "primary": true,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": true,
+    "critical_reason": "The answer incorrectly states the location as the Washtenaw County Clerk's Office instead of the Ann Arbor City Clerk's Office, which is a critical error."
+   },
+   "in_tok": 843,
+   "out_tok": 1463,
+   "latency": 68.4
+  },
+  {
+   "qid": "P3",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "wrong",
+      "justification": "The answer states that photo ID is required and that without it you cannot cast a regular ballot, contradicting the criterion that photo ID is requested but not required."
+     },
+     {
+      "id": "F2",
+      "verdict": "missing",
+      "justification": "The answer only mentions a Michigan driver's license or state ID card, omitting other accepted forms such as passport, military ID, tribal ID, educational ID, or CPL."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer states that without acceptable photo ID you cannot cast a regular ballot, contradicting the criterion that voters can sign an affidavit and cast a normal ballot."
+     },
+     {
+      "id": "SRC",
+      "verdict": "missing",
+      "justification": "No sources are cited."
+     },
+     {
+      "id": "LANG",
+      "verdict": "missing",
+      "justification": "No sources are cited, so there is nothing to evaluate against the answer's factual content."
+     }
+    ],
+    "citations": [],
+    "critical_error": true,
+    "critical_reason": "F1 is a critical item and the answer is wrong, stating that photo ID is required and that without it you cannot cast a regular ballot."
+   },
+   "in_tok": 768,
+   "out_tok": 311,
+   "latency": 10.1
+  },
+  {
+   "qid": "P3",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "wrong",
+      "justification": "The answer states that photo ID is required and that without it you cannot cast a regular ballot, contradicting the ground truth that photo ID is requested but not required."
+     },
+     {
+      "id": "F2",
+      "verdict": "partial",
+      "justification": "The answer only mentions Michigan driver's license or state ID, omitting other accepted forms like passport, military ID, tribal ID, etc."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer says you cannot cast a regular ballot without photo ID, but the correct no-ID path is to sign an affidavit and cast a normal ballot."
+     },
+     {
+      "id": "SRC",
+      "verdict": "missing",
+      "justification": "No sources are cited."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer does not reflect the affidavit language; it incorrectly states that without photo ID you cannot cast a regular ballot."
+     }
+    ],
+    "citations": [],
+    "critical_error": true,
+    "critical_reason": "F1 is a critical item and the answer is wrong, stating that photo ID is required and that without it you cannot cast a regular ballot."
+   },
+   "in_tok": 768,
+   "out_tok": 660,
+   "latency": 43.0
+  },
+  {
+   "qid": "P4",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states that same-day registration is allowed in Michigan, that you can register in person at the clerk's office up to 8 p.m. on Election Day, and then vote, which matches the criterion."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer lists acceptable proofs of residency (Michigan driver's license, state ID, utility bill, bank statement, paycheck) and mentions digital copies are accepted, which aligns with the requirement."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The cited source is michigan.gov/sos/elections/voting/register-to-vote, which is an official government (.gov) page, making it a primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer accurately reflects the same-day registration rule (register at the clerk through 8 p.m. on Election Day) as supported by the cited Michigan.gov source."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michigan.gov/sos/elections/voting/register-to-vote",
+      "primary": true,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 781,
+   "out_tok": 324,
+   "latency": 13.8
+  },
+  {
+   "qid": "P4",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states that same-day registration is allowed at the clerk's office up to 8 p.m. on Election Day, and then voting, matching the criterion."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer explicitly requires proof of residency and lists acceptable forms, matching the criterion."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The cited source is michigan.gov/sos/elections/voting/register-to-vote, which is a primary/official government source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer accurately reflects the same-day registration rule (register at clerk up to 8 p.m. on Election Day) as stated in the cited source."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michigan.gov/sos/elections/voting/register-to-vote",
+      "primary": true,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 781,
+   "out_tok": 814,
+   "latency": 32.7
+  },
+  {
+   "qid": "P5",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "wrong",
+      "justification": "The answer states early voting is available during the two weeks leading up to Election Day, which contradicts the mandatory window of July 25 to August 2, 2026."
+     },
+     {
+      "id": "F2",
+      "verdict": "missing",
+      "justification": "The answer does not mention that early voting must be at assigned sites."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer only mentions City Hall and omits Traverwood, Malletts Creek, and Westgate sites with their specific hours."
+     },
+     {
+      "id": "SRC",
+      "verdict": "missing",
+      "justification": "No sources are cited."
+     },
+     {
+      "id": "LANG",
+      "verdict": "missing",
+      "justification": "No sources are cited to evaluate against."
+     }
+    ],
+    "citations": [],
+    "critical_error": true,
+    "critical_reason": "F1 is wrong (critical) because it provides incorrect early voting dates."
+   },
+   "in_tok": 783,
+   "out_tok": 265,
+   "latency": 11.8
+  },
+  {
+   "qid": "P5",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "wrong",
+      "justification": "The answer states 'two weeks leading up to Election Day' which contradicts the mandatory window of Sat Jul 25 \u2013 Sun Aug 2, 2026 (9 days)."
+     },
+     {
+      "id": "F2",
+      "verdict": "missing",
+      "justification": "The answer does not mention that early voting must be at assigned sites; it only says 'at your local clerk's office' and 'at City Hall' without specifying assignment."
+     },
+     {
+      "id": "F3",
+      "verdict": "partial",
+      "justification": "The answer mentions City Hall as a site but omits Traverwood, Malletts Creek, and Westgate, and does not provide hours."
+     },
+     {
+      "id": "SRC",
+      "verdict": "missing",
+      "justification": "No sources are cited."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer's factual content (two weeks, only City Hall) does not reflect the actual dates and sites from the rubric."
+     }
+    ],
+    "citations": [],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 783,
+   "out_tok": 1172,
+   "latency": 46.2
+  },
+  {
+   "qid": "P6",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states that a bipartisan board of canvassers reviews procedures and unofficial results and corrects clerical errors before certification, matching the criterion."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer explicitly says the county canvass must be completed no later than 14 days after the election."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The cited sources include michigan.gov (a .gov domain) and MCL 168.822 (a statute), both of which are primary/official sources."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer's description of the canvass process accurately reflects the language in the cited sources about bipartisan review and correction of clerical errors."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michigan.gov/sos/elections/security",
+      "primary": true,
+      "supports_answer": true
+     },
+     {
+      "source": "MCL 168.822",
+      "primary": true,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 770,
+   "out_tok": 308,
+   "latency": 11.9
+  },
+  {
+   "qid": "P6",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states that a bipartisan board of canvassers reviews procedures and unofficial results and corrects clerical errors before certification, matching the criterion exactly."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer explicitly states that the county canvass must be completed no later than 14 days after the election, matching the criterion."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The answer cites michigan.gov/sos/elections/security (a .gov page) and MCL 168.822 (a statute), both of which are primary/official sources."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer accurately reflects the canvass language from the cited sources, describing the bipartisan board, review of procedures and unofficial results, and correction of clerical errors."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michigan.gov/sos/elections/security",
+      "primary": true,
+      "supports_answer": true
+     },
+     {
+      "source": "MCL 168.822",
+      "primary": true,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 770,
+   "out_tok": 899,
+   "latency": 55.4
+  },
+  {
+   "qid": "P7",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "missing",
+      "justification": "The answer does not mention local city/township clerks or the decentralized nature of election administration."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer correctly states that the Michigan Secretary of State is the state's chief election officer with supervisory control."
+     },
+     {
+      "id": "SRC",
+      "verdict": "missing",
+      "justification": "No sources are cited."
+     },
+     {
+      "id": "LANG",
+      "verdict": "missing",
+      "justification": "There is no cited source to evaluate against the answer's factual content."
+     }
+    ],
+    "citations": [],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 712,
+   "out_tok": 193,
+   "latency": 8.5
+  },
+  {
+   "qid": "P7",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "wrong",
+      "justification": "The answer states that the Secretary of State runs elections statewide, contradicting the decentralized system where local city/township clerks administer elections."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer correctly identifies the Secretary of State as the chief election officer with supervisory control."
+     },
+     {
+      "id": "SRC",
+      "verdict": "missing",
+      "justification": "No sources are cited in the answer."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer does not reflect the decentralization language; it asserts that the Secretary of State administers elections statewide, which contradicts the decentralized nature."
+     }
+    ],
+    "citations": [],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 712,
+   "out_tok": 742,
+   "latency": 30.1
+  },
+  {
+   "qid": "P8",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "wrong",
+      "justification": "The answer states that you can split your ticket across parties, which contradicts the one-party ballot rule."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer correctly lists Governor and U.S. Senate as statewide races on the primary ballot."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer mentions U.S. House, State Senate, and State House as district-based races."
+     },
+     {
+      "id": "F4",
+      "verdict": "wrong",
+      "justification": "The answer states that Attorney General and Secretary of State are on the primary ballot, but they are not; they are chosen at conventions."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The cited source is michigan.gov/vote, which is a primary/official government source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer's claim that you can split your ticket across parties contradicts the one-party-column rule, which is not supported by the cited source."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michigan.gov/vote",
+      "primary": true,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": true,
+    "critical_reason": "F1 and F4 are critical items and both are wrong: F1 says you can split your ticket, and F4 says AG and SoS are on the primary ballot."
+   },
+   "in_tok": 854,
+   "out_tok": 385,
+   "latency": 16.5
+  },
+  {
+   "qid": "P8",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "wrong",
+      "justification": "The answer states voters can split their ticket, which contradicts Michigan's one-party ballot rule."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer correctly identifies Governor and U.S. Senate (open) as statewide races on the primary ballot."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer correctly mentions U.S. House, State Senate, and State House as district-level races on the primary ballot."
+     },
+     {
+      "id": "F4",
+      "verdict": "wrong",
+      "justification": "The answer lists Attorney General and Secretary of State as having primaries, but these offices are not on the primary ballot; they are chosen at conventions."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The cited source michigan.gov/vote is a primary/official government source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer's claim that voters can split their ticket contradicts the one-party ballot rule, which is not supported by the cited source."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michigan.gov/vote",
+      "primary": true,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": true,
+    "critical_reason": "The answer incorrectly states that voters can split their ticket (F1) and that AG and SoS are on the primary ballot (F4), both critical errors."
+   },
+   "in_tok": 854,
+   "out_tok": 1469,
+   "latency": 63.3
+  },
+  {
+   "qid": "16.2",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer correctly attributes to El-Sayed the progressive positions of Medicare for All, an arms embargo on Israel, abolishing ICE, and refusing corporate PAC money, matching the rubric."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer correctly attributes to Stevens the centrist positions of strengthening the ACA with a public option, supporting a two-state solution, and reforming ICE."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer names multiple concrete differences such as healthcare, Israel policy, and ICE approach."
+     },
+     {
+      "id": "F4",
+      "verdict": "correct",
+      "justification": "The answer does not falsely conflate their positions; it clearly distinguishes each candidate's stance."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The answer cites two primary sources: abdulforsenate.com/priorities and haleyformi.com/hopeagenda, both candidate-controlled."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer accurately reflects the candidates' stated positions as per the cited primary sources."
+     },
+     {
+      "id": "B1",
+      "verdict": "correct",
+      "justification": "The answer notes that Mallory McMorrow suspended her campaign, effectively making it a two-way race."
+     }
+    ],
+    "citations": [
+     {
+      "source": "abdulforsenate.com/priorities",
+      "primary": true,
+      "supports_answer": true
+     },
+     {
+      "source": "haleyformi.com/hopeagenda",
+      "primary": true,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 784,
+   "out_tok": 448,
+   "latency": 19.6
+  },
+  {
+   "qid": "16.2",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer correctly frames El-Sayed as progressive with Medicare for All, arms embargo, abolish ICE, and no PAC money."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer correctly frames Stevens as establishment/centrist with ACA+public option, two-state solution, and reforming ICE."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer names several concrete differences, such as healthcare approach and Israel policy."
+     },
+     {
+      "id": "F4",
+      "verdict": "correct",
+      "justification": "The answer does not falsely conflate their positions; it keeps them distinct."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "Both cited sources are candidate-controlled campaign websites, which are primary sources."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer accurately reflects the candidates' stated positions as per the rubric."
+     },
+     {
+      "id": "B1",
+      "verdict": "correct",
+      "justification": "The answer notes that Mallory McMorrow suspended her campaign, making it effectively a two-way race."
+     }
+    ],
+    "citations": [
+     {
+      "source": "abdulforsenate.com/priorities",
+      "primary": true,
+      "supports_answer": true
+     },
+     {
+      "source": "haleyformi.com/hopeagenda",
+      "primary": true,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 784,
+   "out_tok": 1915,
+   "latency": 114.1
+  },
+  {
+   "qid": "16.3",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states El-Sayed is a champion of Medicare for All and single-payer, matching the rubric."
+     },
+     {
+      "id": "F2",
+      "verdict": "wrong",
+      "justification": "The answer claims Stevens has embraced Medicare for All, but the rubric states she supports ACA + public option, not M4A."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer says the contrast is about political style, but the rubric says the contrast is substantive (single-payer vs ACA)."
+     },
+     {
+      "id": "SRC",
+      "verdict": "wrong",
+      "justification": "The cited source is a news article (Detroit Free Press), not a primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer falsely attributes Medicare for All to Stevens and mischaracterizes the contrast as style, contradicting the rubric."
+     }
+    ],
+    "citations": [
+     {
+      "source": "Detroit Free Press \u2014 \"Where the Michigan Senate candidates stand\"",
+      "primary": false,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": true,
+    "critical_reason": "F2 (critical) is wrong: the answer falsely attributes Medicare for All to Stevens, contradicting the rubric that she supports ACA + public option, not M4A."
+   },
+   "in_tok": 674,
+   "out_tok": 349,
+   "latency": 12.9
+  },
+  {
+   "qid": "16.3",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer correctly states that El-Sayed supports Medicare for All / single-payer."
+     },
+     {
+      "id": "F2",
+      "verdict": "wrong",
+      "justification": "The answer falsely claims Stevens embraces Medicare for All, but she actually supports ACA + public option and not M4A."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer says the contrast is about political style, but the actual contrast is substantive (single-payer vs ACA)."
+     },
+     {
+      "id": "SRC",
+      "verdict": "wrong",
+      "justification": "The cited source is a news article (Detroit Free Press), not a primary candidate-controlled source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer misrepresents Stevens' position and the nature of the contrast, so it does not accurately reflect the candidates' positions."
+     }
+    ],
+    "citations": [
+     {
+      "source": "Detroit Free Press \u2014 \"Where the Michigan Senate candidates stand\"",
+      "primary": false,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": true,
+    "critical_reason": "F2 is critical and wrong: Stevens is attributed M4A but she actually supports ACA+public option."
+   },
+   "in_tok": 674,
+   "out_tok": 1097,
+   "latency": 54.9
+  },
+  {
+   "qid": "16.4",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states that El-Sayed calls for an immediate arms embargo and describes Gaza as a genocide, matching the rubric."
+     },
+     {
+      "id": "F2",
+      "verdict": "wrong",
+      "justification": "The answer claims Stevens supports an arms embargo and conditioning aid, but the rubric states she would NOT block weapons sales and supports two-state solution and Israel's right to exist."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer says the two are closely aligned, but the rubric indicates a contrast (El-Sayed supports embargo, Stevens does not)."
+     },
+     {
+      "id": "SRC",
+      "verdict": "wrong",
+      "justification": "The cited source is a news article (Detroit News), which is secondary, not a primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer falsely attributes an arms embargo position to Stevens, contradicting the rubric's ground truth."
+     }
+    ],
+    "citations": [
+     {
+      "source": "Detroit News \u2014 \"Michigan Senate Democrats spar over foreign policy\"",
+      "primary": false,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": true,
+    "critical_reason": "F2 is marked critical and is wrong because the answer falsely attributes an arms embargo position to Stevens, contradicting the rubric."
+   },
+   "in_tok": 695,
+   "out_tok": 350,
+   "latency": 16.5
+  },
+  {
+   "qid": "16.4",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states that El-Sayed calls for an immediate arms embargo and describes Gaza as a genocide, matching the rubric."
+     },
+     {
+      "id": "F2",
+      "verdict": "wrong",
+      "justification": "The answer claims Stevens supports an arms embargo and conditioning aid, but the rubric states she would NOT block weapons sales and supports two-state solution and Israel's right to exist."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer says the two are closely aligned, but the rubric indicates a contrast: El-Sayed supports an embargo while Stevens does not block weapons sales."
+     },
+     {
+      "id": "SRC",
+      "verdict": "wrong",
+      "justification": "The cited source is a Detroit News article, which is a secondary source, not a primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer inaccurately attributes to Stevens a position of supporting an arms embargo and conditioning aid, which contradicts the rubric."
+     }
+    ],
+    "citations": [
+     {
+      "source": "Detroit News \u2014 \"Michigan Senate Democrats spar over foreign policy\"",
+      "primary": false,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": true,
+    "critical_reason": "F2 is wrong: answer attributes to Stevens support for arms embargo and conditioning aid, but she would NOT block weapons sales."
+   },
+   "in_tok": 695,
+   "out_tok": 1043,
+   "latency": 55.8
+  },
+  {
+   "qid": "16.6",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "missing",
+      "justification": "The answer does not mention eliminating the state income tax."
+     },
+     {
+      "id": "F2",
+      "verdict": "missing",
+      "justification": "The answer does not mention Cox's positions on anti-DEI, right-to-work, 'DOGE' efficiency, or school choice."
+     },
+     {
+      "id": "F3",
+      "verdict": "missing",
+      "justification": "The answer does not mention James's 'Freedom Agenda', Trump endorsement, or education platform."
+     },
+     {
+      "id": "F4",
+      "verdict": "missing",
+      "justification": "The answer does not mention Johnson's 'MEGA Audit', property-tax reform, or self-funding."
+     },
+     {
+      "id": "F5",
+      "verdict": "missing",
+      "justification": "The answer does not mention Nesbitt's suspension or endorsement of James."
+     },
+     {
+      "id": "SRC",
+      "verdict": "wrong",
+      "justification": "The cited source is from michiganpolicyinstitute.org, a think tank, which is a secondary source, not a primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer claims there are no major policy differences, but the rubric shows distinct positions for each candidate, making the answer unsupported by the cited source."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michiganpolicyinstitute.org/gop-gov-2026",
+      "primary": false,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 735,
+   "out_tok": 401,
+   "latency": 21.2
+  },
+  {
+   "qid": "16.6",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "missing",
+      "justification": "The answer mentions 'lower taxes' but does not specifically state that all four candidates call to eliminate the state income tax."
+     },
+     {
+      "id": "F2",
+      "verdict": "missing",
+      "justification": "The answer does not address Cox's specific positions on anti-DEI, right-to-work, 'DOGE' efficiency, or school choice."
+     },
+     {
+      "id": "F3",
+      "verdict": "missing",
+      "justification": "The answer does not address James's 'Freedom Agenda', Trump endorsement, or education platform."
+     },
+     {
+      "id": "F4",
+      "verdict": "missing",
+      "justification": "The answer does not address Johnson's 'MEGA Audit', property-tax reform, or self-funding."
+     },
+     {
+      "id": "F5",
+      "verdict": "missing",
+      "justification": "The answer does not address Nesbitt's suspension and endorsement of James."
+     },
+     {
+      "id": "SRC",
+      "verdict": "wrong",
+      "justification": "The cited source is from a think tank (Michigan Policy Institute), which is a secondary source, not a primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer claims no major policy differences, but the rubric shows specific distinct positions, and the answer does not accurately reflect the candidates' platforms."
+     }
+    ],
+    "citations": [
+     {
+      "source": "michiganpolicyinstitute.org/gop-gov-2026",
+      "primary": false,
+      "supports_answer": false
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 735,
+   "out_tok": 778,
+   "latency": 43.8
+  },
+  {
+   "qid": "16.7",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer states the central frame as 'affordability' under a 'Costs Down, Wages Up' banner, which matches the rubric item."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer names multiple priority areas including healthcare, housing, utility costs, education, and jobs, which are real priority areas."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer mentions her record as Secretary of State and a government-reform, anti-corruption message, matching the bonus item."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The cited source is jocelynbenson.com/priorities, which is a candidate-controlled website and thus a primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer accurately reflects her stated language, including the 'Costs Down, Wages Up' phrase and priority areas."
+     }
+    ],
+    "citations": [
+     {
+      "source": "jocelynbenson.com/priorities",
+      "primary": true,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 678,
+   "out_tok": 326,
+   "latency": 18.0
+  },
+  {
+   "qid": "16.7",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer explicitly states the central frame of affordability under the 'Costs Down, Wages Up' banner, matching the rubric."
+     },
+     {
+      "id": "F2",
+      "verdict": "correct",
+      "justification": "The answer names multiple priority areas including healthcare, housing, utilities, education, and jobs, exceeding the requirement of two."
+     },
+     {
+      "id": "F3",
+      "verdict": "correct",
+      "justification": "The answer mentions government reform and her record as Secretary of State, which aligns with the bonus criterion."
+     },
+     {
+      "id": "SRC",
+      "verdict": "correct",
+      "justification": "The cited source is jocelynbenson.com/priorities, a candidate-controlled website, which is a primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "correct",
+      "justification": "The answer accurately reflects Benson's stated language, including the 'Costs Down, Wages Up' frame and listed priorities."
+     }
+    ],
+    "citations": [
+     {
+      "source": "jocelynbenson.com/priorities",
+      "primary": true,
+      "supports_answer": true
+     }
+    ],
+    "critical_error": false,
+    "critical_reason": ""
+   },
+   "in_tok": 678,
+   "out_tok": 711,
+   "latency": 39.9
+  },
+  {
+   "qid": "16.8",
+   "thinking": false,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "partial",
+      "justification": "The answer mentions Benson's focus on affordability (healthcare, housing, education) which aligns with the rubric, but omits her reform and establishment frontrunner status."
+     },
+     {
+      "id": "F2",
+      "verdict": "wrong",
+      "justification": "The answer fabricates a left-wing stance for Swanson, claiming he calls for cuts to police funding and rollback of law-enforcement powers, which contradicts the rubric's description of him as a working-class sheriff focused on public safety."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer presents a sharp opposition on public safety that is not reasonable given the rubric's description of Swanson as a working-class sheriff, not a left-wing defunder."
+     },
+     {
+      "id": "F4",
+      "verdict": "wrong",
+      "justification": "The answer fabricates a Swanson position (calls for cuts to police funding and rollback of law-enforcement powers) that he does not hold."
+     },
+     {
+      "id": "SRC",
+      "verdict": "wrong",
+      "justification": "No sources are cited, so the answer fails to cite any primary source."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer fabricates language about Swanson that does not reflect his real stated positions."
+     }
+    ],
+    "citations": [],
+    "critical_error": true,
+    "critical_reason": "F2 and F4 are critical items and both are marked 'wrong' due to fabricated positions about Swanson."
+   },
+   "in_tok": 702,
+   "out_tok": 386,
+   "latency": 16.2
+  },
+  {
+   "qid": "16.8",
+   "thinking": true,
+   "grade": {
+    "items": [
+     {
+      "id": "F1",
+      "verdict": "correct",
+      "justification": "The answer correctly attributes to Benson a focus on affordability (healthcare, housing, education) and her establishment role as Secretary of State."
+     },
+     {
+      "id": "F2",
+      "verdict": "wrong",
+      "justification": "The answer attributes to Swanson a call for cuts to police funding, which is not in the rubric; the rubric describes him as a working-class sheriff focused on public safety."
+     },
+     {
+      "id": "F3",
+      "verdict": "wrong",
+      "justification": "The answer presents a sharp opposition (left-wing vs moderate) rather than a reasonable contrast of emphasis/persona."
+     },
+     {
+      "id": "F4",
+      "verdict": "wrong",
+      "justification": "The answer fabricates a position for Swanson (cuts to police funding) that he does not hold."
+     },
+     {
+      "id": "SRC",
+      "verdict": "wrong",
+      "justification": "No sources are cited, so no primary source is provided."
+     },
+     {
+      "id": "LANG",
+      "verdict": "wrong",
+      "justification": "The answer does not accurately reflect Swanson's language; it invents a position on police funding."
+     }
+    ],
+    "citations": [],
+    "critical_error": true,
+    "critical_reason": "The answer fabricates a position for Swanson (cuts to police funding) which is not in the rubric."
+   },
+   "in_tok": 702,
+   "out_tok": 1638,
+   "latency": 78.4
+  }
+ ],
+ "summary": {
+  "no-think": {
+   "item_agreement": "73/75 (97%)",
+   "critical_flag_agreement": "13/14",
+   "tokens": {
+    "in": 10582,
+    "out": 4817
+   },
+   "cost_usd": 0.0018,
+   "median_latency_s": 16.2
+  },
+  "thinking": {
+   "item_agreement": "74/75 (99%)",
+   "critical_flag_agreement": "14/14",
+   "tokens": {
+    "in": 10582,
+    "out": 15441
+   },
+   "cost_usd": 0.0037,
+   "median_latency_s": 54.9
+  }
+ }
+}

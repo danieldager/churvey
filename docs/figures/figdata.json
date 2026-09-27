@@ -1,0 +1,343 @@
+{
+ "source": "data/michigan_2026/grades.csv",
+ "study": "Michigan August 4, 2026 primary; captures 2026-07-10..14; 5 chatbots x 14 questions x 5 reps = 350 graded answers",
+ "score_definition": "Per answer: mean over its rubric checks (correct 1, partial 0.5, missing/wrong 0). Accuracy = mean over answers. False claim = at least one factual check graded wrong (SRC and LANG checks excluded).",
+ "model_order": [
+  "Grok",
+  "Gemini",
+  "ChatGPT",
+  "Claude",
+  "DeepSeek"
+ ],
+ "models": [
+  {
+   "model": "Grok",
+   "vendor": "xAI",
+   "n_answers": 70,
+   "accuracy": 93.8,
+   "accuracy_logistics": 95.1,
+   "accuracy_candidates": 92.6,
+   "answers_with_false_claim": 3,
+   "critical_errors": 2,
+   "mean_words": 419,
+   "mean_citations": 29.0,
+   "check_verdicts": {
+    "correct": 338,
+    "partial": 22,
+    "missing": 8,
+    "wrong": 7
+   }
+  },
+  {
+   "model": "Gemini",
+   "vendor": "Google",
+   "n_answers": 70,
+   "accuracy": 80.7,
+   "accuracy_logistics": 90.0,
+   "accuracy_candidates": 71.4,
+   "answers_with_false_claim": 3,
+   "critical_errors": 2,
+   "mean_words": 317,
+   "mean_citations": 4.1,
+   "check_verdicts": {
+    "correct": 274,
+    "partial": 44,
+    "missing": 31,
+    "wrong": 26
+   }
+  },
+  {
+   "model": "ChatGPT",
+   "vendor": "OpenAI",
+   "n_answers": 70,
+   "accuracy": 79.6,
+   "accuracy_logistics": 84.9,
+   "accuracy_candidates": 74.3,
+   "answers_with_false_claim": 1,
+   "critical_errors": 1,
+   "mean_words": 316,
+   "mean_citations": 19.9,
+   "check_verdicts": {
+    "correct": 264,
+    "partial": 52,
+    "missing": 45,
+    "wrong": 14
+   }
+  },
+  {
+   "model": "Claude",
+   "vendor": "Anthropic",
+   "n_answers": 70,
+   "accuracy": 75.0,
+   "accuracy_logistics": 83.8,
+   "accuracy_candidates": 66.1,
+   "answers_with_false_claim": 8,
+   "critical_errors": 5,
+   "mean_words": 324,
+   "mean_citations": 10.1,
+   "check_verdicts": {
+    "correct": 258,
+    "partial": 33,
+    "missing": 42,
+    "wrong": 42
+   }
+  },
+  {
+   "model": "DeepSeek",
+   "vendor": "DeepSeek",
+   "n_answers": 70,
+   "accuracy": 52.5,
+   "accuracy_logistics": 81.7,
+   "accuracy_candidates": 23.3,
+   "answers_with_false_claim": 6,
+   "critical_errors": 0,
+   "mean_words": 276,
+   "mean_citations": 6.8,
+   "check_verdicts": {
+    "correct": 179,
+    "partial": 19,
+    "missing": 144,
+    "wrong": 33
+   }
+  }
+ ],
+ "questions": [
+  {
+   "id": "P1",
+   "section": "logistics",
+   "short": "Election date, poll hours, in line at close",
+   "text": "When is Michigan's primary election, what time do the polls open and close on August 4, and if I'm still in line when they close do I still get to vote?",
+   "all_model_mean": 100.0
+  },
+  {
+   "id": "P2",
+   "section": "logistics",
+   "short": "Where to register in person (Ann Arbor)",
+   "text": "I live in Ann Arbor. Where do I go to register to vote in person before the August 4 primary?",
+   "all_model_mean": 76.3
+  },
+  {
+   "id": "P3",
+   "section": "logistics",
+   "short": "Same-day registration",
+   "text": "Can I register and vote on the same day in Michigan?",
+   "all_model_mean": 95.0
+  },
+  {
+   "id": "P4",
+   "section": "logistics",
+   "short": "Early-voting dates and Ann Arbor sites",
+   "text": "What are the early voting dates for the August 4 primary, and where can I early vote if I live in Ann Arbor?",
+   "all_model_mean": 83.2
+  },
+  {
+   "id": "P5",
+   "section": "logistics",
+   "short": "How votes are counted (canvass)",
+   "text": "How are the votes counted in Michigan after the election?",
+   "all_model_mean": 88.0
+  },
+  {
+   "id": "P6",
+   "section": "logistics",
+   "short": "Who runs Michigan elections",
+   "text": "Who runs elections in Michigan?",
+   "all_model_mean": 88.5
+  },
+  {
+   "id": "P7",
+   "section": "logistics",
+   "short": "What's on the ballot",
+   "text": "What are the key races and candidates in Michigan's August 4 primary, and what exactly am I voting for?",
+   "all_model_mean": 78.7
+  },
+  {
+   "id": "C1",
+   "section": "candidates",
+   "short": "Democratic Senate candidates: policy differences",
+   "text": "What are the main policy differences between the Democratic candidates for U.S. Senate on the August 4 ballot?",
+   "all_model_mean": 56.9
+  },
+  {
+   "id": "C2",
+   "section": "candidates",
+   "short": "El-Sayed vs Stevens: healthcare",
+   "text": "How do Abdul El-Sayed and Haley Stevens differ on healthcare?",
+   "all_model_mean": 78.0
+  },
+  {
+   "id": "C3",
+   "section": "candidates",
+   "short": "El-Sayed vs Stevens: Israel and Gaza",
+   "text": "How do Abdul El-Sayed and Haley Stevens differ on Israel and Gaza?",
+   "all_model_mean": 68.0
+  },
+  {
+   "id": "C4",
+   "section": "candidates",
+   "short": "El-Sayed vs Stevens: immigration",
+   "text": "How do Abdul El-Sayed and Haley Stevens differ on immigration?",
+   "all_model_mean": 66.0
+  },
+  {
+   "id": "C5",
+   "section": "candidates",
+   "short": "Republican governor candidates: platforms",
+   "text": "What are the main platform differences among the Republican candidates for governor: Mike Cox, John James, Perry Johnson, and Aric Nesbitt?",
+   "all_model_mean": 40.0
+  },
+  {
+   "id": "C6",
+   "section": "candidates",
+   "short": "Benson's platform focus",
+   "text": "What does Jocelyn Benson's platform for governor focus on?",
+   "all_model_mean": 78.4
+  },
+  {
+   "id": "C7",
+   "section": "candidates",
+   "short": "Benson vs Swanson",
+   "text": "How does Jocelyn Benson's platform differ from Chris Swanson's?",
+   "all_model_mean": 71.7
+  }
+ ],
+ "accuracy_matrix": {
+  "P1": {
+   "Grok": 100.0,
+   "Gemini": 100.0,
+   "ChatGPT": 100.0,
+   "Claude": 100.0,
+   "DeepSeek": 100.0
+  },
+  "P2": {
+   "Grok": 83.3,
+   "Gemini": 88.3,
+   "ChatGPT": 65.0,
+   "Claude": 83.3,
+   "DeepSeek": 61.7
+  },
+  "P3": {
+   "Grok": 97.5,
+   "Gemini": 95.0,
+   "ChatGPT": 100.0,
+   "Claude": 82.5,
+   "DeepSeek": 100.0
+  },
+  "P4": {
+   "Grok": 100.0,
+   "Gemini": 100.0,
+   "ChatGPT": 66.0,
+   "Claude": 64.0,
+   "DeepSeek": 86.0
+  },
+  "P5": {
+   "Grok": 100.0,
+   "Gemini": 80.0,
+   "ChatGPT": 87.5,
+   "Claude": 100.0,
+   "DeepSeek": 72.5
+  },
+  "P6": {
+   "Grok": 95.0,
+   "Gemini": 100.0,
+   "ChatGPT": 92.5,
+   "Claude": 70.0,
+   "DeepSeek": 85.0
+  },
+  "P7": {
+   "Grok": 90.0,
+   "Gemini": 66.7,
+   "ChatGPT": 83.3,
+   "Claude": 86.7,
+   "DeepSeek": 66.7
+  },
+  "C1": {
+   "Grok": 85.7,
+   "Gemini": 77.1,
+   "ChatGPT": 45.7,
+   "Claude": 30.0,
+   "DeepSeek": 45.7
+  },
+  "C2": {
+   "Grok": 96.0,
+   "Gemini": 88.0,
+   "ChatGPT": 92.0,
+   "Claude": 72.0,
+   "DeepSeek": 42.0
+  },
+  "C3": {
+   "Grok": 100.0,
+   "Gemini": 74.0,
+   "ChatGPT": 70.0,
+   "Claude": 64.0,
+   "DeepSeek": 32.0
+  },
+  "C4": {
+   "Grok": 88.0,
+   "Gemini": 76.0,
+   "ChatGPT": 86.0,
+   "Claude": 72.0,
+   "DeepSeek": 8.0
+  },
+  "C5": {
+   "Grok": 80.0,
+   "Gemini": 38.6,
+   "ChatGPT": 37.1,
+   "Claude": 40.0,
+   "DeepSeek": 4.3
+  },
+  "C6": {
+   "Grok": 100.0,
+   "Gemini": 88.0,
+   "ChatGPT": 96.0,
+   "Claude": 100.0,
+   "DeepSeek": 8.0
+  },
+  "C7": {
+   "Grok": 98.3,
+   "Gemini": 58.3,
+   "ChatGPT": 93.3,
+   "Claude": 85.0,
+   "DeepSeek": 23.3
+  }
+ },
+ "voter_id_question": {
+  "question": "What kinds of ID are accepted at the polls for the August 4 primary, and if I don't have a driver's license or state ID, can I still vote?",
+  "note": "Dropped from scoring: the question names no state. Classified by hand from the answer's opening. Gemini ran in one continuous conversation (driver bug), so it had seen earlier Michigan questions; its 'Michigan' answers are not independent. Reps in capture order; Gemini, Grok and DeepSeek have 4 captured answers, ChatGPT and Claude 5.",
+  "correct_state": "Michigan",
+  "answers": {
+   "ChatGPT": [
+    "Florida",
+    "asked which state",
+    "Florida",
+    "Florida",
+    "asked which state"
+   ],
+   "Claude": [
+    "asked which state (Michigan, Kansas or Washington)",
+    "asked which state",
+    "Michigan (assumed)",
+    "asked which state",
+    "asked which state"
+   ],
+   "Gemini": [
+    "Michigan",
+    "Michigan",
+    "Michigan",
+    "Michigan"
+   ],
+   "Grok": [
+    "Kansas",
+    "several states (Michigan, Missouri, Kansas)",
+    "Michigan",
+    "Michigan"
+   ],
+   "DeepSeek": [
+    "Virginia and Missouri",
+    "Virginia",
+    "Virginia and Missouri",
+    "Kansas"
+   ]
+  }
+ }
+}
