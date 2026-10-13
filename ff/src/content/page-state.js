@@ -51,11 +51,12 @@
     // 3. message limit / quota banner. Short, visible, outside the conversation.
     const cands = q('[role="dialog"], [role="alertdialog"], [role="alert"], [role="status"], [aria-live], dialog[open], [class*="banner" i], [class*="toast" i], [class*="snackbar" i], [class*="notice" i], [class*="limit" i], [data-testid*="limit" i], [data-testid*="banner" i], [data-testid*="toast" i], p, span, div, h1, h2, h3, li, button, a')
       .filter((el) => el.children.length <= 4 && el.textContent.length <= 400 && isVisible(el) && !el.closest(CONVERSATION_SEL));
-    // The tightest element that says it (containers repeat their children's text, plus sidebar noise).
+    // The whole banner but not the page around it: the longest matching text up to 220 chars (a bigger container
+    // starts repeating the sidebar; a smaller one is a fragment of the banner).
     let best = null;
     for (const el of cands) {
       const t = norm(el.innerText);
-      if (t.length >= 8 && t.length <= 320 && LIMIT_RE.test(t) && (!best || t.length < best.length)) best = t;
+      if (t.length >= 8 && t.length <= 220 && LIMIT_RE.test(t) && (!best || t.length > best.length)) best = t;
     }
     if (best) return { state: "rate_limited", text: best };
     return { state: "ok", text: "" };

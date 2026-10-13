@@ -125,7 +125,30 @@ Side findings, **not fixed**:
 
 ## Acceptance tests
 
-(see the table at the end; filled from the runs under `llm_bench/data/dashboard/runs/2026-10-13_capture_tests/`)
+Live, Firefox 157, profile `cn-harvest`, logged in. Outputs (logs, `run_*.jsonl`, raw completions) under
+`llm_bench/data/dashboard/runs/2026-10-13_capture_tests/`.
+
+| test | what | result |
+|---|---|---|
+| (a) preflight, visible, 5 providers (`a_preflight_final`) | 1 short question x chatgpt, claude, gemini, grok, mistral | chatgpt ok (stream), claude ok (poll), gemini ok (stream), grok ok (poll), mistral `rate_limited` ("Messages limit reached You have reached your message limit. Your limit will reset in 2 hours..."); exit 1 as designed, ~50 s |
+| (b) headless, 2 pilot20 items x claude, chatgpt, gemini, grok (`b_headless`) | `--headless`, real questions | **8/8 ok**: claude 2/2 via **poll** (12 and 9 citations, `claude_poll`), chatgpt 2/2 stream, gemini 2/2 stream, grok 2/2 poll; 2.5 min total |
+| (c) visible, windows minimised (`c_covered`) | chatgpt, gemini, claude windows minimised ~20 s into the run; probe of `document.hidden` as the content script (real) vs the page world | **8/8 ok**, no stall (same timings as (b)). While minimised: real `hidden=true, visibilityState=hidden`; page world `hidden=false, visibilityState=visible`. The runner's own `focusTab` restored the Gemini window at its next submit; chatgpt and claude stayed minimised through their second item |
+| (d) Le Chat limit detection (`d_lechat_limit`, also in a, e) | live: Le Chat is limited until ~15:20 | `rate_limited` with the banner text, provider paused, record `[rate_limited] ...`, no retry. PASS (live, not a unit check) |
+| (e) headless blocked by Cloudflare / login? (`e_headless_preflight`) | preflight `--headless` x 5 providers | **no provider blocked**: chatgpt, claude, gemini ok; grok showed its own "High Demand / heavy usage" banner in that run (detected as `rate_limited`; it answered headless in (b) and visible in (a) a minute later); mistral loads headless and shows the limit banner (so no challenge/login wall), no answer could be tested |
+| DOM fallback (`f_dom_fallback`) | headless, `config.debugDropCaptures` drops every stream/poll capture | 4/4 `dom_fallback` (gemini 3782 c, chatgpt 9746 c, grok 4501 c, claude 5357 c); citations = answer links (gemini chips re-added by the chip scrape after this run) |
+| status unit (`g_status_unit`) | fake elements injected into a live claude.ai tab, `PAGE_STATUS` read back | login button -> `logged_out`; 4 limit wordings (EN x2, FR x2) -> `rate_limited`; turnstile iframe and "Just a moment..." title -> `challenge`; a limit sentence **inside** an answer -> `ok` (no false positive); baseline ok |
+
+### Headless verdict
+
+| provider | headless | note |
+|---|---|---|
+| ChatGPT | works | stream capture identical to visible |
+| Claude | works | poll |
+| Gemini | works | stream; its 120 s held-open stream is still flushed by the DOM gate |
+| Grok | works | poll; one preflight saw a capacity banner (provider-side, not headless-specific as far as can be told) |
+| Le Chat | page loads, no Cloudflare / login wall | answer path **untested** (account limited); `readAnswer` selectors for Le Chat unverified |
+
+Headless has no OS focus at all, and every submit worked: the runner's `focusTab` calls are best-effort. Visible mode + `visibility.js` remains the fallback.
 
 ## Known gaps
 
