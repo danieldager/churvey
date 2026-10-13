@@ -51,10 +51,13 @@
     // 3. message limit / quota banner. Short, visible, outside the conversation.
     const cands = q('[role="dialog"], [role="alertdialog"], [role="alert"], [role="status"], [aria-live], dialog[open], [class*="banner" i], [class*="toast" i], [class*="snackbar" i], [class*="notice" i], [class*="limit" i], [data-testid*="limit" i], [data-testid*="banner" i], [data-testid*="toast" i], p, span, div, h1, h2, h3, li, button, a')
       .filter((el) => el.children.length <= 4 && el.textContent.length <= 400 && isVisible(el) && !el.closest(CONVERSATION_SEL));
+    // The tightest element that says it (containers repeat their children's text, plus sidebar noise).
+    let best = null;
     for (const el of cands) {
       const t = norm(el.innerText);
-      if (t.length >= 8 && t.length <= 320 && LIMIT_RE.test(t)) return { state: "rate_limited", text: t };
+      if (t.length >= 8 && t.length <= 320 && LIMIT_RE.test(t) && (!best || t.length < best.length)) best = t;
     }
+    if (best) return { state: "rate_limited", text: best };
     return { state: "ok", text: "" };
   }
 
@@ -62,7 +65,9 @@
   // msgs: one element per assistant turn (the LAST is read); body: where its prose sits (default: the element);
   // stop: present while generating; done: present once the turn is complete (action bar, copy button...).
   const ANSWER = {
-    chatgpt: { msgs: '[data-message-author-role="assistant"]', body: ".markdown, [class*='markdown']", stop: 'button[data-testid="stop-button"], button[aria-label*="Stop" i]', done: 'button[data-testid="copy-turn-action-button"], button[data-testid="good-response-turn-action-button"]' },
+    // ChatGPT dropped data-message-author-role / data-testid in 2026-10 (the DIL renderer): the answer is one or more
+    // MarkdownRoot blocks inside a turn container that says data-talvt-turn-state="complete" once it is done.
+    chatgpt: { msgs: '[data-markdown-text-style="assistant-message"], [data-message-author-role="assistant"]', turn: '[data-talvt-turn-state], [data-message-author-role="assistant"]', body: null, stop: 'button[data-testid="stop-button"], button[aria-label*="Stop" i]', turnState: ["data-talvt-turn-state", "complete"], done: 'button[aria-label="Regenerate response"], button[aria-label="Copy"], button[data-testid="copy-turn-action-button"]' },
     gemini: { msgs: "model-response", body: "message-content, .markdown", stop: 'button[aria-label*="Stop" i]', done: 'button[aria-label*="Copy" i], message-actions, .response-footer' },
     grok: { msgs: '[id^="response-"]:not([id*="user"]), div.message-bubble', body: ".response-content-markdown, [class*='markdown']", stop: 'button[aria-label*="Stop" i]', done: 'button[aria-label*="Copy" i], button[aria-label*="Regenerate" i]' },
     claude: { msgs: "[data-is-streaming]", body: ".standard-markdown, .progressive-markdown", stop: 'button[aria-label*="Stop" i]', done: '[data-is-streaming="false"], button[data-testid="action-bar-retry"]' },
@@ -74,11 +79,19 @@
     const cfg = ANSWER[providerId];
     if (!cfg) return { text: "", len: 0, generating: false, finished: false, links: [] };
     const turns = q(cfg.msgs).filter((t) => !t.parentElement || !t.parentElement.closest(cfg.msgs));
-    const last = turns[turns.length - 1];
-    const generating = anyVisible(cfg.stop);
+    let last = turns[turns.length - 1];
+    let generating = anyVisible(cfg.stop);
     if (!last) return { text: "", len: 0, generating, finished: false, links: [], turns: 0 };
-    const body = (cfg.body && q(cfg.body, last).filter((b) => b.innerText).sort((a, b) => b.innerText.length - a.innerText.length)[0]) || last;
-    const text = (body.innerText || "").trim();
+    let text;
+    if (cfg.turn) {   // an answer made of several blocks inside one turn container: read them all, in order
+      const box = last.closest(cfg.turn) || last;
+      if (cfg.turnState) { const st = box.getAttribute(cfg.turnState[0]); if (st && st !== cfg.turnState[1]) generating = true; }
+      text = q(cfg.msgs, box).filter((t) => !t.parentElement.closest(cfg.msgs)).map((t) => (t.innerText || "").trim()).filter(Boolean).join("\n\n");
+      last = box;
+    } else {
+      const body = (cfg.body && q(cfg.body, last).filter((b) => b.innerText).sort((a, b) => b.innerText.length - a.innerText.length)[0]) || last;
+      text = (body.innerText || "").trim();
+    }
     const own = location.hostname.replace(/^www\./, "");
     const links = [];
     const seen = new Set();
@@ -88,7 +101,7 @@
       seen.add(a.href);
       links.push({ url: a.href, title: norm(a.innerText || a.getAttribute("aria-label") || a.title).slice(0, 200) || null });
     }
-    const marker = !cfg.done || q(cfg.done).some(isVisible);
+    const marker = !cfg.done || last.matches(cfg.done) || q(cfg.done, last).some(isVisible) || (turns.length <= 1 && q(cfg.done).some(isVisible));
     return { text, len: text.length, generating, finished: !generating && text.length > 0 && marker, marker, links, turns: turns.length };
   }
 

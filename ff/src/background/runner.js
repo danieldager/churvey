@@ -258,6 +258,8 @@
     }
 
     if (!RUN || RUN.status !== "running") return false;
+    // Test hook (config.debugDropCaptures): pretend no stream/poll capture ever lands, to exercise the DOM fallback.
+    if (RUN.cfg.config && RUN.cfg.config.debugDropCaptures) { log.warn(`debugDropCaptures: dropped a ${cap.provider} capture (${cap.answerLen}c)`); return false; }
     const pid = RUN.tabToProvider[cap.tabId];
     // A completion body that arrives with nothing inflight is an ANSWER THROWN AWAY:
     // the item then sits until the 90s timeout with its answer on screen. Silent
@@ -441,6 +443,11 @@
       if (prov.inflight !== inf || inf.claimed) return;
       inf.claimed = true;
       const citations = (a.links || []).map((l) => ({ url: Probe.citations.canon(l.url), title: l.title, domain: (/^https?:\/\/([^\/?#:]+)/i.exec(l.url) || [])[1] || null, site_name: null, cited_text: null, anchor_text: null, anchor_start: null, anchor_end: null, marker: null, ref_id: null, char_offset: null, via: "dom" }));
+      // Gemini hides its sources behind chips that only open on click: same scrape the normal path uses.
+      let extra = [];
+      if (SCRAPE_PROVIDERS.has(pid)) extra = (await scrapeCitations(inf.tabId)).map((c) => ({ url: Probe.citations.canon(c.url), title: c.title || null, domain: (/^https?:\/\/([^\/?#:]+)/i.exec(c.url) || [])[1] || null, site_name: null, cited_text: null, anchor_text: null, anchor_start: null, anchor_end: null, marker: null, ref_id: null, char_offset: null, via: "dom" }));
+      const seenUrl = new Set(citations.map((c) => c.url));
+      for (const c of extra) if (!seenUrl.has(c.url)) citations.push(c);
       const endMs = Date.now();
       log.warn(`[${pid}] ${inf.item.itemKey}: no capture landed but the answer is finished on screen (${a.len}c) - recording it from the DOM`);
       await saveRecord(pid, inf.item, { answer: a.text, status: "ok", latencyMs: endMs - inf.submittedAt - still, startMs: inf.submittedAt, endMs: endMs - still, url: null, citations, fetchedUrls: (a.links || []).map((l) => l.url), captureMethod: "dom_fallback" });

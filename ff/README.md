@@ -54,7 +54,7 @@ The run export (`<runId>.run.json`) carries the extension's 300-line **log ring*
 | ChatGPT | `?temporary-chat=true` (URL) | `backend-api/f/conversation` — SSE deltas |
 | Gemini | "Temporary chat" button (single plain click) | `StreamGenerate` — batchexecute arrays (longest `rc_` snapshot) |
 | Grok | Chat (`a[data-testid=new-chat]`) → `a[aria-label="Switch to Private Chat"]` | since 2026-10 a websocket gateway, no HTTP stream: after submit the runner polls `conversations/<id>/response-node` (nothing in flight) then POSTs `load-responses`; the assistant message (`<grok:render>` cards) is fed to capture as a synthetic NDJSON `modelResponse` |
-| Claude | `/new?incognito=` (URL) | `chat_conversations/…/completion` — SSE `text_delta` (skips thinking) |
+| Claude | `/new?incognito=` (URL) | since 2026-10 `/claudeai-rpc/...` (connect+proto), nothing teeable: after submit the runner polls `GET /api/organizations/<org>/chat_conversations/<id>?tree=True&rendering_mode=messages&render_all_tools=true` from the page (id = last segment of `/chat/<id>`, org from the page's own requests or `/api/organizations`). The assistant message only appears when the turn ends; it is taken when `stop_reason` is final, no block is open, it is identical on two polls and the page agrees (no Stop button, `data-is-streaming="false"`). Text blocks -> responseText (thinking never), text-block `citations` -> v5 citations (`claude_poll`), `web_search` results -> `fetchedUrls` |
 | DeepSeek | none → **deletes all chats before every question** | `api/v0/chat/completion` — SSE patch-stream (initial fragment + content deltas) |
 
 DeepSeek delete-all = authenticated `POST /api/v0/chat_session/delete_all`
@@ -107,6 +107,25 @@ uv run python cn_bench/ffctl.py eval --unsafe 'return await Probe.runner.overvie
 `reload` finds tabs by host (`Probe.providers`), because the runner keeps its tab ids private.
 A provider that keeps failing "no response (timeout)" is retried by the runner (MAX_ATTEMPTS 3).
 
+## Capture robustness (2026-10-13)
+The goal: nobody has to touch the browser, and an answer that is on screen is never lost. Details, test table and
+known gaps: [`../docs/capture_robustness.md`](../docs/capture_robustness.md). In short:
+- **Failure statuses.** `page-state.js` reads the page for a message-limit / quota banner, a login wall and a captcha /
+  Cloudflare challenge (two reads in a row). The provider is then **paused** with status `rate_limited` / `logged_out` /
+  `challenge` and the banner text, the item gets an error record `[status] banner`, and nothing is retried on a timer
+  (`ffctl resume <provider>` clears it). A blocked provider counts as settled, so the run still ends. An answer that was on
+  screen but could not be captured is `[answered_not_captured]`. Shown in `ffctl status` and the launcher output.
+- **DOM fallback** for every provider (`guardWatch` in `runner.js`): finished on screen (no Stop control, text present, the
+  provider's done marker, text unchanged for 12 s) and nothing captured -> record it with `capture_method: "dom_fallback"`.
+  The item timeout also restarts while the answer is visibly still growing.
+- **No dependence on focus or visibility.** `src/content/visibility.js` (document_start, through `wrappedJSObject`, so page
+  CSP is irrelevant) makes `document.hidden` false, `visibilityState` "visible", `hasFocus()` true, swallows
+  `visibilitychange`, and makes `requestAnimationFrame` fire within 50 ms. The launcher's managed `user.js` block disables
+  background timer throttling and tab unloading (prefs listed in the docs). `--headless` runs with no window at all.
+- **Launcher.** Unbuffered one line per landed record (`HH:MM:SS provider item status capture_method latency`), `=== HH:MM:SS
+  START/END` lines, `--preflight` (1 short question x each provider, ok / logged_out / rate_limited / challenge /
+  capture_failed, exit non-zero unless all ok), `--providers a,b`.
+
 ## Tools for maintenance
 - **Capture DOM** (popup): dumps the active tab's buttons/dialogs/top-right region
   → for pinning selectors when a provider's UI changes.
@@ -148,7 +167,11 @@ photo. Paths 2 and 3 have never been exercised.
 ## Data format (JSONL, one object per line)
 `runId, provider, questionId, questionText, promptSent, personaId, repIndex,
 itemKey, followupOf, modelLabel, responseText, status (ok|error), errorMessage, timestampStart/End,
-latencyMs, private, captureUrl`. The summary reports per-provider capture rate,
+latencyMs, private, captureUrl, capture_method` (schema v6). `capture_method` says how the answer was
+obtained: `stream` (network body tee'd by capture.js), `poll` (the page read the finished turn back:
+grok, claude) or `dom_fallback` (no stream or poll capture landed but the answer was finished on screen;
+read off the DOM: plain `innerText`, citations = the external links inside the answer, `via: "dom"`).
+It is `null` on error records. The summary reports per-provider capture rate,
 latency stats, models, and blocked flags.
 
 ## Known limitations
