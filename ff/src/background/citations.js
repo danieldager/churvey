@@ -123,7 +123,10 @@
     }
     return msgs;
   }
-  const MARKER_RE = /cite((?:turn\d+[a-z]+\d+)+)/g;
+  // Two marker shapes: the private-use form (U+E200 "cite" U+E202 turnNsearchN ... U+E201, older) and, since
+  // 2026-10, the JSX the model_dil_v2 stream writes into the text: <Cite refs={["turn0search0","turn0news1"]} />.
+  // Group 1 = the old form's refs, group 2 = the JSX form's refs list.
+  const MARKER_RE = /cite((?:?turn\d+[a-z]+\d+)+)|<Cite\s+refs=\{\[((?:\s*"turn\d+[a-z]+\d+"\s*,?)+)\s*\]\}\s*\/>/g;
   const REF_RE = /turn(\d+)([a-z]+)(\d+)/g;
   function chatgpt(raw) {
     const msgs = chatgptMessages(raw);
@@ -153,7 +156,7 @@
     let prevEnd = 0;
     for (const m of text.matchAll(MARKER_RE)) {
       const seg = segmentBefore(text, m.index, prevEnd); prevEnd = m.index + m[0].length;
-      for (const r of m[1].matchAll(REF_RE)) {
+      for (const r of (m[1] || m[2]).matchAll(REF_RE)) {
         const hit = pool[`${r[1]}:${r[2]}:${r[3]}`];
         out.push(mk({ url: hit && hit.url, title: hit && hit.title, site_name: hit && hit.site, cited_text: hit && hit.snippet,
                       anchor_text: seg.text, anchor_start: seg.start, anchor_end: seg.end, marker: r[0], ref_id: `${r[1]}:${r[2]}:${r[3]}`, via: "chatgpt_marker" }));
