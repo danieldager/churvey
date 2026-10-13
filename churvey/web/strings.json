@@ -1,0 +1,118 @@
+{
+  "en": {
+    "setup_title": "Set up churvey",
+    "login_title": "Sign in again",
+    "setup_intro": "This Firefox window uses a separate profile that belongs to churvey. Your usual Firefox and its accounts are not touched. Sign in to each chatbot below with the account you want to use for the survey. The status updates by itself.",
+    "open_site": "Open site",
+    "skip": "Skip",
+    "recheck": "Re-check",
+    "unskip": "Use it",
+    "skipped": "Skipped",
+    "status_not_open": "Not signed in",
+    "status_loading": "Checking…",
+    "status_logged_out": "Not signed in",
+    "status_ok": "Signed in",
+    "status_rate_limited": "Signed in, message limit reached",
+    "status_challenge": "Security check on the page",
+    "status_hint_not_open": "Click « Open site » to start.",
+    "status_hint_logged_out": "Sign in on the chatbot's tab.",
+    "status_hint_challenge": "Complete the check on the chatbot's tab.",
+    "status_hint_rate_limited": "Fine for setup. The survey will wait until the limit resets.",
+    "free_plan": "Free plan",
+    "test_title": "Test",
+    "test_intro": "Send one short question to each signed-in chatbot to check that answers are captured. Chatbots that are not signed in are skipped; you can add them later with churvey login. It takes about a minute. The browser switches tabs by itself while it works.",
+    "test_button": "Run the test",
+    "test_running": "Testing… one question per chatbot",
+    "test_waiting": "Sign in to at least one chatbot first",
+    "verdict_ok": "Answer captured",
+    "verdict_logged_out": "Not signed in",
+    "verdict_rate_limited": "Message limit reached",
+    "verdict_challenge": "Blocked by a security check",
+    "verdict_capture_failed": "No answer captured",
+    "verdict_skipped": "Skipped, not signed in",
+    "done_button": "Done",
+    "done_title": "Setup saved",
+    "done_text": "Firefox will close in a few seconds. Next steps, in a terminal:",
+    "next_import": "churvey questions import my-questions.txt",
+    "next_run": "churvey run my-questions",
+    "next_export": "churvey export latest",
+    "questions_link": "Edit question sets",
+    "row_note_private": "churvey asks every question in a private / temporary chat where the site has one.",
+    "questions_title": "Question sets",
+    "q_new": "New set",
+    "q_upload": "Upload .txt / .csv / .json",
+    "q_download": "Download",
+    "q_save": "Save",
+    "q_delete_set": "Delete set",
+    "q_add_row": "Add a question",
+    "q_name": "Name",
+    "q_description": "Description",
+    "q_language": "Language",
+    "q_chatbots": "Chatbots",
+    "q_repeat": "Repeat",
+    "q_private": "Private chats",
+    "q_col_id": "id",
+    "q_col_text": "Question",
+    "q_col_tags": "Tags",
+    "q_col_group": "Group",
+    "q_col_meta": "Extra data (JSON)",
+    "q_saved": "Saved",
+    "q_unsaved": "Unsaved changes",
+    "q_errors": "Fix these before saving:",
+    "q_empty": "No question sets yet. Create one or upload a file.",
+    "q_confirm_delete": "Delete this question set? This cannot be undone. Past runs keep their own copy.",
+    "q_move_up": "Move up",
+    "q_move_down": "Move down",
+    "q_remove": "Remove",
+    "q_count": "questions"
+  },
+  "chatbots": {
+    "en": {
+      "chatgpt": {
+        "steps": [
+          "Sign in (or create an account) and accept or refuse cookies.",
+          "Turn off memory: Settings → Personalization → « Reference saved memories » and « Reference chat history » off.",
+          "Clear custom instructions: Settings → Personalization → Custom instructions (leave empty)."
+        ],
+        "unsure": "Menu names change often; look under Settings → Personalization.",
+        "limits": "Free plan: a few messages on the best model every few hours, then a smaller model answers."
+      },
+      "claude": {
+        "steps": [
+          "Sign in and accept or refuse cookies.",
+          "Turn off memory: Settings → Capabilities → « Search and reference chats » and « Generate memory from chat history » off.",
+          "Clear personal preferences: Settings → Profile → « What personal preferences should Claude consider » (leave empty)."
+        ],
+        "unsure": "Memory settings may be named differently on the free plan.",
+        "limits": "Free plan: a small number of messages per session; the limit resets after a few hours."
+      },
+      "gemini": {
+        "steps": [
+          "Sign in with a Google account and accept or refuse cookies.",
+          "Turn off personalisation: Settings & help → « Personal context » (or « Saved info ») off and empty.",
+          "Check Settings & help → Apps / « Gemini Apps Activity »: not required, but turning it off keeps history out of answers."
+        ],
+        "unsure": "Google renames these settings often; we are least sure about Gemini.",
+        "limits": "Free plan: generous for short questions; the strongest model has a daily cap."
+      },
+      "mistral": {
+        "steps": [
+          "Sign in and accept or refuse cookies.",
+          "Turn off memory: Settings → « Memories » off (and delete saved memories).",
+          "Clear custom instructions if any (Settings → Instructions / Personalisation)."
+        ],
+        "unsure": "Not verified on the current Le Chat interface.",
+        "limits": "Free plan: about 10 messages, then a wait of a few hours (observed 13 Oct 2026)."
+      },
+      "grok": {
+        "steps": [
+          "Sign in (an X account works) and accept or refuse cookies.",
+          "Turn off memory: Settings → Data controls → « Personalize Grok with your conversation history » / Memory off.",
+          "Clear custom instructions: Settings → Customize (leave empty)."
+        ],
+        "unsure": "Grok's settings layout changes often.",
+        "limits": "Free plan: limited messages every two hours; at busy times Grok shows a « high demand » banner."
+      }
+    }
+  }
+}

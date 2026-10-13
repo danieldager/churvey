@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/danieldager/churvey/schema/questions.schema.json",
+  "title": "churvey question set",
+  "description": "A list of questions to put to consumer chatbots, with run defaults. Format id: churvey/questions@1. Validate with `churvey questions validate`.",
+  "type": "object",
+  "required": ["schema", "name", "questions"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "churvey/questions@1" },
+    "name": {
+      "description": "Short lowercase slug; also the file name in ~/.churvey/questions/<name>.json.",
+      "type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]{0,63}$"
+    },
+    "description": { "type": "string" },
+    "language": { "description": "Language the questions are written in, e.g. fr, en.", "type": "string" },
+    "defaults": {
+      "description": "Used by `churvey run` unless overridden on the command line.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "chatbots": {
+          "type": "array", "uniqueItems": true,
+          "items": { "enum": ["chatgpt", "claude", "gemini", "mistral", "grok"] }
+        },
+        "repeat": { "description": "How many times each question is asked.", "type": "integer", "minimum": 1, "default": 1 },
+        "private": { "description": "Use the site's private / temporary chat where it has one.", "type": "boolean", "default": true }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Stable slug. Generated from the text when missing; never change it once a run used it.",
+            "type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]{0,79}$"
+          },
+          "text": { "description": "The question exactly as it is typed into the chatbot.", "type": "string", "minLength": 1 },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "group": { "description": "Links questions that belong together, e.g. two phrasings of one item.", "type": "string" },
+          "meta": {
+            "description": "Free-form extra data (answer key, premise_true / premise_false, source...). Two keys reach the extension: followup_of (ask in the same chat right after that question id) and attachments (image URLs, Claude only).",
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}
