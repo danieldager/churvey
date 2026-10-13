@@ -31,6 +31,12 @@
     fetch(base + path, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) })
       .catch((e) => log.warn(`POST ${path} failed: ${e?.message || e}`));
 
+  // Live feed: one POST per landed record / provider health change, so the launcher can print a line the moment it
+  // happens instead of at the next 8s snapshot.
+  function liveFeed() {
+    Probe.runner.setOnEvent((ev) => { post("/event", ev); });
+  }
+
   // Poll instead of hooking the runner: `overview()` already reports run status and
   // `buildExport()` already builds the payload, so the launcher gets partial results
   // on every tick and a final one when the run finishes (or is stopped by hand).
@@ -43,7 +49,7 @@
       } catch (e) { log.error("poll", e?.message || e); return; }
       const finished = ov.status === "done" || ov.status === "stopped";
       // The raw completion bodies (parser input) go once, with the final post: they are megabytes.
-      await post(finished ? "/done" : "/progress", { status: ov.status, manifest: payload.manifest, summaryText: payload.summaryText, ...(finished ? { rawCompletions: payload.rawCompletions } : {}) });
+      await post(finished ? "/done" : "/progress", { status: ov.status, health: Probe.runner.providerHealth(), manifest: payload.manifest, summaryText: payload.summaryText, ...(finished ? { rawCompletions: payload.rawCompletions } : {}) });
       if (finished) { clearInterval(timer); log.info(`run ${ov.status} — results posted to ${base}`); }
     }, POLL_MS);
   }
@@ -54,6 +60,7 @@
     base = found.base;
     const { plan } = found;
     log.info(`launcher at ${base}: ${plan.providers.join(",")} x ${plan.questions.length} questions`);
+    liveFeed();
     try {
       await Probe.runner.start(plan);
     } catch (e) {

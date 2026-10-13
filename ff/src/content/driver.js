@@ -111,12 +111,18 @@
         catch (e) { return { ok: false, error: String(e?.message || e) }; }
       })();
     }
-    if (msg.type === Probe.MSG.GROK_POLL) {
+    if (msg.type === Probe.MSG.GROK_POLL || msg.type === Probe.MSG.POLL) {
       return (async () => {
         if (!driver || typeof driver.poll !== "function") return { ok: false, error: "no poll" };
         try { return { ok: true, ...(await driver.poll(msg.convId, msg.prompt)) }; }
         catch (e) { return { ok: false, error: String(e?.message || e) }; }
       })();
+    }
+    if (msg.type === Probe.MSG.PAGE_STATUS) {
+      return Promise.resolve({ ok: true, ...safe(() => Probe.pageState.pageStatus(), { state: "ok", text: "" }) });
+    }
+    if (msg.type === Probe.MSG.READ_ANSWER) {
+      return Promise.resolve({ ok: true, ...safe(() => Probe.pageState.readAnswer(providerId), { text: "", len: 0, generating: false, finished: false, links: [] }) });
     }
     if (msg.type === Probe.MSG.SCRAPE_SOURCES) {
       return (async () => {

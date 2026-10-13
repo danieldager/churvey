@@ -115,7 +115,7 @@
     }
   }
 
-  function handle(details, provider, ct, text, bytes) {
+  function handle(details, provider, ct, text, bytes, method = "stream") {
     const completion = isCompletion(provider, details.url);
     const parsed = completion ? parseAnswer(provider.id, ct, text) : { text: "" };
     if (Probe.capture && Probe.capture.tap) { try { Probe.capture.tap(details, ct, text); } catch (_) {} }
@@ -129,6 +129,7 @@
       bytes,
       ts: new Date().toISOString(),
       completion,
+      captureMethod: method, // stream (tee'd network body) | poll (page read the finished turn back)
       answer: parsed.text || null,
       answerLen: (parsed.text || "").length,
       error: parsed.error || null,
@@ -198,8 +199,20 @@
     return { text: "" };
   }
 
+  // claude.ai (polled): the assistant message of GET chat_conversations/<id>, wrapped by deliverClaude.
+  // The answer is its text blocks only (thinking and tool blocks are not prose); Probe.citations owns the
+  // block join so the citation offsets index exactly this string.
+  function parseClaudeConv(text) {
+    try {
+      const o = JSON.parse(text).__probe_claude;
+      const t = Probe.citations.claudeJoin(o.message.content).text;
+      return t.trim() ? { text: t } : { text: "" };
+    } catch (_) { return { text: "" }; }
+  }
+
   // Provider-aware extraction (formats confirmed from discovery).
   function parseAnswer(providerId, ct, text) {
+    if (providerId === "claude" && text.startsWith('{"__probe_claude"')) return parseClaudeConv(text);
     if (providerId === "mistral") return parseMistral(text);
     if (providerId === "gemini") {
       return { text: parseGemini(text) };
@@ -492,7 +505,15 @@
     const text = JSON.stringify({ result: { response: { modelResponse: response } } }) + "\n";
     const provider = Probe.providers.byId("grok");
     handle({ tabId, url: `https://grok.com/rest/app-chat/conversations/${convId}/__probe_grok_synth__`, method: "POST", statusCode: 200, requestId: "grok-synth" },
-      provider, "application/x-ndjson", text, text.length);
+      provider, "application/x-ndjson", text, text.length, "poll");
+  }
+
+  // claude.ai: same idea as grok. `response` = {convId, model, message} read back by the page.
+  function deliverClaude(tabId, response) {
+    const text = JSON.stringify({ __probe_claude: response });
+    const provider = Probe.providers.byId("claude");
+    handle({ tabId, url: `https://claude.ai/api/__probe_claude_synth__/${response.convId}`, method: "POST", statusCode: 200, requestId: "claude-synth" },
+      provider, "application/json", text, text.length, "poll");
   }
 
   function start(cb) {
@@ -506,5 +527,5 @@
     log.info("network capture armed for", Probe.providers.allMatchPatterns().join(", "));
   }
 
-  Probe.capture = { start, parseAnswer, flush, tap: null, mistralMessages, mistralAnswer, grokConvId: (tabId) => (grokConv.get(tabId) || {}).id || null, deliverGrok };
+  Probe.capture = { start, parseAnswer, flush, tap: null, mistralMessages, mistralAnswer, grokConvId: (tabId) => (grokConv.get(tabId) || {}).id || null, deliverGrok, deliverClaude };
 })();

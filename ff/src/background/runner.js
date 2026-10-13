@@ -11,6 +11,9 @@
   const recKey = (runId, prov, itemKey) => `${REC_PREFIX}${runId}::${prov}::${itemKey}`;
 
   let RUN = null;
+  // Live feed for the launcher (autostart.js sets it): one event per landed record and per provider health change.
+  let onEvent = null;
+  const emit = (ev) => { try { if (onEvent) onEvent({ ts: new Date().toISOString(), ...ev }); } catch (_) {} };
   let tickTimer = null;
   let ticking = false;
   const debugRaw = []; // raw completion bodies for parser authoring (export debug)
@@ -148,6 +151,8 @@
   // timeout, with the other 11 records already on disk.) "Resume missing" still
   // re-asks it, so giving up is per-run, not permanent.
   const MAX_ATTEMPTS = 3;
+  // Preflight (config.preflight): one try per provider, then report. No backoff loops.
+  const maxAttempts = () => (RUN && RUN.cfg.config && RUN.cfg.config.preflight ? 1 : MAX_ATTEMPTS);
 
   function giveUp(pid, item, err, record = true) {
     const key = pid + "|" + item.itemKey;
@@ -165,7 +170,7 @@
   function failBackoff(pid, item, err, { minDelay = 0, record = true } = {}) {
     const key = pid + "|" + item.itemKey;
     RUN.fails[key] = (RUN.fails[key] || 0) + 1;
-    if (RUN.fails[key] >= MAX_ATTEMPTS) { giveUp(pid, item, err, record); return; }
+    if (RUN.fails[key] >= maxAttempts()) { giveUp(pid, item, err, record); return; }
     const delay = Math.max(minDelay, Math.min(300000, 15000 * Math.pow(2, RUN.fails[key] - 1)));
     RUN.retryAt[key] = Date.now() + delay;
     log.warn(`[${pid}] ${item.itemKey} failed (attempt ${RUN.fails[key]}): ${err} — re-asking in ${Math.round(delay / 1000)}s`);
@@ -231,8 +236,10 @@
       latencyMs: f.latencyMs ?? null, timestampStartMs: f.startMs ?? null, timestampEndMs: f.endMs ?? null,
       private: RUN.cfg.config && RUN.cfg.config.private, captureUrl: f.url || null, citations: f.citations || [],
       fetchedUrls: f.fetchedUrls || [], domSources: f.domSources || null,
+      captureMethod: f.status === "ok" ? (f.captureMethod || "stream") : null,
     });
     await ext.storage.local.set({ [recKey(RUN.runId, pid, item.itemKey)]: rec });
+    emit({ type: "record", provider: pid, itemKey: item.itemKey, status: rec.status, capture_method: rec.capture_method, latencyMs: rec.latencyMs, error: rec.errorMessage, chars: (rec.responseText || "").length, citations: rec.citations.length });
   }
 
   // Pairing: called for every completion capture.
@@ -265,13 +272,18 @@
     const isError = !!cap.error;
     if (!hasAnswer && !isError) { if (prov.inflight) prov.inflight.emptyAt = Date.now(); return true; } // empty response = stream aborted after preamble; retry soon (see tick)
     const inf = prov.inflight;
+    if (inf.claimed) return true; // the DOM fallback (or an earlier capture) is already recording this turn
+    inf.claimed = true;
     const latency = Date.parse(cap.ts) - inf.submittedAt;
     if (isError && /capacity|high demand|heavy usage|rate.?limit|too many request|again later|overload|429/i.test(cap.error)) {
       // Capacity/rate-limit: back off at least 60s so we don't hammer a limited
       // provider, but keep the item queued — it retries until it lands.
       const item = inf.item;
       prov.inflight = null;
-      failBackoff(pid, item, cap.error, { minDelay: 60000 });
+      // A provider that says "limit" is not retried on a timer: say so and stop asking it (resume = ffctl resume).
+      if (/rate.?limit|too many request|429|heavy usage|capacity|high demand/i.test(cap.error)) {
+        blockProvider(pid, item, "rate_limited", cap.error);
+      } else failBackoff(pid, item, cap.error, { minDelay: 60000 });
       return true;
     }
     // Harvest citations before recording: URLs from the raw stream (all providers)
@@ -292,8 +304,8 @@
       }
       let domSources = null;
       if (!isError && RUN.cfg.config && RUN.cfg.config.auditSources) domSources = await visibleSources(inf.tabId);
-      await saveRecord(pid, inf.item, { answer: cap.answer, status: isError ? "error" : "ok", error: cap.error, latencyMs: latency, startMs: inf.submittedAt, endMs: Date.parse(cap.ts), url: cap.url, model: cap.model, citations, fetchedUrls, domSources });
-      log.info(`[${pid}] recorded ${inf.item.itemKey} ${isError ? "ERR" : "ok"} ${cap.answerLen}c ${citations.length}cites ${fetchedUrls.length}urls ${latency}ms`);
+      await saveRecord(pid, inf.item, { answer: cap.answer, status: isError ? "error" : "ok", error: cap.error, latencyMs: latency, startMs: inf.submittedAt, endMs: Date.parse(cap.ts), url: cap.url, model: cap.model, citations, fetchedUrls, domSources, captureMethod: cap.captureMethod });
+      log.info(`[${pid}] recorded ${inf.item.itemKey} ${isError ? "ERR" : "ok"} ${cap.captureMethod || "stream"} ${cap.answerLen}c ${citations.length}cites ${fetchedUrls.length}urls ${latency}ms`);
       // Keep ChatGPT's Cookie header from growing into a 431 over a long run.
       if (pid === "chatgpt" && !isError) trimCookies(["chatgpt.com", "openai.com"]).catch(() => {});
       prov.inflight = null;
@@ -337,27 +349,103 @@
     }
   }
 
-  // grok.com answers over a websocket gateway, so there is no HTTP body for capture to tee. Once
-  // submitted, read the finished turn back through the page (driver.poll -> response-node +
-  // load-responses) and hand it to capture as a synthetic NDJSON completion. The conversation id is
-  // the newest the tab fetched (capture.grokConvId); a turn whose human message is not our prompt
-  // is a stale chat, never recorded.
-  const POLL_PROVIDERS = new Set(["grok"]);
+  // Providers whose answer does not travel as a teeable HTTP body are read back through the page once the turn
+  // is finished, and handed to capture as a synthetic completion (capture_method "poll"):
+  //  - grok.com answers over a websocket gateway: GET response-node/load-responses; the conversation id is the
+  //    newest the tab fetched (capture.grokConvId); a turn whose human message is not our prompt is a stale chat.
+  //  - claude.ai (since 2026-10) streams over /claudeai-rpc (connect+proto): GET chat_conversations/<id> (see
+  //    drivers.js claude.poll for the finished test); the content script reads the conversation id from the URL.
+  const POLL_PROVIDERS = new Set(["grok", "claude"]);
   async function pollWatch(pid, inf, prompt) {
     const prov = RUN.providers[pid];
     let n = 0;
     while (RUN && RUN.status === "running" && prov.inflight === inf) {
       await Probe.cadence.sleep(2500);
-      if (prov.inflight !== inf) return;
-      const convId = Probe.capture.grokConvId(inf.tabId);
-      if (!convId) continue;
+      if (prov.inflight !== inf || inf.claimed) return;
+      let convId = null;
+      if (pid === "grok") { convId = Probe.capture.grokConvId(inf.tabId); if (!convId) continue; }
       let r = null;
-      try { r = await ext.tabs.sendMessage(inf.tabId, { type: Probe.MSG.GROK_POLL, convId, prompt }); } catch (_) {}
+      try { r = await ext.tabs.sendMessage(inf.tabId, { type: Probe.MSG.POLL, convId, prompt }); } catch (_) {}
       if (!r || !r.ok) { if (++n % 10 === 0) log.warn(`[${pid}] poll failed: ${r && r.error}`); continue; }
-      if (r.state === "mismatch") { log.warn(`[${pid}] ${inf.item.itemKey}: conversation ${convId} holds another question; waiting`); continue; }
+      if (r.state === "mismatch") { log.warn(`[${pid}] ${inf.item.itemKey}: conversation holds another question; waiting`); continue; }
       if (r.state !== "done") continue;
-      log.info(`[${pid}] ${inf.item.itemKey}: conversation ${convId} finished (${r.response.message.length}c) - handing to capture`);
-      Probe.capture.deliverGrok(inf.tabId, convId, r.response);
+      if (pid === "grok") {
+        log.info(`[${pid}] ${inf.item.itemKey}: conversation ${convId} finished (${r.response.message.length}c) - handing to capture`);
+        Probe.capture.deliverGrok(inf.tabId, convId, r.response);
+      } else {
+        log.info(`[${pid}] ${inf.item.itemKey}: conversation ${r.response.convId} finished - handing to capture`);
+        Probe.capture.deliverClaude(inf.tabId, r.response);
+      }
+      return;
+    }
+  }
+
+  // ---- provider health: limit / login wall / captcha --------------------------------------------------------
+  // Any of these means asking again is pointless (or harmful: a captcha wants a human, a limit wants time). The
+  // provider is PAUSED with a status and the banner text, the item gets an error record naming it, and nothing is
+  // retried on a timer. `ffctl status` shows it; `ffctl resume <provider>` clears it.
+  function blockProvider(pid, item, state, text) {
+    const prov = RUN.providers[pid];
+    prov.paused = true;
+    prov.health = { status: state, text: String(text || "").slice(0, 300), at: Date.now() };
+    if (prov.inflight && prov.inflight.item === item) prov.inflight = null;
+    log.warn(`[${pid}] ${state}: ${prov.health.text} - provider paused, not retrying`);
+    if (item) saveRecord(pid, item, { status: "error", error: `[${state}] ${prov.health.text}` }).catch(() => {});
+    emit({ type: "health", provider: pid, status: state, text: prov.health.text });
+    scheduleTick();
+  }
+  async function pageStatus(tabId) {
+    try {
+      const t = await ext.tabs.get(tabId);
+      const meta = t && t.url ? Probe.providers.forUrl(t.url) : null;
+      if (t && t.url && !meta && /^https?:/.test(t.url)) return { state: "logged_out", text: "redirected away to " + t.url.slice(0, 120) };
+    } catch (_) {}
+    try {
+      const r = await Promise.race([ext.tabs.sendMessage(tabId, { type: Probe.MSG.PAGE_STATUS }), new Promise((res) => setTimeout(() => res(null), 4000))]);
+      if (r && r.ok) return { state: r.state, text: r.text || "" };
+    } catch (_) {}
+    return { state: "ok", text: "" };
+  }
+
+  // Watches an in-flight item for everything the network cannot tell us, every 2.5s, for every provider:
+  //  1. the page shows a limit banner / login wall / captcha (two reads in a row) -> blockProvider;
+  //  2. no capture lands but the answer is finished on screen -> read it from the DOM (capture_method "dom_fallback").
+  // "Finished" = no Stop control, text present, the provider's done marker (action bar) visible, and the text has
+  // not changed for DOM_STABLE_MS. The wait is longer than any normal stream/poll delivery, so this only ever
+  // fires when those failed. Also keeps the item alive while the answer is still growing (see tick).
+  const WATCH_MS = 2500;
+  const DOM_STABLE_MS = 12000;
+  const DOM_NOMARKER_MS = 30000; // done marker selector rotted: trust a long-stable, non-generating text
+  async function guardWatch(pid, inf) {
+    const prov = RUN.providers[pid];
+    let bad = 0, badState = null, lastLen = -1, stableSince = Date.now();
+    while (RUN && RUN.status === "running" && prov.inflight === inf && !inf.claimed) {
+      await Probe.cadence.sleep(WATCH_MS);
+      if (prov.inflight !== inf || inf.claimed) return;
+      const st = await pageStatus(inf.tabId);
+      if (st.state !== "ok") {
+        if (st.state === badState) bad++; else { badState = st.state; bad = 1; }
+        // An answer that already arrived beats a banner that merely sits on the page.
+        if (bad >= 2 && prov.inflight === inf && !inf.claimed) { blockProvider(pid, inf.item, st.state, st.text); return; }
+      } else { bad = 0; badState = null; }
+      let a = null;
+      try { a = await Promise.race([ext.tabs.sendMessage(inf.tabId, { type: Probe.MSG.READ_ANSWER }), new Promise((res) => setTimeout(() => res(null), 4000))]); } catch (_) {}
+      if (!a || !a.ok) continue;
+      const now = Date.now();
+      if (a.len !== lastLen) { lastLen = a.len; stableSince = now; inf.activityAt = now; }
+      if (a.generating) { inf.activityAt = now; continue; }
+      if (!a.len) continue;
+      inf.sawAnswer = a.len;
+      const still = now - stableSince;
+      if (!((a.finished && still >= DOM_STABLE_MS) || still >= DOM_NOMARKER_MS)) continue;
+      if (prov.inflight !== inf || inf.claimed) return;
+      inf.claimed = true;
+      const citations = (a.links || []).map((l) => ({ url: Probe.citations.canon(l.url), title: l.title, domain: (/^https?:\/\/([^\/?#:]+)/i.exec(l.url) || [])[1] || null, site_name: null, cited_text: null, anchor_text: null, anchor_start: null, anchor_end: null, marker: null, ref_id: null, char_offset: null, via: "dom" }));
+      const endMs = Date.now();
+      log.warn(`[${pid}] ${inf.item.itemKey}: no capture landed but the answer is finished on screen (${a.len}c) - recording it from the DOM`);
+      await saveRecord(pid, inf.item, { answer: a.text, status: "ok", latencyMs: endMs - inf.submittedAt - still, startMs: inf.submittedAt, endMs: endMs - still, url: null, citations, fetchedUrls: (a.links || []).map((l) => l.url), captureMethod: "dom_fallback" });
+      if (prov.inflight === inf) prov.inflight = null;
+      scheduleTick();
       return;
     }
   }
@@ -396,7 +484,12 @@
     }
 
     // 2) Wait for the (possibly reloaded) content script + composer to be ready.
-    if (!(await waitForReady(tabId))) { bumpAttempt(pid, item, "not ready (login/page/loading)"); return; }
+    const ready = await waitForReady(tabId);
+    // A limit banner / login wall / captcha is the usual reason for "not ready" - and a banner can sit above a working
+    // composer too. Either way: say what it is and stop, do not retry blind.
+    const pre = await pageStatus(tabId);
+    if (pre.state !== "ok") { blockProvider(pid, item, pre.state, pre.text); return; }
+    if (!ready) { bumpAttempt(pid, item, "not ready (login/page/loading)"); return; }
 
     // 3) Fetch any picture the question carries. The background has the host
     // permission for the image CDN; the content script does not, and a data URL
@@ -435,6 +528,7 @@
     // latency excludes the typing, but never revive an already-answered item.
     if (mine() && resp.submittedAt) prov.inflight.submittedAt = resp.submittedAt;
     if (mine() && DOM_FLUSH_PROVIDERS.has(pid)) domFlushWatch(pid, prov.inflight).catch(() => {});
+    if (mine()) guardWatch(pid, prov.inflight).catch((e) => log.warn(`[${pid}] guardWatch: ${e?.message || e}`));
     if (mine() && POLL_PROVIDERS.has(pid)) pollWatch(pid, prov.inflight, promptSent).catch((e) => log.warn(`[${pid}] pollWatch: ${e?.message || e}`));
     log.info(`[${pid}] submitted ${item.itemKey}${item.followupOf ? " (follow-up, same chat)" : ""} (vis=${resp.visibility}${mine() ? "" : ", answer already recorded"})`);
   }
@@ -453,13 +547,20 @@
         const prov = RUN.providers[pid];
         const inf = prov.inflight;
         if (!inf) continue;
+        if (inf.claimed) continue; // being recorded right now
         const aborted = inf.emptyAt && Date.now() - inf.emptyAt > 20000;
-        const hardTimeout = Date.now() - inf.submittedAt > timeoutMs;
+        // An answer that is still visibly growing on screen is not a timeout (long searched answers run minutes):
+        // the clock restarts at the last growth, capped at 4x the budget.
+        const idleSince = Math.max(inf.submittedAt, inf.activityAt || 0);
+        const hardTimeout = Date.now() - idleSince > timeoutMs || Date.now() - inf.submittedAt > 4 * timeoutMs;
         if (!aborted && !hardTimeout) continue;
         const key = pid + "|" + inf.item.itemKey;
         prov.inflight = null;
         const firstStall = !RUN.fails[key];
-        failBackoff(pid, inf.item, aborted ? "stream aborted after preamble" : "no response (timeout)");
+        // An answer was on screen but never captured and the DOM fallback could not take it: name it, it is a different
+        // failure from "the model never answered".
+        const why = inf.sawAnswer ? `[answered_not_captured] answer visible on screen (${inf.sawAnswer}c) but no capture landed` : (aborted ? "stream aborted after preamble" : "no response (timeout)");
+        failBackoff(pid, inf.item, why);
         if (firstStall && aborted) RUN.retryAt[key] = Date.now() + 3000; // fast first re-ask
       }
       // Providers stream in PARALLEL, each in its own window (see ensureTab).
@@ -484,7 +585,10 @@
         // Settled = answered, or abandoned after MAX_ATTEMPTS. Both end the run.
         const settled = RUN.providers[pid].items.filter(
           (it) => done.has(it.itemKey) || RUN.gaveUp[pid + "|" + it.itemKey]).length;
-        if (RUN.providers[pid].inflight || settled < RUN.providers[pid].items.length) { allDone = false; break; }
+        // A provider blocked by a limit / login wall / captcha is settled: it will not move until a human acts, and
+        // the run must not hang on it (the launcher reports it; `ffctl resume` + a rerun fills the gap).
+        const blocked = RUN.providers[pid].health && RUN.providers[pid].health.status !== "ok";
+        if (RUN.providers[pid].inflight || (!blocked && settled < RUN.providers[pid].items.length)) { allDone = false; break; }
       }
       if (allDone) { RUN.status = "done"; stopTick(); log.info("run complete"); }
     } catch (e) {
@@ -500,7 +604,7 @@
   async function boot(cfg, _windowId, label) { // windowId unused since one-window-per-provider
     const items = Probe.runPlan.expand(cfg);
     RUN = { runId: cfg.runId, cfg, status: "running", startedAt: Date.now(), providers: {}, tabToProvider: {}, retryAt: {}, fails: {}, gaveUp: {}, connRetries: {} };
-    for (const pid of cfg.providers) RUN.providers[pid] = { items: items.map((x) => ({ ...x })), tabId: null, inflight: null, paused: false, chatKey: null };
+    for (const pid of cfg.providers) RUN.providers[pid] = { items: items.map((x) => ({ ...x })), tabId: null, inflight: null, paused: false, chatKey: null, health: { status: "ok", text: "", at: null } };
     for (const pid of cfg.providers) await ensureTab(pid);
     // DeepSeek deletes all chats before EVERY question (done inside its
     // startChat, since it has no private mode) — no once-per-run purge here.
@@ -576,6 +680,7 @@
   function resumeProvider(pid) {
     if (!RUN || !RUN.providers[pid]) return;
     RUN.providers[pid].paused = false;
+    RUN.providers[pid].health = { status: "ok", text: "", at: null };
     for (const k of Object.keys(RUN.retryAt)) if (k.startsWith(pid + "|")) delete RUN.retryAt[k];
     for (const k of Object.keys(RUN.fails)) if (k.startsWith(pid + "|")) delete RUN.fails[k];
     for (const k of Object.keys(RUN.gaveUp)) if (k.startsWith(pid + "|")) delete RUN.gaveUp[k];
@@ -618,6 +723,8 @@
         missing: items.filter((x) => x.s !== "ok").map((x) => x.k),
         inflight: !!inflightKey, items,
         paused: !!(RUN && RUN.providers[pid] && RUN.providers[pid].paused),
+        health: (RUN && RUN.providers[pid] && RUN.providers[pid].health) || { status: "ok", text: "", at: null },
+        capture: rs.reduce((m, r) => { if (r.status === "ok") m[r.capture_method || "stream"] = (m[r.capture_method || "stream"] || 0) + 1; return m; }, {}),
       };
     }
     return { status: RUN ? RUN.status : "idle", runConfig: cfg, perProvider, recordCount: recs.length,
@@ -691,5 +798,6 @@
     return { runId: cfg.runId, records: Object.keys(batch).length, runConfig: cfg };
   }
 
-  Probe.runner = { start, pause, resume, resumeFromStorage, stop, pauseProvider, resumeProvider, onCapture, overview, buildExport, exportRun, importRun, listRuns, selectRun, clear };
+  const providerHealth = () => Object.fromEntries(Object.entries((RUN && RUN.providers) || {}).map(([pid, p]) => [pid, p.health]));
+  Probe.runner = { providerHealth, setOnEvent: (f) => { onEvent = f; }, start, pause, resume, resumeFromStorage, stop, pauseProvider, resumeProvider, onCapture, overview, buildExport, exportRun, importRun, listRuns, selectRun, clear };
 })();

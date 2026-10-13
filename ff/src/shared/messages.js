@@ -26,6 +26,9 @@
     CAPTURE_DOM: "CAPTURE_DOM", // -> dump visible buttons/dialogs for selector authoring
     ANSWER_STATE: "ANSWER_STATE", // -> {ok, generating, len} is the visible answer finished? (Gemini flush gate)
     GROK_POLL: "GROK_POLL", // {convId, prompt} -> {ok, state:"pending"|"done"|"mismatch", response} one read of the grok.com conversation (answer arrives over a websocket, not HTTP)
+    POLL: "POLL", // {convId, prompt} -> {ok, state:"pending"|"done"|"mismatch", response} same read for any driver with poll() (claude, grok)
+    PAGE_STATUS: "PAGE_STATUS", // -> {ok, state:"ok"|"rate_limited"|"logged_out"|"challenge", text} what the page itself says (limit banner, login wall, captcha)
+    READ_ANSWER: "READ_ANSWER", // -> {ok, text, links, generating, finished, len} last answer as rendered (DOM fallback when no capture lands)
     SCRAPE_SOURCES: "SCRAPE_SOURCES", // -> {ok, citations:[{title,url}]} scraped from the answer's source UI
     VISIBLE_SOURCES: "VISIBLE_SOURCES", // -> {ok, links:[{url,title,where}], buttons:[text]} what the page shows as sources (audit of capture; run config.auditSources)
 

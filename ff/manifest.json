@@ -53,6 +53,21 @@
         "https://chat.deepseek.com/*",
         "https://chat.mistral.ai/*"
       ],
+      "run_at": "document_start",
+      "js": [
+        "src/content/visibility.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://grok.com/*",
+        "https://claude.ai/*",
+        "https://chat.deepseek.com/*",
+        "https://chat.mistral.ai/*"
+      ],
       "run_at": "document_idle",
       "js": [
         "src/shared/ext.js",
@@ -63,6 +78,7 @@
         "src/shared/providers.js",
         "src/content/injector.js",
         "src/content/drivers.js",
+        "src/content/page-state.js",
         "src/content/driver.js"
       ]
     }
@@ -72,6 +88,9 @@
     "default_title": "Chat UI Research Probe"
   },
   "browser_specific_settings": {
-    "gecko": { "id": "chat-probe@research.local", "strict_min_version": "115.0" }
+    "gecko": {
+      "id": "chat-probe@research.local",
+      "strict_min_version": "115.0"
+    }
   }
 }

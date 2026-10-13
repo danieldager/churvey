@@ -5,7 +5,8 @@ Attaches to the extension's background page on 127.0.0.1:8831 (the port
 `launch_browser.py` opens) and evaluates JS there. It never launches Firefox and
 never installs or reloads the add-on.
 
-    python -m churvey.survey.ffctl status
+    python -m churvey.survey.ffctl status             # per provider: ok/total, errors, capture methods, health
+                                                      # (rate_limited / logged_out / challenge + banner text)
     python -m churvey.survey.ffctl log -n 300 --grep claude  # extension log ring
     python -m churvey.survey.ffctl pause mistral      # also: resume <pid>
     python -m churvey.survey.ffctl reload claude      # reload that provider's tab(s)
@@ -101,8 +102,12 @@ def cmd_status(bg, a):
     for pid, p in o["perProvider"].items():
         run = [i for i in p["items"] if i["s"] == "run"]
         cur = f"  now: {run[0]['k']}" + (f" (fails {run[0]['n']})" if run[0]["n"] else "") if run else ""
+        h = p.get("health") or {}
         flag = " PAUSED" if p["paused"] else ""
-        print(f"{pid:9} {p['ok']:>3}/{p['total']} ok  err {p['error']:>2}  inflight={p['inflight']}{flag}{cur}")
+        if h.get("status") not in (None, "ok"):
+            flag += f" [{h['status'].upper()}: {h.get('text') or ''}]"
+        cap = " ".join(f"{k}={v}" for k, v in sorted((p.get("capture") or {}).items()))
+        print(f"{pid:9} {p['ok']:>3}/{p['total']} ok  err {p['error']:>2}  inflight={p['inflight']}{flag}{cur}" + (f"  via {cap}" if cap else ""))
         for i in p["items"]:
             if i["s"] == "err":
                 print(f"          err {i['k']}  fails={i['n']} retry_in={i['in']}s  {i['e'] or ''}")

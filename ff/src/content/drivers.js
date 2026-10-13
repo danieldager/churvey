@@ -367,6 +367,53 @@
       // Claude only, for now: the other two drivers are untouched deliberately.
       attach(files) { return attachFiles(this.composer, files); },
       submit() { return submitViaButtonOrEnter(this.send, this.composer); },
+      // Since 2026-10 claude.ai sends and streams over /claudeai-rpc (connect+proto), so there is no
+      // JSON completion for capture to tee. The finished turn is read back from the REST endpoint the
+      // old UI used, which still serves the whole conversation: GET chat_conversations/<id>?tree=True.
+      // Nothing is served for a turn that is still streaming (the assistant message appears whole, with
+      // stop_reason, when it ends), so "finished" is: the leaf is an assistant message with a final
+      // stop_reason, no block still open, identical on two consecutive polls, and the page agrees
+      // (no Stop button, the message's data-is-streaming is "false").
+      _org: null, _seen: null,
+      async orgId() {
+        if (this._org) return this._org;
+        for (const e of performance.getEntriesByType("resource")) {
+          const m = /\/api\/organizations\/([0-9a-f-]{36})\//.exec(e.name);
+          if (m) return (this._org = m[1]);
+        }
+        const r = await fetch(`${location.origin}/api/organizations`, { credentials: "include" });
+        if (!r.ok) throw new Error(`/api/organizations ${r.status}`);
+        const orgs = await r.json();
+        const o = orgs.find((x) => (x.capabilities || []).includes("chat")) || orgs[0];
+        if (!o) throw new Error("no organization");
+        return (this._org = o.uuid);
+      },
+      async poll(_convId, prompt) {
+        const m = /^\/chat\/([0-9a-f-]{36})/.exec(location.pathname);
+        if (!m) return { state: "pending" };
+        const convId = m[1];
+        const r = await fetch(`${location.origin}/api/organizations/${await this.orgId()}/chat_conversations/${convId}?tree=True&rendering_mode=messages&render_all_tools=true`, { credentials: "include" });
+        if (!r.ok) throw new Error(`chat_conversations ${r.status}`);
+        const conv = await r.json();
+        const byId = {}; for (const x of conv.chat_messages || []) byId[x.uuid] = x;
+        const leaf = byId[conv.current_leaf_message_uuid] || (conv.chat_messages || []).slice(-1)[0];
+        if (!leaf || leaf.sender !== "assistant") return { state: "pending" };
+        const human = byId[leaf.parent_message_uuid];
+        const norm = (t) => String(t || "").replace(/\s+/g, " ").trim();
+        const said = human && (human.text || (human.content || []).filter((b) => b.type === "text").map((b) => b.text).join(" "));
+        if (human && norm(said).slice(0, 60) !== norm(prompt).slice(0, 60)) return { state: "mismatch" };
+        const blocks = leaf.content || [];
+        const open = blocks.some((b) => !b.stop_timestamp);
+        const final = !!leaf.stop_reason && !/^(tool_use|pause_turn)$/.test(leaf.stop_reason);
+        const hasText = blocks.some((b) => b.type === "text" && (b.text || "").trim());
+        const sig = leaf.uuid + "|" + leaf.stop_reason + "|" + blocks.length + "|" + blocks.reduce((n, b) => n + (b.text || "").length + JSON.stringify(b.content || "").length, 0);
+        const same = this._seen && this._seen.sig === sig;
+        this._seen = { sig, n: same ? this._seen.n + 1 : 1 };
+        const stopBtn = [...document.querySelectorAll('button[aria-label*="Stop" i]')].some((b) => b.offsetParent !== null);
+        const streaming = !!document.querySelector('[data-is-streaming="true"]');
+        if (!(final && !open && hasText && this._seen.n >= 2 && !stopBtn && !streaming)) return { state: "pending" };
+        return { state: "done", response: { convId, model: conv.model || null, message: leaf } };
+      },
     },
     deepseek: {
       composer: ["textarea#chat-input", 'textarea[placeholder*="message" i]', "textarea"],

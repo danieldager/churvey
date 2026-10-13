@@ -29,7 +29,9 @@
       id: "claude", label: "Claude",
       host: "claude.ai", homeUrl: "https://claude.ai/new",
       matchPattern: "https://claude.ai/*",
-      completionHint: "chat_conversations/.+/completion|/completion",
+      // claude.ai now sends/streams over /claudeai-rpc (connect+proto), so nothing JSON matches any more:
+      // the runner polls GET chat_conversations/<id> from the page and hands it to capture under the marker.
+      completionHint: "chat_conversations/.+/completion|/completion|__probe_claude_synth__",
     },
     {
       id: "deepseek", label: "DeepSeek",

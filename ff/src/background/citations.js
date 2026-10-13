@@ -61,7 +61,50 @@
   }
 
   // ---- Claude: citation_start_delta / citation_end_delta wrap the text they cite -------
+  // The answer of a polled turn: its text blocks, in order, thinking and tool blocks left out. Blocks are
+  // separated by a blank line (they are separate paragraphs on screen, e.g. the line before a search and the
+  // answer after it). offsets[i] = where block i starts in `text`, for citation start_index/end_index.
+  function claudeJoin(content) {
+    let text = ""; const offsets = {};
+    (content || []).forEach((b, i) => {
+      if (!b || b.type !== "text" || !(b.text || "").trim()) return;
+      if (text && !/\n\n$/.test(text)) text += /\n$/.test(text) ? "\n" : "\n\n";
+      offsets[i] = text.length; text += b.text;
+    });
+    return { text, offsets };
+  }
+  // Polled turn (see drivers.js claude.poll): text blocks carry citations[{url,title,sources,start_index,end_index}] over
+  // the block's text; web_search tool_results carry the retrieval pool (stays in fetchedUrls unless nothing was cited,
+  // like Gemini's search panel: then it is the only source list the UI shows, answer-level).
+  function claudeConv(o) {
+    const content = (o.__probe_claude.message || {}).content || [];
+    const { text, offsets } = claudeJoin(content);
+    const out = [];
+    content.forEach((b, i) => {
+      if (!b || b.type !== "text" || !(i in offsets)) return;
+      for (const c of b.citations || []) {
+        const s0 = Number.isFinite(c.start_index) ? c.start_index : null, e0 = Number.isFinite(c.end_index) ? c.end_index : null;
+        const start = s0 == null ? null : offsets[i] + s0, end = e0 == null ? null : offsets[i] + e0;
+        const md = c.metadata || {};
+        const srcs = Array.isArray(c.sources) && c.sources.length ? c.sources : [c];
+        for (const s of srcs) {
+          if (!s.url) continue;
+          out.push(mk({ url: s.url, title: s.title || c.title, site_name: s.source || md.site_name || null, cited_text: c.cited_text || null,
+                        anchor_text: start == null ? null : text.slice(start, end).trim(), anchor_start: start, anchor_end: end, ref_id: c.uuid, via: "claude_poll" }));
+        }
+      }
+    });
+    if (!out.length) {
+      const seen = new Set();
+      for (const b of content) if (b && b.type === "tool_result" && Array.isArray(b.content)) for (const r of b.content) {
+        if (!r || !/^https?:/.test(r.url || "") || seen.has(r.url)) continue; seen.add(r.url);
+        out.push(mk({ url: r.url, title: r.title, site_name: (r.metadata && r.metadata.site_name) || null, via: "claude_search_result" }));
+      }
+    }
+    return { entries: out, text };
+  }
   function claude(raw) {
+    if (String(raw).startsWith('{"__probe_claude"')) { try { return claudeConv(JSON.parse(raw)); } catch (_) { return { entries: [], text: "" }; } }
     let text = "", prevEnd = 0, lastSeg = null; const blocks = {}, open = {}, out = [];
     for (const { data: d } of sse(raw)) {
       if (!d || typeof d !== "object") continue;
@@ -316,5 +359,5 @@
     for (const e of textLinks(r.text || answer || "")) if (!seen.has(e.url + "|" + e.anchor_start) && !r.entries.some((x) => x.url === e.url)) r.entries.push(e);
     return r.entries;
   }
-  Probe.citations = { parse, canon };
+  Probe.citations = { parse, canon, claudeJoin };
 })();
