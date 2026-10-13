@@ -157,7 +157,7 @@ def cmd_eval(bg, a):
     print(json.dumps(bg.js(code), indent=2, ensure_ascii=False))
 
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--port", type=int, default=8831, help="Firefox debugger port (default 8831)")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -171,7 +171,7 @@ def main():
     e = sub.add_parser("eval")
     e.add_argument("js")
     e.add_argument("--unsafe", action="store_true")
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
     globals()["cmd_" + a.cmd](Bg(a.port), a)
 
 

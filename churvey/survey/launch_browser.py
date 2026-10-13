@@ -53,6 +53,28 @@ def find_ext_dir():
     raise SystemExit("extension not found: set CHURVEY_FF to the ff/ directory")
 
 FIREFOX = pathlib.Path("/Applications/Firefox.app/Contents/MacOS/firefox")
+FIREFOX_CANDIDATES = [FIREFOX, pathlib.Path.home() / "Applications/Firefox.app/Contents/MacOS/firefox",
+                      pathlib.Path("/usr/bin/firefox"), pathlib.Path("/usr/bin/firefox-esr"), pathlib.Path("/usr/lib/firefox/firefox"),
+                      pathlib.Path("/snap/bin/firefox")]
+
+
+def find_firefox():
+    """$CHURVEY_FIREFOX, the usual macOS / Linux install paths, else `firefox` on PATH. None if not found."""
+    import shutil
+    env = os.environ.get("CHURVEY_FIREFOX")
+    for c in ([pathlib.Path(env)] if env else []) + FIREFOX_CANDIDATES:
+        if c.is_file() and os.access(c, os.X_OK):
+            return c
+    w = shutil.which("firefox") or shutil.which("firefox-esr")
+    return pathlib.Path(w) if w else None
+
+
+def install_hint():
+    if sys.platform == "darwin":
+        return "brew install --cask firefox   (or download it from https://www.mozilla.org/firefox/)"
+    if sys.platform.startswith("linux"):
+        return "sudo apt install firefox   (Fedora: sudo dnf install firefox; Arch: sudo pacman -S firefox)"
+    return "download it from https://www.mozilla.org/firefox/"
 FF_HOME = pathlib.Path.home() / "Library/Application Support/Firefox"
 DEFAULT_PROFILE = FF_HOME / "Profiles/cn-harvest"
 PORTS = range(8731, 8736)  # must match PORTS in ff/src/background/autostart.js
@@ -187,8 +209,17 @@ def write_results(out_dir, msg):
     return {"run_id": run_id, "records": len(records), "ok": ok, "dir": out_dir}
 
 
+def port_free(port):
+    """True if nothing listens on 127.0.0.1:port (Firefox's debugger server would fail to bind, and we would
+    talk to whichever Firefox already holds it)."""
+    with socket.socket() as s:
+        return s.connect_ex(("127.0.0.1", port)) != 0
+
+
 def serve(state):
     for port in PORTS:
+        if not port_free(port + 100):   # the debugger port that goes with this plan port
+            continue
         try:
             srv = http.server.ThreadingHTTPServer(("127.0.0.1", port), make_handler(state))
         except OSError:
@@ -268,7 +299,7 @@ def profile_in_use(profile):
     """True if some Firefox is already running on this profile — launching a
     second one would hit the profile lock (and we must never disturb the first)."""
     ps = subprocess.run(["/bin/ps", "-axo", "command"], capture_output=True, text=True).stdout
-    return any("Firefox.app" in ln and str(profile) in ln for ln in ps.splitlines())
+    return any(("Firefox.app" in ln or "firefox" in ln) and str(profile) in ln for ln in ps.splitlines())
 
 
 def ensure_prefs(profile):
@@ -306,7 +337,25 @@ def preflight_verdicts(state, providers):
     return out
 
 
-def main():
+def start_firefox(profile, dbg_port, url="about:blank", headless=False):
+    """Firefox on `profile` with the debugger server on `dbg_port`, opening `url`."""
+    exe = find_firefox()
+    if not exe:
+        raise SystemExit(f"Firefox not found. Install it:\n  {install_hint()}")
+    cmd = [str(exe), "--profile", str(profile), "--no-remote", "--new-instance"]
+    if headless:
+        cmd.append("--headless")
+    cmd += ["--start-debugger-server", str(dbg_port), url]
+    return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def main(argv=None):
+    rc, _ = launch(argv)
+    return rc
+
+
+def launch(argv=None):
+    """Parse `argv` and run; returns (exit code, State). State.health holds the blocked providers."""
     sys.stdout.reconfigure(line_buffering=True)
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--run-plan", type=pathlib.Path, help="ff/ run config JSON (not needed with --preflight)")
@@ -317,7 +366,7 @@ def main():
     ap.add_argument("--headless", action="store_true", help="run Firefox without a window")
     ap.add_argument("--preflight", action="store_true", help="1 short question x each provider; report ok/logged_out/rate_limited/challenge/capture_failed")
     ap.add_argument("--providers", help="comma list (preflight default: all; otherwise overrides the plan's providers)")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     if args.preflight:
         providers = [p for p in (args.providers or ",".join(ALL_PROVIDERS)).split(",") if p]
@@ -341,7 +390,7 @@ def main():
     if not profile.is_dir():
         raise SystemExit(
             f"profile {profile} does not exist.\n"
-            f"Create it once:  {FIREFOX} --no-remote -CreateProfile 'cn-harvest {profile}'\n"
+            f"Create it once:  {find_firefox() or FIREFOX} --no-remote -CreateProfile 'cn-harvest {profile}'\n"
             f"then launch it and log into claude.ai, gemini.google.com and chatgpt.com."
         )
     if profile_in_use(profile):
@@ -358,11 +407,7 @@ def main():
     say(f"serving run plan on 127.0.0.1:{http_port}, profile {profile.name}")
     say(f"=== {hms()} START {plan_name} {','.join(plan['providers'])} x {n_items} items")
 
-    cmd = [str(FIREFOX), "--profile", str(profile), "--no-remote", "--new-instance"]
-    if args.headless:
-        cmd.append("--headless")
-    cmd += ["--start-debugger-server", str(dbg_port), "about:blank"]
-    ff = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    ff = start_firefox(profile, dbg_port, headless=args.headless)
     try:
         addon_id = install_addon(dbg_port, find_ext_dir())
         say(f"installed {addon_id}; waiting up to {args.timeout}s for the run")
@@ -389,18 +434,18 @@ def main():
             say(f"PREFLIGHT {pid:9} {v:15} {detail}")
         good = all(v == "ok" for v, _ in verdicts.values())
         say(f"=== {hms()} END preflight {'PASS' if good else 'FAIL'}: " + " ".join(f"{p}={v}" for p, (v, _) in verdicts.items()))
-        return 0 if good else 1
+        return (0 if good else 1), state
 
     w = state.written
     if not w:
         say(f"=== {hms()} END no results posted - the extension never reported back")
-        return 1
+        return 1, state
     say(f"{w['ok']}/{w['records']} ok -> {w['dir']}/{w['run_id']}.jsonl")
     tail = f"; blocked: {', '.join(f'{p}={v}' for p, v in blocked.items())}" if blocked else ""
     say(f"=== {hms()} END {w['ok']}/{w['records']} ok{tail}")
     if not state.finished.is_set():
-        return 1
-    return 3 if blocked else 0
+        return 1, state
+    return (3 if blocked else 0), state
 
 
 if __name__ == "__main__":
