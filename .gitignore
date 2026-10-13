@@ -17,3 +17,7 @@ __pycache__/
 # API credentials
 .env
 .claude/
+
+# build
+dist/
+*.egg-info/

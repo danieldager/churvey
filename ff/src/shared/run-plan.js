@@ -18,6 +18,9 @@
           // right after it, with no persona preamble. Parent must precede it.
           const followupOf = q.followup_of || null;
           items.push({ idx: idx++, questionId: q.id, questionText: q.text, persona, personaId, repIndex: rep, itemKey: itemKey(personaId, rep, q.id),
+                       // Pictures to put in the composer before the prompt. Only
+                       // providers in the runner's ATTACH_PROVIDERS act on this.
+                       attachments: (q.attachments || []).slice(),
                        followupOf, parentKey: followupOf ? itemKey(personaId, rep, followupOf) : null });
         }
       }

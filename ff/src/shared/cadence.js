@@ -1,4 +1,4 @@
-// Pacing: randomized gaps between asks, to keep load on each provider low.
+// Randomized human-like delays.
 (() => {
   const Probe = (globalThis.Probe ||= {});
   const rand = (a, b) => a + Math.random() * (b - a);

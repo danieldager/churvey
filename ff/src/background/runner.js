@@ -22,6 +22,9 @@
   function harvestUrls(raw) {
     if (!raw) return [];
     const out = new Set();
+    // Unescape JSON-escaped characters first (Gemini double-encodes its payload, so
+    // "=" arrives as \\u003d and "/" as \/); the URL match used to stop at the backslash.
+    raw = raw.replace(/\\+u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16))).replace(/\\+\//g, "/");
     for (const m of raw.matchAll(/https?:\/\/[^\s"'\\)<>]+/g)) {
       const u = m[0].replace(/[.,;'")]+$/, "");
       if (u.length > 400 || ASSET_RE.test(u)) continue;
@@ -33,6 +36,15 @@
     const seen = new Set(), out = [];
     for (const c of list) { if (!c || !c.url || seen.has(c.url)) continue; seen.add(c.url); out.push(c); }
     return out.slice(0, 80);
+  }
+  async function visibleSources(tabId) {
+    try {
+      const r = await Promise.race([
+        ext.tabs.sendMessage(tabId, { type: Probe.MSG.VISIBLE_SOURCES, open: true }),
+        new Promise((res) => setTimeout(() => res(null), 8000)),
+      ]);
+      return r && r.ok ? { links: r.links || [], buttons: r.buttons || [], hints: r.hints || [], custom: r.custom || null } : { error: (r && r.error) || "no reply" };
+    } catch (e) { return { error: String(e?.message || e) }; }
   }
   async function scrapeCitations(tabId) {
     try {
@@ -65,6 +77,26 @@
   }
 
   // Follow-ups continue a chat: no persona preamble again.
+  // Only Claude has an attach() so far (2026-09-15). Gemini and ChatGPT untouched.
+  const ATTACH_PROVIDERS = new Set(["claude"]);
+  async function fetchAttachments(urls) {
+    const out = [];
+    for (const u of urls) {
+      const name = (String(u).split("?")[0].split("/").pop() || "image.jpg");
+      if (String(u).startsWith("data:")) { out.push({ name, dataUrl: u }); continue; }
+      const r = await fetch(u);
+      if (!r.ok) throw new Error(`${r.status} for ${u}`);
+      const blob = await r.blob();
+      const dataUrl = await new Promise((res, rej) => {
+        const fr = new FileReader();
+        fr.onload = () => res(fr.result); fr.onerror = () => rej(fr.error);
+        fr.readAsDataURL(blob);
+      });
+      out.push({ name: /\.\w{3,4}$/.test(name) ? name : name + ".jpg", dataUrl });
+    }
+    return out;
+  }
+
   const compose = (item) => Probe.prompt.compose({ persona: item.followupOf ? null : item.persona || null, question: { id: item.questionId, text: item.questionText } });
 
   // One WINDOW per provider. A tab that isn't the active tab of its window is
@@ -198,6 +230,7 @@
       modelLabel: f.model || null, responseText: f.answer || "", status: f.status, errorMessage: f.error || null,
       latencyMs: f.latencyMs ?? null, timestampStartMs: f.startMs ?? null, timestampEndMs: f.endMs ?? null,
       private: RUN.cfg.config && RUN.cfg.config.private, captureUrl: f.url || null, citations: f.citations || [],
+      fetchedUrls: f.fetchedUrls || [], domSources: f.domSources || null,
     });
     await ext.storage.local.set({ [recKey(RUN.runId, pid, item.itemKey)]: rec });
   }
@@ -245,17 +278,22 @@
     // + DOM-scraped source links for providers that hide them (Gemini). Kept inside
     // inflight so the conductor holds the tab until the scrape finishes.
     (async () => {
-      let citations = [];
+      let citations = [], fetchedUrls = [];
       if (!isError) {
         try {
-          const stream = harvestUrls(cap.raw).map((url) => ({ url, title: null, via: "stream" }));
-          let dom = [];
-          if (SCRAPE_PROVIDERS.has(pid)) dom = (await scrapeCitations(inf.tabId)).map((c) => ({ url: c.url, title: c.title || null, via: "dom" }));
-          citations = dedupeCites([...dom, ...stream]);
+          fetchedUrls = harvestUrls(cap.raw);
+          citations = Probe.citations.parse(pid, cap.raw, cap.answer);
+          // Gemini fallback: the source chips on the page, when the payload gave no URLs.
+          if (SCRAPE_PROVIDERS.has(pid) && !citations.some((c) => c.url)) {
+            const dom = (await scrapeCitations(inf.tabId)).map((c) => ({ url: c.url, title: c.title || null, cited_text: null, ref_id: null, char_offset: null, via: "dom" }));
+            citations = dedupeCites([...citations.filter((c) => c.url), ...dom]).concat(citations.filter((c) => !c.url));
+          }
         } catch (e) { log.warn(`[${pid}] citation harvest failed: ${e?.message || e}`); }
       }
-      await saveRecord(pid, inf.item, { answer: cap.answer, status: isError ? "error" : "ok", error: cap.error, latencyMs: latency, startMs: inf.submittedAt, endMs: Date.parse(cap.ts), url: cap.url, model: cap.model, citations });
-      log.info(`[${pid}] recorded ${inf.item.itemKey} ${isError ? "ERR" : "ok"} ${cap.answerLen}c ${citations.length}cites ${latency}ms`);
+      let domSources = null;
+      if (!isError && RUN.cfg.config && RUN.cfg.config.auditSources) domSources = await visibleSources(inf.tabId);
+      await saveRecord(pid, inf.item, { answer: cap.answer, status: isError ? "error" : "ok", error: cap.error, latencyMs: latency, startMs: inf.submittedAt, endMs: Date.parse(cap.ts), url: cap.url, model: cap.model, citations, fetchedUrls, domSources });
+      log.info(`[${pid}] recorded ${inf.item.itemKey} ${isError ? "ERR" : "ok"} ${cap.answerLen}c ${citations.length}cites ${fetchedUrls.length}urls ${latency}ms`);
       // Keep ChatGPT's Cookie header from growing into a 431 over a long run.
       if (pid === "chatgpt" && !isError) trimCookies(["chatgpt.com", "openai.com"]).catch(() => {});
       prov.inflight = null;
@@ -299,6 +337,31 @@
     }
   }
 
+  // grok.com answers over a websocket gateway, so there is no HTTP body for capture to tee. Once
+  // submitted, read the finished turn back through the page (driver.poll -> response-node +
+  // load-responses) and hand it to capture as a synthetic NDJSON completion. The conversation id is
+  // the newest the tab fetched (capture.grokConvId); a turn whose human message is not our prompt
+  // is a stale chat, never recorded.
+  const POLL_PROVIDERS = new Set(["grok"]);
+  async function pollWatch(pid, inf, prompt) {
+    const prov = RUN.providers[pid];
+    let n = 0;
+    while (RUN && RUN.status === "running" && prov.inflight === inf) {
+      await Probe.cadence.sleep(2500);
+      if (prov.inflight !== inf) return;
+      const convId = Probe.capture.grokConvId(inf.tabId);
+      if (!convId) continue;
+      let r = null;
+      try { r = await ext.tabs.sendMessage(inf.tabId, { type: Probe.MSG.GROK_POLL, convId, prompt }); } catch (_) {}
+      if (!r || !r.ok) { if (++n % 10 === 0) log.warn(`[${pid}] poll failed: ${r && r.error}`); continue; }
+      if (r.state === "mismatch") { log.warn(`[${pid}] ${inf.item.itemKey}: conversation ${convId} holds another question; waiting`); continue; }
+      if (r.state !== "done") continue;
+      log.info(`[${pid}] ${inf.item.itemKey}: conversation ${convId} finished (${r.response.message.length}c) - handing to capture`);
+      Probe.capture.deliverGrok(inf.tabId, convId, r.response);
+      return;
+    }
+  }
+
   async function waitForReady(tabId, timeoutMs = 25000) {
     const t0 = Date.now();
     while (Date.now() - t0 < timeoutMs) {
@@ -335,7 +398,23 @@
     // 2) Wait for the (possibly reloaded) content script + composer to be ready.
     if (!(await waitForReady(tabId))) { bumpAttempt(pid, item, "not ready (login/page/loading)"); return; }
 
-    // 3) Type + submit (needs focus). Capture happens afterwards, focus-independent.
+    // 3) Fetch any picture the question carries. The background has the host
+    // permission for the image CDN; the content script does not, and a data URL
+    // crosses the message boundary without one. A failure is not fatal - the
+    // prompt still goes, and the answer says whether the picture was needed.
+    let attachments = null;
+    if (item.attachments && item.attachments.length && ATTACH_PROVIDERS.has(pid)) {
+      try {
+        attachments = await fetchAttachments(item.attachments);
+        log.info(`[${pid}] fetched ${attachments.length} attachment(s) for ${item.itemKey}`);
+      } catch (e) {
+        log.warn(`[${pid}] attachment fetch failed: ${e?.message || e}`);
+      }
+    } else if (item.attachments && item.attachments.length) {
+      log.warn(`[${pid}] cannot attach pictures - sending text only`);
+    }
+
+    // 4) Type + submit (needs focus). Capture happens afterwards, focus-independent.
     await focusTab(tabId);
     // ARM INFLIGHT FIRST. The content script does not answer until its driver's
     // submit() resolves, and Gemini's deliberately holds focus for 4.5s after the
@@ -349,13 +428,14 @@
     prov.chatKey = item.itemKey; // last item asked in the tab's current chat
     const mine = () => prov.inflight && prov.inflight.item === item; // still ours? (an answer may already have landed and cleared it)
     let resp;
-    try { resp = await ext.tabs.sendMessage(tabId, { type: Probe.MSG.SUBMIT, prompt: promptSent }); }
+    try { resp = await ext.tabs.sendMessage(tabId, { type: Probe.MSG.SUBMIT, prompt: promptSent, attachments }); }
     catch (e) { resp = { ok: false, error: String(e?.message || e) }; }
     if (!resp || !resp.ok) { if (mine()) prov.inflight = null; bumpAttempt(pid, item, resp && resp.error); return; }
     // The content script stamps submittedAt just before the click; prefer it, so
     // latency excludes the typing, but never revive an already-answered item.
     if (mine() && resp.submittedAt) prov.inflight.submittedAt = resp.submittedAt;
     if (mine() && DOM_FLUSH_PROVIDERS.has(pid)) domFlushWatch(pid, prov.inflight).catch(() => {});
+    if (mine() && POLL_PROVIDERS.has(pid)) pollWatch(pid, prov.inflight, promptSent).catch((e) => log.warn(`[${pid}] pollWatch: ${e?.message || e}`));
     log.info(`[${pid}] submitted ${item.itemKey}${item.followupOf ? " (follow-up, same chat)" : ""} (vis=${resp.visibility}${mine() ? "" : ", answer already recorded"})`);
   }
 
@@ -385,7 +465,7 @@
       // Providers stream in PARALLEL, each in its own window (see ensureTab).
       // Only the submit is serialized — typing needs OS focus — so we start at
       // most one submit per tick: submits stagger a few seconds apart, streams
-      // overlap. Paused providers (e.g. re-login) are skipped entirely.
+      // overlap. Paused providers (account swap etc.) are skipped entirely.
       if (RUN.status === "running") {
         // Pick the eligible provider with the fewest completed (balanced rotation).
         let pick = null, pickItem = null, fewest = Infinity;
@@ -488,10 +568,10 @@
   const resume = () => { if (RUN) { RUN.status = "running"; startTick(); scheduleTick(); } };
   const stop = () => { if (RUN) { RUN.status = "stopped"; stopTick(); } };
 
-  // Per-provider pause: freeze ONE provider (e.g. to log back in) while the
-  // others keep running. An inflight answer still lands; the provider just gets
-  // no new submits. Resuming clears its backoff/fail counters so it is asked
-  // again immediately instead of waiting out a 5min cap.
+  // Per-provider pause: freeze ONE provider (e.g. to swap a rate-limited grok
+  // account) while the others keep running. An inflight answer still lands; the
+  // provider just gets no new submits. Resuming clears its backoff/fail counters
+  // so the fresh account is asked immediately instead of waiting out a 5min cap.
   const pauseProvider = (pid) => { if (RUN && RUN.providers[pid]) { RUN.providers[pid].paused = true; log.info(`[${pid}] paused by user`); } };
   function resumeProvider(pid) {
     if (!RUN || !RUN.providers[pid]) return;
@@ -544,8 +624,8 @@
              canResume: !RUN && !!(cfg && cfg.runId) };
   }
 
-  // The export payload, built but not written anywhere. Consumers: the popup's
-  // Export (downloads it as files) and any caller that wants the payload itself.
+  // The export payload, built but not written anywhere. Two consumers: the popup's
+  // Export (downloads it as files) and the autostart hook (POSTs it to the launcher).
   async function buildExport() {
     const all = await ext.storage.local.get(null);
     const recs = Object.entries(all).filter(([k]) => k.startsWith(REC_PREFIX)).map(([, v]) => v)
@@ -562,7 +642,7 @@
                        // The 300-line log ring. Without it, diagnosing a run means
                        // prying storage.local out of the profile's IndexedDB by hand.
                        log: await Probe.log.getRing() };
-    return { runId, cfg, recs, summary, summaryText: Probe.summary.formatText(summary), manifest };
+    return { runId, cfg, recs, summary, summaryText: Probe.summary.formatText(summary), manifest, rawCompletions: debugRaw };
   }
 
   async function exportRun() {

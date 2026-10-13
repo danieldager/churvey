@@ -53,7 +53,7 @@ The run export (`<runId>.run.json`) carries the extension's 300-line **log ring*
 |---|---|---|
 | ChatGPT | `?temporary-chat=true` (URL) | `backend-api/f/conversation` — SSE deltas |
 | Gemini | "Temporary chat" button (single plain click) | `StreamGenerate` — batchexecute arrays (longest `rc_` snapshot) |
-| Grok | new chat → ⌘⇧J / private button | `rest/app-chat/conversations/new` — NDJSON (`modelResponse.message`) |
+| Grok | Chat (`a[data-testid=new-chat]`) → `a[aria-label="Switch to Private Chat"]` | since 2026-10 a websocket gateway, no HTTP stream: after submit the runner polls `conversations/<id>/response-node` (nothing in flight) then POSTs `load-responses`; the assistant message (`<grok:render>` cards) is fed to capture as a synthetic NDJSON `modelResponse` |
 | Claude | `/new?incognito=` (URL) | `chat_conversations/…/completion` — SSE `text_delta` (skips thinking) |
 | DeepSeek | none → **deletes all chats before every question** | `api/v0/chat/completion` — SSE patch-stream (initial fragment + content deltas) |
 
@@ -67,6 +67,18 @@ Settings→Data→"Delete all" UI as fallback.
 3. Popup → pick providers / questions / personas / reps / private → **Run**.
 4. **Export JSONL + summary** (and `raw-completions.json` for debugging) → `Downloads/chat-probe/`.
 
+### Zero-click load & run (daily pipeline)
+`cn_bench/launch_browser.py` does steps 1 and 3 with no clicking: it serves the run
+plan on a loopback port, launches Firefox on the `cn-harvest` profile, and installs
+this directory as a temporary add-on over Firefox's remote debugging protocol (the
+call `web-ext run` makes internally — `web-ext` itself needs node, which this
+machine does not have). `src/background/autostart.js` then probes
+`http://127.0.0.1:8731-8735/run-plan.json` on load; if a launcher answers it starts
+the run immediately and POSTs the export payload back (`/progress` each tick,
+`/done` when finished). **If nothing is listening it does nothing** — the
+about:debugging + popup path above is unchanged. Details:
+[`../cn_bench/DAILY_PIPELINE.md`](../cn_bench/DAILY_PIPELINE.md) § Firefox launch.
+
 ### Reloading reliably (important)
 Reloading the add-on does **not** update content scripts in already-open tabs.
 1. `about:debugging` → **Reload**.
@@ -74,6 +86,26 @@ Reloading the add-on does **not** update content scripts in already-open tabs.
 3. Popup header shows **`bg <build> · tab <build>`** — if a tab build differs it
    shows **⚠ reload tab**. Use this to confirm the live build.
 4. If a change still won't apply: **Remove + Load Temporary Add-on** again.
+
+## Remote control (ffctl)
+
+`cn_bench/ffctl.py` drives the extension of a run that `cn_bench/launch_browser.py` is serving, with no
+popup clicks. It talks to Firefox's debugger server (`--start-debugger-server`, port 8831 for plan port
+8731; `--port` to change), finds the add-on's background page and evaluates JS in it. It never launches
+Firefox and never installs or reloads the add-on.
+
+```
+uv run python cn_bench/ffctl.py status                 # per provider: ok/total, errors, paused, current item + fails
+uv run python cn_bench/ffctl.py log -n 300 --grep claude   # extension log ring (lossy: concurrent writes drop lines)
+uv run python cn_bench/ffctl.py pause mistral          # also: resume <pid> (resume clears backoff and fails)
+uv run python cn_bench/ffctl.py reload claude          # reload every open tab on that provider's host
+uv run python cn_bench/ffctl.py stop --yes             # ends the whole run (needs --yes)
+uv run python cn_bench/ffctl.py eval --unsafe 'return await Probe.runner.overview()'
+```
+
+`status` and `log` are read-only. `eval` runs as an async function body (use `return`), needs `--unsafe`.
+`reload` finds tabs by host (`Probe.providers`), because the runner keeps its tab ids private.
+A provider that keeps failing "no response (timeout)" is retried by the runner (MAX_ATTEMPTS 3).
 
 ## Tools for maintenance
 - **Capture DOM** (popup): dumps the active tab's buttons/dialogs/top-right region
@@ -89,7 +121,29 @@ question, right after it (same persona and rep), with no persona preamble. The
 parent must come earlier in the list. The runner only asks the follow-up once the
 parent is recorded and the tab is still on the parent's chat; if that chat was
 lost (tab closed, run resumed) it drops the parent's record and re-asks both.
-Records carry `followupOf`.
+Records carry `followupOf`. Example: `analysis/cn_feed_panel_2026-09-10.json`
+(`CNFn-insist` follows `CNFn-assumed`).
+
+## Pictures in the prompt (`attachments`, Claude only, 2026-09-15)
+A question may carry `"attachments": ["https://pbs.twimg.com/media/….jpg"]`. The
+**background** fetches each URL (it holds the host permission; the content script
+does not) and passes it to the tab as a data URL on the SUBMIT message. The content
+driver puts the picture in the composer **before** typing the text, trying three
+ways in order and stopping at the first that makes a preview appear:
+
+1. **the hidden `<input type="file">`** — build a `DataTransfer`, assign `input.files`,
+   fire `change`;
+2. **a synthetic paste** — a `ClipboardEvent` carrying the `File`;
+3. **a synthetic drop** — `dragenter` / `dragover` / `drop` on the composer.
+
+Only providers in the runner's `ATTACH_PROVIDERS` act on the field (today: `claude`);
+for anyone else the runner logs a warning and sends the text alone. A failure to
+attach is **never** fatal — the prompt still goes, and the record's `attached` field
+says what happened, so the answer itself shows whether the picture arrived.
+
+**Measured 2026-09-15, Firefox 155, incognito Claude chat:** path 1 works first time.
+Fetch → attach → submit took 0.5 s; the answer came back in 4.0 s and described the
+photo. Paths 2 and 3 have never been exercised.
 
 ## Data format (JSONL, one object per line)
 `runId, provider, questionId, questionText, promptSent, personaId, repIndex,
@@ -101,3 +155,23 @@ latency stats, models, and blocked flags.
 See [`../FUTURE_WORK.md`](../FUTURE_WORK.md). Headlines: serial (no cross-provider
 parallelism yet), Grok free-tier limits, DeepSeek token key may change between
 deploys, model labels only captured for some providers.
+
+## Displayed citations (record schema v5)
+`record.citations` = what the chat UI shows as a citation, parsed from the raw completion
+stream by `src/background/citations.js`: Gemini per-segment grounding, Claude inline citation
+chips, ChatGPT `cite` markers resolved through `search_result_groups` plus its Sources list.
+Each row: url, title, domain, site_name, cited_text (source snippet), anchor_text /
+anchor_start / anchor_end (answer segment it supports, offsets into responseText), marker,
+ref_id, via. `record.fetchedUrls` = every URL found in the stream (the retrieval pool, not the
+cited subset). Raw completion bodies are not in the records: the autostart path posts them
+once, on `/done`, and the launcher writes `<runId>.raw-completions.json` for offline re-parsing.
+Parsers: Gemini grounding (`gemini_grounding`, sentence-linked) or, when the stream carries none, the
+"Searched the web" panel (`gemini_search_panel`, answer-level); Grok `<grok:render card_id>` tags resolved
+through `cardAttachmentsJson` (`grok_inline`); Le Chat inline links plus the rest of its Sources list
+(`mistral_source`). URLs are normalised in one place per side: `canon` in `citations.js` (fragment incl.
+`#:~:text=`, utm_* and other tracking params) and `dashboard/ingest/url_canon.py`. Old runs are re-parsed from
+their raw streams with `dashboard/ingest/reparse_raw.py` (writes `responses.clean.v2.jsonl`).
+Capture audit: run config `"auditSources": true` makes the runner also store `record.domSources` (the external
+links the page itself shows as sources, after opening a Sources button) next to the captured citations.
+Gotcha: after editing `manifest.json`, delete `~/Library/Caches/Firefox/Profiles/cn-harvest/startupCache`;
+Firefox keeps loading the old script list from it (a new background script silently does not load).

@@ -49,6 +49,50 @@
     return { provider: providerId, url: location.href, ts: new Date().toISOString(), visibility: document.visibilityState, topRight, buttons, dialogs };
   }
 
+  // Audit of capture: the external links the page shows for the answer (inline chips, Sources lists),
+  // after opening any "Sources"/"N sources" button once. Read-only apart from that click; a provider
+  // driver can override with its own visibleSources().
+  async function visibleSources(open) {
+    const own = location.hostname.replace(/^www\./, "");
+    const collect = (where) => {
+      const out = [];
+      for (const a of document.querySelectorAll('a[href^="http"]')) {
+        let u; try { u = new URL(a.href); } catch (_) { continue; }
+        if (u.hostname.replace(/^www\./, "").endsWith(own)) continue;
+        if (a.closest('nav, aside[aria-label*="histor" i], [data-testid*="composer"], footer, form')) continue;
+        if (/gstatic|googleusercontent|google\.com\/(intl|policies|support)|mistral\.ai\/(terms|privacy)|openai\.com\/(policies|privacy)|anthropic\.com\/(legal|privacy)|x\.ai\//i.test(a.href)) continue;
+        out.push({ url: a.href, title: (a.innerText || a.getAttribute("aria-label") || a.title || "").trim().slice(0, 160) || null, where });
+      }
+      return out;
+    };
+    const links = collect("page");
+    const re = /^(sources?|\d+\s+sources?|sources?\s*\(?\d+\)?|\d+\s+(web\s+)?(pages?|results?|r[eé]sultats?|sites?)|(view|show|voir|afficher)\s+(all\s+)?(\d+\s+)?sources?|[0-9]+\s+r[eé]f[eé]rences?|r[eé]f[eé]rences?|citations?)$/i;
+    // The label may sit in a nested span (ChatGPT's "Sources" pill): match on an element's own text, click its button.
+    const own_ = (e) => [...e.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join("").trim();
+    const btns = [...new Set([...document.querySelectorAll("button,[role=button],a,div,span")]
+      .filter((e) => e.offsetParent !== null && (re.test(own_(e)) || (e.matches("button,[role=button]") && re.test((e.getAttribute("aria-label") || "").trim()))))
+      .map((e) => e.closest("button,[role=button],a") || e))];
+    const buttons = btns.map((b) => (b.innerText || b.getAttribute("aria-label") || "").trim());
+    if (open) {
+      for (const b of btns.slice(0, 2)) {
+        try { b.click(); } catch (_) {}
+        await Probe.cadence.sleep(900);
+        links.push(...collect("opened:" + (b.innerText || b.getAttribute("aria-label") || "").trim().slice(0, 30)));
+        document.body.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", code: "Escape", keyCode: 27, bubbles: true }));
+        await Probe.cadence.sleep(300);
+      }
+    }
+    if (driver && driver.scrapeSources) for (const x of (await driver.scrapeSources()) || []) links.push({ url: x.url, title: x.title, where: "driver_scrape" });
+    const hints = [...document.querySelectorAll("button,[role=button],a,summary,div,span")].filter((e) => e.offsetParent !== null && e.children.length < 6)
+      .map((e) => ({ tag: e.tagName.toLowerCase(), cls: String(e.className && e.className.baseVal !== undefined ? e.className.baseVal : e.className).slice(0, 60), text: (e.innerText || "").trim().slice(0, 40), aria: e.getAttribute("aria-label"), testid: e.getAttribute("data-testid") }))
+      .filter((h) => /sources?\b|r[eé]f[eé]rences?|citations?|searched|recherch|results?\b|r[eé]sultats?/i.test(h.text + " " + (h.aria || "")) && (h.text.length < 40)).slice(0, 25);
+    const seen = new Set(), uniq = [];
+    for (const l of links) { const k = l.url + "|" + l.where; if (!seen.has(k)) { seen.add(k); uniq.push(l); } }
+    const custom = {};
+    for (const e of document.querySelectorAll("*")) { const t = e.tagName.toLowerCase(); if (/source|citation|ground|attribution|chip/.test(t)) { const c = (custom[t] ||= { n: 0, text: [], anchors: 0, aria: [] }); c.n++; if (c.text.length < 3) c.text.push((e.innerText || e.textContent || "").trim().slice(0, 160)); c.anchors += e.querySelectorAll("a[href]").length; for (const b of e.querySelectorAll("[aria-label]")) if (c.aria.length < 6) c.aria.push(b.getAttribute("aria-label").slice(0, 90)); } }
+    return { links: uniq, buttons, hints, custom };
+  }
+
   ext.runtime.onMessage.addListener((msg) => {
     if (!msg) return;
     if (msg.type === Probe.MSG.PING) {
@@ -60,6 +104,19 @@
     if (msg.type === Probe.MSG.ANSWER_STATE) {
       if (!driver || typeof driver.answerState !== "function") return Promise.resolve({ ok: false });
       return Promise.resolve({ ok: true, ...safe(() => driver.answerState(), { generating: false, len: 0 }) });
+    }
+    if (msg.type === Probe.MSG.VISIBLE_SOURCES) {
+      return (async () => {
+        try { return { ok: true, ...(await ((driver && driver.visibleSources) ? driver.visibleSources(!!msg.open) : visibleSources(!!msg.open))) }; }
+        catch (e) { return { ok: false, error: String(e?.message || e) }; }
+      })();
+    }
+    if (msg.type === Probe.MSG.GROK_POLL) {
+      return (async () => {
+        if (!driver || typeof driver.poll !== "function") return { ok: false, error: "no poll" };
+        try { return { ok: true, ...(await driver.poll(msg.convId, msg.prompt)) }; }
+        catch (e) { return { ok: false, error: String(e?.message || e) }; }
+      })();
     }
     if (msg.type === Probe.MSG.SCRAPE_SOURCES) {
       return (async () => {
@@ -97,11 +154,24 @@
         if (!driver) return { ok: false, error: "no driver" };
         try {
           const input = await driver.locateInput();
+          // Pictures go in BEFORE the text: the send button stays disabled while an
+          // upload is in flight, and submitViaButtonOrEnter waits for it anyway.
+          let attached = null;
+          if (msg.attachments && msg.attachments.length) {
+            if (typeof driver.attach !== "function") {
+              log.warn(`driver ${providerId} cannot attach files - sending text only`);
+            } else {
+              // Never fatal: if no strategy lands the picture we still send the
+              // text, and the answer itself says whether the picture arrived.
+              try { attached = await driver.attach(msg.attachments); }
+              catch (e) { attached = "failed: " + String(e?.message || e); log.warn("attach failed", attached); }
+            }
+          }
           await Probe.injector.type(input, msg.prompt, { retries: 1 });
           const submittedAt = Date.now();
           await driver.submit();
           log.info(`submitted (${providerId}) @ visibility=${document.visibilityState}`);
-          return { ok: true, submittedAt, visibility: document.visibilityState };
+          return { ok: true, submittedAt, attached, visibility: document.visibilityState };
         } catch (e) {
           log.error("submit failed", e?.message || e);
           return { ok: false, error: String(e?.message || e) };

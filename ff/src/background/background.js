@@ -37,6 +37,11 @@
     while (recEvents.length > 3000) recEvents.shift();
     return {};
   }
+  // Response bodies too (POST json/stream on provider hosts), so a recording is enough to write a parser.
+  Probe.capture.tap = (details, ct, text) => {
+    if (!recording) return;
+    recEvents.push({ kind: "net-response", ts: Date.now(), method: details.method, url: details.url, status: details.statusCode, contentType: ct, bytes: text.length, body: text.slice(0, 600000), tabId: details.tabId });
+  };
   function recStart() {
     recording = true; recEvents.length = 0;
     try {

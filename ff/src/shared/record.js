@@ -3,7 +3,7 @@
 (() => {
   const Probe = (globalThis.Probe ||= {});
   const ext = globalThis.ext;
-  const SCHEMA_VERSION = 4; // +followupOf (v3: +citations[])
+  const SCHEMA_VERSION = 5; // citations = DISPLAYED only, with anchor_text/offsets/marker (Probe.citations), +fetchedUrls (v4: +followupOf, v3: +citations[])
 
   const extVersion = () => { try { return ext.runtime.getManifest().version; } catch (_) { return null; } };
   const uuid = () => (globalThis.crypto && crypto.randomUUID ? crypto.randomUUID() : "id-" + Date.now() + "-" + Math.floor(Math.random() * 1e9));
@@ -33,6 +33,8 @@
       private: f.private ?? null,
       captureUrl: f.captureUrl ?? null,
       citations: Array.isArray(f.citations) ? f.citations : [],
+      fetchedUrls: Array.isArray(f.fetchedUrls) ? f.fetchedUrls : [],
+      domSources: f.domSources || null, // audit only (run config.auditSources): what the page itself shows as sources
       userAgent: (globalThis.navigator && navigator.userAgent) || null,
       extensionVersion: extVersion(),
     };

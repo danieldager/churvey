@@ -65,28 +65,46 @@
   function isCompletion(provider, url) {
     try { return new RegExp(provider.completionHint, "i").test(url); } catch (_) { return false; }
   }
+  // Path + the batchexecute rpcids, which is what distinguishes Google endpoints.
+  function shortUrl(url) {
+    try { const u = new URL(url); return u.pathname + (u.searchParams.get("rpcids") ? "?rpcids=" + u.searchParams.get("rpcids") : ""); }
+    catch (_) { return String(url).slice(0, 120); }
+  }
+
   function onHeaders(details) {
     try {
       if (details.method !== "POST") return {};
       const ct = headerVal(details.responseHeaders, "content-type");
-      if (!/event-stream|application\/json|text\/plain|ndjson/i.test(ct)) return {};
+      if (!/event-stream|application\/json|text\/plain|ndjson|x-component|octet-stream/i.test(ct)) return {};
       const provider = Probe.providers.forUrl(details.url);
       if (!provider) return {};
 
       const completion = isCompletion(provider, details.url);
+      // 2026-09-15: Gemini answers on screen in seconds yet items time out at 90s.
+      // Capture only delivers at filter.onstop, so we need the shape of the stream
+      // (when it starts, when its first byte lands, when it CLOSES) to tell a
+      // held-open connection from a pairing race. Gemini-only: the ring is 300 lines.
+      const trace = provider.id === "gemini";
       const t0 = Date.now();
+      let firstAt = 0, nchunks = 0;
+      if (trace) {
+        log.info(`[gemini] stream OPEN ${details.requestId} ${completion ? "COMPLETION" : "other"} ${shortUrl(details.url)}`);
+      }
 
       const filter = ext.webRequest.filterResponseData(details.requestId);
       const chunks = []; let bytes = 0;
       const entry = { details, provider, ct, chunks, bytes: 0, openedAt: t0, lastDataAt: t0, delivered: false };
       if (completion) live.set(details.requestId, entry);
       filter.ondata = (e) => {
+        if (trace && !firstAt) { firstAt = Date.now(); log.info(`[gemini] stream FIRSTBYTE ${details.requestId} +${firstAt - t0}ms`); }
+        nchunks++;
         chunks.push(e.data); bytes += e.data.byteLength; entry.bytes = bytes; entry.lastDataAt = Date.now(); filter.write(e.data);
       };
       filter.onerror = () => { live.delete(details.requestId); log.warn("filter error", filter.error, details.url); };
       filter.onstop = () => {
         try { filter.disconnect(); } catch (_) {}
         live.delete(details.requestId);
+        if (trace) log.info(`[gemini] stream STOP ${details.requestId} +${Date.now() - t0}ms (first +${firstAt ? firstAt - t0 : -1}ms) ${nchunks}chunks ${bytes}b${entry.delivered ? " (already flushed)" : ""}`);
         entry.bytes = bytes;
         deliver(entry); // no-op if a DOM-gated flush already handed it over
       };
@@ -100,6 +118,7 @@
   function handle(details, provider, ct, text, bytes) {
     const completion = isCompletion(provider, details.url);
     const parsed = completion ? parseAnswer(provider.id, ct, text) : { text: "" };
+    if (Probe.capture && Probe.capture.tap) { try { Probe.capture.tap(details, ct, text); } catch (_) {} }
     onCapture({
       provider: provider.id,
       tabId: details.tabId,
@@ -115,7 +134,7 @@
       error: parsed.error || null,
       model: completion ? sniffModel(provider.id, text) : null,
       sample: text.slice(0, 1500), // for discovery
-      raw: completion ? text.slice(0, 1000000) : undefined, // full-ish for matched endpoints (Grok/Gemini streams exceed 300KB)
+      raw: completion ? text.slice(0, 2000000) : undefined, // full-ish for matched endpoints (Grok/Gemini streams exceed 300KB); persisted on the record
     });
   }
 
@@ -127,8 +146,61 @@
     return null;
   }
 
+  // Mistral Le Chat: POST /api/chat answers as lines "<n>:{json}"; the interesting ones are
+  // {"json":{"type":"message","messageId","patches":[{op,path,value}]}} -- RFC6902-ish patches
+  // (add/replace/remove, plus "append" for string concat) against one state object per message.
+  // The assistant message ends up with contentChunks (reasoning chunks carry _context.type
+  // "reasoning", tool_call chunks the search) and citedSources [{id,title,url,description}].
+  // The model writes citations as markdown links; mid-stream they are "search-result://<id>".
+  function mistralMessages(text) {
+    const msgs = {};
+    for (const ln of text.split(/\r?\n/)) {
+      const m = /^\d+:(.*)$/.exec(ln); if (!m) continue;
+      let o; try { o = JSON.parse(m[1]); } catch (_) { continue; }
+      const j = o && o.json;
+      if (!j || j.type !== "message" || !Array.isArray(j.patches)) continue;
+      const st = (msgs[j.messageId] ||= {});
+      for (const p of j.patches) {
+        try {
+          if (p.path === "/") { for (const k of Object.keys(st)) delete st[k]; Object.assign(st, p.value); continue; }
+          const keys = p.path.split("/").slice(1);
+          let cur = st;
+          for (const k of keys.slice(0, -1)) cur = cur[k];
+          const k = keys[keys.length - 1];
+          if (Array.isArray(cur)) {
+            const i = +k;
+            if (p.op === "add") cur.splice(i, 0, p.value);
+            else if (p.op === "replace") cur[i] = p.value;
+            else if (p.op === "remove") cur.splice(i, 1);
+            else if (p.op === "append") cur[i] += p.value;
+          } else if (p.op === "add" || p.op === "replace") cur[k] = p.value;
+          else if (p.op === "remove") delete cur[k];
+          else if (p.op === "append") cur[k] = (cur[k] || "") + p.value;
+        } catch (_) {}
+      }
+    }
+    return Object.values(msgs).filter((m) => m.role === "assistant");
+  }
+  // The visible answer: top-level text chunks that are not the reasoning trace, with any
+  // still-unresolved search-result://<id> link target swapped for the cited source's URL.
+  function mistralAnswer(msg) {
+    const src = {}; for (const s of msg.citedSources || []) if (s && s.id) src[s.id] = s.url;
+    return (msg.contentChunks || [])
+      .filter((c) => c && c.type === "text" && !(c._context && c._context.type === "reasoning"))
+      .map((c) => c.text || "").join("")
+      .replace(/search-result:\/\/([A-Za-z0-9_-]+)/g, (m, id) => src[id] || m);
+  }
+  function parseMistral(text) {
+    const msgs = mistralMessages(text);
+    const best = msgs.map((m) => ({ m, t: mistralAnswer(m) })).sort((a, b) => b.t.length - a.t.length)[0];
+    if (best && best.t.trim()) return { text: best.t.trim() };
+    if (text.length < 4000) { const e = /"(?:message|error)":"([^"]{5,200})"/.exec(text); if (e) return { text: "", error: e[1] }; }
+    return { text: "" };
+  }
+
   // Provider-aware extraction (formats confirmed from discovery).
   function parseAnswer(providerId, ct, text) {
+    if (providerId === "mistral") return parseMistral(text);
     if (providerId === "gemini") {
       return { text: parseGemini(text) };
     }
@@ -404,8 +476,28 @@
     return out;
   }
 
+  // grok.com: the answer travels over a websocket, so the only HTTP trace of a chat is the page's own
+  // GETs of /rest/app-chat/conversations[_v2]/<id>. The newest id seen per tab is the current chat
+  // (a fresh private chat fetches its id before the question is typed).
+  const grokConv = new Map(); // tabId -> {id, at}
+  const GROK_CONV_RE = /\/rest\/app-chat\/conversations(?:_v2)?\/([0-9a-f]{8}-[0-9a-f-]{27})/;
+  function noteGrokConv(d) {
+    const m = GROK_CONV_RE.exec(d.url);
+    if (m && d.tabId >= 0) grokConv.set(d.tabId, { id: m[1], at: Date.now() });
+    return {};
+  }
+  // Hand a conversation read back by the runner to the normal pairing path, as if it were the old
+  // NDJSON stream: one line holding the assistant message under result.response.modelResponse.
+  function deliverGrok(tabId, convId, response) {
+    const text = JSON.stringify({ result: { response: { modelResponse: response } } }) + "\n";
+    const provider = Probe.providers.byId("grok");
+    handle({ tabId, url: `https://grok.com/rest/app-chat/conversations/${convId}/__probe_grok_synth__`, method: "POST", statusCode: 200, requestId: "grok-synth" },
+      provider, "application/x-ndjson", text, text.length);
+  }
+
   function start(cb) {
     onCapture = cb || (() => {});
+    ext.webRequest.onBeforeRequest.addListener(noteGrokConv, { urls: ["https://grok.com/rest/app-chat/conversations*"] });
     ext.webRequest.onHeadersReceived.addListener(
       onHeaders,
       { urls: Probe.providers.allMatchPatterns() },
@@ -414,5 +506,5 @@
     log.info("network capture armed for", Probe.providers.allMatchPatterns().join(", "));
   }
 
-  Probe.capture = { start, parseAnswer, flush };
+  Probe.capture = { start, parseAnswer, flush, tap: null, mistralMessages, mistralAnswer, grokConvId: (tabId) => (grokConv.get(tabId) || {}).id || null, deliverGrok };
 })();

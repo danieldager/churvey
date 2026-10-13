@@ -16,7 +16,10 @@
     "https://gemini.google.com/*",
     "https://grok.com/*",
     "https://claude.ai/*",
-    "https://chat.deepseek.com/*"
+    "https://chat.deepseek.com/*",
+    "https://chat.mistral.ai/*",
+    "https://pbs.twimg.com/*",
+    "http://127.0.0.1/*"
   ],
   "background": {
     "persistent": true,
@@ -33,8 +36,10 @@
       "src/shared/record.js",
       "src/shared/summary.js",
       "src/background/capture.js",
+      "src/background/citations.js",
       "src/background/runner.js",
-      "src/background/background.js"
+      "src/background/background.js",
+      "src/background/autostart.js"
     ]
   },
   "content_scripts": [
@@ -45,7 +50,8 @@
         "https://gemini.google.com/*",
         "https://grok.com/*",
         "https://claude.ai/*",
-        "https://chat.deepseek.com/*"
+        "https://chat.deepseek.com/*",
+        "https://chat.mistral.ai/*"
       ],
       "run_at": "document_idle",
       "js": [

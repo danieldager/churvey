@@ -112,7 +112,67 @@
     el.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", code: "Enter", bubbles: true, cancelable: true }));
   }
 
-  const B = { pick, waitFor, clickFirst, clickByText, dismissConsent, dismissNotice, pressKey, submitViaButtonOrEnter, sleep };
+  // --- attaching a picture to the composer -----------------------------------
+  // Photo-dependent claims are the ones the media rule throws away: the words only
+  // point at the picture. They become probeable if the picture goes into the chat
+  // with the prompt. The composer is React, so there are three ways in and none is
+  // guaranteed: the hidden <input type=file> (assign a FileList and fire change),
+  // a synthetic paste carrying the File, and a synthetic drop. Try them in that
+  // order and stop at the first that makes a preview appear.
+  function previewCount() {
+    return document.querySelectorAll('img[src^="blob:"], img[src^="data:image"], '
+      + '[data-testid*="file" i], [data-testid*="attachment" i], [data-testid*="thumbnail" i]').length;
+  }
+  async function previewGrew(base, timeoutMs = 20000) {
+    const t0 = Date.now();
+    while (Date.now() - t0 < timeoutMs) {
+      if (previewCount() > base) return Date.now() - t0;
+      await sleep(300);
+    }
+    return null;
+  }
+  // files: [{name, dataUrl}] from the background (it has the host permission).
+  async function attachFiles(composerSels, files) {
+    const alog = Probe.log.make("attach");
+    const dt = new DataTransfer();
+    for (const f of files) {
+      const blob = await (await fetch(f.dataUrl)).blob();
+      dt.items.add(new File([blob], f.name || "image.jpg", { type: blob.type || "image/jpeg" }));
+    }
+    const el = await waitFor(composerSels);
+    for (const [name, run] of [
+      ["file-input", () => {
+        const inp = [...document.querySelectorAll('input[type="file"]')]
+          .find((i) => !i.disabled && (!i.accept || /image|\*/i.test(i.accept)));
+        if (!inp) return false;
+        inp.files = dt.files;
+        inp.dispatchEvent(new Event("change", { bubbles: true }));
+        return true;
+      }],
+      ["paste", () => {
+        el.focus();
+        el.dispatchEvent(new ClipboardEvent("paste", { bubbles: true, cancelable: true, clipboardData: dt }));
+        return true;
+      }],
+      ["drop", () => {
+        for (const t of ["dragenter", "dragover", "drop"]) {
+          el.dispatchEvent(new DragEvent(t, { bubbles: true, cancelable: true, dataTransfer: dt }));
+        }
+        return true;
+      }],
+    ]) {
+      const base = previewCount();
+      let fired = false;
+      try { fired = run(); } catch (e) { alog.warn(`${name} threw`, e?.message || e); }
+      if (!fired) { alog.info(`${name}: not available`); continue; }
+      const ms = await previewGrew(base);
+      if (ms !== null) { alog.info(`attached ${files.length} file(s) via ${name} in ${ms}ms`); return name; }
+      alog.warn(`${name}: no preview appeared in 20s`);
+    }
+    throw new Error("attach: no strategy produced a preview");
+  }
+
+  const B = { pick, waitFor, clickFirst, clickByText, dismissConsent, dismissNotice, pressKey, submitViaButtonOrEnter, attachFiles, sleep };
 
   // --- drivers ---
   const DRIVERS = {
@@ -231,9 +291,9 @@
     },
     grok: {
       composer: ['div[contenteditable="true"][role="textbox"][aria-label*="Grok" i]', 'div.tiptap[contenteditable="true"]', 'div[contenteditable="true"][role="textbox"]'],
-      send: ['button[data-testid="send-button"]', 'button[aria-label*="Submit" i]', 'button[type="submit"]'],
-      newChat: ['a[href="/"]'],
-      private: ['button[aria-label*="private" i]', '[role="button"][aria-label*="private" i]', 'a[aria-label*="private" i]', 'button[aria-label*="incognito" i]', '[role="button"][aria-label*="incognito" i]', '[role="button"][aria-label*="ephemeral" i]'],
+      send: ['button[data-testid="chat-submit"]', 'button[aria-label="Submit"]', 'button[data-testid="send-button"]', 'button[aria-label*="Submit" i]', 'button[type="submit"]'],
+      newChat: ['a[data-testid="new-chat"]', 'a[href="/"]'],
+      private: ['a[aria-label="Switch to Private Chat"]', 'button[aria-label*="private" i]', '[role="button"][aria-label*="private" i]', 'a[aria-label*="private" i]', 'button[aria-label*="incognito" i]', '[role="button"][aria-label*="incognito" i]', '[role="button"][aria-label*="ephemeral" i]'],
       isReady() { return !!pick(this.composer); },
       async startChat({ private: priv }) {
         dismissConsent(); dismissNotice();
@@ -250,6 +310,27 @@
       },
       locateInput() { return waitFor(this.composer); },
       submit() { return submitViaButtonOrEnter(this.send, this.composer); },
+      // Since 2026-10 grok.com streams the answer over a websocket gateway (response.create),
+      // so there is no HTTP body to tee. The finished turn is read back from the same endpoints
+      // the page uses: response-node (is anything still in flight?) then load-responses (the
+      // full assistant message incl. <grok:render> cards, cardAttachmentsJson, webSearchResults).
+      async poll(convId, prompt) {
+        const base = `${location.origin}/rest/app-chat/conversations/${convId}`;
+        const get = async (u, init) => { const r = await fetch(u, { credentials: "include", ...init }); if (!r.ok) throw new Error(`${u.split("?")[0]} ${r.status}`); return r.json(); };
+        const nodes = await get(`${base}/response-node?includeThreads=true`);
+        const list = nodes.responseNodes || [];
+        const human = list.find((n) => n.sender === "human");
+        const asst = human && list.find((n) => n.sender === "assistant" && n.parentResponseId === human.responseId);
+        if (!asst || (nodes.inflightResponses || []).length) return { state: "pending" };
+        const body = JSON.stringify({ responseIds: [human.responseId, asst.responseId] });
+        const loaded = await get(`${base}/load-responses`, { method: "POST", headers: { "content-type": "application/json" }, body });
+        const rs = loaded.responses || [];
+        const h = rs.find((r) => r.responseId === human.responseId), a = rs.find((r) => r.responseId === asst.responseId);
+        if (!a || a.partial || typeof a.message !== "string" || !a.message) return { state: "pending" };
+        const norm = (s) => String(s || "").replace(/\s+/g, " ").trim();
+        if (h && norm(h.message).slice(0, 60) !== norm(prompt).slice(0, 60)) return { state: "mismatch" };
+        return { state: "done", response: a };
+      },
     },
     claude: {
       composer: ['div[contenteditable="true"].ProseMirror', 'div[contenteditable="true"]'],
@@ -283,6 +364,8 @@
         const el = await waitFor(this.composer); if ((el.innerText || "").trim()) Probe.injector.clear(el);
       },
       locateInput() { return waitFor(this.composer); },
+      // Claude only, for now: the other two drivers are untouched deliberately.
+      attach(files) { return attachFiles(this.composer, files); },
       submit() { return submitViaButtonOrEnter(this.send, this.composer); },
     },
     deepseek: {
@@ -355,6 +438,40 @@
       },
       locateInput() { return waitFor(this.composer); },
       submit() { return submitViaButtonOrEnter(this.send, this.composer); },
+    },
+    mistral: {
+      // Recorded 2026-10-06: Le Chat's "work" UI. Temporary chat = the route /work/temporary-chat
+      // (its top-bar link); the composer is a ProseMirror editor and the recording shows no send-button click.
+      composer: ['div.ProseMirror[contenteditable="true"]', 'div[contenteditable="true"]'],
+      send: ['button[type="submit"]', 'button[aria-label*="Send" i]', 'button[aria-label*="Envoyer" i]'],
+      isReady() { return !!pick(this.composer); },
+      async startChat({ private: priv }) {
+        dismissConsent(); dismissNotice();
+        // A fresh page load is the only reliable "new chat": the route is the mode.
+        location.assign(priv ? "/work/temporary-chat" : "/work");
+        await sleep(4000);
+      },
+      // Web search must be ON for every question. Find the toggle, log what we saw, switch it on if it is off.
+      async ensureWebSearch() {
+        const log = Probe.log.make("mistral");
+        const re = /web ?search|recherche (sur le )?web|search the web|recherche/i;
+        const cands = [...document.querySelectorAll('button,[role="button"],[role="switch"],[role="menuitemcheckbox"],[role="checkbox"],label')]
+          .filter((b) => b.offsetParent !== null && re.test((b.innerText || "") + " " + (b.getAttribute("aria-label") || "")));
+        log.info("web-search candidates: " + JSON.stringify(cands.slice(0, 5).map((b) => ({ t: (b.innerText || "").trim().slice(0, 40), a: b.getAttribute("aria-label"), p: b.getAttribute("aria-pressed"), c: b.getAttribute("aria-checked"), s: b.getAttribute("data-state") }))));
+        const btns = [...document.querySelectorAll("button")].filter((b) => b.offsetParent !== null).map((b) => (b.getAttribute("aria-label") || (b.innerText || "").trim() || "?").slice(0, 30));
+        log.info("buttons: " + btns.slice(0, 30).join(" | "));
+        for (const b of cands) {
+          const on = b.getAttribute("aria-pressed") === "true" || b.getAttribute("aria-checked") === "true" || b.getAttribute("data-state") === "on" || b.getAttribute("data-state") === "checked";
+          const off = b.getAttribute("aria-pressed") === "false" || b.getAttribute("aria-checked") === "false" || b.getAttribute("data-state") === "off" || b.getAttribute("data-state") === "unchecked";
+          if (off && !on) { realClick(b); log.info("web search toggled ON"); await sleep(400); }
+        }
+      },
+      async locateInput() {
+        const el = await waitFor(this.composer);
+        await this.ensureWebSearch();
+        return el;
+      },
+      submit() { return submitViaButtonOrEnter(this.send, this.composer, 2000); },
     },
   };
 

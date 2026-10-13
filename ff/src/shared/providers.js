@@ -21,7 +21,9 @@
       id: "grok", label: "Grok",
       host: "grok.com", homeUrl: "https://grok.com/",
       matchPattern: "https://grok.com/*",
-      completionHint: "responses|app-chat|conversation",
+      // grok.com answers over a websocket gateway (no HTTP stream): the answer is read back from
+      // /load-responses by the runner (see grokPoll) and handed to capture under the marker below.
+      completionHint: "conversations/new|__probe_grok_synth__",
     },
     {
       id: "claude", label: "Claude",
@@ -34,6 +36,14 @@
       host: "chat.deepseek.com", homeUrl: "https://chat.deepseek.com/",
       matchPattern: "https://chat.deepseek.com/*",
       completionHint: "chat/completion|completion",
+    },
+    {
+      id: "mistral", label: "Mistral Le Chat",
+      host: "chat.mistral.ai", homeUrl: "https://chat.mistral.ai/work",
+      matchPattern: "https://chat.mistral.ai/*",
+      // POST /api/chat (text/event-stream of "<n>:{json}" lines carrying JSON patches).
+      // NOT message.newChat, which only creates the chat + user message.
+      completionHint: "/api/chat($|\\?)",
     },
   ];
 

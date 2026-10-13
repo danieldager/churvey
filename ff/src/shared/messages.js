@@ -7,7 +7,7 @@
     PAUSE_RUN: "PAUSE_RUN",
     RESUME_RUN: "RESUME_RUN",
     STOP_RUN: "STOP_RUN",
-    PAUSE_PROVIDER: "PAUSE_PROVIDER", // {provider} freeze one provider (e.g. re-login); the rest keep running
+    PAUSE_PROVIDER: "PAUSE_PROVIDER", // {provider} freeze one provider (account swap); the rest keep running
     RESUME_PROVIDER: "RESUME_PROVIDER", // {provider} unfreeze + clear its backoff so it re-asks immediately
     GET_OVERVIEW: "GET_OVERVIEW",
     EXPORT_RUN: "EXPORT_RUN",
@@ -25,7 +25,9 @@
     PING: "PING", // -> {ok, ready, visibility}
     CAPTURE_DOM: "CAPTURE_DOM", // -> dump visible buttons/dialogs for selector authoring
     ANSWER_STATE: "ANSWER_STATE", // -> {ok, generating, len} is the visible answer finished? (Gemini flush gate)
+    GROK_POLL: "GROK_POLL", // {convId, prompt} -> {ok, state:"pending"|"done"|"mismatch", response} one read of the grok.com conversation (answer arrives over a websocket, not HTTP)
     SCRAPE_SOURCES: "SCRAPE_SOURCES", // -> {ok, citations:[{title,url}]} scraped from the answer's source UI
+    VISIBLE_SOURCES: "VISIBLE_SOURCES", // -> {ok, links:[{url,title,where}], buttons:[text]} what the page shows as sources (audit of capture; run config.auditSources)
 
     // interaction recorder ("teach me this flow") — popup -> background
     REC_START: "REC_START",
