@@ -152,15 +152,20 @@
       else cur[k] = v;
     } else cur[k] = v;
   }
+  // Events carry `c`, the slot (message doc) they edit; no `c` = the slot of the event before (see capture.js parseChatgpt).
   function chatgptMessages(raw) {
-    const msgs = []; let cur = null, lastP = "", lastO = "";
+    const msgs = [], slots = new Map(); let cur = null, slot = null, lastP = "", lastO = "";
     const apply = (op) => { if (cur && op && typeof op.p === "string" && op.p) { try { setPath(cur, op.p, op.o, op.v); } catch (_) {} } };
     for (const { data: d } of sse(raw)) {
       if (!d || typeof d !== "object" || !("v" in d)) continue;
+      if (d.c != null && d.c !== slot) {
+        if (cur) { cur.lastP = lastP; cur.lastO = lastO; }
+        slot = d.c; cur = slots.get(slot) || null; lastP = cur ? cur.lastP : ""; lastO = cur ? cur.lastO : "";
+      }
       if (typeof d.p === "string") lastP = d.p;
       if (typeof d.o === "string") lastO = d.o;
       const v = d.v;
-      if (v && typeof v === "object" && !Array.isArray(v) && v.message) { cur = { message: v.message }; msgs.push(cur); }
+      if (v && typeof v === "object" && !Array.isArray(v) && v.message) { cur = { message: v.message }; msgs.push(cur); if (slot != null) slots.set(slot, cur); }
       else if (Array.isArray(v)) v.forEach((op) => { if (op && op.p != null) apply(op); });
       else if (typeof v === "string") apply({ p: lastP, o: lastO || "append", v });
     }
@@ -168,8 +173,89 @@
   }
   // Two marker shapes: the private-use form (U+E200 "cite" U+E202 turnNsearchN ... U+E201, older) and, since
   // 2026-10, the JSX the model_dil_v2 stream writes into the text: <Cite refs={["turn0search0","turn0news1"]} />.
-  // Group 1 = the old form's refs, group 2 = the JSX form's refs list.
-  const MARKER_RE = /cite((?:?turn\d+[a-z]+\d+)+)|<Cite\s+refs=\{\[((?:\s*"turn\d+[a-z]+\d+"\s*,?)+)\s*\]\}\s*\/>/g;
+  // dilClean takes the JSX ones out of the text (with their offsets); MARKER_RE finds the old ones.
+  const MARKER_RE = /cite((?:?turn\d+[a-z]+\d+)+)/g;
+  const CITE_TAG_RE = /^<Cite\s+refs=\{\[((?:\s*"turn\d+[a-z]+\d+"\s*,?)+)\s*\]\}\s*\/>$/;
+
+  // ChatGPT's model_dil_v2 answers interleave UI markup with the prose: layout elements whose children are the
+  // prose (<box>, <row>, <text>, <title>, <list-item>, <table-cell>, <badge>, ...), widgets (<AsyncImage .../>,
+  // <Chart content={{..}} />, <MapWidgetV2 .../>, <icon/>) and the citation markers <Cite refs={[..]}/>.
+  // Returns the visible text: every tag and template expression removed, element children kept, a table row as
+  // one "| a | b |" line, lines nested in an element un-indented, lines left empty by a removed tag dropped, at most
+  // one blank line in a row; and cites = [{pos, refs}], each <Cite>'s offset in that text. Text without markup
+  // passes unchanged.
+  function tagEnd(s, i) { // index after the tag that opens at s[i] === "<", or -1 when it is not a tag
+    if (!/^<\/?[A-Za-z][\w.-]*/.test(s.slice(i, i + 64))) return -1;
+    let depth = 0;
+    for (let j = i + 1; j < s.length; j++) {
+      const ch = s[j];
+      if (ch === '"' || ch === "'") { if (depth <= 0 && ch === "'") continue; const e = s.indexOf(ch, j + 1); if (e < 0) return -1; j = e; }
+      else if (ch === "{") depth++;
+      else if (ch === "}") depth--;
+      else if (ch === ">" && depth <= 0) return j + 1;
+      else if (ch === "\n" && depth <= 0 && s[j + 1] === "\n") return -1; // a blank line: prose, not an attribute list
+    }
+    return -1;
+  }
+  // Template code between tags: {#each ..}, {/each}, {:else}, {@body const ..} and {item.name}. Index after it, or -1.
+  function exprEnd(s, i) {
+    if (!/^\{(?:[#\/:@]|[A-Za-z_$][\w$.]*\})/.test(s.slice(i, i + 64))) return -1;
+    let depth = 0;
+    for (let j = i; j < s.length; j++) {
+      const ch = s[j];
+      if (ch === '"' || ch === "`") { const e = s.indexOf(ch, j + 1); if (e < 0) return -1; j = e; }
+      else if (ch === "{") depth++;
+      else if (ch === "}" && --depth === 0) return j + 1;
+      else if (ch === "\n") return -1;
+    }
+    return -1;
+  }
+  function dilClean(src) {
+    src = String(src || "").replace(/<table-row\b[^>]*>([\s\S]*?)<\/table-row>/g, (all, row) => {
+      const cells = [...row.matchAll(/<table-cell\b[^>]*>([\s\S]*?)<\/table-cell>/g)].map((m) => m[1].replace(/\s+/g, " ").trim());
+      return cells.length ? "| " + cells.join(" | ") + " |" : all;
+    });
+    if (!/<\/?[A-Za-z][\w.-]*[\s>\/]/.test(src)) return { text: src, cites: [] };
+    const n = src.length, keep = new Uint8Array(n).fill(1), tagLines = new Set(), citeAt = new Map();
+    const lineDepth = [0]; // element depth at the start of each line
+    let depth = 0;
+    for (let i = 0; i < n; i++) {
+      if (src[i] === "\n") { lineDepth.push(depth); continue; }
+      if (src[i] === "{") { const e = exprEnd(src, i); if (e > 0) { keep.fill(0, i, e); tagLines.add(lineDepth.length - 1); i = e - 1; } continue; }
+      if (src[i] !== "<") continue;
+      const e = tagEnd(src, i); if (e < 0) continue;
+      const tag = src.slice(i, e);
+      const c = CITE_TAG_RE.exec(tag);
+      if (c) { citeAt.set(i, c[1]); for (let k = i - 1; k >= 0 && (src[k] === " " || src[k] === "\t"); k--) keep[k] = 0; }
+      if (tag[1] === "/") depth = Math.max(0, depth - 1); else if (!/\/\s*>$/.test(tag)) depth++;
+      keep.fill(0, i, e);
+      tagLines.add(lineDepth.length - 1);
+      for (let k = i; k < e; k++) if (src[k] === "\n") { lineDepth.push(depth); tagLines.add(lineDepth.length - 1); }
+      i = e - 1;
+    }
+    // Per line touched by markup: un-indent inside an element, drop trailing blanks, drop a line that only held tags.
+    // Other lines keep their whitespace (markdown hard breaks are two trailing spaces).
+    for (let ls = 0, ln = 0; ls <= n; ln++) {
+      let le = src.indexOf("\n", ls); if (le < 0) le = n;
+      const blank = (k) => !keep[k] || src[k] === " " || src[k] === "\t" || src[k] === "\r";
+      if (lineDepth[ln] > 0) for (let k = ls; k < le && blank(k); k++) keep[k] = 0;
+      if (lineDepth[ln] > 0 || tagLines.has(ln)) for (let k = le - 1; k >= ls && blank(k); k--) keep[k] = 0;
+      if (tagLines.has(ln) && le < n) { let empty = true; for (let k = ls; k < le; k++) if (keep[k]) { empty = false; break; } if (empty) keep[le] = 0; }
+      ls = le + 1;
+    }
+    let text = "", nl = 0; const cites = [];
+    for (let i = 0; i < n; i++) {
+      // A <Cite> alone on its line (after a table, a list) is placed at the end of the text before it.
+      if (citeAt.has(i)) cites.push({ pos: text.replace(/\s+$/, "").length, refs: citeAt.get(i) });
+      if (!keep[i]) continue;
+      if (src[i] === "\n") { if (++nl > 2) continue; } else nl = 0;
+      text += src[i];
+    }
+    const lead = text.length - text.replace(/^\s+/, "").length;
+    text = text.trim();
+    for (const c of cites) c.pos = Math.min(Math.max(0, c.pos - lead), text.length);
+    return { text, cites };
+  }
   const REF_RE = /turn(\d+)([a-z]+)(\d+)/g;
   function chatgpt(raw) {
     const msgs = chatgptMessages(raw);
@@ -185,7 +271,7 @@
     const fin = asst.filter((m) => m.message.channel === "final");
     const cand = (fin.length ? fin : asst).sort((a, b) => partsText(b).length - partsText(a).length)[0];
     if (!cand) return { entries: [], text: "" };
-    const text = partsText(cand), out = [];
+    const cleaned = dilClean(partsText(cand)), text = cleaned.text, out = [];
     const meta = cand.message.metadata || {}, crefs = meta.content_references || [];
     // Streams whose search_result_groups omit some refs: the grouped_webpages items carry them
     // (item.refs[0] = the item itself, further refs = its supporting_websites in order).
@@ -196,10 +282,14 @@
         if (!pool[k] && f && f.url) pool[k] = { url: clean(f.url), title: f.title || null, site: f.attribution || null, snippet: f.snippet || null };
       });
     }
-    let prevEnd = 0;
-    for (const m of text.matchAll(MARKER_RE)) {
-      const seg = segmentBefore(text, m.index, prevEnd); prevEnd = m.index + m[0].length;
-      for (const r of (m[1] || m[2]).matchAll(REF_RE)) {
+    const marks = cleaned.cites.map((c) => ({ pos: c.pos, end: c.pos, refs: c.refs }))
+      .concat([...text.matchAll(MARKER_RE)].map((m) => ({ pos: m.index, end: m.index + m[0].length, refs: m[1] })))
+      .sort((a, b) => a.pos - b.pos);
+    let prevEnd = 0, lastSeg = null;
+    for (const m of marks) {
+      let seg = segmentBefore(text, m.pos, prevEnd); prevEnd = m.end;
+      if (!seg.text && lastSeg && lastSeg.end === seg.end) seg = lastSeg; else lastSeg = seg; // second marker on the same spot
+      for (const r of m.refs.matchAll(REF_RE)) {
         const hit = pool[`${r[1]}:${r[2]}:${r[3]}`];
         out.push(mk({ url: hit && hit.url, title: hit && hit.title, site_name: hit && hit.site, cited_text: hit && hit.snippet,
                       anchor_text: seg.text, anchor_start: seg.start, anchor_end: seg.end, marker: r[0], ref_id: `${r[1]}:${r[2]}:${r[3]}`, via: "chatgpt_marker" }));
@@ -359,5 +449,5 @@
     for (const e of textLinks(r.text || answer || "")) if (!seen.has(e.url + "|" + e.anchor_start) && !r.entries.some((x) => x.url === e.url)) r.entries.push(e);
     return r.entries;
   }
-  Probe.citations = { parse, canon, claudeJoin };
+  Probe.citations = { parse, canon, claudeJoin, dilClean };
 })();

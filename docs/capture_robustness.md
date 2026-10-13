@@ -118,10 +118,18 @@ sources themselves (`search_result_groups`) were in the stream all along. Re-par
 
 Fix: `MARKER_RE` in `ff/src/background/citations.js` accepts both marker forms. Existing runs are re-parsed with `dashboard/ingest/reparse_raw.py` (not run here).
 
-Side findings, **not fixed**:
-- 6 of the 20 recorded ChatGPT answers contain one duplicated, spliced tail (`... <Cite refs={["turn120556search` followed by the sentence again): a text-reconstruction
-  problem in `capture.js parseChatgpt` with the new delta stream. The citation parser works on its own reconstruction and is unaffected.
-- ChatGPT's `responseText` carries its UI markup (`<Cite .../>`, `<AsyncImage ...>`, `<AsyncImageGroup ...>`, `<Chart>`), 155 `<Cite>` tags in 20 answers. Strip downstream if a clean text is needed.
+Side findings, fixed on branch `capture-robust-chatgpt` (2026-10-13):
+- **Text splice.** The stream now multiplexes message docs: each event carries `c`, the slot of the doc it edits. A searched
+  answer arrives as segment messages (the prose between two searches) plus one `model_dil_v2` message that gets the same
+  text, segment after segment. `parseChatgpt` (and `citations.js chatgptMessages`) applied every op to the newest doc, so
+  the recorded answer was the **last segment written twice**, chunk-interleaved, and the **earlier segments were lost**:
+  16 of the 20 pilot20 answers (the 6 visible `<Cite refs={["turn...search` splices are where the two copies broke a tag).
+  Both parsers now route ops by `c` and take the longest final message (the `model_dil_v2` one, i.e. all segments).
+- **UI markup.** `Probe.citations.dilClean` removes the DIL markup (`<box>`, `<row>`, `<text>`, `<title>`, `<AsyncImage>`,
+  `<Chart>`, `<MapWidgetV2>`, template code `{#each ..}` / `{@body ..}` / `{item.x}`, ...), keeps element children, writes a table
+  row as `| a | b |`, and takes the `<Cite>` markers out with their offsets. `responseText` and the citation anchors use the
+  same cleaned text. Text without markup is returned unchanged (29 older ChatGPT streams: identical text and rows).
+  Lost on purpose: what a template loop would render (`{#each}` data), image/chart/map widgets.
 
 ## Acceptance tests
 
@@ -156,4 +164,3 @@ Headless has no OS focus at all, and every submit worked: the runner's `focusTab
 - Limit/login/captcha detection is phrase- and selector-based (EN/FR). A new wording or language is a miss until added to `LIMIT_RE` / `LOGIN_BTN_RE` in `page-state.js`; the fallback is the old timeout path.
 - The DOM fallback records plain text (no markdown) and only the links visible in the answer, not the provider's citation structure.
 - The visibility override cannot change what the OS does to a minimised window's GPU/compositor; it fixes what the page can observe. See test (c).
-- The ChatGPT parser text-splice bug above.

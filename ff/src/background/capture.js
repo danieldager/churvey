@@ -274,9 +274,17 @@
   // arrive in `o:"patch"` batches (and bare-list batches), and only the remainder
   // is bare string `v` appends. The old generic parser kept just the bare appends,
   // silently dropping ~80% of long answers. This applies the ops faithfully.
+  // Since 2026-10 the stream multiplexes message docs: an event's `c` is the slot (doc) it edits, an event
+  // without `c` edits the slot of the event before. A searched answer arrives as segment messages (the prose
+  // between two searches) plus one model_dil_v2 message that receives the same text, segment after segment,
+  // so it holds the whole answer. Applying every op to the newest doc wrote the last segment twice,
+  // chunk-interleaved, and lost the earlier segments. The text comes back with its UI markup removed
+  // (Probe.citations.dilClean, the same cleaning the citation offsets are computed on).
   function parseChatgpt(text) {
-    const roots = []; // completed message docs
-    let root = null, lastPath = "";
+    const docs = []; // {doc, lastPath} per message doc, in order of creation
+    const slots = new Map(); // c -> its entry in docs
+    let cur = null, slot = null;
+    const start = (doc) => { cur = { doc, lastPath: "" }; docs.push(cur); if (slot != null) slots.set(slot, cur); };
 
     const navigate = (doc, tokens) => {
       let cur = doc;
@@ -296,13 +304,13 @@
     };
     const apply = (op, path, value) => {
       if (!path) {
-        if (op === "add") { if (root !== null) roots.push(root); root = value; }
-        else if (op === "replace") root = value;
+        if (op === "add") start(value);
+        else if (op === "replace") { if (cur) cur.doc = value; else start(value); }
         return;
       }
-      if (root === null) root = {};
+      if (cur === null) start({});
       const tokens = path.split("/").filter(Boolean);
-      const [cont, key] = navigate(root, tokens);
+      const [cont, key] = navigate(cur.doc, tokens);
       const k = Array.isArray(cont) ? +key : key;
       if (Array.isArray(cont)) while (cont.length <= k) cont.push(op === "append" ? "" : null);
       const old = cont[k];
@@ -315,22 +323,23 @@
     const feed = (j) => {
       if (!j || typeof j !== "object") return;
       if (j.type && !("v" in j)) return; // control frames (markers, moderation, resume)
+      if (j.c != null && j.c !== slot) { slot = j.c; cur = slots.get(slot) || null; }
       const op = j.o, path = j.p, v = j.v;
       if (op === "patch" || (op == null && Array.isArray(v) && path == null)) {
         for (const sub of v) {
           if (!sub || typeof sub !== "object") continue;
           apply(sub.o || "append", sub.p || "", sub.v);
-          if (sub.p) lastPath = sub.p;
+          if (sub.p) cur.lastPath = sub.p;
         }
         return;
       }
       if (op == null && path == null) {
-        if (typeof v === "string") apply("append", lastPath || "/message/content/parts/0", v);
-        else if (v && typeof v === "object") { apply("add", "", v); lastPath = ""; }
+        if (typeof v === "string") apply("append", (cur && cur.lastPath) || "/message/content/parts/0", v);
+        else if (v && typeof v === "object") apply("add", "", v);
         return;
       }
-      if (path != null) lastPath = path;
       apply(op || "append", path || "", v);
+      if (path) cur.lastPath = path;
     };
 
     for (const ln of text.split(/\r?\n/)) {
@@ -339,11 +348,11 @@
       let j; try { j = JSON.parse(p); } catch (_) { continue; }
       feed(j);
     }
-    if (root !== null) roots.push(root);
 
-    // Join text parts of assistant messages; prefer the last "final"-channel one.
+    // The answer = the longest final-channel assistant text (the model_dil_v2 message when the answer
+    // has segments), else the longest assistant text.
     const texts = [];
-    for (const r of roots) {
+    for (const { doc: r } of docs) {
       const msg = r && r.message;
       if (!msg || !msg.author || msg.author.role !== "assistant") continue;
       const c = msg.content;
@@ -353,7 +362,8 @@
     }
     if (!texts.length) return "";
     const finals = texts.filter((x) => x.channel == null || x.channel === "final");
-    return (finals.length ? finals[finals.length - 1] : texts[texts.length - 1]).t;
+    const best = (finals.length ? finals : texts).reduce((a, b) => (b.t.length >= a.t.length ? b : a));
+    return Probe.citations.dilClean(best.t).text;
   }
 
   // DeepSeek: SSE incremental-patch stream building a response document. Ops:
