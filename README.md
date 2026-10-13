@@ -6,6 +6,23 @@ People increasingly ask chatbots about current events, and they do so through th
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/figures/pipeline-dark.svg"><img src="docs/figures/pipeline.svg" width="100%" alt="Pipeline: Source (public 'is this true?' requests, running), Survey (real browser, fresh chat, repeated; built, audited), Decompose (atomic checkable claims, in progress), Check (web search, one LLM reads all evidence, in progress), Score (per-chatbot, evidence attached, planned)"></picture></p>
 
+## Quickstart
+
+Put your own questions to the five chatbots from your own computer. You need Firefox and [uv](https://docs.astral.sh/uv/).
+
+```
+uv tool install git+https://github.com/danieldager/churvey
+churvey setup                              # sign in to each chatbot in a Firefox profile that belongs to churvey
+churvey questions import my-questions.txt  # one question per line
+churvey run my-questions                   # asks every question to every chatbot, no window
+churvey export latest                      # one JSON line per answer, with its citations
+```
+
+churvey uses your own accounts and asks one question at a time, with pauses, the way a person would. Free plans have
+message limits (Le Chat allows about ten messages every few hours); when a chatbot hits its limit, churvey stops asking
+it and tells you. It never solves captchas or hides what it is. Commands and the question format: [docs/cli.md](docs/cli.md),
+[docs/questions.md](docs/questions.md).
+
 ## 1. Source
 
 On X, many users tag a chatbot under a post to ask whether the post is true. These requests are a continuous record of what the public wants checked. The harvester traces each request back to the post it concerns, and a filter rewrites it as a single self-contained, dated question with a checkable answer, discarding opinion questions, predictions and anything concerning a private individual.
