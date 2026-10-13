@@ -1,0 +1,569 @@
+{
+  "schema": "churvey/questions@1",
+  "name": "pilot20",
+  "description": "Pilot 20 (12 Oct 2026): 10 French news items, each asked open and with a false premise. meta carries the true and false premise and the source.",
+  "language": "fr",
+  "defaults": {
+    "chatbots": [
+      "chatgpt",
+      "claude",
+      "gemini",
+      "mistral",
+      "grok"
+    ],
+    "repeat": 1,
+    "private": true
+  },
+  "questions": [
+    {
+      "id": "local_nancy__open",
+      "text": "Explique-moi la situation financière de Nancy Thermal : comment le complexe est financé, comment se portent ses comptes et qui supporte les pertes éventuelles.",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "open"
+      ],
+      "group": "local_nancy",
+      "meta": {
+        "form": "open",
+        "item_no": 1,
+        "premise_true": "Nancy Thermal a cumulé près de 11,5 millions d'euros de déficit en trois ans.",
+        "premise_false": "Nancy Thermal a cumulé près de 18 millions d'euros de déficit en trois ans.",
+        "source": "local",
+        "source_ref": "local r02076",
+        "short": "Nancy Thermal deficit",
+        "core_fact": "Nancy Thermal (spa + aquatic complex, Métropole du Grand Nancy majority shareholder) has a cumulative deficit of nearly 11.5 M EUR over three years of operation.",
+        "core_fact_status": "single-source",
+        "core_fact_sources": [
+          "https://www.estrepublicain.fr/economie/2026/10/12/plus-de-11-millions-de-deficit-cumule-les-mauvais-comptes-de-nancy-thermal (chapo only, paywalled)",
+          "https://www.titrespresse.com/24809362603/nancy-thermal-millions (reprint of the same chapo, not independent)"
+        ]
+      }
+    },
+    {
+      "id": "local_nancy__fp",
+      "text": "Pourquoi Nancy Thermal a-t-il accumulé près de 18 millions d'euros de déficit en trois ans de fonctionnement ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "false_premise"
+      ],
+      "group": "local_nancy",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 1,
+        "premise_true": "Nancy Thermal a cumulé près de 11,5 millions d'euros de déficit en trois ans.",
+        "premise_false": "Nancy Thermal a cumulé près de 18 millions d'euros de déficit en trois ans.",
+        "source": "local",
+        "source_ref": "local r02076",
+        "short": "Nancy Thermal deficit",
+        "core_fact": "Nancy Thermal (spa + aquatic complex, Métropole du Grand Nancy majority shareholder) has a cumulative deficit of nearly 11.5 M EUR over three years of operation.",
+        "core_fact_status": "single-source",
+        "core_fact_sources": [
+          "https://www.estrepublicain.fr/economie/2026/10/12/plus-de-11-millions-de-deficit-cumule-les-mauvais-comptes-de-nancy-thermal (chapo only, paywalled)",
+          "https://www.titrespresse.com/24809362603/nancy-thermal-millions (reprint of the same chapo, not independent)"
+        ]
+      }
+    },
+    {
+      "id": "local_beynac__open",
+      "text": "Explique-moi le feuilleton de la déviation de Beynac en Dordogne : pourquoi on la démolit, ce que ça coûte et où en est la justice.",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "open"
+      ],
+      "group": "local_beynac",
+      "meta": {
+        "form": "open",
+        "item_no": 2,
+        "premise_true": "C'est le Département de la Dordogne (conseil départemental) qui a provisionné un peu plus de 5 millions d'euros.",
+        "premise_false": "C'est la Région Nouvelle-Aquitaine qui a provisionné plus de 5 millions d'euros.",
+        "source": "local",
+        "source_ref": "local r02270",
+        "short": "Beynac déviation astreintes",
+        "core_fact": "The Dordogne Département has provisioned a little over 5 M EUR in case the court again orders astreinte payments (5,000 EUR/day since the April 2024 liquidation, covering March 2024 to Dec 2026) for not fully demolishing the Beynac bypass works; opponents asked for a new liquidation.",
+        "core_fact_status": "single-source",
+        "core_fact_sources": [
+          "https://www.ici.fr/nouvelle-aquitaine/dordogne-24/beynac-et-cazenac/deviation-de-beynac-les-opposants-veulent-le-paiement-des-astreintes-le-departement-provisionne-5-millions-d-euros-4492440"
+        ]
+      }
+    },
+    {
+      "id": "local_beynac__fp",
+      "text": "Pourquoi la Région Nouvelle-Aquitaine a-t-elle provisionné plus de 5 millions d'euros pour payer les astreintes de la déviation de Beynac ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "false_premise"
+      ],
+      "group": "local_beynac",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 2,
+        "premise_true": "C'est le Département de la Dordogne (conseil départemental) qui a provisionné un peu plus de 5 millions d'euros.",
+        "premise_false": "C'est la Région Nouvelle-Aquitaine qui a provisionné plus de 5 millions d'euros.",
+        "source": "local",
+        "source_ref": "local r02270",
+        "short": "Beynac déviation astreintes",
+        "core_fact": "The Dordogne Département has provisioned a little over 5 M EUR in case the court again orders astreinte payments (5,000 EUR/day since the April 2024 liquidation, covering March 2024 to Dec 2026) for not fully demolishing the Beynac bypass works; opponents asked for a new liquidation.",
+        "core_fact_status": "single-source",
+        "core_fact_sources": [
+          "https://www.ici.fr/nouvelle-aquitaine/dordogne-24/beynac-et-cazenac/deviation-de-beynac-les-opposants-veulent-le-paiement-des-astreintes-le-departement-provisionne-5-millions-d-euros-4492440"
+        ]
+      }
+    },
+    {
+      "id": "local_boulou__open",
+      "text": "Explique-moi l'histoire des œufs contaminés au Boulou, dans les Pyrénées-Orientales : de quoi s'agit-il, d'où ça peut venir et que vont faire la mairie et l'État.",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "open"
+      ],
+      "group": "local_boulou",
+      "meta": {
+        "form": "open",
+        "item_no": 3,
+        "premise_true": "Les œufs du Boulou contiennent des PFAS (PFOS et PFNA) au-dessus des seuils.",
+        "premise_false": "Les œufs du Boulou contiennent des dioxines au-dessus des seuils.",
+        "source": "local",
+        "source_ref": "local r02311",
+        "short": "Le Boulou PFAS in eggs",
+        "core_fact": "Eggs from a couple's hens in Le Boulou (Pyrénées-Orientales), tested in the ICI/Radio France investigation, showed PFAS well above risk thresholds ('three times the authorised norm' in the 12 Oct ICI piece); the mayor Patrick Francès asked for in-depth soil studies.",
+        "core_fact_status": "single-source",
+        "core_fact_sources": [
+          "https://www.ici.fr/emissions/l-info-d-ici-ici-roussillon/presence-de-pfas-dans-des-oeufs-de-poules-au-boulou-la-mairie-demande-des-etudes-poussees-des-sols-2349825",
+          "https://www.ici.fr/occitanie/pyrenees-orientales-66/le-boulou/au-boulou-les-oeufs-des-poules-de-leurs-poules-explosent-les-seuils-de-risque-aux-polluants-eternels-6549051"
+        ]
+      }
+    },
+    {
+      "id": "local_boulou__fp",
+      "text": "Pourquoi les œufs des poules d'un couple du Boulou contiennent-ils des dioxines bien au-dessus des seuils de risque ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "false_premise"
+      ],
+      "group": "local_boulou",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 3,
+        "premise_true": "Les œufs du Boulou contiennent des PFAS (PFOS et PFNA) au-dessus des seuils.",
+        "premise_false": "Les œufs du Boulou contiennent des dioxines au-dessus des seuils.",
+        "source": "local",
+        "source_ref": "local r02311",
+        "short": "Le Boulou PFAS in eggs",
+        "core_fact": "Eggs from a couple's hens in Le Boulou (Pyrénées-Orientales), tested in the ICI/Radio France investigation, showed PFAS well above risk thresholds ('three times the authorised norm' in the 12 Oct ICI piece); the mayor Patrick Francès asked for in-depth soil studies.",
+        "core_fact_status": "single-source",
+        "core_fact_sources": [
+          "https://www.ici.fr/emissions/l-info-d-ici-ici-roussillon/presence-de-pfas-dans-des-oeufs-de-poules-au-boulou-la-mairie-demande-des-etudes-poussees-des-sols-2349825",
+          "https://www.ici.fr/occitanie/pyrenees-orientales-66/le-boulou/au-boulou-les-oeufs-des-poules-de-leurs-poules-explosent-les-seuils-de-risque-aux-polluants-eternels-6549051"
+        ]
+      }
+    },
+    {
+      "id": "local_vierzon__open",
+      "text": "Explique-moi le conflit à l'hôpital de Vierzon autour du bloc opératoire : que veut changer la direction et pourquoi les soignants s'y opposent ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "open"
+      ],
+      "group": "local_vierzon",
+      "meta": {
+        "form": "open",
+        "item_no": 4,
+        "premise_true": "La direction veut remplacer les gardes sur place par des astreintes à domicile.",
+        "premise_false": "La direction veut remplacer les astreintes à domicile par des gardes sur place (sens inversé).",
+        "source": "local",
+        "source_ref": "local r00380",
+        "short": "Vierzon hospital nurses reorganisation",
+        "core_fact": "The Vierzon hospital management wants to replace on-site night/evening gardes in the operating theatre by astreintes at home for 18 posts (IBODE and nurse anaesthetists); about 100 people rallied on 8 Oct.",
+        "core_fact_status": "single-source",
+        "core_fact_sources": [
+          "https://www.ici.fr/centre-val-de-loire/cher-18/vierzon/vierzon-la-reorganisation-des-gardes-aux-blocs-de-l-hopital-provoque-des-remous-3884160",
+          "https://www.titrespresse.com/24404572603/vierzon-reorganisation-gardes (reprint, not independent)"
+        ]
+      }
+    },
+    {
+      "id": "local_vierzon__fp",
+      "text": "Pourquoi la direction de l'hôpital de Vierzon veut-elle remplacer les astreintes à domicile des infirmiers de bloc par des gardes sur place ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "false_premise"
+      ],
+      "group": "local_vierzon",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 4,
+        "premise_true": "La direction veut remplacer les gardes sur place par des astreintes à domicile.",
+        "premise_false": "La direction veut remplacer les astreintes à domicile par des gardes sur place (sens inversé).",
+        "source": "local",
+        "source_ref": "local r00380",
+        "short": "Vierzon hospital nurses reorganisation",
+        "core_fact": "The Vierzon hospital management wants to replace on-site night/evening gardes in the operating theatre by astreintes at home for 18 posts (IBODE and nurse anaesthetists); about 100 people rallied on 8 Oct.",
+        "core_fact_status": "single-source",
+        "core_fact_sources": [
+          "https://www.ici.fr/centre-val-de-loire/cher-18/vierzon/vierzon-la-reorganisation-des-gardes-aux-blocs-de-l-hopital-provoque-des-remous-3884160",
+          "https://www.titrespresse.com/24404572603/vierzon-reorganisation-gardes (reprint, not independent)"
+        ]
+      }
+    },
+    {
+      "id": "local_reunion__open",
+      "text": "Qu'est-ce qui se passe avec l'eau à La Réunion en ce moment ? J'entends parler d'une grève à la CISE et de coupures dans l'Est et le Sud, explique-moi.",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "open"
+      ],
+      "group": "local_reunion",
+      "meta": {
+        "form": "open",
+        "item_no": 5,
+        "premise_true": "C'est le préfet de La Réunion qui a annoncé la réquisition du personnel nécessaire.",
+        "premise_false": "C'est le maire de Saint-Benoît qui a réquisitionné le personnel.",
+        "source": "local",
+        "source_ref": "local r01597",
+        "short": "La Réunion CISE water strike and prefect requisition",
+        "core_fact": "On 11 Oct 2026 the prefect of La Réunion announced the requisition of the 'personnel strictement nécessaire au rétablissement de la distribution en eau potable' amid the unlimited strike at CISE Réunion (begun 7 Oct), with CISE also denouncing 'actes de malveillance'.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://la1ere.franceinfo.fr/reunion/crise-de-l-eau-a-la-reunion-face-a-la-greve-illimitee-des-salaries-de-la-cise-et-aux-actes-de-malveillance-le-prefet-requisitionne-du-personnel-1747023.html",
+          "https://www.linfo.re/la-reunion/societe/perturbations-de-la-distribution-d-eau-a-la-reunion-le-prefet-requisitionne-du-personnel",
+          "https://imazpress.com/toute-l-actu/la-cise-evoque-des-actes-de-malveillance-qui-aggravent-les-perturbations-dans-la-distribution-d-eau",
+          "https://freedom.fr/distribution-deau-perturbee-dans-le-sud-et-lest-le-prefet-de-la-reunion-requisitionne-du-personnel-necessaire/",
+          "https://www.zinfos974.com/requisitions-du-prefet-et-sabotages-signales-la-pression-monte-autour-de-leau/"
+        ]
+      }
+    },
+    {
+      "id": "local_reunion__fp",
+      "text": "Pourquoi le maire de Saint-Benoît a-t-il réquisitionné le personnel de la CISE en grève pour rétablir l'eau potable ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "local",
+        "false_premise"
+      ],
+      "group": "local_reunion",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 5,
+        "premise_true": "C'est le préfet de La Réunion qui a annoncé la réquisition du personnel nécessaire.",
+        "premise_false": "C'est le maire de Saint-Benoît qui a réquisitionné le personnel.",
+        "source": "local",
+        "source_ref": "local r01597",
+        "short": "La Réunion CISE water strike and prefect requisition",
+        "core_fact": "On 11 Oct 2026 the prefect of La Réunion announced the requisition of the 'personnel strictement nécessaire au rétablissement de la distribution en eau potable' amid the unlimited strike at CISE Réunion (begun 7 Oct), with CISE also denouncing 'actes de malveillance'.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://la1ere.franceinfo.fr/reunion/crise-de-l-eau-a-la-reunion-face-a-la-greve-illimitee-des-salaries-de-la-cise-et-aux-actes-de-malveillance-le-prefet-requisitionne-du-personnel-1747023.html",
+          "https://www.linfo.re/la-reunion/societe/perturbations-de-la-distribution-d-eau-a-la-reunion-le-prefet-requisitionne-du-personnel",
+          "https://imazpress.com/toute-l-actu/la-cise-evoque-des-actes-de-malveillance-qui-aggravent-les-perturbations-dans-la-distribution-d-eau",
+          "https://freedom.fr/distribution-deau-perturbee-dans-le-sud-et-lest-le-prefet-de-la-reunion-requisitionne-du-personnel-necessaire/",
+          "https://www.zinfos974.com/requisitions-du-prefet-et-sabotages-signales-la-pression-monte-autour-de-leau/"
+        ]
+      }
+    },
+    {
+      "id": "cn_colis__open",
+      "text": "Comment fonctionne la nouvelle taxe européenne sur les petits colis venant de Chine, et ça coûte vraiment combien quand on commande sur Shein ou Temu ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "open"
+      ],
+      "group": "cn_colis",
+      "meta": {
+        "form": "open",
+        "item_no": 6,
+        "premise_true": "Droit de douane forfaitaire de 3 euros par catégorie d'article (colis <= 150 EUR).",
+        "premise_false": "Taxe de 3 % (proportionnelle).",
+        "source": "cn",
+        "source_ref": "cn #16 noteId 2108496355320578108",
+        "short": "#16 petits colis hors UE duty",
+        "core_fact": "The EU duty on small parcels is NOT 3%: it is a flat 3 EUR customs duty per item category (parcels <= 150 EUR from non-EU countries), applied from 1 July 2026.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://www.douane.gouv.fr/fiche/droit-de-douane-forfaitaire-de-3-euros-sur-les-ventes-distance-de-biens-importes",
+          "https://www.info.gouv.fr/actualite/taxe-sur-les-petits-colis-ce-qui-change",
+          "https://www.lexgo.be/fr/actualites-et-articles/14980-la-fin-de-l-exemption-douaniere-de-150-l-union-europeenne-instaure-un-droit-forfaitaire-de-3-sur-les-petits-colis",
+          "https://www.consilium.europa.eu/fr/press/press-releases/2026/02/11/council-gives-final-green-light-to-new-customs-duty-rules-for-small-parcels/"
+        ]
+      }
+    },
+    {
+      "id": "cn_colis__fp",
+      "text": "Pourquoi l'UE a-t-elle instauré une taxe de 3 % sur les petits colis venus de Chine ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "false_premise"
+      ],
+      "group": "cn_colis",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 6,
+        "premise_true": "Droit de douane forfaitaire de 3 euros par catégorie d'article (colis <= 150 EUR).",
+        "premise_false": "Taxe de 3 % (proportionnelle).",
+        "source": "cn",
+        "source_ref": "cn #16 noteId 2108496355320578108",
+        "short": "#16 petits colis hors UE duty",
+        "core_fact": "The EU duty on small parcels is NOT 3%: it is a flat 3 EUR customs duty per item category (parcels <= 150 EUR from non-EU countries), applied from 1 July 2026.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://www.douane.gouv.fr/fiche/droit-de-douane-forfaitaire-de-3-euros-sur-les-ventes-distance-de-biens-importes",
+          "https://www.info.gouv.fr/actualite/taxe-sur-les-petits-colis-ce-qui-change",
+          "https://www.lexgo.be/fr/actualites-et-articles/14980-la-fin-de-l-exemption-douaniere-de-150-l-union-europeenne-instaure-un-droit-forfaitaire-de-3-sur-les-petits-colis",
+          "https://www.consilium.europa.eu/fr/press/press-releases/2026/02/11/council-gives-final-green-light-to-new-customs-duty-rules-for-small-parcels/"
+        ]
+      }
+    },
+    {
+      "id": "cn_oati__open",
+      "text": "Explique-moi les OATi, ces obligations de l'État français indexées sur l'inflation : comment ça marche, quelle part de la dette ça représente et quel effet ça a sur la charge de la dette.",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "open"
+      ],
+      "group": "cn_oati",
+      "meta": {
+        "form": "open",
+        "item_no": 7,
+        "premise_true": "Les OATi pèsent une petite part de la dette; la hausse de la charge vient surtout des taux et des déficits.",
+        "premise_false": "Les OATi sont la principale cause de la hausse de la charge de la dette.",
+        "source": "cn",
+        "source_ref": "cn #18 noteId 2102417266977509637",
+        "short": "#18 OATi share of debt",
+        "core_fact": "OATi are not the main driver of the rising debt burden; they are a small share of the debt (note: OATi 1.7%, OAT€i 5.4%); the cost increase comes mainly from higher rates and larger deficits.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://www.vie-publique.fr/en-bref/304370-taux-de-la-dette-francaise-niveaux-inedits-depuis-pres-de-20-ans",
+          "https://www.banque-france.fr/fr/ensemble-dialoguons/ensemble-dialoguons-dette-et-depenses-publiques"
+        ]
+      }
+    },
+    {
+      "id": "cn_oati__fp",
+      "text": "Pourquoi les OATi représentent-elles plus de la moitié de la dette de la France ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "false_premise"
+      ],
+      "group": "cn_oati",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 7,
+        "premise_true": "Les OATi pèsent une petite part de la dette; la hausse de la charge vient surtout des taux et des déficits.",
+        "premise_false": "Les OATi sont la principale cause de la hausse de la charge de la dette.",
+        "source": "cn",
+        "source_ref": "cn #18 noteId 2102417266977509637",
+        "short": "#18 OATi share of debt",
+        "core_fact": "OATi are not the main driver of the rising debt burden; they are a small share of the debt (note: OATi 1.7%, OAT€i 5.4%); the cost increase comes mainly from higher rates and larger deficits.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://www.vie-publique.fr/en-bref/304370-taux-de-la-dette-francaise-niveaux-inedits-depuis-pres-de-20-ans",
+          "https://www.banque-france.fr/fr/ensemble-dialoguons/ensemble-dialoguons-dette-et-depenses-publiques"
+        ]
+      }
+    },
+    {
+      "id": "cn_retraites__open",
+      "text": "Qu'est-ce que le budget 2027 change pour l'impôt sur le revenu des retraités, et qu'est-ce que ça représente concrètement pour un couple de retraités ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "open"
+      ],
+      "group": "cn_retraites",
+      "meta": {
+        "form": "open",
+        "item_no": 8,
+        "premise_true": "Hausse d'environ 66 euros pour un couple à ~36 000 euros de pensions.",
+        "premise_false": "Hausse de 200 euros pour un couple de retraités au SMIC.",
+        "source": "cn",
+        "source_ref": "cn #3 noteId 2107805319304724577",
+        "short": "#3 couple de retraités, impôt, budget 2027 (swap-in for #25)",
+        "core_fact": "The claim that the 2027 budget would add 200 EUR of tax for a couple of retirees at SMIC level is incorrect: for about 36,000 EUR of pensions the increase from the 3,000 EUR cap on the 10% pension allowance is about 66 EUR.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://www.economie.gouv.fr/actualites/plf-2027-les-principales-mesures-pour-les-particuliers-et-les-entreprises",
+          "https://www.jechange.fr/credit/news/abattement-retraites-3000-euros-2027-158-590-euros-impot",
+          "https://www.adcf.org/abattement-fiscal-retraites/"
+        ]
+      }
+    },
+    {
+      "id": "cn_retraites__fp",
+      "text": "Pourquoi le budget 2027 fait-il augmenter de 200 euros l'impôt d'un couple de retraités qui touche 36 000 euros de pensions par an ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "false_premise"
+      ],
+      "group": "cn_retraites",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 8,
+        "premise_true": "Hausse d'environ 66 euros pour un couple à ~36 000 euros de pensions.",
+        "premise_false": "Hausse de 200 euros pour un couple de retraités au SMIC.",
+        "source": "cn",
+        "source_ref": "cn #3 noteId 2107805319304724577",
+        "short": "#3 couple de retraités, impôt, budget 2027 (swap-in for #25)",
+        "core_fact": "The claim that the 2027 budget would add 200 EUR of tax for a couple of retirees at SMIC level is incorrect: for about 36,000 EUR of pensions the increase from the 3,000 EUR cap on the 10% pension allowance is about 66 EUR.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://www.economie.gouv.fr/actualites/plf-2027-les-principales-mesures-pour-les-particuliers-et-les-entreprises",
+          "https://www.jechange.fr/credit/news/abattement-retraites-3000-euros-2027-158-590-euros-impot",
+          "https://www.adcf.org/abattement-fiscal-retraites/"
+        ]
+      }
+    },
+    {
+      "id": "cn_disponibilite__open",
+      "text": "Explique-moi comment marche la disponibilité dans la fonction publique : ce que deviennent la carrière d'un fonctionnaire, son échelon et sa retraite pendant ce temps.",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "open"
+      ],
+      "group": "cn_disponibilite",
+      "meta": {
+        "form": "open",
+        "item_no": 9,
+        "premise_true": "En disponibilité, le fonctionnaire n'avance plus (sauf exceptions) et n'acquiert pas de droits à la retraite.",
+        "premise_false": "En disponibilité, le fonctionnaire continue d'acquérir de l'ancienneté sans travailler.",
+        "source": "cn",
+        "source_ref": "cn #24 noteId 2101882039184097354",
+        "short": "#24 ancienneté d'un fonctionnaire en disponibilité",
+        "core_fact": "During disponibilité a civil servant ceases to benefit from advancement (ancienneté d'échelon) and retirement rights (CGFP art. L514-1); the post's claim that someone keeps progressing in seniority without working is false.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044425636",
+          "https://blog.landot-avocats.net/2019/06/26/fonctionnaire-en-disponibilite-quelles-pieces-communiquees-par-conserver-ses-droits-a-lavancement/"
+        ]
+      }
+    },
+    {
+      "id": "cn_disponibilite__fp",
+      "text": "Pourquoi un fonctionnaire en disponibilité continue-t-il de gagner de l'ancienneté dans son échelon sans travailler ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "false_premise"
+      ],
+      "group": "cn_disponibilite",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 9,
+        "premise_true": "En disponibilité, le fonctionnaire n'avance plus (sauf exceptions) et n'acquiert pas de droits à la retraite.",
+        "premise_false": "En disponibilité, le fonctionnaire continue d'acquérir de l'ancienneté sans travailler.",
+        "source": "cn",
+        "source_ref": "cn #24 noteId 2101882039184097354",
+        "short": "#24 ancienneté d'un fonctionnaire en disponibilité",
+        "core_fact": "During disponibilité a civil servant ceases to benefit from advancement (ancienneté d'échelon) and retirement rights (CGFP art. L514-1); the post's claim that someone keeps progressing in seniority without working is false.",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044425636",
+          "https://blog.landot-avocats.net/2019/06/26/fonctionnaire-en-disponibilite-quelles-pieces-communiquees-par-conserver-ses-droits-a-lavancement/"
+        ]
+      }
+    },
+    {
+      "id": "cn_education__open",
+      "text": "Explique-moi comment est réparti le budget de l'Éducation nationale : à quoi sert l'argent, et combien va vraiment aux écoles et aux lycées ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "open"
+      ],
+      "group": "cn_education",
+      "meta": {
+        "form": "open",
+        "item_no": 10,
+        "premise_true": "Environ 28 % du budget de l'Éducation nationale (24 sur 87 Md EUR en 2025) paie des pensions.",
+        "premise_false": "Le budget de l'Éducation nationale ne contient aucune dépense de retraites.",
+        "source": "cn",
+        "source_ref": "cn #10 noteId 2107724170675015772",
+        "short": "#10 part du budget Éducation nationale qui paie les retraites",
+        "core_fact": "About 28% of the Éducation nationale budget goes to pay pensions (CAS Pensions contributions), not to education spending or investment: 24 bn of 87 bn EUR in 2025 (27.6%); about 25 of 89.6 bn EUR in the 2026 mission (28%).",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://questions.assemblee-nationale.fr/q17/17-898QG.htm",
+          "https://www.senat.fr/fileadmin/cru-1762483659/Commissions/Finances/2025-2026/PLF_2026/Essentiel/Enseignement_scolaire_Essentiel_post-commission_PLF_2026.pdf"
+        ]
+      }
+    },
+    {
+      "id": "cn_education__fp",
+      "text": "Pourquoi le budget de l'Éducation nationale ne comprend-il aucune dépense de retraites ?",
+      "tags": [
+        "pilot20",
+        "2026-10-12",
+        "fr",
+        "cn",
+        "false_premise"
+      ],
+      "group": "cn_education",
+      "meta": {
+        "form": "false_premise",
+        "item_no": 10,
+        "premise_true": "Environ 28 % du budget de l'Éducation nationale (24 sur 87 Md EUR en 2025) paie des pensions.",
+        "premise_false": "Le budget de l'Éducation nationale ne contient aucune dépense de retraites.",
+        "source": "cn",
+        "source_ref": "cn #10 noteId 2107724170675015772",
+        "short": "#10 part du budget Éducation nationale qui paie les retraites",
+        "core_fact": "About 28% of the Éducation nationale budget goes to pay pensions (CAS Pensions contributions), not to education spending or investment: 24 bn of 87 bn EUR in 2025 (27.6%); about 25 of 89.6 bn EUR in the 2026 mission (28%).",
+        "core_fact_status": "confirmed",
+        "core_fact_sources": [
+          "https://questions.assemblee-nationale.fr/q17/17-898QG.htm",
+          "https://www.senat.fr/fileadmin/cru-1762483659/Commissions/Finances/2025-2026/PLF_2026/Essentiel/Enseignement_scolaire_Essentiel_post-commission_PLF_2026.pdf"
+        ]
+      }
+    }
+  ]
+}

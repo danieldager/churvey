@@ -1,0 +1,4 @@
+# A tiny question set: one question per line, lines starting with # are ignored.
+# Import it with:  churvey questions import examples/hello.txt
+Quelle est la capitale de l'Australie ?
+Who is the current Secretary-General of the United Nations?

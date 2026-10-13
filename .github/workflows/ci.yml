@@ -1,0 +1,42 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Build the wheel (bundles ff/ and the schema)
+        run: |
+          uv build
+          unzip -l dist/*.whl | grep -q 'churvey/survey/_ff/manifest.json'
+          unzip -l dist/*.whl | grep -q 'churvey/schema/questions.schema.json'
+          unzip -l dist/*.whl | grep -q 'churvey/web/setup.html'
+      - name: Python tests
+        run: uv run --python ${{ matrix.python }} python -m unittest discover -s tests -v
+      - name: Installed CLI works
+        run: |
+          uv tool install dist/*.whl
+          churvey --help
+          CHURVEY_HOME=$RUNNER_TEMP/ch churvey questions import examples/hello.txt
+          CHURVEY_HOME=$RUNNER_TEMP/ch churvey questions validate
+
+  js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Syntax check of every extension and page script
+        run: find ff/src churvey/web -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Manifest scripts exist
+        run: node -e 'const m=require("./ff/manifest.json"); const fs=require("fs"); const all=[...m.background.scripts, ...m.content_scripts.flatMap(c=>c.js)]; const miss=all.filter(f=>!fs.existsSync("ff/"+f)); if (miss.length) { console.error(miss); process.exit(1); }'

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>churvey questions</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  main { max-width: 1400px; }
+  .layout { display: grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: start; }
+  .sets { list-style: none; margin: 8px 0 0; padding: 0; }
+  .sets li { padding: 8px 10px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; gap: 8px; }
+  .sets li:hover { background: var(--idle-bg); }
+  .sets li.on { background: var(--card); border: 1px solid var(--line); font-weight: 600; }
+  .sets .n { color: var(--muted); font-size: 13px; }
+  .fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px 16px; }
+  .fields label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+  .fields .wide { grid-column: 1 / -1; }
+  .bots { display: flex; gap: 12px; flex-wrap: wrap; color: var(--ink); font-size: 15px; }
+  .bots label { flex-direction: row; align-items: center; color: var(--ink); font-size: 15px; }
+  input[type=text], input[type=number], textarea { font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);
+    border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; width: 100%; }
+  textarea { resize: vertical; min-height: 38px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  th { text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; padding: 6px; border-bottom: 1px solid var(--line); }
+  td { padding: 6px; vertical-align: top; border-bottom: 1px solid var(--line); }
+  td.num { color: var(--muted); font-size: 13px; padding-top: 14px; width: 28px; }
+  td.ops { white-space: nowrap; width: 1%; }
+  td.ops button { padding: 4px 8px; font-size: 13px; }
+  .c-id { width: 16%; } .c-tags { width: 14%; } .c-group { width: 11%; } .c-meta { width: 18%; }
+  .c-meta textarea { font: 13px/1.4 ui-monospace, Menlo, monospace; }
+  .errors { color: var(--bad); background: var(--bad-bg); border-radius: 8px; padding: 10px 14px; margin: 12px 0; }
+  .errors ul { margin: 6px 0 0; padding-left: 20px; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } table, tbody, tr, td { display: block; } thead { display: none; }
+    td { border: none; } tr { border-bottom: 1px solid var(--line); padding: 8px 0; } .c-id, .c-tags, .c-group, .c-meta { width: auto; } }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="title"></h1>
+  <div class="layout">
+    <aside>
+      <div class="toolbar">
+        <button id="new-btn"></button>
+        <button id="upload-btn"></button>
+        <input type="file" id="file" accept=".txt,.csv,.json" hidden>
+      </div>
+      <ul class="sets" id="sets"></ul>
+    </aside>
+    <section id="editor" hidden>
+      <div class="panel">
+        <div class="fields">
+          <label><span data-s="q_name"></span><input type="text" id="f-name"></label>
+          <label><span data-s="q_language"></span><input type="text" id="f-language" placeholder="fr"></label>
+          <label><span data-s="q_repeat"></span><input type="number" min="1" id="f-repeat"></label>
+          <label><span data-s="q_private"></span><span><input type="checkbox" id="f-private"></span></label>
+          <label class="wide"><span data-s="q_description"></span><input type="text" id="f-description"></label>
+          <label class="wide"><span data-s="q_chatbots"></span><span class="bots" id="f-bots"></span></label>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button class="primary" id="save-btn"></button>
+        <button id="download-btn"></button>
+        <button id="delete-btn"></button>
+        <span class="status-line" id="status"></span>
+      </div>
+      <div class="errors" id="errors" hidden></div>
+      <table>
+        <thead><tr><th></th><th class="c-id" data-s="q_col_id"></th><th data-s="q_col_text"></th><th class="c-tags" data-s="q_col_tags"></th>
+          <th class="c-group" data-s="q_col_group"></th><th class="c-meta" data-s="q_col_meta"></th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="toolbar"><button id="add-btn"></button></div>
+    </section>
+    <p id="empty" class="lead" hidden></p>
+  </div>
+</main>
+<script src="questions.js"></script>
+</body>
+</html>
