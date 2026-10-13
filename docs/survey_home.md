@@ -33,5 +33,5 @@ If llm_bench later gets a `pyproject.toml`, `uv add --editable ../churvey` repla
 ## What is next
 
 - W1: robust capture (DOM fallback, Claude endpoint fix, failure statuses, headless), developed in `ff/` here.
-- W2b: an installable CLI (`uv tool install git+https://github.com/danieldager/churvey`) with entry points for the two modules.
-- Checks available offline: syntax check of every extension script through macOS `jsc`, manifest script existence, importing both modules, building the wheel. No `node` or `web-ext` on this machine, and there are no unit tests yet beyond `test/injector-harness.html` (a browser page).
+- W2b (branch `cli-onboarding`): the `churvey` command (`setup`, `login`, `doctor`, `run`, `export`, run controls, `questions`), data in `~/.churvey`, question sets in the `churvey/questions@1` format. See [cli.md](cli.md) and [questions.md](questions.md).
+- Checks available offline: `python -m unittest discover -s tests`, syntax check of every extension and page script through macOS `jsc`, manifest script existence, building the wheel. No `node` or `web-ext` on this machine; CI runs `node --check`.

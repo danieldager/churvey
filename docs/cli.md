@@ -39,7 +39,7 @@ When a chatbot is blocked during a run, churvey stops asking it, finishes the ot
   Wait for the limit to reset, then run again with --chatbots mistral
 ```
 
-Exit codes of `run` and `doctor`: 0 everything answered, 3 the run finished with a chatbot blocked, 1 the run did not finish.
+Exit codes: `run` 0 everything answered, 3 finished with a chatbot blocked, 1 did not finish; `doctor` 0 only if every chatbot answered.
 
 ## A run folder
 
