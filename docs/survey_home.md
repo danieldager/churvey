@@ -23,13 +23,12 @@ The default profile is `cn-harvest` under `~/Library/Application Support/Firefox
 
 ## How llm_bench consumes it
 
-llm_bench depends on churvey as an editable install, the same way it uses `dev/tools/deepinfra`:
+llm_bench has no `pyproject.toml` (it runs plain `uv run python`), so there is nothing to `uv add` to. Instead it uses the sibling checkout `../churvey`:
 
-```
-uv add --editable ../churvey
-```
+- `cn_bench/launch_browser.py` and `cn_bench/ffctl.py` become small shims that put `../churvey` on `sys.path` and call `churvey.survey.*`. `daily.py` (which locates the launcher with `Path(__file__).with_name`) and every documented command keep working.
+- `ff/` in llm_bench becomes a symlink to `../churvey/ff`, so `dashboard/ingest/reparse_raw.py` (reads `ff/src/background/citations.js`) is unchanged.
 
-`cn_bench/launch_browser.py` and `cn_bench/ffctl.py` become two-line shims that call `churvey.survey.*`, so `daily.py` (which locates the launcher with `Path(__file__).with_name`) and every documented command keep working. `ff/` in llm_bench is replaced by a symlink to `../churvey/ff`, which keeps `dashboard/ingest/reparse_raw.py` (reads `ff/src/background/citations.js`) unchanged. Switch only when no run is live.
+If llm_bench later gets a `pyproject.toml`, `uv add --editable ../churvey` replaces the `sys.path` line. Switch only when no run is live.
 
 ## What is next
 
