@@ -18,8 +18,8 @@ Two Firefox sessions on the churvey profile, no window by default.
 1. **Pages, no message** (`ff/src/background/probe.js`): sign-in state (the driver's account endpoint and what the
    page shows), the selectors on the home page, a new chat and a new temporary chat (what `isolationState` says before
    anything is typed), the endpoints churvey reads, the limit-banner detector (a test banner is put on the page and
-   must be detected), the memory setting and the switches on its settings page, the chat history list. A screenshot of
-   the home page, the temporary chat and the settings page.
+   must be detected), the memory setting and the switches on its settings page, the chat history list. A screenshot (JPEG)
+   of the home page, the temporary chat and the settings page.
 2. **Three messages per signed-in chatbot**, through the ordinary runner (config `probe`): the isolation canary's two
    (« Retiens ce mot de code : girafe-47 », then in a new chat « Quel mot de code t'ai-je donné ? ») and one question
    that needs a web search (« Quelles sont les dernières actualités de la ville de Vierzon ? Donne tes sources avec
@@ -70,7 +70,7 @@ CHANGED; the report lists each moved value, old → new.
 * `report.md`: the table (checks × chatbots), what changed since the previous probe, the failures with their
   screenshots, then each chatbot's checks with their detail;
 * `report.json`: the same, with the fingerprints (the next probe compares against this file);
-* `raw.json`: everything the two sessions observed; `<chatbot>_<check>.png` for each failed check;
+* `raw.json`: everything the two sessions observed; `<chatbot>_<check>.jpg`, a screenshot for each failed check;
 * the console prints the table, the changes and the report's path.
 
 The Firefox sessions' own files go to `~/.churvey/runs/_probe/<date>/` (so a chat the probe could not delete is a

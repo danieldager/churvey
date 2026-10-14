@@ -104,14 +104,15 @@
     if (!driver || typeof driver[fn] !== "function") throw new Error(`no ${fn} for provider`);
     return driver[fn](...args);
   }
-  // Does the limit-banner detector still work on this page? Put a typical banner on it, read pageStatus, take it off.
+  // Does the limit-banner detector still work on this page? Put a typical banner inside the app (<main>, where a real
+  // one appears: a page-wide container excluded as « conversation » would hide it), read pageStatus, take it off.
   function bannerTest() {
     const before = { ...Probe.pageState.pageStatus(), banner: Probe.pageState.limitBanner() };
     const el = document.createElement("div");
     el.setAttribute("role", "alert");
     el.style.cssText = "position:fixed;top:8px;left:8px;z-index:2147483647;background:#fee;padding:6px;font:14px sans-serif";
     el.textContent = "You've reached your message limit. Try again later.";
-    document.body.appendChild(el);
+    (document.querySelector("main") || document.body).appendChild(el);
     let during;
     try { during = { ...Probe.pageState.pageStatus(), banner: Probe.pageState.limitBanner() }; } finally { el.remove(); }
     return { before, during };

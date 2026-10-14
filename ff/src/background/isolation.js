@@ -23,7 +23,11 @@
     let [t] = await ext.tabs.query({ url: meta.matchPattern });
     if (!t) { const w = await ext.windows.create({ url: url || meta.homeUrl }); t = w.tabs[0]; await sleep(2500); }
     else if (url) { await ext.tabs.update(t.id, { url }); await sleep(2500); }
-    if (!(await ready(t.id))) throw new Error("page never became ready (signed out?)");
+    if (!(await ready(t.id))) {   // no content script: often a sign-in page on another host (chat.mistral.ai -> auth.mistral.ai)
+      const e = new Error("page never became ready (signed out?)");
+      e.tabId = t.id; try { e.url = (await ext.tabs.get(t.id)).url; } catch (_) {}
+      throw e;
+    }
     await sleep(1500); // let the app finish its own start-up requests (Claude's org id is read from them)
     return t.id;
   }

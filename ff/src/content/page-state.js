@@ -28,12 +28,16 @@
   const CHALLENGE_TITLE_RE = /just a moment|un instant|attention required|verify you are human|checking your browser|v[ée]rification/i;
   const CHALLENGE_TEXT_RE = /captcha|verify (that )?you are (a )?human|v[ée]rifiez que vous [êe]tes (un )?humain|checking if the site connection is secure|performing security verification/i;
   const CONVERSATION_SEL = '[data-message-author-role], model-response, user-query, [data-is-streaming], .ds-markdown, [class*="response-content-markdown"], [class*="markdown"], [data-testid*="message" i], [data-testid*="user-message"], [class*="prose"]';
+  // Inside the conversation? A box that holds the composer is the app shell, not a message: gemini.google.com's root
+  // <chat-app> carries class "enable-lr26-markdown-styling" and grok.com's app box "print:prose" (2026-10-14), which
+  // made every login button and limit banner on those two sites look like answer text.
+  const inConversation = (el) => { const c = el.closest(CONVERSATION_SEL); return !!c && !c.querySelector('textarea, [contenteditable="true"]'); };
   const LOGIN_PATH_RE = /^\/(login|log-in|signin|sign-in|sign_in|auth\/login|auth\/signin|welcome|logout)(\/|$)|^\/auth(\/|$)/i;
 
   // A message limit / quota banner: short, visible, outside the conversation. Its text, or null.
   function limitBanner() {
     const cands = q('[role="dialog"], [role="alertdialog"], [role="alert"], [role="status"], [aria-live], dialog[open], [class*="banner" i], [class*="toast" i], [class*="snackbar" i], [class*="notice" i], [class*="limit" i], [data-testid*="limit" i], [data-testid*="banner" i], [data-testid*="toast" i], p, span, div, h1, h2, h3, li, button, a')
-      .filter((el) => el.children.length <= 4 && el.textContent.length <= 400 && isVisible(el) && !el.closest(CONVERSATION_SEL));
+      .filter((el) => el.children.length <= 4 && el.textContent.length <= 400 && isVisible(el) && !inConversation(el));
     // The whole banner but not the page around it: the longest matching text up to 220 chars (a bigger container
     // starts repeating the sidebar; a smaller one is a fragment of the banner).
     let best = null;
@@ -51,6 +55,9 @@
     });
     const bodyText = norm(document.body && document.body.innerText);
     if (CHALLENGE_TITLE_RE.test(document.title) && bodyText.length < 1500) return { state: "challenge", text: norm(document.title + " " + bodyText).slice(0, 300) };
+    // A sign-in route is a login wall even when it carries an invisible Cloudflare widget (claude.ai/login does: the probe of
+    // 2026-10-14 read a signed-out Claude as "challenge").
+    if (LOGIN_PATH_RE.test(location.pathname) || /(^|\.)accounts\.google\.com$/.test(location.hostname)) return { state: "logged_out", text: "redirected to " + location.pathname };
     if (frames.length || anyVisible("#challenge-form, #cf-challenge-running, .cf-turnstile, #px-captcha")
         || (bodyText.length < 700 && CHALLENGE_TEXT_RE.test(bodyText))) {
       return { state: "challenge", text: (bodyText || document.title).slice(0, 300) };
@@ -61,7 +68,7 @@
     for (const b of q('button, a, [role="button"]')) {
       if (!isVisible(b)) continue;
       const t = norm(b.innerText || b.getAttribute("aria-label"));
-      if (t && t.length < 40 && LOGIN_BTN_RE.test(t) && !b.closest(CONVERSATION_SEL)) return { state: "logged_out", text: `"${t}" button visible` };
+      if (t && t.length < 40 && LOGIN_BTN_RE.test(t) && !inConversation(b)) return { state: "logged_out", text: `"${t}" button visible` };
     }
     // 3. message limit / quota banner.
     const best = limitBanner();

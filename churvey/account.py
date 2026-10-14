@@ -19,14 +19,14 @@ MEMORY_HOW = {
     "claude": "switch off 'Search and reference chats' and 'Generate memory from chats' on claude.ai/settings/memory; read back from /api/account (enabled_saffron*)",
     "gemini": "switch off 'Memory' on gemini.google.com/saved-info (Personal context); read back from the same switch. Gemini Apps Activity is not changed",
     "grok": "POST /rest/user-settings {enableMemory: false}; read back from /rest/user-settings",
-    "mistral": "switch off 'Knowledge' in Settings > Privacy; read back from tRPC user.getKnowledgeToggleState",
+    "mistral": "tRPC user.setKnowledgeEnabled {enabled: false} (the 'Knowledge' switch in Settings > Privacy); read back from tRPC user.getKnowledgeToggleState",
 }
 DELETE_HOW = {
     "chatgpt": "bulk: PATCH /backend-api/conversations {is_visible: false} (Settings > Data controls > Delete all chats)",
     "claude": "one by one: DELETE /api/organizations/<org>/chat_conversations/<id>",
     "gemini": "one by one through each sidebar conversation's menu > Delete (no list or delete API)",
     "grok": "one by one: DELETE /rest/app-chat/conversations/<id> (hard delete), then the same for chats in the trash",
-    "mistral": "one by one: tRPC chat.delete, until chat.last lists nothing",
+    "mistral": "bulk: tRPC chat.deleteAll (Settings > danger zone > delete all chats)",
 }
 UNDELETABLE = {"chatgpt": "temporary chats (kept by OpenAI up to 30 days, out of the history) cannot be deleted",
                "gemini": "temporary chats never enter the history and cannot be deleted"}

@@ -9,13 +9,14 @@
   const sleep = (ms) => Probe.cadence.sleep(ms);
   const err = (e) => ({ error: String(e?.message || e) });
 
-  // A PNG of the provider's tab (data: URL), kept by probe.py only for checks that FAIL.
+  // A JPEG of the provider's tab (data: URL, kept small: every shot travels in one POST), kept by probe.py only for checks that FAIL.
   async function shot(tabId) {
     try {
       const t = await ext.tabs.get(tabId);
       await ext.tabs.update(tabId, { active: true });
       await sleep(400);
-      return await ext.tabs.captureVisibleTab(t.windowId, { format: "png" });
+      return await Promise.race([ext.tabs.captureVisibleTab(t.windowId, { format: "jpeg", quality: 40 }),
+        new Promise((res) => setTimeout(() => res("error screenshot timed out (headless?)"), 10000))]);
     } catch (e) { return "error " + String(e?.message || e); }
   }
 
@@ -23,7 +24,11 @@
     const I = Probe.isolation;
     const raw = { shots: {} };
     let tabId;
-    try { tabId = await I.tabFor(pid); } catch (e) { raw.open = err(e); return raw; }
+    try { tabId = await I.tabFor(pid); } catch (e) {
+      raw.open = { ...err(e), url: e.url || null };
+      if (e.tabId) raw.shots.home = await shot(e.tabId);
+      return raw;
+    }
     const call = async (fn, args, t) => { try { return await I.call(pid, tabId, fn, args, t); } catch (e) { return err(e); } };
     const send = async (msg, t = 20000) => { try { return await I.ask(tabId, msg, t); } catch (e) { return err(e); } };
     const where = async () => { try { return (await ext.tabs.get(tabId)).url; } catch (_) { return null; } };

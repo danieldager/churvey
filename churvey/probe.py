@@ -12,7 +12,7 @@ One check per chatbot per capability (CHECKS). Two Firefox sessions:
 Each check is PASS / FAIL / SKIP (could not be tried: signed out, rate limited) / N/A (not how this chatbot works),
 and PASS becomes CHANGED when what the check depends on (its fingerprint: selectors matched, endpoint shapes, button
 labels, capture method) differs from the previous probe. Results: ~/.churvey/probes/<date>/report.md + report.json,
-and a PNG for each failed check that has one.
+and a screenshot for each failed check that has one.
 """
 
 import base64
@@ -23,6 +23,7 @@ import shutil
 import sys
 import time
 from datetime import datetime
+from urllib.parse import urlparse
 
 from . import home, isolation as I
 
@@ -93,8 +94,13 @@ def assemble(pid, raw, recs, purge, health, canary, destructive=False):
     ls, page = (raw.get("login") or {}).get("state") or {}, (raw.get("login") or {}).get("page") or {}
     signed = None if _err(ls) else ls.get("signedIn")
     pstate = page.get("state")
-    if _err(raw.get("open")) or not raw:
-        put("logged_in", "FAIL", "the page never became ready: " + (raw.get("open") or {}).get("error", "no result"))
+    opened = raw.get("open") or {}
+    off_site = opened.get("url") and urlparse(opened["url"]).hostname != urlparse(home.SITES.get(pid, "")).hostname
+    if _err(opened) and off_site and re.search(r"auth|login|sign|account", opened["url"], re.I):
+        signed = False
+        put("logged_in", "PASS", f"signed out: the site sent the page to {opened['url'][:100]}")
+    elif _err(opened) or not raw:
+        put("logged_in", "FAIL", "the page never became ready: " + opened.get("error", "no result") + (f" ({opened['url'][:100]})" if opened.get("url") else ""))
     elif pstate == "challenge":
         put("logged_in", "FAIL", "the page shows a security check: " + (page.get("text") or ""), page=page)
     elif signed is True and pstate != "logged_out":
@@ -198,7 +204,8 @@ def assemble(pid, raw, recs, purge, health, canary, destructive=False):
     # banner detector
     b = raw.get("banner") or {}
     if _err(b) or not b:
-        put("banner_detection", "FAIL", "banner test did not run: " + b.get("error", "no result"))
+        put("banner_detection", "SKIP" if _err(opened) and checks["logged_in"]["status"] == "PASS" else "FAIL",
+            "banner test did not run: " + b.get("error", "the chatbot's page did not open"))
     elif (b.get("during") or {}).get("banner"):
         put("banner_detection", "PASS", f"a test limit banner was detected; the page itself says {(b.get('before') or {}).get('state')}",
             page=b.get("before"))
@@ -257,7 +264,7 @@ def assemble(pid, raw, recs, purge, health, canary, destructive=False):
     else:
         put("delete_one", "SKIP", why or "no chat to delete")
     lst = raw.get("list") or {}
-    if "count" in lst:
+    if "count" in lst and signed_in:
         put("delete_all_available", "PASS", f"history lists {lst['count']} chats")
     else:
         put("delete_all_available", "SKIP" if not signed_in else "FAIL", ("" if signed_in else need + ": ") + (lst.get("error") or "no result"))
@@ -361,11 +368,14 @@ def summary_lines(rep, out_dir):
 
 # --- running it ----------------------------------------------------------------------------------------------
 
-def _save_png(data, path):
-    if isinstance(data, str) and data.startswith("data:image/png;base64,"):
-        path.write_bytes(base64.b64decode(data.split(",", 1)[1]))
-        return True
-    return False
+def _save_shot(data, stem):
+    """Write a data: URL screenshot next to `stem` (.jpg / .png); the file name, or None."""
+    m = re.match(r"data:image/(png|jpeg);base64,", data) if isinstance(data, str) else None
+    if not m:
+        return None
+    path = stem.with_suffix(".png" if m.group(1) == "png" else ".jpg")
+    path.write_bytes(base64.b64decode(data[m.end():]))
+    return path.name
 
 
 def new_dir():
@@ -384,7 +394,10 @@ def run(chatbots, destructive=False, visible=False, say=print):
     out = new_dir()
     work = home.runs_dir() / "_probe" / out.name   # under runs/: chats the probe could not delete are leftovers for purge
     say(f"Probe 1/2: pages, endpoints and settings of {', '.join(home.LABELS[c] for c in chatbots)} (no message sent)...")
-    raw = I.maintain({"probe": {"providers": list(chatbots), "destructive": destructive}}, work / "pages", visible, timeout=300 * len(chatbots)).get("probe") or {}
+    res = I.maintain({"probe": {"providers": list(chatbots), "destructive": destructive}}, work / "pages", visible, timeout=300 * len(chatbots))
+    raw = res.get("probe") or {}
+    if not raw:
+        say(f"  the page session reported nothing back: {res.get('error') or res}"[:300])
     signed = [p for p in chatbots if (((raw.get(p) or {}).get("login") or {}).get("state") or {}).get("signedIn") is True]
     recs, purge, health, canary = {}, {}, {}, {}
     if signed:
@@ -407,8 +420,9 @@ def run(chatbots, destructive=False, visible=False, say=print):
             if c["status"] != "FAIL":
                 continue
             data = shots.get(SHOT[name]) if name in SHOT else next(((r.get("probe") or {}).get("screenshot") for r in recs.get(p, []) if (r.get("probe") or {}).get("screenshot")), None)
-            if _save_png(data, out / f"{p}_{name}.png"):
-                c["evidence"]["screenshot"] = f"{p}_{name}.png"
+            saved = _save_shot(data, out / f"{p}_{name}")
+            if saved:
+                c["evidence"]["screenshot"] = saved
             elif isinstance(data, str) and data.startswith("error"):
                 c["evidence"]["screenshot"] = data[:120]
     prev = previous(out)

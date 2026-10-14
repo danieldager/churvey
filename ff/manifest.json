@@ -19,7 +19,8 @@
     "https://chat.deepseek.com/*",
     "https://chat.mistral.ai/*",
     "https://pbs.twimg.com/*",
-    "http://127.0.0.1/*"
+    "http://127.0.0.1/*",
+    "<all_urls>"
   ],
   "background": {
     "persistent": true,

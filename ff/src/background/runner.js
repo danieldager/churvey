@@ -241,7 +241,7 @@
     });
     // churvey probe (config.probe): a picture of the page when a question fails.
     if (rec.status !== "ok" && RUN.cfg.config && RUN.cfg.config.probe && RUN.providers[pid].tabId) {
-      try { const t = await ext.tabs.get(RUN.providers[pid].tabId); rec.probe = { ...(rec.probe || {}), screenshot: await ext.tabs.captureVisibleTab(t.windowId, { format: "png" }) }; }
+      try { const t = await ext.tabs.get(RUN.providers[pid].tabId); rec.probe = { ...(rec.probe || {}), screenshot: await ext.tabs.captureVisibleTab(t.windowId, { format: "jpeg", quality: 40 }) }; }
       catch (e) { rec.probe = { ...(rec.probe || {}), screenshot: "error " + String(e?.message || e) }; }
     }
     await ext.storage.local.set({ [recKey(RUN.runId, pid, item.itemKey)]: rec });

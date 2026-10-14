@@ -30,7 +30,7 @@ churvey account prepare [--chatbots chatgpt,mistral] [--visible]
 | Claude | the switches « Search and reference chats » and « Generate memory from chats » on claude.ai/settings/memory; read back from `/api/account` (`enabled_saffron*`) | one by one: `DELETE /api/organizations/<org>/chat_conversations/<id>` |
 | Gemini | the « Memory » switch on gemini.google.com/saved-info; read back from that switch. Gemini Apps Activity is **not** changed | one by one through each sidebar conversation's menu > Delete (Gemini has no list or delete API we know of) |
 | Grok | `POST /rest/user-settings {enableMemory:false}` (grok.com's own settings call); read back from `/rest/user-settings` | one by one: `DELETE /rest/app-chat/conversations/<id>` (a hard delete), then the same for every chat in the trash (`/rest/app-chat/conversations/deleted`): grok.com's « delete all », `DELETE /rest/app-chat/conversations`, only moves chats to the trash |
-| Le Chat | the « Knowledge » switch in Settings > Privacy; read back from tRPC `user.getKnowledgeToggleState` | one by one: tRPC `chat.delete`, until `chat.last` lists nothing |
+| Le Chat | tRPC `user.setKnowledgeEnabled {enabled:false}` (what the « Knowledge » switch in Settings > Privacy calls); read back from tRPC `user.getKnowledgeToggleState` | bulk: tRPC `chat.deleteAll` (Settings > danger zone) |
 
 A memory already off is left alone, and an empty history is not touched. Temporary chats cannot be deleted on ChatGPT
 (kept by OpenAI up to 30 days, out of the history) or Gemini (never in the history); the plan says so.

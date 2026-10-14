@@ -822,10 +822,10 @@
       // tRPC: Le Chat's own client calls these with GET ?batch=1&input=..., mutations with POST.
       async trpc(proc, input, mutate) {
         const u = `${location.origin}/api/trpc/${proc}?batch=1`;
-        const body = { 0: { json: input === undefined ? null : input } };
+        const body = input === undefined ? { 0: { json: null, meta: { values: ["undefined"], v: 1 } } } : { 0: { json: input } };
         const r = mutate
           ? await fetch(u, { method: "POST", credentials: "include", headers: { "content-type": "application/json" }, body: JSON.stringify(body) })
-          : await fetch(`${u}&input=${encodeURIComponent(JSON.stringify(input === undefined ? { 0: { json: null, meta: { values: ["undefined"], v: 1 } } } : body))}`, { credentials: "include" });
+          : await fetch(`${u}&input=${encodeURIComponent(JSON.stringify(body))}`, { credentials: "include" });
         const j = await r.json().catch(() => null);
         return { status: r.status, data: j && j[0] && j[0].result ? j[0].result.data.json : undefined };
       },
@@ -852,14 +852,21 @@
         const k = await this.trpc("user.getKnowledgeToggleState");
         return { signedIn: k.data !== undefined ? true : k.status === 401 || k.status === 403 ? false : null, account: null, how: `user.getKnowledgeToggleState ${k.status}` };
       },
-      // Settings > Privacy > Personalization > "Knowledge". Page address to be confirmed on a signed-in account.
-      memoryPage: "https://chat.mistral.ai/settings/privacy",
-      memorySwitches: [/^knowledge\b/i, /^connaissances?\b/i, /^m[ée]moire\b/i],
-      async memoryOff() { const r = await memoryControls(this, true); return { ...r, detail: "Settings > Privacy > Knowledge switch" }; },
+      // Settings > Privacy > "Knowledge": the switch calls tRPC user.setKnowledgeEnabled {enabled} (Le Chat bundle, 2026-10-14).
+      memoryPage: null,
+      async memoryOff() {
+        const r = await this.trpc("user.setKnowledgeEnabled", { enabled: false }, true);
+        return { detail: `tRPC user.setKnowledgeEnabled {enabled:false} -> ${r.status}` };
+      },
+      // Settings > danger zone > delete all chats: tRPC chat.deleteAll (no input).
+      async deleteAllChats() {
+        const r = await this.trpc("chat.deleteAll", undefined, true);
+        return { method: "tRPC chat.deleteAll", status: r.status };
+      },
       async endpointShapes() {
         const k = await this.trpc("user.getKnowledgeToggleState");
         const l = await this.trpc("chat.last", { chatVisibility: "private", chatPermission: "write", includeProjectChats: true, includeScheduledTaskChats: true, direction: "forward" });
-        return { memory: shape(k.status, k.data, ["enabled"]), list: shape(l.status, l.data, ["items"]) + (l.data && l.data.items && l.data.items[0] ? " " + shape("", l.data.items[0], ["id"]).trim() : "") };
+        return { memory: shape(k.status, k.data, ["enabled", "canToggle"]), list: shape(l.status, l.data, ["items"]) + (l.data && l.data.items && l.data.items[0] ? " " + shape("", l.data.items[0], ["id"]).trim() : "") };
       },
       // Web search must be ON for every question. Find the toggle, log what we saw, switch it on if it is off.
       async ensureWebSearch() {
