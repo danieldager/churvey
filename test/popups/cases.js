@@ -88,4 +88,13 @@ window.CASES = [
   { name: "fixed_overlay_over_composer", expect: { class: "announcement", kind: "overlay", clicked: "ok", never: [], blocking: true },
     html: `<div style="position:fixed;left:0;right:0;bottom:0;height:160px;background:#ffd;z-index:50">
       Nouveau : la recherche approfondie est désormais disponible. <button id="ok" data-close>Compris</button></div>` },
+  { name: "notify_prompt_not_now", expect: { class: "notify_prompt", clicked: "no", never: ["notify", "allow"], blocking: false },
+    html: `<div class="toast" style="position:fixed;top:10px;right:10px;width:300px;background:#eee;z-index:999">
+      Want to be notified when Claude responds? <button id="notify" data-close>Notify</button><button id="allow" data-close>Allow</button>
+      <button id="no" data-close>Not now</button></div>` },
+  { name: "notify_prompt_only_notify", expect: { class: "notify_prompt", clicked: null, never: ["notify"], blocking: false, action: "ignored" },
+    html: `<div role="dialog" style="position:fixed;top:10px;right:10px;width:300px;background:#eee;z-index:999">
+      Want to be notified when Claude responds? <button id="notify" data-close>Notify</button></div>` },
+  { name: "unknown_empty_not_blocking", expect: { class: "unknown", clicked: null, never: ["b"], blocking: false, silent: true },
+    html: `<div role="dialog" style="position:absolute;top:10px;left:10px;width:40px;height:40px;background:#fff"><button id="b" aria-label="Valider" style="width:20px;height:20px"></button></div>` },
 ];

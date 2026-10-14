@@ -80,11 +80,19 @@ class PopupFixtures(unittest.TestCase):
                     self.assertTrue(any(a.startswith(e["action"]) for a in acts), acts)
                 left = any(a.startswith(("paused", "stuck")) for a in acts)
                 self.assertEqual(c["blocking"] is not None, left, acts)
+                if e.get("silent"):
+                    self.assertEqual(c["events"], [], "a non-blocking empty overlay must not be logged")
                 if e.get("prominent"):
                     self.assertTrue(any(ev["prominent"] for ev in c["events"]))
 
     def test_extension_scripts_parse(self):
         self.assertEqual(RESULT["syntax"], [])
+
+    def test_claude_memory_dialog(self):
+        m = RESULT["memory"]
+        self.assertEqual(m["clicks"], ["nav_memory"], "only the exact « Memory » menu entry is clicked, never a switch")
+        self.assertEqual(m["labels"], ["Generate memory from chat history"])
+        self.assertNotIn("needs", m)
 
     def test_never_click_guard(self):
         g = RESULT["guard"]

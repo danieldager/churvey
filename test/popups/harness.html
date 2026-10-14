@@ -7,6 +7,11 @@
 <div id="stage"></div>
 <script src="../../ff/src/content/page-state.js"></script>
 <script src="../../ff/src/content/popups.js"></script>
+<script src="../../ff/src/shared/namespace.js"></script>
+<script src="../../ff/src/shared/cadence.js"></script>
+<script src="../../ff/src/shared/logger.js"></script>
+<script src="../../ff/src/shared/providers.js"></script>
+<script src="../../ff/src/content/drivers.js"></script>
 <script src="cases.js"></script>
 <script>
 (async () => {
@@ -41,13 +46,30 @@
   const guard = {};
   for (const b of stage.querySelectorAll("button, a")) guard[b.id] = Probe.popups.forbidden(b);
   stage.innerHTML = "";
+  // Claude's settings dialog: opens on « General »; the « Memory » entry shows up late and has to be clicked, the
+  // switches are only read (memoryControls with off=false never clicks one).
+  stage.innerHTML = `<div role="dialog" style="position:fixed;inset:10%;background:#fff;z-index:999"><div id="menu">
+    <button data-id="nav_general">General</button></div><div id="pane">General settings</div></div>`;
+  window.__clicks = [];
+  setTimeout(() => {
+    const menu = document.getElementById("menu");
+    menu.insertAdjacentHTML("beforeend", `<button data-id="nav_memory_settings">Memory settings</button><button data-id="nav_memory">Memory</button>`);
+    for (const b of menu.querySelectorAll("button")) b.addEventListener("click", () => {
+      window.__clicks.push(b.dataset.id);
+      if (b.dataset.id === "nav_memory") document.getElementById("pane").innerHTML = `<div><span>Generate memory from chat history</span><button data-id="sw" role="switch" aria-checked="true" style="width:30px;height:16px"></button></div>`;
+    });
+    document.getElementById("pane").addEventListener("click", (ev) => { if (ev.target.dataset.id) window.__clicks.push(ev.target.dataset.id); });
+  }, 1200);
+  const mem = await Probe.drivers.B.memoryControls({ memoryPage: "https://claude.ai/settings/memory", memoryNav: /^memory$/i, memorySwitches: [/generate memory/i] }, false);
+  const memory = { clicks: window.__clicks.slice(), labels: (mem.switches || []).map((s) => s.label), ...(mem.needs ? { needs: mem.needs } : {}) };
+  stage.innerHTML = "";
   // every extension script parses (Firefox: no node on this machine)
   const fr = document.createElement("iframe");
   fr.src = "syntax.html";
   await new Promise((r) => { fr.onload = r; document.body.appendChild(fr); });
   const syntax = fr.contentWindow.__errs.slice();
   fr.remove();
-  const res = { cases: out, guard, syntax };
+  const res = { cases: out, guard, syntax, memory };
   document.title = "done";
   window.__result = res;
   if (/post=1/.test(location.search)) await fetch("/result", { method: "POST", body: JSON.stringify(res) });

@@ -58,6 +58,7 @@
     ["login", /(log|sign) ?in to (continue|keep|save|use)|session (has )?expired|session expir[ée]e|connectez-vous|reconnectez-vous|please (log|sign) in/i],
     ["cookie", /cookie|traceurs|\bconsent|consentement|gdpr|rgpd|partenaires (publicitaires|traitent)|vendors/i],
     ["terms", /terms (of (use|service)|and conditions)|consumer terms|usage policy|conditions (g[ée]n[ée]rales|d'utilisation)|privacy (policy|notice)|politique de (confidentialit[ée]|protection)|we'?re updating our|nous mettons [àa] jour/i],
+    ["notify_prompt", /(be|get) notified|notify me|browser notifications?|desktop notifications?|enable notifications|turn on notifications|recevoir des notifications|activer les notifications|[êe]tre notifi[ée]|vous notifier/i],
     ["upsell", /upgrade|passez [àa]|passer [àa] (plus|pro)|subscribe|abonnez|premium|supergrok|(chatgpt|claude|gemini) (plus|pro|max|advanced|ultra)\b|free trial|essai gratuit|unlock|d[ée]bloquez|more (usage|messages) with|higher limits/i],
     ["survey", /how (was|would you rate|satisfied|likely)|rate (your|this|the) (experience|answer|response|conversation)|(give|share|leave) (us )?(your )?feedback|\bfeedback\b|survey|sondage|questionnaire|votre avis|donnez-nous votre avis|satisfait|recommand/i],
     ["onboarding", /welcome to|bienvenue (sur|dans|à)|get started|let'?s (get started|begin)|take a (quick )?tour|visite guid[ée]e|step \d+ (of|sur|\/) ?\d+|[ée]tape \d+|here'?s how|voici comment|getting started|tips? (for|to)|astuces?/i],
@@ -175,6 +176,9 @@
       return q(REJECT_SEL, o.el).find((b) => isVisible(b) && !forbidden(b)) || by((b) => REJECT_RE.test(label(b)))
         || by((b) => NECESSARY_RE.test(label(b))) || by((b) => isCloseBtn(b, o.el)) || null;
     }
+    // The browser-notification prompt (« Want to be notified when Claude responds? Notify »): only a refusal is pressed,
+    // never « Notify » / « Allow ».
+    if (o.cls === "notify_prompt") return by((b) => isCloseBtn(b, o.el)) || by((b) => /^(not now|pas maintenant|no,? thanks|non,? merci|dismiss|ignorer)$/i.test(label(b))) || null;
     const close = by((b) => isCloseBtn(b, o.el)) || by((b) => /^(not now|pas maintenant|plus tard|later|maybe later|no,? thanks|non,? merci|skip|passer|dismiss|ignorer)$/i.test(label(b)));
     if (o.cls === "upsell" || o.cls === "model_picker") return close || by((b) => /^(got it|compris|j'ai compris)$/i.test(label(b))) || null;
     if (o.cls === "terms") return close || by((b) => TERMS_ACCEPT_RE.test(label(b))) || null;
@@ -184,7 +188,8 @@
   // decision for a human, never accepted with whatever the default is.
   const hasChoice = (el) => q('[role="switch"], [role="checkbox"], input[type="checkbox"], input[type="radio"]', el).some(isVisible);
 
-  const reported = new WeakMap();   // el -> the last action reported for it
+  const reported = new WeakMap();
+  const ignoredSeen = new Set();   // non-blocking overlays left alone, by text: logged once per page load; empty ones never   // el -> the last action reported for it
   let onEvent = null;
   function report(o, action, stage, extra = {}) {
     const ev = { class: o.cls, kind: o.kind, text_snippet: o.text.slice(0, 200), action, stage, blocking: o.blocking, url: location.href, at: new Date().toISOString(), ...extra };
@@ -210,7 +215,7 @@
         if (o.cls === "unknown" || (o.cls === "terms" && hasChoice(o.el))) {
           const why = o.cls === "unknown" ? "unknown dialog" : "terms update with a choice to make";
           if (o.blocking) { push(report(o, "paused", stage, { reason: why })); blocking = blocking || { class: o.cls, text: o.text.slice(0, 300), reason: why }; }
-          else push(report(o, "ignored", stage, { reason: why + ", not blocking" }));
+          else if (o.text && !ignoredSeen.has(o.text)) { ignoredSeen.add(o.text); push(report(o, "ignored", stage, { reason: why + ", not blocking" })); }
           continue;
         }
         if (escape && o.kind !== "toast" && o.cls !== "cookie" && o.cls !== "terms") {

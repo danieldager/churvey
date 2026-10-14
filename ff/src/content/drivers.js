@@ -187,7 +187,10 @@
     .find((e) => visible(e) && e.getAttribute("role") !== "switch" && !e.hasAttribute("aria-checked") && re.test((e.innerText || "").trim()));
   async function memoryControls(drv, off) {
     if (!drv.memoryPage) return { switches: null, detail: "no settings page known; the toggle goes through the API" };
-    const nav = drv.memoryNav ? navItem(drv.memoryNav) : null;
+    // A settings dialog renders after the page loads, and /settings/memory may redirect to the chat with the dialog
+    // open on « General »: give the menu entry time to appear before sending the tab (again) to the settings page.
+    let nav = drv.memoryNav ? navItem(drv.memoryNav) : null;
+    for (let t0 = Date.now(); drv.memoryNav && !nav && Date.now() - t0 < 10000; await sleep(500)) nav = navItem(drv.memoryNav);
     if (location.href.split(/[?#]/)[0] !== drv.memoryPage && !nav) return { needs: drv.memoryPage };
     let found = await waitSwitches(drv.memorySwitches, nav ? 3000 : 15000);
     if (!found.length && nav) { realClick(nav); found = await waitSwitches(drv.memorySwitches); }
