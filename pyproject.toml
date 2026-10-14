@@ -18,3 +18,8 @@ packages = ["churvey"]
 [tool.hatch.build.targets.wheel.force-include]
 "ff" = "churvey/survey/_ff"
 "schema/questions.schema.json" = "churvey/schema/questions.schema.json"
+
+[dependency-groups]
+dev = [
+    "quickjs>=1.19.4",
+]

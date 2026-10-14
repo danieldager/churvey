@@ -536,7 +536,7 @@ def build_parser():
     p.set_defaults(fn=cmd_login)
     p = sub.add_parser("doctor", help="check every chatbot answers in isolated chats and no account memory is on")
     p.add_argument("--chatbots", help="comma list (default: those set up)")
-    p.add_argument("--visible", action="store_true", help="show the Firefox window")
+    p.add_argument("--visible", action="store_true", help="show the Firefox window (to watch it; keep it on screen. Unattended: leave this off)")
     p.set_defaults(fn=cmd_doctor)
 
     p = sub.add_parser("run", help="ask a question set to the chatbots")
@@ -545,7 +545,7 @@ def build_parser():
     p.add_argument("--repeat", type=int, help="ask each question N times (default: the set's)")
     g = p.add_mutually_exclusive_group()
     g.add_argument("--headless", dest="visible", action="store_false", help="no Firefox window (default)")
-    g.add_argument("--visible", dest="visible", action="store_true", help="show the Firefox window")
+    g.add_argument("--visible", dest="visible", action="store_true", help="show the Firefox window (to watch it; keep it on screen. Unattended: leave this off)")
     p.add_argument("--timeout", type=int, help="give up after N seconds (default: scales with the run size)")
     p.add_argument("--keep-chats", action="store_true", help="do not delete this run's chats when it ends")
     p.add_argument("--allow-memory-unknown", action="store_true", help="run even if an account's memory setting cannot be read")
@@ -556,13 +556,13 @@ def build_parser():
     x = acs.add_parser("prepare", help="switch account memory off and delete ALL chats, per account, after a typed confirmation")
     x.add_argument("--chatbots", help="comma list (default: those set up)")
     x.add_argument("--dry-run", action="store_true", help="read each account and print what would be done; change nothing")
-    x.add_argument("--visible", action="store_true", help="show the Firefox window")
+    x.add_argument("--visible", action="store_true", help="show the Firefox window (to watch it; keep it on screen. Unattended: leave this off)")
     x.set_defaults(fn=cmd_account)
 
     p = sub.add_parser("probe", help="test every action churvey needs on every chatbot, and report what changed since the last probe")
     p.add_argument("--chatbots", help="comma list (default: those set up)")
     p.add_argument("--destructive", action="store_true", help="also switch account memory off and read it back (asks first)")
-    p.add_argument("--visible", action="store_true", help="show the Firefox window")
+    p.add_argument("--visible", action="store_true", help="show the Firefox window (to watch it; keep it on screen. Unattended: leave this off)")
     p.add_argument("--install-schedule", action="store_true", help="write a monthly launchd plist (macOS) or cron line (Linux) and print how to load it")
     p.set_defaults(fn=cmd_probe)
 
@@ -572,7 +572,7 @@ def build_parser():
     p.add_argument("--everything", action="store_true", help="delete ALL chats in one account (lists, then asks you to type its name)")
     p.add_argument("--chatbot", help="with --everything: the one account to empty")
     p.add_argument("--chatbots", help="with --run / --all-churvey: only these (comma list)")
-    p.add_argument("--visible", action="store_true", help="show the Firefox window")
+    p.add_argument("--visible", action="store_true", help="show the Firefox window (to watch it; keep it on screen. Unattended: leave this off)")
     p.set_defaults(fn=cmd_purge)
 
     for name, hlp in (("status", "progress of the run going on"), ("pause", "pause one chatbot in the running run"),

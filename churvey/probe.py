@@ -44,9 +44,9 @@ CHECKS = [
     ("canary", "isolation canary"),
     ("popups", "popups and modals seen, and how they were handled (docs/popups.md)"),
 ]
-# How each chatbot's answers are captured today (docs/capture_robustness.md). Grok's private chats are not stored on
-# the server (load-responses returns an empty message), so their answers come off the page.
-CAPTURE = {"chatgpt": "stream", "gemini": "stream", "mistral": "stream", "claude": "poll", "grok": "dom_fallback"}
+# How each chatbot's answers are captured today (docs/capture_robustness.md). Grok is polled like Claude: the baseline
+# probe of 2026-10-14 got all three private-chat answers by poll (the DOM fallback is then compared, as for the others).
+CAPTURE = {"chatgpt": "stream", "gemini": "stream", "mistral": "stream", "claude": "poll", "grok": "poll"}
 CITE_Q = {"id": "probe_cite", "text": "Quelles sont les dernières actualités de la ville de Vierzon ? Donne tes sources avec leurs liens."}
 QUESTIONS = [{"id": "canary1", "text": I.CANARY[0]}, {"id": "canary2", "text": I.CANARY[1]}, CITE_Q]   # at most 3 messages per chatbot
 SUBMIT_ERR = re.compile(r"submit|composer|waitFor|not ready|type", re.I)
@@ -147,7 +147,9 @@ def assemble(pid, raw, recs, purge, health, canary, destructive=False):
             why = o.get("error") or st.get("error") or "no isolation state"
             put(name, "SKIP" if not signed_in else "FAIL", why if signed_in else f"{need} ({why})", url=o.get("url"))
         elif st.get(field):
-            put(name, "PASS", st.get("evidence", ""), url=o.get("url"))
+            # A second NEW_CHAT is what the runner does too (runner.js submitItem); say so, it is a sign of a slow page.
+            again = " (on the second try)" if (o.get("tries") or 1) > 1 else ""
+            put(name, "PASS", st.get("evidence", "") + again, url=o.get("url"))
         else:
             put(name, "SKIP" if not signed_in else "FAIL", ("" if signed_in else need + ": ") + st.get("evidence", ""), url=o.get("url"))
 

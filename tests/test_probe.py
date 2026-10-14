@@ -82,6 +82,12 @@ class Assemble(unittest.TestCase):
         self.assertEqual(st["delete_one"], "FAIL")
         self.assertEqual(st["canary"], "FAIL")
 
+    def test_grok_is_polled_and_its_page_text_compared(self):
+        # 2026-10-14 baseline: Grok's answers came by poll; the probe expected dom_fallback and failed it.
+        recs = [rec(r["questionId"], r["responseText"], method="poll", cites=[c["url"] for c in r["citations"]]) for r in RECS]
+        st = {k: v["status"] for k, v in P.assemble("grok", SIGNED_IN, recs, {}, None, None)["checks"].items()}
+        self.assertEqual((st["poll_capture"], st["stream_capture"], st["dom_fallback"]), ("PASS", "N/A", "PASS"))
+
     def test_rate_limited_is_skip_not_fail(self):
         recs = [rec("canary1", "x", status="error")]
         r = P.assemble("grok", SIGNED_IN, recs, {}, {"status": "rate_limited", "text": "2 hours before limit is gone"}, ("rate_limited", "…"))
