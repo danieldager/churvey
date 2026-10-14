@@ -22,7 +22,8 @@ from datetime import datetime, timezone
 from . import home, isolation as I, questions as Q
 
 LOGIN_FIX = "churvey login {}"
-BLOCK_TEXT = {"logged_out": "is not signed in", "rate_limited": "hit its message limit", "challenge": "showed a security check (captcha)"}
+BLOCK_TEXT = {"logged_out": "is not signed in", "rate_limited": "hit its message limit", "challenge": "showed a security check (captcha)",
+              "popup_unknown": "showed a window churvey does not know how to close"}
 
 
 def version():
@@ -63,6 +64,8 @@ def explain_blocked(health):
             say("  " + LOGIN_FIX.format(pid))
         elif st == "rate_limited":
             say(f"  Wait for the limit to reset, then run again with --chatbots {pid}")
+        elif st == "popup_unknown":
+            say(f"  Close it by hand ({LOGIN_FIX.format(pid)} opens the page), then run again with --chatbots {pid}. Its text and a screenshot: popups.jsonl in the run folder")
 
 
 # --- setup / login ----------------------------------------------------------------------------------------
@@ -96,7 +99,7 @@ def cmd_setup(a, mode="setup"):
     ff = lb.start_firefox(profile, setup.dbg_port, url=url)
     stop = threading.Event()
     try:
-        lb.install_addon(setup.dbg_port, lb.find_ext_dir())
+        lb.install_addon(setup.dbg_port, lb.find_ext_dir(), slow=ff.slow_start)
         threading.Thread(target=setup.run_worker, args=(stop,), daemon=True).start()
         say(f"Firefox is open on the churvey profile ({profile}).")
         say(f"Follow the checklist in its first tab ({url}).")

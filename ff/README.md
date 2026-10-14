@@ -205,4 +205,6 @@ Gotcha: Firefox keeps a temporary add-on's script list in the profile's `startup
 `manifest.json` changes (a new background script silently does not load). The launcher (`launch_browser.start_firefox`,
 used by every churvey command) deletes it before each launch: `~/Library/Caches/Firefox/Profiles/<profile>/startupCache`
 on macOS, `~/.cache/mozilla/firefox/<profile>/startupCache` on Linux, `<profile>/startupCache` for a profile outside
-Firefox's root. Loading by hand through about:debugging: delete it yourself.
+Firefox's root. Loading by hand through about:debugging: delete it yourself. The first start after a clear is slow
+(Firefox rebuilds its caches): the add-on install then waits longer (180 s to connect, 90 s per reply instead of 60 / 30)
+and retries once, and a Firefox that never answers ends with a one-line message, not a traceback.
