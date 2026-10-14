@@ -77,6 +77,7 @@ A provider-side 429 / "capacity" stream error takes the same path. Shown in `ffc
   | `layout.throttled_frame_rate` | 60 | 1 |
   | `browser.tabs.unloadOnLowMemory` | false | true |
   | `browser.tabs.min_inactive_duration_before_unload` | 86400000 | 600000 |
+  | `threads.lower_mainthread_priority_in_background.enabled` (2026-10-14, see probe.md « Baseline 2026-10-14 ») | false | true |
 
 - `launch_browser --headless` starts Firefox with `--headless`.
 

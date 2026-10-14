@@ -102,7 +102,11 @@ PREFS = [
     'user_pref("dom.timeout.enable_budget_timer_throttling", false);',                    # budget-based throttling of background timers
     'user_pref("dom.suspend_inactive.enabled", false);',                                  # do not suspend inactive windows' timers/events
     'user_pref("dom.ipc.processPriorityManager.enabled", false);',                        # do not drop background content processes to low priority
-    'user_pref("layout.throttled_frame_rate", 60);',                                      # was 1 fps for hidden documents
+    # macOS: a window that is not on screen (another Space, covered, the app hidden) lowers the main-thread priority of
+    # its processes; on a loaded machine they then do not run for minutes (Mozilla bug 1960741; WebDriver sets this too).
+    # Measured 2026-10-14: 4-minute stalls of a --visible probe whose windows sat on another Space.
+    'user_pref("threads.lower_mainthread_priority_in_background.enabled", false);',
+    'user_pref("layout.throttled_frame_rate", 60);',                                     # was 1 fps for hidden documents
     'user_pref("browser.tabs.unloadOnLowMemory", false);',                                # never discard background tabs under memory pressure
     'user_pref("browser.tabs.min_inactive_duration_before_unload", 86400000);',           # and not after 10 minutes of inactivity either
 ]

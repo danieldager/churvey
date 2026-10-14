@@ -195,10 +195,16 @@
   }
   // Settings-page memory switches: {needs: url} until the tab is on that page; then [{label, checked}], and with
   // off=true every checked one is clicked (and a confirm dialog accepted) before reading them again.
+  // A settings section's entry in a settings menu (exact text; never a switch): Claude's settings are a dialog whose
+  // « Memory » entry has to be clicked (2026-10-14: /settings/memory opens the dialog on General).
+  const navItem = (re) => [...document.querySelectorAll('a, button, [role="tab"], [role="menuitem"]')]
+    .find((e) => visible(e) && e.getAttribute("role") !== "switch" && !e.hasAttribute("aria-checked") && re.test((e.innerText || "").trim()));
   async function memoryControls(drv, off) {
     if (!drv.memoryPage) return { switches: null, detail: "no settings page known; the toggle goes through the API" };
-    if (location.href.split(/[?#]/)[0] !== drv.memoryPage) return { needs: drv.memoryPage };
-    let found = await waitSwitches(drv.memorySwitches);
+    const nav = drv.memoryNav ? navItem(drv.memoryNav) : null;
+    if (location.href.split(/[?#]/)[0] !== drv.memoryPage && !nav) return { needs: drv.memoryPage };
+    let found = await waitSwitches(drv.memorySwitches, nav ? 3000 : 15000);
+    if (!found.length && nav) { realClick(nav); found = await waitSwitches(drv.memorySwitches); }
     if (off) for (const s of found.filter((x) => x.checked)) {
       realClick(s.el); await sleep(1200);
       clickByText(/^(turn off|disable|confirm|d[ée]sactiver|confirmer|continue|continuer)$/i); await sleep(1200);
@@ -664,6 +670,7 @@
       },
       // Settings > Memory: "Search and reference chats" (enabled_saffron_search), "Generate memory from chats" (enabled_saffron).
       memoryPage: "https://claude.ai/settings/memory",
+      memoryNav: /^memory$/i,
       memorySwitches: [/search and reference (past )?chats/i, /generate memory/i, /^memory\b/i],
       async memoryOff() { const r = await memoryControls(this, true); return { ...r, detail: "Settings > Memory switches" }; },
       async endpointShapes() {

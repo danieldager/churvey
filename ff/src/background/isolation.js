@@ -8,13 +8,28 @@
   const log = Probe.log.make("isolation");
   const sleep = (ms) => Probe.cadence.sleep(ms);
 
-  async function ready(tabId, timeoutMs = 30000) {
+  // The content script answers. composer=true: and the driver sees its composer (a chat page, not a settings page).
+  async function ready(tabId, timeoutMs = 30000, composer = false) {
     const t0 = Date.now();
     while (Date.now() - t0 < timeoutMs) {
-      try { const r = await ext.tabs.sendMessage(tabId, { type: Probe.MSG.PING }); if (r && r.ok) return true; } catch (_) {}
+      try { const r = await ext.tabs.sendMessage(tabId, { type: Probe.MSG.PING }); if (r && r.ok && (!composer || r.ready)) return true; } catch (_) {}
       await sleep(600);
     }
     return false;
+  }
+
+  // After tabs.update(url): wait until the old document is gone and the new one has loaded. A fixed sleep was not
+  // enough on a loaded machine (2026-10-14): the OLD page answered the PING, then unloaded under the next message
+  // (« Receiving end does not exist »).
+  async function navigated(tabId, oldUrl, timeoutMs = 30000) {
+    const t0 = Date.now(); let left = false;
+    while (Date.now() - t0 < timeoutMs) {
+      let t = null; try { t = await ext.tabs.get(tabId); } catch (_) { return; }
+      if (t.status === "loading" || t.url !== oldUrl) left = true;
+      if (left && t.status === "complete") return;
+      if (!left && Date.now() - t0 > 5000) return;   // never saw it leave (same URL, instant load): carry on
+      await sleep(250);
+    }
   }
 
   // The provider's tab (opened in its own window if there is none), optionally navigated to `url`.
@@ -22,7 +37,7 @@
     const meta = Probe.providers.byId(pid);
     let [t] = await ext.tabs.query({ url: meta.matchPattern });
     if (!t) { const w = await ext.windows.create({ url: url || meta.homeUrl }); t = w.tabs[0]; await sleep(2500); }
-    else if (url) { await ext.tabs.update(t.id, { url }); await sleep(2500); }
+    else if (url) { const was = t.url; await ext.tabs.update(t.id, { url }); await navigated(t.id, was); }
     if (!(await ready(t.id))) {   // no content script: often a sign-in page on another host (chat.mistral.ai -> auth.mistral.ai)
       const e = new Error("page never became ready (signed out?)");
       e.tabId = t.id; try { e.url = (await ext.tabs.get(t.id)).url; } catch (_) {}
@@ -82,8 +97,16 @@
   // One whitelisted driver function in the provider's tab (driver.js PROBE_CALL). A result {needs: url} means "only
   // readable on that page": the tab goes there and the call is made again.
   async function call(pid, tabId, fn, args = [], timeoutMs = 60000) {
-    let r = await ask(tabId, { type: Probe.MSG.PROBE_CALL, fn, args }, timeoutMs);
-    if (r && r.ok && r.result && r.result.needs) { tabId = await tabFor(pid, r.result.needs); r = await ask(tabId, { type: Probe.MSG.PROBE_CALL, fn, args }, timeoutMs); }
+    const once = async () => {
+      try { return await ask(tabId, { type: Probe.MSG.PROBE_CALL, fn, args }, timeoutMs); }
+      catch (e) {   // the page was replaced under the message: wait for the new one, ask once more
+        if (!/establish connection|receiving end/i.test(String(e?.message || e)) || !(await ready(tabId))) throw e;
+        await sleep(1500);
+        return ask(tabId, { type: Probe.MSG.PROBE_CALL, fn, args }, timeoutMs);
+      }
+    };
+    let r = await once();
+    if (r && r.ok && r.result && r.result.needs) { tabId = await tabFor(pid, r.result.needs); r = await once(); }
     if (!r || !r.ok) throw new Error((r && r.error) || "no reply");
     return r.result;
   }

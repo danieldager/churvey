@@ -176,6 +176,10 @@
   // dilClean takes the JSX ones out of the text (with their offsets); MARKER_RE finds the old ones.
   const MARKER_RE = /cite((?:?turn\d+[a-z]+\d+)+)/g;
   const CITE_TAG_RE = /^<Cite\s+refs=\{\[((?:\s*"turn\d+[a-z]+\d+"\s*,?)+)\s*\]\}\s*\/>$/;
+  // 2026-10-14, inline elements that render as text: <Link url=".." title=".."/> (a source link, shown as its title) and
+  // <Entity category=".." value=".."/> (a named entity, shown as its value). Both used to vanish with the other tags.
+  const INLINE_TAG_RE = /^<(Link|Entity)\b[\s\S]*\/>$/;
+  const attr = (tag, name) => { const m = new RegExp(`\\s${name}="([^"]*)"`).exec(tag); return m ? m[1] : null; };
 
   // ChatGPT's model_dil_v2 answers interleave UI markup with the prose: layout elements whose children are the
   // prose (<box>, <row>, <text>, <title>, <list-item>, <table-cell>, <badge>, ...), widgets (<AsyncImage .../>,
@@ -215,8 +219,8 @@
       const cells = [...row.matchAll(/<table-cell\b[^>]*>([\s\S]*?)<\/table-cell>/g)].map((m) => m[1].replace(/\s+/g, " ").trim());
       return cells.length ? "| " + cells.join(" | ") + " |" : all;
     });
-    if (!/<\/?[A-Za-z][\w.-]*[\s>\/]/.test(src)) return { text: src, cites: [] };
-    const n = src.length, keep = new Uint8Array(n).fill(1), tagLines = new Set(), citeAt = new Map();
+    if (!/<\/?[A-Za-z][\w.-]*[\s>\/]/.test(src)) return { text: src, cites: [], links: [] };
+    const n = src.length, keep = new Uint8Array(n).fill(1), tagLines = new Set(), citeAt = new Map(), inlineAt = new Map(), inlineLines = new Set();
     const lineDepth = [0]; // element depth at the start of each line
     let depth = 0;
     for (let i = 0; i < n; i++) {
@@ -227,6 +231,11 @@
       const tag = src.slice(i, e);
       const c = CITE_TAG_RE.exec(tag);
       if (c) { citeAt.set(i, c[1]); for (let k = i - 1; k >= 0 && (src[k] === " " || src[k] === "\t"); k--) keep[k] = 0; }
+      const il = INLINE_TAG_RE.exec(tag);
+      if (il) {
+        const url = il[1] === "Link" ? attr(tag, "url") : null, shown = il[1] === "Link" ? attr(tag, "title") || url || "" : attr(tag, "value") || "";
+        inlineAt.set(i, { shown, url, title: attr(tag, "title") }); if (shown) inlineLines.add(lineDepth.length - 1);
+      }
       if (tag[1] === "/") depth = Math.max(0, depth - 1); else if (!/\/\s*>$/.test(tag)) depth++;
       keep.fill(0, i, e);
       tagLines.add(lineDepth.length - 1);
@@ -240,13 +249,18 @@
       const blank = (k) => !keep[k] || src[k] === " " || src[k] === "\t" || src[k] === "\r";
       if (lineDepth[ln] > 0) for (let k = ls; k < le && blank(k); k++) keep[k] = 0;
       if (lineDepth[ln] > 0 || tagLines.has(ln)) for (let k = le - 1; k >= ls && blank(k); k--) keep[k] = 0;
-      if (tagLines.has(ln) && le < n) { let empty = true; for (let k = ls; k < le; k++) if (keep[k]) { empty = false; break; } if (empty) keep[le] = 0; }
+      if (tagLines.has(ln) && !inlineLines.has(ln) && le < n) { let empty = true; for (let k = ls; k < le; k++) if (keep[k]) { empty = false; break; } if (empty) keep[le] = 0; }
       ls = le + 1;
     }
-    let text = "", nl = 0; const cites = [];
+    let text = "", nl = 0; const cites = [], links = [];
     for (let i = 0; i < n; i++) {
       // A <Cite> alone on its line (after a table, a list) is placed at the end of the text before it.
       if (citeAt.has(i)) cites.push({ pos: text.replace(/\s+$/, "").length, refs: citeAt.get(i) });
+      if (inlineAt.has(i)) {
+        const x = inlineAt.get(i);
+        if (x.url) links.push({ pos: text.length, end: text.length + x.shown.length, url: x.url, title: x.title });
+        text += x.shown; if (x.shown) nl = 0;
+      }
       if (!keep[i]) continue;
       if (src[i] === "\n") { if (++nl > 2) continue; } else nl = 0;
       text += src[i];
@@ -254,7 +268,8 @@
     const lead = text.length - text.replace(/^\s+/, "").length;
     text = text.trim();
     for (const c of cites) c.pos = Math.min(Math.max(0, c.pos - lead), text.length);
-    return { text, cites };
+    for (const l of links) { l.pos = Math.min(Math.max(0, l.pos - lead), text.length); l.end = Math.min(Math.max(0, l.end - lead), text.length); }
+    return { text, cites, links };
   }
   const REF_RE = /turn(\d+)([a-z]+)(\d+)/g;
   function chatgpt(raw) {
@@ -294,6 +309,11 @@
         out.push(mk({ url: hit && hit.url, title: hit && hit.title, site_name: hit && hit.site, cited_text: hit && hit.snippet,
                       anchor_text: seg.text, anchor_start: seg.start, anchor_end: seg.end, marker: r[0], ref_id: `${r[1]}:${r[2]}:${r[3]}`, via: "chatgpt_marker" }));
       }
+    }
+    // Source links written into the DIL markup (<Link url=.. title=../>): the citation is the link, its anchor the text before it on its line.
+    for (const l of cleaned.links) {
+      const seg = segmentBefore(text, l.pos, 0);
+      out.push(mk({ url: clean(l.url), title: l.title, anchor_text: seg.text, anchor_start: seg.start, anchor_end: seg.end, via: "chatgpt_link" }));
     }
     // The Sources list ChatGPT prints under the answer.
     for (const c of crefs) if (c.type === "sources_footnote") for (const s of c.sources || []) {

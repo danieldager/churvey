@@ -44,13 +44,23 @@
     raw.list = ids && ids.ok ? { count: ids.ids.length } : { error: (ids && ids.error) || "no reply" };
     raw.shots.home = await shot(tabId);
 
-    // A new ordinary chat, then a new temporary one: what isolationState says before anything is typed.
+    // A new ordinary chat, then a new temporary one: what isolationState says before anything is typed. The same steps
+    // as the runner (runner.js submitItem): window focused, the composer on the page before NEW_CHAT (the driver refuses
+    // it otherwise), one more NEW_CHAT if the chat is not yet a new temporary one.
+    const focus = async () => { try { const t = await ext.tabs.get(tabId); await ext.tabs.update(tabId, { active: true }); await ext.windows.update(t.windowId, { focused: true }); } catch (_) {} };
     for (const [key, priv] of [["new_chat", false], ["temporary", true]]) {
-      await send({ type: Probe.MSG.NEW_CHAT, private: priv }, 15000);   // may navigate: the reply is then lost
-      await sleep(1500);
-      if (!(await I.ready(tabId))) { raw[key] = { error: "page never became ready after starting the chat" }; continue; }
-      await sleep(1500);
-      raw[key] = { url: await where(), state: await send({ type: Probe.MSG.ISOLATION_STATE }), fingerprint: await call("fingerprint") };
+      raw[key] = { error: "page never became ready after starting the chat" };
+      for (let tries = 1; tries <= 2; tries++) {
+        await focus();
+        if (!(await I.ready(tabId, 15000, true))) break;   // no composer: signed out, or the page is stuck
+        await send({ type: Probe.MSG.NEW_CHAT, private: priv }, 15000);   // may navigate: the reply is then lost
+        await sleep(1500);
+        if (!(await I.ready(tabId, 30000, true))) break;
+        await sleep(1500);
+        raw[key] = { url: await where(), state: await send({ type: Probe.MSG.ISOLATION_STATE }), fingerprint: await call("fingerprint"), tries };
+        const st = raw[key].state || {};
+        if (st.newChat && (!priv || st.temporary)) break;
+      }
     }
     raw.shots.temporary = await shot(tabId);
 
