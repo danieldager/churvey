@@ -40,4 +40,21 @@ The code: `memoryOff`, `deleteAllChats` and `loginState` in `ff/src/content/driv
 
 ## What has been verified
 
-<!-- ACCOUNT_RESULTS -->
+`churvey account prepare --dry-run` on the cn-harvest accounts, 14 October 2026 13:18 (read only):
+
+| Account | Memory | Chats | Would do |
+|---|---|---|---|
+| ChatGPT misinfodashboard@gmail.com | off (sunshine, moonshine false) | 0 | nothing |
+| Claude misinfodashboard@gmail.com | off | 9 | delete 9, one by one |
+| Gemini (Daniel Dager, misinfodashboard@gmail.com) | off, no saved info | 12 in the sidebar | delete them through the sidebar menu |
+| Le Chat | off (Knowledge false) | 0 | nothing |
+| Grok | off (enableMemory false) | 1 | delete it, and the trash |
+
+Memory was ON for ChatGPT and Le Chat at 09:40 the same morning and off at 13:18 (switched off by hand in between).
+
+Never run for real yet, so these are **not verified**: ChatGPT's `account_user_setting` and bulk `PATCH
+/backend-api/conversations` (logged-out chatgpt.com serves a different app, so its bundle could not be checked; they
+are the calls the settings page is known to make); Claude's claude.ai/settings/memory page and switch labels; Gemini's
+sidebar menu selectors; Le Chat's `user.setKnowledgeEnabled` and `chat.deleteAll` (seen in its bundle, never called);
+Grok's `POST /rest/user-settings` (seen in its bundle, never called). Grok's delete by id and Claude's and Le Chat's
+`chat.delete` were verified on 14 October (docs/isolation.md).

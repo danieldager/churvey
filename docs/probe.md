@@ -96,4 +96,23 @@ A probe that starts while a run holds the profile stops at once (« Firefox is a
 
 ## Measured
 
-<!-- PROBE_RESULTS -->
+14 October 2026, on a fresh Firefox profile signed in to nothing (so every check that needs an account is SKIP):
+
+| check | ChatGPT | Claude | Gemini | Le Chat | Grok |
+|---|---|---|---|---|---|
+| logged_in (signed out, detected) | PASS | PASS | PASS | PASS (sent to the sign-in host) | PASS |
+| new_chat | PASS | SKIP | PASS | SKIP | PASS |
+| banner_detection | PASS | PASS | PASS | SKIP (page never opened) | PASS |
+| everything else | SKIP | SKIP | SKIP | SKIP | SKIP |
+
+The first runs found three real faults, fixed in `page-state.js` / `probe.js`:
+
+* Gemini's root element `<chat-app>` has class `enable-lr26-markdown-styling` and grok.com's app box `print:prose`; both
+  matched the « this is answer text » selector, so **every login button and limit banner on Gemini and Grok was
+  ignored**. A box that holds the composer is now the app shell, not a message.
+* claude.ai/login carries an invisible Cloudflare widget and was read as « challenge » instead of signed out.
+* `tabs.captureVisibleTab` does not exist without the `<all_urls>` permission, and hangs in headless Firefox: the
+  probe now has the permission, small JPEGs and a 10 s bound.
+
+Not yet run: the signed-in checks (the cn-harvest accounts, at most 3 messages each). The first signed-in probe is the
+baseline the monthly ones compare with.

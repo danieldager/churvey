@@ -38,7 +38,7 @@ def plan(chatbots, read):
     who, mem, lst = read.get("whoami") or {}, read.get("memory") or {}, read.get("list") or {}
     for p in chatbots:
         w, m, l = who.get(p) or {}, mem.get(p) or {"status": "unknown", "detail": "no result"}, lst.get(p) or {}
-        acct = w.get("account") or ("signed in" if w.get("signedIn") else "NOT signed in" if w.get("signedIn") is False else "account unknown")
+        acct = " ".join((w.get("account") or "").split()) or ("signed in" if w.get("signedIn") else "NOT signed in" if w.get("signedIn") is False else "account unknown")
         lines.append(f"{home.LABELS.get(p, p)} ({acct})")
         if w.get("signedIn") is False:
             lines.append("  nothing: not signed in (churvey login " + p + ")")
