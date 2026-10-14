@@ -27,6 +27,7 @@
     MEMORY_STATUS: "MEMORY_STATUS", // -> {ok, status:"on"|"off"|"unknown", detail} | {ok, needs:url} account memory setting, read only
     DELETE_CHATS: "DELETE_CHATS", // {ids} -> {ok, results:{id: "deleted"|"not_found"|"unsupported"|"error .."}} the provider's own delete
     LIST_CHATS: "LIST_CHATS", // -> {ok, ids} every chat in the account's history (purge --everything only)
+    PROBE_CALL: "PROBE_CALL", // {fn, args} -> {ok, result} one whitelisted driver function (churvey probe / account prepare)
     CAPTURE_DOM: "CAPTURE_DOM", // -> dump visible buttons/dialogs for selector authoring
     ANSWER_STATE: "ANSWER_STATE", // -> {ok, generating, len} is the visible answer finished? (Gemini flush gate)
     GROK_POLL: "GROK_POLL", // {convId, prompt} -> {ok, state:"pending"|"done"|"mismatch", response} one read of the grok.com conversation (answer arrives over a websocket, not HTTP)

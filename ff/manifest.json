@@ -39,6 +39,7 @@
       "src/background/citations.js",
       "src/background/runner.js",
       "src/background/isolation.js",
+      "src/background/probe.js",
       "src/background/background.js",
       "src/background/autostart.js"
     ]

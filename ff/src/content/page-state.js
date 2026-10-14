@@ -30,6 +30,20 @@
   const CONVERSATION_SEL = '[data-message-author-role], model-response, user-query, [data-is-streaming], .ds-markdown, [class*="response-content-markdown"], [class*="markdown"], [data-testid*="message" i], [data-testid*="user-message"], [class*="prose"]';
   const LOGIN_PATH_RE = /^\/(login|log-in|signin|sign-in|sign_in|auth\/login|auth\/signin|welcome|logout)(\/|$)|^\/auth(\/|$)/i;
 
+  // A message limit / quota banner: short, visible, outside the conversation. Its text, or null.
+  function limitBanner() {
+    const cands = q('[role="dialog"], [role="alertdialog"], [role="alert"], [role="status"], [aria-live], dialog[open], [class*="banner" i], [class*="toast" i], [class*="snackbar" i], [class*="notice" i], [class*="limit" i], [data-testid*="limit" i], [data-testid*="banner" i], [data-testid*="toast" i], p, span, div, h1, h2, h3, li, button, a')
+      .filter((el) => el.children.length <= 4 && el.textContent.length <= 400 && isVisible(el) && !el.closest(CONVERSATION_SEL));
+    // The whole banner but not the page around it: the longest matching text up to 220 chars (a bigger container
+    // starts repeating the sidebar; a smaller one is a fragment of the banner).
+    let best = null;
+    for (const el of cands) {
+      const t = norm(el.innerText);
+      if (t.length >= 8 && t.length <= 220 && LIMIT_RE.test(t) && (!best || t.length > best.length)) best = t;
+    }
+    return best;
+  }
+
   function pageStatus() {
     // 1. captcha / Cloudflare interstitial: nothing else on the page is meaningful.
     const frames = q('iframe[src*="challenges.cloudflare.com"], iframe[src*="recaptcha"], iframe[src*="hcaptcha"]').filter((f) => {
@@ -49,16 +63,8 @@
       const t = norm(b.innerText || b.getAttribute("aria-label"));
       if (t && t.length < 40 && LOGIN_BTN_RE.test(t) && !b.closest(CONVERSATION_SEL)) return { state: "logged_out", text: `"${t}" button visible` };
     }
-    // 3. message limit / quota banner. Short, visible, outside the conversation.
-    const cands = q('[role="dialog"], [role="alertdialog"], [role="alert"], [role="status"], [aria-live], dialog[open], [class*="banner" i], [class*="toast" i], [class*="snackbar" i], [class*="notice" i], [class*="limit" i], [data-testid*="limit" i], [data-testid*="banner" i], [data-testid*="toast" i], p, span, div, h1, h2, h3, li, button, a')
-      .filter((el) => el.children.length <= 4 && el.textContent.length <= 400 && isVisible(el) && !el.closest(CONVERSATION_SEL));
-    // The whole banner but not the page around it: the longest matching text up to 220 chars (a bigger container
-    // starts repeating the sidebar; a smaller one is a fragment of the banner).
-    let best = null;
-    for (const el of cands) {
-      const t = norm(el.innerText);
-      if (t.length >= 8 && t.length <= 220 && LIMIT_RE.test(t) && (!best || t.length > best.length)) best = t;
-    }
+    // 3. message limit / quota banner.
+    const best = limitBanner();
     if (best) return { state: "rate_limited", text: best };
     return { state: "ok", text: "" };
   }
@@ -109,5 +115,5 @@
     return { text, len: text.length, generating, finished: !generating && text.length > 0 && marker, marker, links, turns: turns.length };
   }
 
-  Probe.pageState = { pageStatus, readAnswer, LIMIT_RE };
+  Probe.pageState = { pageStatus, limitBanner, readAnswer, LIMIT_RE };
 })();

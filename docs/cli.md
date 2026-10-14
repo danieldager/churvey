@@ -26,6 +26,8 @@ None of this belongs in a git repository: the profile holds your cookies.
 | `churvey run <set> [--chatbots a,b] [--repeat N] [--visible] [--keep-chats] [--allow-memory-unknown]` | Same checks first (memory, leftover chats, canary). Refuses to start while any account's memory is on (or unreadable, unless `--allow-memory-unknown`); a chatbot that fails the canary is left out. Then asks every question of the set to each chatbot, N times, each in a new temporary chat, questions of one `group` spread apart. Deletes the run's chats at the end unless `--keep-chats`. |
 | `churvey purge --run <run>` / `--all-churvey` | Deletes the chats churvey created (listed in each run folder's `chats.jsonl`), through each chatbot's own delete. Never touches other chats. |
 | `churvey purge --everything --chatbot <c>` | Deletes ALL chats in that one account. Lists and counts them first and asks you to type the chatbot's name. Never part of a run or a check. |
+| `churvey account prepare [--chatbots a,b] [--dry-run]` | Makes each account forget: switches memory off and deletes ALL its chats, through the provider's own settings and delete. Reads each account first and prints what it will do, then asks you to type `prepare`. `--dry-run` stops after the reading. Never run by `run`. See [account.md](account.md). |
+| `churvey probe [--chatbots a,b] [--destructive]` | Tests every action churvey needs (sign-in detection, new and temporary chat, submit, capture, DOM fallback, citations, banners, memory, deleting, the canary) on each chatbot, at most 3 messages each, and reports what changed since the last probe: `~/.churvey/probes/<date>/report.md`. `--install-schedule` writes a monthly launchd plist / cron line (not loaded). See [probe.md](probe.md). |
 | `churvey status` / `pause <chatbot>` / `resume <chatbot>` / `reload <chatbot>` / `stop` | Control a run that is going on, from another terminal. |
 | `churvey export <run> [--out FILE]` | Writes `responses.clean.jsonl`, one row per answer (below). `<run>` is a folder name in `runs/`, `latest`, or a path. |
 | `churvey questions ...` | `new`, `list`, `show`, `add`, `edit`, `rm`, `import`, `export`, `validate`, `ui`. See [questions.md](questions.md). |
@@ -41,7 +43,7 @@ When a chatbot is blocked during a run, churvey stops asking it, finishes the ot
   Wait for the limit to reset, then run again with --chatbots mistral
 ```
 
-Exit codes: `run` 0 everything answered, 3 finished with a chatbot blocked, 2 refused (account memory on or unknown), 1 did not finish; `doctor` 0 only if every chatbot passed the canary and has memory off; `purge` 1 if a delete failed.
+Exit codes: `probe` 0 only if no check FAILed or CHANGED; `account prepare` 0 if every change was read back as done (or dry run); `run` 0 everything answered, 3 finished with a chatbot blocked, 2 refused (account memory on or unknown), 1 did not finish; `doctor` 0 only if every chatbot passed the canary and has memory off; `purge` 1 if a delete failed.
 
 ## A run folder
 

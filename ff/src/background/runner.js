@@ -237,8 +237,13 @@
       private: RUN.cfg.config && RUN.cfg.config.private, captureUrl: f.url || null, citations: f.citations || [],
       fetchedUrls: f.fetchedUrls || [], domSources: f.domSources || null,
       captureMethod: f.status === "ok" ? (f.captureMethod || "stream") : null,
-      isolation: f.isolation || null,
+      isolation: f.isolation || null, probe: f.probe || null,
     });
+    // churvey probe (config.probe): a picture of the page when a question fails.
+    if (rec.status !== "ok" && RUN.cfg.config && RUN.cfg.config.probe && RUN.providers[pid].tabId) {
+      try { const t = await ext.tabs.get(RUN.providers[pid].tabId); rec.probe = { ...(rec.probe || {}), screenshot: await ext.tabs.captureVisibleTab(t.windowId, { format: "png" }) }; }
+      catch (e) { rec.probe = { ...(rec.probe || {}), screenshot: "error " + String(e?.message || e) }; }
+    }
     await ext.storage.local.set({ [recKey(RUN.runId, pid, item.itemKey)]: rec });
     emit({ type: "record", provider: pid, itemKey: item.itemKey, status: rec.status, capture_method: rec.capture_method, latencyMs: rec.latencyMs, error: rec.errorMessage, chars: (rec.responseText || "").length, citations: rec.citations.length });
   }
@@ -357,10 +362,16 @@
       }
       let domSources = null;
       if (!isError && RUN.cfg.config && RUN.cfg.config.auditSources) domSources = await visibleSources(inf.tabId);
+      // churvey probe (config.probe): would the DOM fallback have read the same answer off the page?
+      let probe = null;
+      if (!isError && RUN.cfg.config && RUN.cfg.config.probe) {
+        try { const a = await ext.tabs.sendMessage(inf.tabId, { type: Probe.MSG.READ_ANSWER }); probe = { dom: a && a.ok ? { text: (a.text || "").slice(0, 4000), len: a.len, finished: a.finished, links: (a.links || []).length } : { error: "no reply" } }; }
+        catch (e) { probe = { dom: { error: String(e?.message || e) } }; }
+      }
       const isolation = await isolationFor(pid, inf, cap);
       const notIso = !isError && requireIsolation() && isolationProblem(isolation);
       const err = notIso ? `[not_isolated] ${notIso}: ${isolation.evidence}` : cap.error;
-      await saveRecord(pid, inf.item, { answer: cap.answer, status: isError || notIso ? "error" : "ok", error: err, latencyMs: latency, startMs: inf.submittedAt, endMs: Date.parse(cap.ts), url: cap.url, model: cap.model, citations, fetchedUrls, domSources, captureMethod: cap.captureMethod, isolation });
+      await saveRecord(pid, inf.item, { answer: cap.answer, status: isError || notIso ? "error" : "ok", error: err, latencyMs: latency, startMs: inf.submittedAt, endMs: Date.parse(cap.ts), url: cap.url, model: cap.model, citations, fetchedUrls, domSources, captureMethod: cap.captureMethod, isolation, probe });
       log.info(`[${pid}] recorded ${inf.item.itemKey} ${isError ? "ERR" : notIso ? "NOT_ISOLATED" : "ok"} ${cap.captureMethod || "stream"} ${cap.answerLen}c ${citations.length}cites ${fetchedUrls.length}urls ${latency}ms new_chat=${isolation.new_chat} temporary=${isolation.temporary}`);
       // Keep ChatGPT's Cookie header from growing into a 431 over a long run.
       if (pid === "chatgpt" && !isError) trimCookies(["chatgpt.com", "openai.com"]).catch(() => {});

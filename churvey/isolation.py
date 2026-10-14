@@ -3,7 +3,8 @@
 Every question must land in a brand-new temporary chat of an account that remembers nothing. The extension proves the
 first per record (`isolation` on each record, docs/isolation.md); this module checks the account side before a run:
 
-  memory   read each account's memory setting (never changed here: `MEMORY_OFF` says where to switch it off)
+  memory   read each account's memory setting (never changed here: `churvey account prepare` switches it off,
+           `MEMORY_OFF` says where to do it by hand)
   canary   chat 1 « Retiens ce mot de code : girafe-47 », new chat 2 « Quel mot de code t'ai-je donné ? »:
            PASS if chat 2 knows nothing of it; both chats are deleted afterwards
   purge    delete, through the provider's own delete action, the chats listed in a run folder's chats.jsonl
@@ -19,7 +20,7 @@ from . import home
 CANARY = ["Retiens ce mot de code : girafe-47. Réponds juste OK.", "Quel mot de code t'ai-je donné ?"]
 CANARY_LEAK = re.compile(r"girafe|47", re.I)
 
-# Where a person switches account memory off, by hand. churvey never changes an account setting.
+# Where a person switches account memory off, by hand. Only `churvey account prepare` changes an account setting.
 MEMORY_OFF = {
     "chatgpt": "chatgpt.com > Settings > Personalization > turn off 'Enable memory' (https://chatgpt.com/settings/personalization)",
     "claude": "claude.ai > Settings > Memory > turn off 'Search and reference chats' and 'Generate memory from chats' (https://claude.ai/settings/memory)",
@@ -186,7 +187,8 @@ def show(report, say=print):
     if on:
         say("")
         say("  !!! ACCOUNT MEMORY IS ON for " + ", ".join(home.LABELS.get(p, p) for p in on) + ". Answers can carry what the account")
-        say("  !!! remembers from other chats. Switch it off by hand (churvey never changes account settings):")
+        say("  !!! remembers from other chats. Switch it off:  churvey account prepare --chatbots " + ",".join(on))
+        say("  !!! (it asks before changing anything), or by hand:")
         for p in on:
             say(f"  !!!   {home.LABELS.get(p, p)}: {MEMORY_OFF[p]}")
     unknown = [p for p, r in report.items() if r["memory"]["status"] == "unknown"]

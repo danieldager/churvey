@@ -170,13 +170,14 @@ def cmd_run(a):
     folder.mkdir(parents=True)
 
     # Preflight: account memory, leftover churvey chats deleted, isolation canary. A chatbot whose account remembers
-    # stops the run (switch memory off by hand); one that fails the canary is left out of this run.
+    # stops the run (churvey account prepare switches it off); one that fails the canary is left out of this run.
     report = I.check(chatbots, folder / "preflight", a.visible, say)
     I.show(report, say)
     on = [p for p, r in report.items() if r["memory"]["status"] == "on"]
     unknown = [p for p, r in report.items() if r["memory"]["status"] == "unknown"]
     if on:
-        say(f"Not running: account memory is on for {', '.join(on)}. Switch it off (above), or leave them out with --chatbots.")
+        say(f"Not running: account memory is on for {', '.join(on)}. Switch it off with:  churvey account prepare --chatbots {','.join(on)}")
+        say("(or by hand, above), or leave them out with --chatbots.")
         return 2
     if unknown and not a.allow_memory_unknown:
         say(f"Not running: the memory setting of {', '.join(unknown)} could not be read. Check it by hand (above), then rerun with --allow-memory-unknown.")
@@ -271,6 +272,28 @@ def purge_everything(a):
     v = I.tally(res.get("purge") or {}).get(pid, {"deleted": 0, "not_found": 0, "unsupported": 0, "failed": n})
     say("  " + I.describe(v))
     return 1 if v["failed"] else 0
+
+
+# --- account prepare / probe ------------------------------------------------------------------------------
+
+def cmd_account(a):
+    from . import account
+    cfg = require_setup()
+    chatbots = home.parse_chatbots(a.chatbots) or cfg["chatbots"]
+    return account.prepare(chatbots, a.dry_run, a.visible, say, input, interactive())
+
+
+def cmd_probe(a):
+    from . import probe
+    if a.install_schedule:
+        probe.install_schedule(say)
+        return 0
+    cfg = require_setup()
+    chatbots = home.parse_chatbots(a.chatbots) or cfg["chatbots"]
+    if a.destructive and not (interactive() and input("--destructive switches account memory OFF where it is on. Type 'yes' to go on: ").strip() == "yes"):
+        raise SystemExit("not run")
+    rep, _ = probe.run(chatbots, a.destructive, a.visible, say)
+    return 1 if any(c["status"] in ("FAIL", "CHANGED") for r in rep["results"].values() for c in r["checks"].values()) else 0
 
 
 # --- remote control ----------------------------------------------------------------------------------------
@@ -524,6 +547,21 @@ def build_parser():
     p.add_argument("--keep-chats", action="store_true", help="do not delete this run's chats when it ends")
     p.add_argument("--allow-memory-unknown", action="store_true", help="run even if an account's memory setting cannot be read")
     p.set_defaults(fn=cmd_run, visible=False)
+
+    p = sub.add_parser("account", help="prepare the chatbot accounts: memory off, all chats deleted (asks first)")
+    acs = p.add_subparsers(dest="acmd", required=True, metavar="ACTION")
+    x = acs.add_parser("prepare", help="switch account memory off and delete ALL chats, per account, after a typed confirmation")
+    x.add_argument("--chatbots", help="comma list (default: those set up)")
+    x.add_argument("--dry-run", action="store_true", help="read each account and print what would be done; change nothing")
+    x.add_argument("--visible", action="store_true", help="show the Firefox window")
+    x.set_defaults(fn=cmd_account)
+
+    p = sub.add_parser("probe", help="test every action churvey needs on every chatbot, and report what changed since the last probe")
+    p.add_argument("--chatbots", help="comma list (default: those set up)")
+    p.add_argument("--destructive", action="store_true", help="also switch account memory off and read it back (asks first)")
+    p.add_argument("--visible", action="store_true", help="show the Firefox window")
+    p.add_argument("--install-schedule", action="store_true", help="write a monthly launchd plist (macOS) or cron line (Linux) and print how to load it")
+    p.set_defaults(fn=cmd_probe)
 
     p = sub.add_parser("purge", help="delete the chats churvey created (or, with --everything, a whole account's)")
     p.add_argument("--run", help='run id, "latest", or a run folder: delete the chats that run created')

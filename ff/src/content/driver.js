@@ -93,7 +93,37 @@
     return { links: uniq, buttons, hints, custom };
   }
 
+  // `churvey probe` and `churvey account prepare` (background probe.js / isolation.js): one driver function by name.
+  // fingerprint, memoryControls and bannerTest are generic; the rest exist only where the driver defines them.
+  const PROBE_FNS = new Set(["loginState", "fingerprint", "endpointShapes", "memoryControls", "memoryOff", "deleteAllChats", "bannerTest"]);
+  async function probeCall(fn, args) {
+    if (!PROBE_FNS.has(fn)) throw new Error(`not a probe function: ${fn}`);
+    if (fn === "fingerprint") return Probe.drivers.B.fingerprint(driver);
+    if (fn === "memoryControls") return Probe.drivers.B.memoryControls(driver || {}, false);
+    if (fn === "bannerTest") return bannerTest();
+    if (!driver || typeof driver[fn] !== "function") throw new Error(`no ${fn} for provider`);
+    return driver[fn](...args);
+  }
+  // Does the limit-banner detector still work on this page? Put a typical banner on it, read pageStatus, take it off.
+  function bannerTest() {
+    const before = { ...Probe.pageState.pageStatus(), banner: Probe.pageState.limitBanner() };
+    const el = document.createElement("div");
+    el.setAttribute("role", "alert");
+    el.style.cssText = "position:fixed;top:8px;left:8px;z-index:2147483647;background:#fee;padding:6px;font:14px sans-serif";
+    el.textContent = "You've reached your message limit. Try again later.";
+    document.body.appendChild(el);
+    let during;
+    try { during = { ...Probe.pageState.pageStatus(), banner: Probe.pageState.limitBanner() }; } finally { el.remove(); }
+    return { before, during };
+  }
+
   ext.runtime.onMessage.addListener((msg) => {
+    if (msg && msg.type === Probe.MSG.PROBE_CALL) {
+      return (async () => {
+        try { return { ok: true, result: await probeCall(msg.fn, msg.args || []) }; }
+        catch (e) { return { ok: false, error: String(e?.message || e) }; }
+      })();
+    }
     if (!msg) return;
     if (msg.type === Probe.MSG.PING) {
       return Promise.resolve({ ok: true, build: Probe.BUILD, provider: providerId, ready: driver ? safe(() => driver.isReady(), false) : false, visible: document.visibilityState });

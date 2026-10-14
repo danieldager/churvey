@@ -172,7 +172,64 @@
     throw new Error("attach: no strategy produced a preview");
   }
 
-  const B = { pick, waitFor, clickFirst, clickByText, dismissConsent, dismissNotice, pressKey, submitViaButtonOrEnter, attachFiles, sleep };
+  // --- probe / account prepare (docs/probe.md, docs/account.md) -----------------------------------------------
+  const visible = (el) => !!el && (el.offsetParent !== null || el.getClientRects().length > 0);
+  // The on/off switches of a settings page whose label matches one of `res`: [{label, checked, el}].
+  function switches(res) {
+    const out = [];
+    for (const s of document.querySelectorAll('[role="switch"], button[aria-checked], input[type="checkbox"]')) {
+      if (!visible(s) && !(s.tagName === "INPUT" && visible(s.parentElement))) continue;
+      const texts = [s.getAttribute("aria-label") || ""];
+      for (const id of (s.getAttribute("aria-labelledby") || "").split(/\s+/).filter(Boolean)) texts.push((document.getElementById(id) || {}).innerText || "");
+      for (let n = s.parentElement, i = 0; n && i < 6; n = n.parentElement, i++) { const t = (n.innerText || "").trim(); if (t.length < 400) texts.push(t); }
+      for (const t of texts) {
+        const re = res.find((r) => r.test(t));
+        if (re) { out.push({ label: t.split("\n").find((l) => re.test(l)) || t.slice(0, 80), checked: s.getAttribute("aria-checked") === "true" || s.checked === true, el: s }); break; }
+      }
+    }
+    return out;
+  }
+  async function waitSwitches(res, timeoutMs = 15000) {
+    const t0 = Date.now();
+    for (;;) { const f = switches(res); if (f.length || Date.now() - t0 > timeoutMs) return f; await sleep(500); }
+  }
+  // Settings-page memory switches: {needs: url} until the tab is on that page; then [{label, checked}], and with
+  // off=true every checked one is clicked (and a confirm dialog accepted) before reading them again.
+  async function memoryControls(drv, off) {
+    if (!drv.memoryPage) return { switches: null, detail: "no settings page known; the toggle goes through the API" };
+    if (location.href.split(/[?#]/)[0] !== drv.memoryPage) return { needs: drv.memoryPage };
+    let found = await waitSwitches(drv.memorySwitches);
+    if (off) for (const s of found.filter((x) => x.checked)) {
+      realClick(s.el); await sleep(1200);
+      clickByText(/^(turn off|disable|confirm|d[ée]sactiver|confirmer|continue|continuer)$/i); await sleep(1200);
+    }
+    if (off) found = await waitSwitches(drv.memorySwitches);
+    return { switches: found.map(({ label, checked }) => ({ label, checked })) };
+  }
+  // What the page looks like to the driver: for every selector list it uses, the first selector that matches now
+  // (null = none does), and the aria-labels of the controls churvey cares about. Compared month to month by `churvey probe`.
+  function fingerprint(drv) {
+    const sel = {};
+    for (const [k, v] of Object.entries(drv || {})) {
+      if (!Array.isArray(v) || !v.length || !v.every((s) => typeof s === "string")) continue;
+      sel[k] = v.find((s) => { try { return !!document.querySelector(s); } catch (_) { return false; } }) || null;
+    }
+    const labels = [...new Set([...document.querySelectorAll('button[aria-label], a[aria-label], [role="button"][aria-label], [role="switch"][aria-label]')]
+      .filter(visible).map((e) => e.getAttribute("aria-label").trim())
+      .filter((l) => l.length < 60 && /temporar|incognito|private|priv[ée]|new chat|nouveau|memory|m[ée]moire|delete|supprimer|send|envoyer|submit|stop/i.test(l)))].sort().slice(0, 40);
+    return { path: location.pathname + location.search, selectors: sel, labels };
+  }
+  // "200 a:boolean b:string" for the fields of `obj` churvey reads: an endpoint whose answer changed shape shows here.
+  function shape(status, obj, fields) {
+    const t = (v) => (v === null ? "null" : Array.isArray(v) ? "array" : typeof v);
+    return `${status} ` + fields.map((f) => `${f}:${obj ? t(f.split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj)) : "none"}`).join(" ");
+  }
+  // Gemini has no list API: the conversations are the sidebar's links (only those loaded; the sidebar loads more on scroll).
+  function sidebarChats() {
+    return [...new Set([...document.querySelectorAll('a[href^="/app/"]')].map((a) => (/^\/app\/([0-9a-f]{8,})/.exec(a.getAttribute("href")) || [])[1]).filter(Boolean))];
+  }
+
+  const B = { pick, waitFor, clickFirst, clickByText, dismissConsent, dismissNotice, pressKey, submitViaButtonOrEnter, attachFiles, sleep, memoryControls, fingerprint };
 
   // --- drivers ---
   const DRIVERS = {
@@ -233,6 +290,38 @@
         }
         return ids;
       },
+      async loginState() {
+        const r = await fetch(location.origin + "/api/auth/session", { credentials: "include" });
+        const s = r.ok ? await r.json().catch(() => ({})) : {};
+        return { signedIn: !!(s && s.user), account: (s && s.user && s.user.email) || null, how: `/api/auth/session ${r.status}${s && s.user ? " user" : " no user"}` };
+      },
+      // Settings > Personalization: one "Enable memory" switch drives both settings (2026-10).
+      memoryPage: "https://chatgpt.com/settings/personalization",
+      memorySwitches: [/^enable memory/i, /reference saved memories/i, /reference chat history/i],
+      // The same call the switch makes, once per setting that is on; the caller reads the setting back afterwards.
+      async memoryOff() {
+        const s = (await (await this.api("/backend-api/settings/user")).json()).settings || {};
+        const done = [];
+        for (const f of ["sunshine", "moonshine"]) if (s[f] !== false) {
+          const r = await this.api(`/backend-api/settings/account_user_setting?feature=${f}&value=false`, { method: "PATCH" });
+          done.push(`${f} -> ${r.status}`);
+        }
+        return { detail: done.join(", ") || "already off" };
+      },
+      // Settings > Data controls > "Delete all chats": one call hides every conversation.
+      async deleteAllChats() {
+        const r = await this.api("/backend-api/conversations", { method: "PATCH", body: JSON.stringify({ is_visible: false }) });
+        return { method: "PATCH /backend-api/conversations {is_visible:false}", status: r.status };
+      },
+      async endpointShapes() {
+        const out = {};
+        let r = await this.api("/backend-api/settings/user");
+        out.memory = shape(r.status, r.ok ? (await r.json()).settings : null, ["sunshine", "moonshine"]);
+        r = await this.api("/backend-api/conversations?offset=0&limit=1&order=updated");
+        const j = r.ok ? await r.json() : null;
+        out.list = shape(r.status, j, ["items", "total"]) + (j && j.items && j.items[0] ? " " + shape("", j.items[0], ["id"]).trim() : "");
+        return out;
+      },
       locateInput() { return waitFor(this.composer); },
       submit() { return submitViaButtonOrEnter(this.send, this.composer); },
     },
@@ -278,6 +367,37 @@
       },
       // Temporary chats never enter the history and Gemini has no delete-by-id we can call.
       deleteChats(ids) { return Object.fromEntries(ids.map((id) => [id, "unsupported"])); },
+      loginState() {
+        const acct = document.querySelector('a[aria-label^="Google Account" i], a[aria-label^="Compte Google" i], a[href*="SignOutOptions"]');
+        const signIn = [...document.querySelectorAll('a[href*="ServiceLogin"], a[href*="accounts.google.com/signin"], button, a')].find((e) => visible(e) && (/ServiceLogin|signin/.test(e.getAttribute("href") || "") || /^(sign in|se connecter|connexion)$/i.test((e.innerText || "").trim())));
+        return { signedIn: acct ? true : signIn ? false : null, account: acct ? acct.getAttribute("aria-label") : null,
+                 how: acct ? "Google Account button" : signIn ? "Sign in link" : "neither account button nor sign-in link" };
+      },
+      memoryPage: "https://gemini.google.com/saved-info",
+      memorySwitches: [/^memory\b/i, /^m[ée]moire\b/i],
+      async memoryOff() { const r = await memoryControls(this, true); return { ...r, detail: "Personal context > Memory switch" }; },
+      // The history is the sidebar (no list API); temporary chats never appear there.
+      listChats() { return sidebarChats(); },
+      // One by one through each conversation's menu: open the chat's "..." menu, Delete, confirm. Up to 500.
+      async deleteAllChats() {
+        const before = sidebarChats().length;
+        let deleted = 0, stuck = 0;
+        for (let i = 0; i < 500 && sidebarChats().length; i++) {
+          const n = sidebarChats().length;
+          const row = document.querySelector('a[href^="/app/"]').closest('[data-test-id="conversation"], conversations-list div, li') || document.querySelector('a[href^="/app/"]').parentElement;
+          row.dispatchEvent(new MouseEvent("mouseover", { bubbles: true }));
+          await sleep(300);
+          const menu = row.querySelector('button[data-test-id="actions-menu-button"], button[aria-label*="more" i], button[aria-label*="options" i], button[aria-label*="Plus" i]');
+          if (!menu) return { method: "sidebar menu > Delete", before, deleted, error: "no conversation menu button" };
+          realClick(menu); await sleep(600);
+          if (!clickByText(/^(delete|supprimer)$/i)) return { method: "sidebar menu > Delete", before, deleted, error: "no Delete in the conversation menu" };
+          await sleep(700);
+          clickByText(/^(delete|supprimer)$/i); await sleep(1500);   // the confirm dialog
+          if (sidebarChats().length < n) { deleted++; stuck = 0; } else if (++stuck > 2) return { method: "sidebar menu > Delete", before, deleted, error: "the chat did not go away" };
+        }
+        return { method: "sidebar menu > Delete", before, deleted };
+      },
+      endpointShapes() { return {}; },
       async startChat() {
         dismissConsent(); dismissNotice();
         const log = Probe.log.make("gemini");
@@ -418,6 +538,37 @@
         }
         return ids;
       },
+      async loginState() {
+        const r = await this.rest("/rest/user-settings");
+        return { signedIn: r.ok ? true : r.status === 401 || r.status === 403 ? false : null, account: null, how: `/rest/user-settings ${r.status}` };
+      },
+      memoryPage: null,
+      // grok.com's own settings call (settingsSetUserSettings in its bundle, 2026-10-14): POST the changed fields.
+      async memoryOff() {
+        const r = await this.rest("/rest/user-settings", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ enableMemory: false }) });
+        return { detail: `POST /rest/user-settings {enableMemory:false} -> ${r.status}` };
+      },
+      // DELETE /rest/app-chat/conversations (no id) only moves everything to the trash, so: hard-delete each chat, then
+      // whatever sits in the trash (GET /rest/app-chat/conversations/deleted).
+      async deleteAllChats() {
+        const ids = await this.listChats();
+        const res = await this.deleteChats(ids);
+        const t = await this.rest("/rest/app-chat/conversations/deleted?pageSize=100");
+        const trash = t.ok ? ((await t.json()).conversations || []).map((c) => c.conversationId).filter(Boolean) : [];
+        Object.assign(res, await this.deleteChats(trash));
+        return { method: "DELETE /rest/app-chat/conversations/<id> for each chat and each trashed chat", results: res, trash: t.ok ? trash.length : `trash list ${t.status}` };
+      },
+      async endpointShapes() {
+        const out = {};
+        let r = await this.rest("/rest/user-settings");
+        out.memory = shape(r.status, r.ok ? await r.json() : null, ["enableMemory", "allowXPersonalization"]);
+        r = await this.rest("/rest/app-chat/conversations?pageSize=1");
+        const j = r.ok ? await r.json() : null;
+        out.list = shape(r.status, j, ["conversations"]) + (j && j.conversations && j.conversations[0] ? " " + shape("", j.conversations[0], ["conversationId"]).trim() : "");
+        r = await this.rest("/rest/app-chat/conversations/deleted?pageSize=1");
+        out.trash = shape(r.status, r.ok ? await r.json() : null, ["conversations"]);
+        return out;
+      },
       locateInput() { return waitFor(this.composer); },
       submit() { return submitViaButtonOrEnter(this.send, this.composer); },
       // Since 2026-10 grok.com streams the answer over a websocket gateway (response.create),
@@ -505,6 +656,24 @@
         const r = await this.api("/chat_conversations");
         if (!r.ok) throw new Error(`chat_conversations ${r.status}`);
         return (await r.json()).map((c) => c.uuid);
+      },
+      async loginState() {
+        const r = await fetch(`${location.origin}/api/account`, { credentials: "include" });
+        const j = r.ok ? await r.json().catch(() => ({})) : {};
+        return { signedIn: r.ok ? true : r.status === 401 || r.status === 403 ? false : null, account: j.email_address || null, how: `/api/account ${r.status}` };
+      },
+      // Settings > Memory: "Search and reference chats" (enabled_saffron_search), "Generate memory from chats" (enabled_saffron).
+      memoryPage: "https://claude.ai/settings/memory",
+      memorySwitches: [/search and reference (past )?chats/i, /generate memory/i, /^memory\b/i],
+      async memoryOff() { const r = await memoryControls(this, true); return { ...r, detail: "Settings > Memory switches" }; },
+      async endpointShapes() {
+        const out = {};
+        let r = await fetch(`${location.origin}/api/account`, { credentials: "include" });
+        out.memory = shape(r.status, r.ok ? (await r.json()).settings : null, ["enabled_saffron", "enabled_saffron_search"]);
+        r = await this.api("/chat_conversations?limit=1");
+        const j = r.ok ? await r.json() : null;
+        out.list = shape(r.status, j && j[0], ["uuid", "is_temporary"]);
+        return out;
       },
       locateInput() { return waitFor(this.composer); },
       // Claude only, for now: the other two drivers are untouched deliberately.
@@ -678,6 +847,19 @@
         const r = await this.trpc("chat.last", { chatVisibility: "private", chatPermission: "write", includeProjectChats: true, includeScheduledTaskChats: true, direction: "forward" });
         if (!r.data) throw new Error(`chat.last ${r.status}`);
         return (r.data.items || []).map((c) => c.id);
+      },
+      async loginState() {
+        const k = await this.trpc("user.getKnowledgeToggleState");
+        return { signedIn: k.data !== undefined ? true : k.status === 401 || k.status === 403 ? false : null, account: null, how: `user.getKnowledgeToggleState ${k.status}` };
+      },
+      // Settings > Privacy > Personalization > "Knowledge". Page address to be confirmed on a signed-in account.
+      memoryPage: "https://chat.mistral.ai/settings/privacy",
+      memorySwitches: [/^knowledge\b/i, /^connaissances?\b/i, /^m[ée]moire\b/i],
+      async memoryOff() { const r = await memoryControls(this, true); return { ...r, detail: "Settings > Privacy > Knowledge switch" }; },
+      async endpointShapes() {
+        const k = await this.trpc("user.getKnowledgeToggleState");
+        const l = await this.trpc("chat.last", { chatVisibility: "private", chatPermission: "write", includeProjectChats: true, includeScheduledTaskChats: true, direction: "forward" });
+        return { memory: shape(k.status, k.data, ["enabled"]), list: shape(l.status, l.data, ["items"]) + (l.data && l.data.items && l.data.items[0] ? " " + shape("", l.data.items[0], ["id"]).trim() : "") };
       },
       // Web search must be ON for every question. Find the toggle, log what we saw, switch it on if it is off.
       async ensureWebSearch() {

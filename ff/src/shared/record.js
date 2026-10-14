@@ -37,6 +37,7 @@
       capture_method: f.captureMethod ?? null, // how the answer was obtained: stream (network body tee'd) | poll (page read the finished turn back) | dom_fallback (nothing landed; read off the screen, plain text, links only)
       isolation: f.isolation || null, // was this question asked in a brand-new temporary chat, and what showed it (runner.js isolationFor)
       domSources: f.domSources || null, // audit only (run config.auditSources): what the page itself shows as sources
+      probe: f.probe || null, // churvey probe only (run config.probe): {dom: the answer as the DOM fallback reads it, screenshot on error}
       userAgent: (globalThis.navigator && navigator.userAgent) || null,
       extensionVersion: extVersion(),
     };

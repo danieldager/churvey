@@ -54,7 +54,8 @@ The order is in `churvey-run.json` (`question_order`, `min_group_gap`). Sets wit
 A temporary chat does not stop the account's memory: ChatGPT's temporary chat says « This chat can reference memory,
 plugins, and custom instructions ». In the canary, ChatGPT's second chat answered « Je n'ai pas retrouvé le mot de code
 que tu m'avais donné dans nos conversations précédentes »: it looked through past chats. So memory must be off, and that
-is an account setting churvey **reads but never changes**.
+is an account setting that `churvey doctor` and `churvey run` **read but never change**. Only
+`churvey account prepare` switches it off, after showing what it will do and a typed confirmation ([account.md](account.md)).
 
 `churvey doctor` prints on / off / unknown per account and warns loudly when one is on. `churvey run` refuses to start
 while any is on, or unknown unless `--allow-memory-unknown`.
