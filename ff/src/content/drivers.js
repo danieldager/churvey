@@ -181,15 +181,57 @@
       send: ['button[data-testid="send-button"]', 'button[aria-label*="Send" i]'],
       newChat: ['a[data-testid="create-new-chat-button"]', 'button[aria-label*="New chat" i]', 'nav a[href="/"]'],
       isReady() { return !!pick(this.composer); },
+      // Every question gets a FRESH page load of a new chat. The old shortcut ("already on ?temporary-chat=true and no
+      // assistant message on screen -> reuse") is how the 2026-10-13 pilot asked 16 questions in ONE temporary chat:
+      // ChatGPT's markup no longer has [data-message-author-role], so a used chat always looked empty.
       async startChat({ private: priv }) {
         dismissConsent(); dismissNotice();
-        if (priv) {
-          const isTemp = new URLSearchParams(location.search).get("temporary-chat") === "true";
-          const hasMsgs = !!pick(['[data-message-author-role="assistant"]']);
-          if (!isTemp || hasMsgs) { location.assign("/?temporary-chat=true"); await sleep(4000); return; }
-        } else if (!clickFirst(this.newChat)) { if (location.pathname !== "/") location.assign("/"); }
-        await sleep(700);
-        const el = await waitFor(this.composer); if ((el.innerText || "").trim()) Probe.injector.clear(el);
+        location.assign(priv ? "/?temporary-chat=true" : "/");
+        await sleep(4000);
+      },
+      // Before submit: on the home route (no /c/<id>) with the temporary-chat switch showing "Turn off temporary chat".
+      isolationState() {
+        const temp = new URLSearchParams(location.search).get("temporary-chat") === "true";
+        const btn = !!pick(['button[aria-label="Turn off temporary chat"]']);
+        return { temporary: temp && btn, newChat: location.pathname === "/",
+                 evidence: `page ${location.pathname}${location.search}${btn ? ", 'Turn off temporary chat' switch" : ", no temporary-chat switch"}` };
+      },
+      async api(path, init = {}) {
+        const s = await (await fetch(location.origin + "/api/auth/session", { credentials: "include" })).json();
+        if (!s.accessToken) throw new Error("not signed in");
+        return fetch(location.origin + path, { credentials: "include", ...init, headers: { authorization: "Bearer " + s.accessToken, "content-type": "application/json", ...(init.headers || {}) } });
+      },
+      // settings.sunshine = "Reference saved memories", settings.moonshine = "Reference chat history" (both behind the one
+      // "Enable memory" switch in Settings > Personalization since 2026-10; checked against that switch on 2026-10-14).
+      async memoryStatus() {
+        const r = await this.api("/backend-api/settings/user");
+        if (!r.ok) return { status: "unknown", detail: `settings/user ${r.status}` };
+        const s = (await r.json()).settings || {};
+        if (typeof s.sunshine !== "boolean" && typeof s.moonshine !== "boolean") return { status: "unknown", detail: "settings/user has no sunshine/moonshine field" };
+        return { status: s.sunshine || s.moonshine ? "on" : "off", detail: `saved memories (sunshine)=${s.sunshine}, chat history (moonshine)=${s.moonshine}` };
+      },
+      async deleteChats(ids) {
+        const out = {};
+        for (const id of ids) {
+          const r = await this.api(`/backend-api/conversation/${id}`, { method: "PATCH", body: JSON.stringify({ is_visible: false }) });
+          if (r.ok || r.status !== 404) { out[id] = r.ok ? "deleted" : `error ${r.status}`; continue; }
+          // A temporary chat answers GET (is_temporary_chat: true) but 404s on the delete: ChatGPT does not let the
+          // user delete it (it is kept up to 30 days, out of the history). Measured 2026-10-14.
+          const g = await this.api(`/backend-api/conversation/${id}`);
+          out[id] = g.ok && (await g.json()).is_temporary_chat === true ? "unsupported" : "not_found";
+        }
+        return out;
+      },
+      async listChats() {
+        const ids = [];
+        for (let off = 0; off < 10000; off += 100) {
+          const r = await this.api(`/backend-api/conversations?offset=${off}&limit=100&order=updated`);
+          if (!r.ok) throw new Error(`conversations ${r.status}`);
+          const j = await r.json();
+          for (const c of j.items || []) ids.push(c.id);
+          if (!(j.items || []).length || ids.length >= (j.total || 0)) break;
+        }
+        return ids;
       },
       locateInput() { return waitFor(this.composer); },
       submit() { return submitViaButtonOrEnter(this.send, this.composer); },
@@ -208,6 +250,34 @@
       turns: ['user-query', 'model-response', 'button[aria-label*="Copy prompt" i]'],
       isReady() { return !!pick(this.composer); },
       hasTurns() { return this.turns.some((s) => document.querySelector(s)); },
+      // The temp-chat button's host <gem-icon-button> carries class `temp-chat-on` while the chat is temporary (2026-10-14).
+      isTemp() { return !!document.querySelector("temp-chat-button .temp-chat-on, gem-icon-button.temp-chat-button.temp-chat-on"); },
+      isolationState() {
+        const temp = this.isTemp(), turns = this.hasTurns(), conv = /\/app\/[0-9a-f]{8,}/.test(location.pathname);
+        return { temporary: temp, newChat: !turns && !conv,
+                 evidence: `page ${location.pathname}${temp ? ", temp-chat button on (temp-chat-on)" : ", temp-chat button off"}${turns ? ", earlier turns on screen" : ""}` };
+      },
+      // Settings > Personal context (gemini.google.com/saved-info): the "Memory" switch ("Gemini learns from your past
+      // chats"). Only readable on that page; the background navigates there first (`needs`).
+      async memoryStatus() {
+        if (location.pathname !== "/saved-info") return { needs: "https://gemini.google.com/saved-info" };
+        const t0 = Date.now();
+        while (Date.now() - t0 < 15000) {
+          for (const s of document.querySelectorAll('[role="switch"], button[aria-checked]')) {
+            let n = s, t = "";
+            for (let i = 0; i < 6 && n; i++) { n = n.parentElement; t = (n && n.innerText || "").trim(); if (t.length > 20) break; }
+            if (/^memory\b/i.test(t)) {
+              const on = s.getAttribute("aria-checked") === "true";
+              const saved = /haven't asked Gemini to save anything/i.test(document.body.innerText) ? "no saved info" : "saved info present";
+              return { status: on ? "on" : "off", detail: `Personal context > Memory switch ${on ? "on" : "off"}; ${saved}` };
+            }
+          }
+          await sleep(500);
+        }
+        return { status: "unknown", detail: "no Memory switch on /saved-info" };
+      },
+      // Temporary chats never enter the history and Gemini has no delete-by-id we can call.
+      deleteChats(ids) { return Object.fromEntries(ids.map((id) => [id, "unsupported"])); },
       async startChat() {
         dismissConsent(); dismissNotice();
         const log = Probe.log.make("gemini");
@@ -234,12 +304,15 @@
           if (!clickFirst(this.newChat)) clickByText(/^\s*new chat\s*$/i);
           await sleep(1100);
         }
-        // Now convert the fresh chat to a TEMPORARY one (nested behind the sparkle).
-        if (!pick(this.sparkle) && !pick(this.tempChat)) { clickFirst(this.sidebar); await sleep(600); }
-        clickFirst(this.sparkle);
-        await sleep(700);
-        if (!clickFirst(this.tempChat)) log.warn("temp-chat button not found; chat will NOT be temporary");
-        await sleep(1300);
+        // Now convert the fresh chat to a TEMPORARY one (nested behind the sparkle). The button TOGGLES: never click it
+        // when the chat is already temporary, that would turn it off.
+        if (!this.isTemp()) {
+          if (!pick(this.sparkle) && !pick(this.tempChat)) { clickFirst(this.sidebar); await sleep(600); }
+          clickFirst(this.sparkle);
+          await sleep(700);
+          if (!clickFirst(this.tempChat)) log.warn("temp-chat button not found; chat will NOT be temporary");
+          await sleep(1300);
+        }
         // HARD GUARD. Submitting into a chat that still holds previous turns silently
         // contaminates the answer with earlier context (exactly how the Gemini set got
         // polluted). Fail loudly instead: the runner records an ERROR and re-asks,
@@ -300,13 +373,50 @@
         // New chat first — this is what surfaces Grok's private-chat button.
         if (!clickFirst(this.newChat)) { if (location.pathname !== "/") location.assign("/"); }
         await sleep(1100);
-        if (priv) {
-          if (!clickByText(/private chat|private/i) && !clickFirst(this.private)) {
-            pressKey("j", { meta: true, shift: true }); // shortcut fallback
-          }
+        // The private link reads "Private" in BOTH states; only its aria-label says which. Click only "Switch to Private
+        // Chat" (clicking by text used to be able to switch a private chat back to a default one).
+        if (priv && !pick(this.privateOn)) {
+          if (!clickFirst(this.private)) pressKey("j", { meta: true, shift: true }); // shortcut fallback
           await sleep(700);
         }
         const el = await waitFor(this.composer); if ((el.innerText || el.value || "").trim()) Probe.injector.clear(el);
+      },
+      privateOn: ['a[aria-label="Switch to Default Chat"]'],
+      isolationState() {
+        const on = !!pick(this.privateOn), conv = /\/c\/[0-9a-f-]{36}/.test(location.pathname);
+        return { temporary: on, newChat: !conv, evidence: `page ${location.pathname}${on ? ", 'Switch to Default Chat' link (private on)" : ", private chat off"}` };
+      },
+      async rest(path, init) {
+        const r = await fetch(location.origin + path, { credentials: "include", ...(init || {}) });
+        return r;
+      },
+      async memoryStatus() {
+        const r = await this.rest("/rest/user-settings");
+        if (!r.ok) return { status: "unknown", detail: `user-settings ${r.status}` };
+        const s = await r.json();
+        if (typeof s.enableMemory !== "boolean") return { status: "unknown", detail: "user-settings has no enableMemory" };
+        return { status: s.enableMemory ? "on" : "off", detail: `enableMemory=${s.enableMemory}, allowXPersonalization=${s.allowXPersonalization}` };
+      },
+      async deleteChats(ids) {
+        const out = {};
+        for (const id of ids) {
+          const r = await this.rest(`/rest/app-chat/conversations/${id}`, { method: "DELETE" });
+          out[id] = r.ok ? "deleted" : r.status === 404 ? "not_found" : `error ${r.status}`;
+        }
+        return out;
+      },
+      async listChats() {
+        const ids = [];
+        let token = "";
+        for (let i = 0; i < 100; i++) {
+          const r = await this.rest(`/rest/app-chat/conversations?pageSize=100${token ? "&pageToken=" + encodeURIComponent(token) : ""}`);
+          if (!r.ok) throw new Error(`conversations ${r.status}`);
+          const j = await r.json();
+          for (const c of j.conversations || []) ids.push(c.conversationId);
+          token = j.nextPageToken || "";
+          if (!token) break;
+        }
+        return ids;
       },
       locateInput() { return waitFor(this.composer); },
       submit() { return submitViaButtonOrEnter(this.send, this.composer); },
@@ -329,7 +439,10 @@
         if (!a || a.partial || typeof a.message !== "string" || !a.message) return { state: "pending" };
         const norm = (s) => String(s || "").replace(/\s+/g, " ").trim();
         if (h && norm(h.message).slice(0, 60) !== norm(prompt).slice(0, 60)) return { state: "mismatch" };
-        return { state: "done", response: a };
+        // Isolation evidence: conversations_v2 says whether the chat is private (`temporary`), the node list how many turns.
+        let temporary = null;
+        try { const c = await get(`${location.origin}/rest/app-chat/conversations_v2/${convId}`); temporary = !!(c.conversation && c.conversation.temporary); } catch (_) {}
+        return { state: "done", response: a, isolation: { chatId: convId, temporary, humanTurns: list.filter((n) => n.sender === "human").length, evidence: `conversations_v2 temporary=${temporary}` } };
       },
     },
     claude: {
@@ -362,6 +475,36 @@
         }
         await sleep(900);
         const el = await waitFor(this.composer); if ((el.innerText || "").trim()) Probe.injector.clear(el);
+      },
+      isolationState() {
+        const on = !!pick(this.incognitoOff) && /incognito/.test(location.search);
+        return { temporary: on, newChat: location.pathname === "/new", evidence: `page ${location.pathname}${location.search}${pick(this.incognitoOff) ? ", 'Exit incognito' button" : ", not incognito"}` };
+      },
+      async api(path, init) {
+        return fetch(`${location.origin}/api/organizations/${await this.orgId()}${path}`, { credentials: "include", ...(init || {}) });
+      },
+      // Settings > Memory: "Search and reference chats" = enabled_saffron_search, "Generate memory from chats" =
+      // enabled_saffron. null = never switched on (both switches showed off for null on 2026-10-14).
+      async memoryStatus() {
+        const r = await fetch(`${location.origin}/api/account`, { credentials: "include" });
+        if (!r.ok) return { status: "unknown", detail: `/api/account ${r.status}` };
+        const s = (await r.json()).settings || {};
+        if (!("enabled_saffron" in s) && !("enabled_saffron_search" in s)) return { status: "unknown", detail: "account settings have no enabled_saffron*" };
+        const on = s.enabled_saffron === true || s.enabled_saffron_search === true;
+        return { status: on ? "on" : "off", detail: `generate memory (enabled_saffron)=${s.enabled_saffron}, search past chats (enabled_saffron_search)=${s.enabled_saffron_search}` };
+      },
+      async deleteChats(ids) {
+        const out = {};
+        for (const id of ids) {
+          const r = await this.api(`/chat_conversations/${id}`, { method: "DELETE" });
+          out[id] = r.ok ? "deleted" : r.status === 404 ? "not_found" : `error ${r.status}`;
+        }
+        return out;
+      },
+      async listChats() {
+        const r = await this.api("/chat_conversations");
+        if (!r.ok) throw new Error(`chat_conversations ${r.status}`);
+        return (await r.json()).map((c) => c.uuid);
       },
       locateInput() { return waitFor(this.composer); },
       // Claude only, for now: the other two drivers are untouched deliberately.
@@ -412,7 +555,9 @@
         const stopBtn = [...document.querySelectorAll('button[aria-label*="Stop" i]')].some((b) => b.offsetParent !== null);
         const streaming = !!document.querySelector('[data-is-streaming="true"]');
         if (!(final && !open && hasText && this._seen.n >= 2 && !stopBtn && !streaming)) return { state: "pending" };
-        return { state: "done", response: { convId, model: conv.model || null, message: leaf } };
+        const humanTurns = (conv.chat_messages || []).filter((x) => x.sender === "human").length;
+        return { state: "done", response: { convId, model: conv.model || null, message: leaf },
+                 isolation: { chatId: convId, temporary: conv.is_temporary === true, humanTurns, evidence: `conversation is_temporary=${conv.is_temporary}` } };
       },
     },
     deepseek: {
@@ -497,6 +642,42 @@
         // A fresh page load is the only reliable "new chat": the route is the mode.
         location.assign(priv ? "/work/temporary-chat" : "/work");
         await sleep(4000);
+      },
+      isolationState() {
+        const exit = [...document.querySelectorAll('a[href="/work"], button')].some((e) => /exit temporary chat/i.test(e.innerText || ""));
+        const temp = location.pathname === "/work/temporary-chat";
+        const msgs = !!document.querySelector('[data-message-author-role], [data-testid*="message" i]');
+        return { temporary: temp && exit, newChat: temp ? !msgs : location.pathname === "/work",
+                 evidence: `page ${location.pathname}${exit ? ", 'Exit temporary chat' link" : ", no temporary-chat link"}` };
+      },
+      // tRPC: Le Chat's own client calls these with GET ?batch=1&input=..., mutations with POST.
+      async trpc(proc, input, mutate) {
+        const u = `${location.origin}/api/trpc/${proc}?batch=1`;
+        const body = { 0: { json: input === undefined ? null : input } };
+        const r = mutate
+          ? await fetch(u, { method: "POST", credentials: "include", headers: { "content-type": "application/json" }, body: JSON.stringify(body) })
+          : await fetch(`${u}&input=${encodeURIComponent(JSON.stringify(input === undefined ? { 0: { json: null, meta: { values: ["undefined"], v: 1 } } } : body))}`, { credentials: "include" });
+        const j = await r.json().catch(() => null);
+        return { status: r.status, data: j && j[0] && j[0].result ? j[0].result.data.json : undefined };
+      },
+      // Settings > Privacy > Personalization > "Knowledge" ("save and organize key insights from your chats").
+      async memoryStatus() {
+        const k = await this.trpc("user.getKnowledgeToggleState");
+        if (!k.data || typeof k.data.enabled !== "boolean") return { status: "unknown", detail: `getKnowledgeToggleState ${k.status}` };
+        return { status: k.data.enabled ? "on" : "off", detail: `Knowledge enabled=${k.data.enabled}` };
+      },
+      async deleteChats(ids) {
+        const out = {};
+        for (const id of ids) {
+          const r = await this.trpc("chat.delete", { id }, true);
+          out[id] = r.status === 200 ? "deleted" : r.status === 404 ? "not_found" : `error ${r.status}`;
+        }
+        return out;
+      },
+      async listChats() {
+        const r = await this.trpc("chat.last", { chatVisibility: "private", chatPermission: "write", includeProjectChats: true, includeScheduledTaskChats: true, direction: "forward" });
+        if (!r.data) throw new Error(`chat.last ${r.status}`);
+        return (r.data.items || []).map((c) => c.id);
       },
       // Web search must be ON for every question. Find the toggle, log what we saw, switch it on if it is off.
       async ensureWebSearch() {

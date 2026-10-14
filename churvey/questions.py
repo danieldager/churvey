@@ -292,10 +292,52 @@ def load_saved(p):
 
 # --- run plan ------------------------------------------------------------------------------------------------
 
+ORDER_GAP = 3   # questions of one group are kept at least this many other questions apart, where the set allows
+
+
+def spaced_order(questions, gap=ORDER_GAP):
+    """The questions reordered so that two of the same `group` (e.g. an open question and its false-premise twin) are
+    never asked back to back: at least `gap` other questions between them where the set allows. Greedy: at each step
+    the eligible question whose group has the most questions left (so the tail does not crowd), ties in file order.
+    A set with follow-ups (meta.followup_of) keeps its order, since a follow-up must come right after its parent."""
+    if any("followup_of" in q.get("meta", {}) for q in questions):
+        return list(questions)
+    left, out = list(questions), []
+    while left:
+        recent = {q.get("group") for q in out[-gap:] if q.get("group")}
+        todo = {}
+        for q in left:
+            if q.get("group"):
+                todo[q["group"]] = todo.get(q["group"], 0) + 1
+        ok = [q for q in left if not q.get("group") or q["group"] not in recent]
+        if ok:
+            pick = max(ok, key=lambda q: (todo.get(q.get("group"), 0), -left.index(q)))
+        else:   # cannot keep the gap: the question whose group was asked longest ago
+            last = {q.get("group"): i for i, q in enumerate(out)}
+            pick = min(left, key=lambda q: (last.get(q.get("group"), -1), left.index(q)))
+        left.remove(pick)
+        out.append(pick)
+    return out
+
+
+def min_group_gap(questions):
+    """Fewest other questions between two of the same group (None if no group repeats)."""
+    seen, best = {}, None
+    for i, q in enumerate(questions):
+        g = q.get("group")
+        if g in seen:
+            best = i - seen[g] - 1 if best is None else min(best, i - seen[g] - 1)
+        if g:
+            seen[g] = i
+    return best
+
+
 def to_run_plan(qs, chatbots, repeat, private):
     questions = []
-    for q in qs["questions"]:
+    for q in spaced_order(qs["questions"]):
         item = {"id": q["id"], "text": q["text"], "tags": list(q.get("tags", []))}
+        if q.get("group"):
+            item["group"] = q["group"]
         for k in PLAN_PASSTHROUGH:
             if k in q.get("meta", {}):
                 item[k] = q["meta"][k]

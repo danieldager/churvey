@@ -237,10 +237,61 @@
       private: RUN.cfg.config && RUN.cfg.config.private, captureUrl: f.url || null, citations: f.citations || [],
       fetchedUrls: f.fetchedUrls || [], domSources: f.domSources || null,
       captureMethod: f.status === "ok" ? (f.captureMethod || "stream") : null,
+      isolation: f.isolation || null,
     });
     await ext.storage.local.set({ [recKey(RUN.runId, pid, item.itemKey)]: rec });
     emit({ type: "record", provider: pid, itemKey: item.itemKey, status: rec.status, capture_method: rec.capture_method, latencyMs: rec.latencyMs, error: rec.errorMessage, chars: (rec.responseText || "").length, citations: rec.citations.length });
   }
+
+  // ---- isolation: every question in a brand-new temporary chat, proven per record -------------------------------
+  // Three independent readings, all must agree:
+  //  pre  - the page just before submit (driver.isolationState: temporary switch on, no chat id in the URL, no turns);
+  //  req  - the request the page sent (capture.lastRequest: ChatGPT's history_and_training_disabled + client-created-root);
+  //  post - the chat read back after the answer (poll providers: is_temporary / temporary, number of human turns),
+  // plus: the chat id must not have been seen before in this run for this provider (the 2026-10-13 ChatGPT failure).
+  // config.private + not config.allowNotIsolated -> an item that fails any of this is an ERROR, never a silent answer.
+  const CHAT_ID_RE = {
+    chatgpt: [/"conversation_id":\s*"([0-9a-f-]{36})"/, /\/c\/([0-9a-f-]{36})/],
+    gemini: [/\[\\?"(c_[0-9a-f]{12,20})\\?"/, /\/app\/([0-9a-f]{12,20})/],
+    mistral: [/"chatId":"([0-9a-f-]{36})"/, /\/(?:work|chat)\/([0-9a-f-]{36})/],
+    grok: [/conversations\/([0-9a-f-]{36})\//, /\/c\/([0-9a-f-]{36})/],
+    claude: [/\/chat\/([0-9a-f-]{36})/],
+  };
+  function chatIdFrom(pid, ...texts) {
+    for (const re of CHAT_ID_RE[pid] || []) for (const t of texts) { const m = t && re.exec(t); if (m) return m[1]; }
+    return null;
+  }
+  async function isoState(tabId) {
+    try { const r = await ext.tabs.sendMessage(tabId, { type: Probe.MSG.ISOLATION_STATE }); return r && r.ok ? r : null; } catch (_) { return null; }
+  }
+  const requireIsolation = () => !!(RUN.cfg.config && RUN.cfg.config.private) && !(RUN.cfg.config && RUN.cfg.config.allowNotIsolated);
+  async function isolationFor(pid, inf, cap) {
+    const priv = !!(RUN.cfg.config && RUN.cfg.config.private);
+    const followup = !!inf.item.followupOf;
+    const pre = inf.iso || null;
+    const req = Probe.capture.lastRequest(inf.tabId, inf.submittedAt - 15000);
+    const post = (cap && cap.isolation) || null;
+    let tabUrl = ""; try { tabUrl = (await ext.tabs.get(inf.tabId)).url || ""; } catch (_) {}
+    const chatId = (post && post.chatId) || chatIdFrom(pid, cap && cap.raw, cap && cap.url, tabUrl)
+      || (pid === "grok" ? Probe.capture.grokConvId(inf.tabId) : null); // a private grok chat keeps the URL at "/"
+    const seen = RUN.chatIds[pid] || (RUN.chatIds[pid] = new Set());
+    const reused = !!(chatId && seen.has(chatId) && !followup);
+    if (chatId) seen.add(chatId);
+    const ev = [];
+    if (pre) ev.push(pre.evidence);
+    if (req && req.flags) ev.push("request " + Object.entries(req.flags).map(([k, v]) => `${k}=${v}`).join(" "));
+    if (post) ev.push(`${post.evidence}, ${post.humanTurns} human turn(s)`);
+    if (chatId) ev.push(`chat ${chatId}${reused ? " ALREADY USED in this run" : ""}`);
+    const newChat = !followup && !!pre && pre.newChat === true && req?.newChat !== false && !(post && post.humanTurns > 1) && !reused;
+    // A follow-up is typed into its parent's chat: it is as temporary as that chat was.
+    const parent = followup && RUN.chats.find((c) => c.provider === pid && c.chat_id === chatId);
+    const temporary = followup ? !!(parent && parent.temporary) && post?.temporary !== false
+      : priv && !!pre && pre.temporary === true && req?.temporary !== false && post?.temporary !== false;
+    if (chatId && !RUN.chats.some((c) => c.provider === pid && c.chat_id === chatId))
+      RUN.chats.push({ provider: pid, chat_id: chatId, item: inf.item.itemKey, temporary, at: new Date().toISOString() });
+    return { new_chat: newChat, temporary, followup, chat_id: chatId, evidence: ev.filter(Boolean).join("; ") || "none" };
+  }
+  const isolationProblem = (iso) => iso.followup ? null : !iso.new_chat ? "not a new chat" : !iso.temporary ? "temporary mode not confirmed" : null;
 
   // Pairing: called for every completion capture.
   function onCapture(cap) {
@@ -306,13 +357,16 @@
       }
       let domSources = null;
       if (!isError && RUN.cfg.config && RUN.cfg.config.auditSources) domSources = await visibleSources(inf.tabId);
-      await saveRecord(pid, inf.item, { answer: cap.answer, status: isError ? "error" : "ok", error: cap.error, latencyMs: latency, startMs: inf.submittedAt, endMs: Date.parse(cap.ts), url: cap.url, model: cap.model, citations, fetchedUrls, domSources, captureMethod: cap.captureMethod });
-      log.info(`[${pid}] recorded ${inf.item.itemKey} ${isError ? "ERR" : "ok"} ${cap.captureMethod || "stream"} ${cap.answerLen}c ${citations.length}cites ${fetchedUrls.length}urls ${latency}ms`);
+      const isolation = await isolationFor(pid, inf, cap);
+      const notIso = !isError && requireIsolation() && isolationProblem(isolation);
+      const err = notIso ? `[not_isolated] ${notIso}: ${isolation.evidence}` : cap.error;
+      await saveRecord(pid, inf.item, { answer: cap.answer, status: isError || notIso ? "error" : "ok", error: err, latencyMs: latency, startMs: inf.submittedAt, endMs: Date.parse(cap.ts), url: cap.url, model: cap.model, citations, fetchedUrls, domSources, captureMethod: cap.captureMethod, isolation });
+      log.info(`[${pid}] recorded ${inf.item.itemKey} ${isError ? "ERR" : notIso ? "NOT_ISOLATED" : "ok"} ${cap.captureMethod || "stream"} ${cap.answerLen}c ${citations.length}cites ${fetchedUrls.length}urls ${latency}ms new_chat=${isolation.new_chat} temporary=${isolation.temporary}`);
       // Keep ChatGPT's Cookie header from growing into a 431 over a long run.
       if (pid === "chatgpt" && !isError) trimCookies(["chatgpt.com", "openai.com"]).catch(() => {});
       prov.inflight = null;
       // An error record is not done — schedule its re-ask (record already saved).
-      if (isError) failBackoff(pid, inf.item, cap.error, { record: false });
+      if (isError || notIso) failBackoff(pid, inf.item, err, { record: false });
       scheduleTick();
     })();
     return true;
@@ -373,10 +427,10 @@
       if (r.state !== "done") continue;
       if (pid === "grok") {
         log.info(`[${pid}] ${inf.item.itemKey}: conversation ${convId} finished (${r.response.message.length}c) - handing to capture`);
-        Probe.capture.deliverGrok(inf.tabId, convId, r.response);
+        Probe.capture.deliverGrok(inf.tabId, convId, r.response, r.isolation || null);
       } else {
         log.info(`[${pid}] ${inf.item.itemKey}: conversation ${r.response.convId} finished - handing to capture`);
-        Probe.capture.deliverClaude(inf.tabId, r.response);
+        Probe.capture.deliverClaude(inf.tabId, r.response, r.isolation || null);
       }
       return;
     }
@@ -450,8 +504,11 @@
       for (const c of extra) if (!seenUrl.has(c.url)) citations.push(c);
       const endMs = Date.now();
       log.warn(`[${pid}] ${inf.item.itemKey}: no capture landed but the answer is finished on screen (${a.len}c) - recording it from the DOM`);
-      await saveRecord(pid, inf.item, { answer: a.text, status: "ok", latencyMs: endMs - inf.submittedAt - still, startMs: inf.submittedAt, endMs: endMs - still, url: null, citations, fetchedUrls: (a.links || []).map((l) => l.url), captureMethod: "dom_fallback" });
+      const isolation = await isolationFor(pid, inf, null);
+      const notIso = requireIsolation() && isolationProblem(isolation);
+      await saveRecord(pid, inf.item, { answer: a.text, status: notIso ? "error" : "ok", error: notIso ? `[not_isolated] ${notIso}: ${isolation.evidence}` : null, latencyMs: endMs - inf.submittedAt - still, startMs: inf.submittedAt, endMs: endMs - still, url: null, citations, fetchedUrls: (a.links || []).map((l) => l.url), captureMethod: "dom_fallback", isolation });
       if (prov.inflight === inf) prov.inflight = null;
+      if (notIso) failBackoff(pid, inf.item, `[not_isolated] ${notIso}`, { record: false });
       scheduleTick();
       return;
     }
@@ -498,6 +555,23 @@
     if (pre.state !== "ok") { blockProvider(pid, item, pre.state, pre.text); return; }
     if (!ready) { bumpAttempt(pid, item, "not ready (login/page/loading)"); return; }
 
+    // 2b) Prove the composer sits in a brand-new temporary chat BEFORE anything is typed. One more NEW_CHAT if not;
+    //     still not -> the item fails ([not_isolated]) instead of being asked in an ordinary chat.
+    let iso = null;
+    if (priv && !item.followupOf) {
+      iso = await isoState(tabId);
+      if (!(iso && iso.temporary && iso.newChat)) {
+        log.warn(`[${pid}] ${item.itemKey}: not in a new temporary chat (${iso ? iso.evidence : "no isolation state"}) - starting one again`);
+        try { await ext.tabs.sendMessage(tabId, { type: Probe.MSG.NEW_CHAT, private: true }); } catch (_) { /* navigated */ }
+        await waitForReady(tabId);
+        iso = await isoState(tabId);
+      }
+      if (!(iso && iso.temporary && iso.newChat) && requireIsolation()) {
+        failBackoff(pid, item, `[not_isolated] ${!iso ? "no isolation state from the page" : !iso.newChat ? "not a new chat" : "temporary mode not confirmed"}: ${iso ? iso.evidence : "-"}`);
+        return;
+      }
+    }
+
     // 3) Fetch any picture the question carries. The background has the host
     // permission for the image CDN; the content script does not, and a data URL
     // crosses the message boundary without one. A failure is not fatal - the
@@ -524,7 +598,7 @@
     // timeout with its answer visible on screen. Measured 2026-09-15: the follow-up
     // turn's stream closed 3.4s after the click, 1.2s before inflight was armed.
     // Arming before the round-trip closes the window for every provider.
-    prov.inflight = { item, submittedAt: Date.now(), tabId };
+    prov.inflight = { item, submittedAt: Date.now(), tabId, iso };
     prov.chatKey = item.itemKey; // last item asked in the tab's current chat
     const mine = () => prov.inflight && prov.inflight.item === item; // still ours? (an answer may already have landed and cleared it)
     let resp;
@@ -610,7 +684,7 @@
 
   async function boot(cfg, _windowId, label) { // windowId unused since one-window-per-provider
     const items = Probe.runPlan.expand(cfg);
-    RUN = { runId: cfg.runId, cfg, status: "running", startedAt: Date.now(), providers: {}, tabToProvider: {}, retryAt: {}, fails: {}, gaveUp: {}, connRetries: {} };
+    RUN = { runId: cfg.runId, cfg, status: "running", startedAt: Date.now(), providers: {}, tabToProvider: {}, retryAt: {}, fails: {}, gaveUp: {}, connRetries: {}, chats: [], chatIds: {} };
     for (const pid of cfg.providers) RUN.providers[pid] = { items: items.map((x) => ({ ...x })), tabId: null, inflight: null, paused: false, chatKey: null, health: { status: "ok", text: "", at: null } };
     for (const pid of cfg.providers) await ensureTab(pid);
     // DeepSeek deletes all chats before EVERY question (done inside its
@@ -755,7 +829,9 @@
                        runConfig: cfg, records: recs.filter((r) => !cfg || r.runId === cfg.runId),
                        // The 300-line log ring. Without it, diagnosing a run means
                        // prying storage.local out of the profile's IndexedDB by hand.
-                       log: await Probe.log.getRing() };
+                       log: await Probe.log.getRing(),
+                       // Every chat this run created (provider, chat_id, item): what `churvey purge --run` deletes.
+                       chats: RUN && RUN.runId === (cfg && cfg.runId) ? RUN.chats : [] };
     return { runId, cfg, recs, summary, summaryText: Probe.summary.formatText(summary), manifest, rawCompletions: debugRaw };
   }
 

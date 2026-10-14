@@ -19,6 +19,7 @@
         const r = await fetch(`${b}/run-plan.json`, { cache: "no-store" });
         if (!r.ok) continue;
         const plan = await r.json();
+        if (plan && plan.task === "maintenance") return { base: b, plan };
         if (plan && Array.isArray(plan.providers) && Array.isArray(plan.questions) && plan.questions.length) {
           return { base: b, plan };
         }
@@ -48,8 +49,15 @@
         payload = await Probe.runner.buildExport();
       } catch (e) { log.error("poll", e?.message || e); return; }
       const finished = ov.status === "done" || ov.status === "stopped";
+      // After the run, delete the chats it created (config.purgeAfter; churvey run does this unless --keep-chats).
+      let purge;
+      if (finished && ov.runConfig && ov.runConfig.config && ov.runConfig.config.purgeAfter) {
+        const byPid = {};
+        for (const c of payload.manifest.chats || []) (byPid[c.provider] ||= []).push(c.chat_id);
+        purge = await Probe.isolation.purge(byPid);
+      }
       // The raw completion bodies (parser input) go once, with the final post: they are megabytes.
-      await post(finished ? "/done" : "/progress", { status: ov.status, health: Probe.runner.providerHealth(), manifest: payload.manifest, summaryText: payload.summaryText, ...(finished ? { rawCompletions: payload.rawCompletions } : {}) });
+      await post(finished ? "/done" : "/progress", { status: ov.status, health: Probe.runner.providerHealth(), manifest: payload.manifest, summaryText: payload.summaryText, ...(finished ? { rawCompletions: payload.rawCompletions, purge } : {}) });
       if (finished) { clearInterval(timer); log.info(`run ${ov.status} — results posted to ${base}`); }
     }, POLL_MS);
   }
@@ -59,6 +67,14 @@
     if (!found) { log.info("no launcher on 127.0.0.1 — manual (popup) mode"); return; }
     base = found.base;
     const { plan } = found;
+    if (plan.task === "maintenance") {
+      log.info(`launcher at ${base}: maintenance ${JSON.stringify(Object.keys(plan.maintenance || {}))}`);
+      let res;
+      try { res = await Probe.isolation.maintain(plan.maintenance || {}); }
+      catch (e) { res = { error: String(e?.message || e) }; }
+      await post("/done", { status: "done", maintenance: res, purge: res.purge });
+      return;
+    }
     log.info(`launcher at ${base}: ${plan.providers.join(",")} x ${plan.questions.length} questions`);
     liveFeed();
     try {

@@ -2,4 +2,4 @@
 globalThis.Probe = globalThis.Probe || {};
 // Build stamp — bump on every change so the popup can show which code is live in
 // the background vs. each content-script tab (stale tabs = needs a tab reload).
-globalThis.Probe.BUILD = "2026-10-13-capture-robust";
+globalThis.Probe.BUILD = "2026-10-14-chat-isolation";

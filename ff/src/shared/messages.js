@@ -23,6 +23,10 @@
     SUBMIT: "SUBMIT", // {prompt} -> type + submit
     PURGE: "PURGE", // DeepSeek: delete all chats
     PING: "PING", // -> {ok, ready, visibility}
+    ISOLATION_STATE: "ISOLATION_STATE", // -> {ok, temporary, newChat, evidence} is the composer in a fresh temporary chat? (checked before every submit)
+    MEMORY_STATUS: "MEMORY_STATUS", // -> {ok, status:"on"|"off"|"unknown", detail} | {ok, needs:url} account memory setting, read only
+    DELETE_CHATS: "DELETE_CHATS", // {ids} -> {ok, results:{id: "deleted"|"not_found"|"unsupported"|"error .."}} the provider's own delete
+    LIST_CHATS: "LIST_CHATS", // -> {ok, ids} every chat in the account's history (purge --everything only)
     CAPTURE_DOM: "CAPTURE_DOM", // -> dump visible buttons/dialogs for selector authoring
     ANSWER_STATE: "ANSWER_STATE", // -> {ok, generating, len} is the visible answer finished? (Gemini flush gate)
     GROK_POLL: "GROK_POLL", // {convId, prompt} -> {ok, state:"pending"|"done"|"mismatch", response} one read of the grok.com conversation (answer arrives over a websocket, not HTTP)

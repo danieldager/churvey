@@ -140,6 +140,20 @@
         catch (e) { return { ok: false, error: String(e?.message || e) }; }
       })();
     }
+    if (msg.type === Probe.MSG.ISOLATION_STATE) {
+      if (!driver || typeof driver.isolationState !== "function") return Promise.resolve({ ok: false, error: "no isolation check for provider" });
+      return Promise.resolve(safe(() => ({ ok: true, ...driver.isolationState() }), { ok: false, error: "isolationState threw" }));
+    }
+    if (msg.type === Probe.MSG.MEMORY_STATUS || msg.type === Probe.MSG.DELETE_CHATS || msg.type === Probe.MSG.LIST_CHATS) {
+      const fn = { [Probe.MSG.MEMORY_STATUS]: "memoryStatus", [Probe.MSG.DELETE_CHATS]: "deleteChats", [Probe.MSG.LIST_CHATS]: "listChats" }[msg.type];
+      return (async () => {
+        if (!driver || typeof driver[fn] !== "function") return { ok: false, error: `no ${fn} for provider` };
+        try {
+          const r = await driver[fn](msg.ids || []);
+          return msg.type === Probe.MSG.MEMORY_STATUS ? { ok: true, ...r } : msg.type === Probe.MSG.DELETE_CHATS ? { ok: true, results: r } : { ok: true, ids: r };
+        } catch (e) { return { ok: false, error: String(e?.message || e) }; }
+      })();
+    }
     if (msg.type === Probe.MSG.NEW_CHAT) {
       return (async () => {
         if (!driver) return { ok: false, error: "no driver" };

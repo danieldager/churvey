@@ -22,6 +22,7 @@
     "(upgrade|passez)\\b.{0,50}\\b(to continue|continuer|more messages|plus de messages)",
     "(come back|try again|reviens?|r[ée]essayez)\\b.{0,40}\\b(later|tomorrow|plus tard|demain|at \\d|in \\d|dans \\d)",
     "your limit (will )?reset", "(limit|limite)s? (resets?|r[ée]initialis)",
+    "before (the )?limit is gone", "much higher limits",   // grok.com, 2026-10-14: "26 minutes before limit is gone"
   ].join("|"), "i");
   const LOGIN_BTN_RE = /^(log ?in|sign ?in|sign up|log in or sign up|se connecter|connexion|s['’]inscrire|continue with google|continuer avec google)$/i;
   const CHALLENGE_TITLE_RE = /just a moment|un instant|attention required|verify you are human|checking your browser|v[ée]rification/i;
@@ -70,7 +71,9 @@
     // MarkdownRoot blocks inside a turn container that says data-talvt-turn-state="complete" once it is done.
     chatgpt: { msgs: '[data-markdown-text-style="assistant-message"], [data-message-author-role="assistant"]', turn: '[data-talvt-turn-state], [data-message-author-role="assistant"]', body: null, stop: 'button[data-testid="stop-button"], button[aria-label*="Stop" i]', turnState: ["data-talvt-turn-state", "complete"], done: 'button[aria-label="Regenerate response"], button[aria-label="Copy"], button[data-testid="copy-turn-action-button"]' },
     gemini: { msgs: "model-response", body: "message-content, .markdown", stop: 'button[aria-label*="Stop" i]', done: 'button[aria-label*="Copy" i], message-actions, .response-footer' },
-    grok: { msgs: '[id^="response-"]:not([id*="user"]), div.message-bubble', body: ".response-content-markdown, [class*='markdown']", stop: 'button[aria-label*="Stop" i]', done: 'button[aria-label*="Copy" i], button[aria-label*="Regenerate" i]' },
+    // The user's own turn is a [id^="response-"] too, right-aligned (.items-end): never read it as the answer (on
+    // 2026-10-14 a rate-limited grok "answered" with the prompt itself through this fallback).
+    grok: { msgs: '[id^="response-"]:not([id*="user"]):not(.items-end)', body: ".response-content-markdown, [class*='markdown']", stop: 'button[aria-label*="Stop" i]', done: 'button[aria-label*="Copy" i], button[aria-label*="Regenerate" i]' },
     claude: { msgs: "[data-is-streaming]", body: ".standard-markdown, .progressive-markdown", stop: 'button[aria-label*="Stop" i]', done: '[data-is-streaming="false"], button[data-testid="action-bar-retry"]' },
     deepseek: { msgs: ".ds-markdown", body: null, stop: 'div[role="button"][aria-label*="stop" i], button[aria-label*="stop" i]', done: ".ds-icon-button, .ds-markdown + div" },
     mistral: { msgs: '[data-message-author-role="assistant"], [data-testid*="assistant" i], [class*="assistant" i]', body: "[class*='markdown'], [class*='prose']", stop: 'button[aria-label*="Stop" i], button[aria-label*="Arrêter" i]', done: 'button[aria-label*="Copy" i], button[aria-label*="Copier" i]' },

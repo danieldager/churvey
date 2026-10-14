@@ -19,7 +19,7 @@ import threading
 import time
 from datetime import datetime, timezone
 
-from . import home, questions as Q
+from . import home, isolation as I, questions as Q
 
 LOGIN_FIX = "churvey login {}"
 BLOCK_TEXT = {"logged_out": "is not signed in", "rate_limited": "hit its message limit", "challenge": "showed a security check (captcha)"}
@@ -131,20 +131,18 @@ def cmd_login(a):
 # --- doctor / run -----------------------------------------------------------------------------------------
 
 def cmd_doctor(a):
-    from .survey import launch_browser as lb
     cfg = require_setup()
     chatbots = home.parse_chatbots(a.chatbots) or cfg["chatbots"]
-    out = home.runs_dir() / "_doctor"
-    argv = ["--preflight", "--profile", str(home.profile_dir()), "--providers", ",".join(chatbots), "--out", str(out)]
-    if not a.visible:
-        argv.append("--headless")
-    say(f"Sending one short question to {', '.join(home.LABELS[c] for c in chatbots)}" + ("" if a.visible else " (no window)") + "...")
-    rc, state = lb.launch(argv)
-    if rc:
-        explain_blocked(state.health)
-    else:
-        say("All chatbots answered. You are ready: churvey run <question-set>")
-    return rc
+    out = home.runs_dir() / "_doctor" / datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    say(f"Checking {', '.join(home.LABELS[c] for c in chatbots)}" + ("" if a.visible else " (no window)") + "...")
+    report = I.check(chatbots, out, a.visible, say)
+    I.show(report, say)
+    blocked = {p: {"status": r["canary"], "text": r["canary_detail"]} for p, r in report.items() if r["canary"] in BLOCK_TEXT}
+    explain_blocked(blocked)
+    clean = all(r["canary"] == "PASS" and r["memory"]["status"] == "off" for r in report.values())
+    if clean:
+        say("All chatbots answered in isolated chats and no account remembers. You are ready: churvey run <question-set>")
+    return 0 if clean else 1
 
 
 def cmd_run(a):
@@ -170,11 +168,35 @@ def cmd_run(a):
     run_id = f"{qs['name']}_{datetime.now().strftime('%Y-%m-%d_%H%M%S')}"
     folder = home.runs_dir() / run_id
     folder.mkdir(parents=True)
+
+    # Preflight: account memory, leftover churvey chats deleted, isolation canary. A chatbot whose account remembers
+    # stops the run (switch memory off by hand); one that fails the canary is left out of this run.
+    report = I.check(chatbots, folder / "preflight", a.visible, say)
+    I.show(report, say)
+    on = [p for p, r in report.items() if r["memory"]["status"] == "on"]
+    unknown = [p for p, r in report.items() if r["memory"]["status"] == "unknown"]
+    if on:
+        say(f"Not running: account memory is on for {', '.join(on)}. Switch it off (above), or leave them out with --chatbots.")
+        return 2
+    if unknown and not a.allow_memory_unknown:
+        say(f"Not running: the memory setting of {', '.join(unknown)} could not be read. Check it by hand (above), then rerun with --allow-memory-unknown.")
+        return 2
+    failed = [p for p, r in report.items() if r["canary"] != "PASS"]
+    if failed:
+        say(f"Leaving out {', '.join(failed)}: failed the isolation canary (see above).")
+        chatbots = [c for c in chatbots if c not in failed]
+    if not chatbots:
+        say("No chatbot passed the preflight; nothing to run.")
+        return 1
     (folder / "questions.json").write_text(Q.dump(qs), encoding="utf-8")   # frozen copy: later edits never change this run
     plan = Q.to_run_plan(qs, chatbots, repeat, private)
+    plan["config"]["purgeAfter"] = not a.keep_chats
     (folder / "run-plan.json").write_text(json.dumps(plan, indent=1, ensure_ascii=False))
     meta = {"run_id": run_id, "question_set": qs["name"], "question_set_sha256": Q.content_hash(qs), "question_set_source": str(src),
             "chatbots": chatbots, "repeat": repeat, "private": private, "headless": not a.visible,
+            "question_order": [q["id"] for q in plan["questions"]], "min_group_gap": Q.min_group_gap(plan["questions"]),
+            "keep_chats": a.keep_chats, "memory": {p: r["memory"] for p, r in report.items()},
+            "canary": {p: r["canary"] for p, r in report.items()},
             "started_at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "churvey": version()}
     (folder / "churvey-run.json").write_text(json.dumps(meta, indent=2))
 
@@ -189,9 +211,66 @@ def cmd_run(a):
                 blocked={p: h.get("status") for p, h in state.health.items() if h and h.get("status") not in (None, "ok")})
     (folder / "churvey-run.json").write_text(json.dumps(meta, indent=2))
     explain_blocked(state.health)
+    if state.purge:
+        for p, v in I.tally(state.purge).items():
+            say(f"  {home.LABELS.get(p, p)} chats of this run: {I.describe(v)}" + (f"  (retry: churvey purge --run {run_id})" if v["failed"] else ""))
+    elif a.keep_chats:
+        say(f"Chats kept (--keep-chats). Delete them later: churvey purge --run {run_id}")
     if state.written:
         say(f"Export the answers:  churvey export {run_id}")
     return rc
+
+
+def cmd_purge(a):
+    require_setup()
+    if a.everything:
+        return purge_everything(a)
+    if a.all_churvey:
+        folders = I.run_folders()
+    elif a.run:
+        p = pathlib.Path(a.run).expanduser()
+        folder = p if p.is_dir() else (sorted((x for x in home.runs_dir().iterdir() if x.is_dir() and not x.name.startswith("_")), key=lambda x: x.stat().st_mtime)[-1]
+                                       if a.run == "latest" else home.runs_dir() / a.run)
+        if not folder.is_dir():
+            raise SystemExit(f"no run folder {folder}")
+        folders = I.run_folders(folder)
+    else:
+        raise SystemExit("say what to delete: --run <run>, --all-churvey, or --everything --chatbot <c>")
+    left = I.leftovers(folders)
+    n = sum(len(ids) for l in left.values() for ids in l.values())
+    if not n:
+        say("Nothing to delete: every chat churvey created there is already deleted.")
+        return 0
+    only = home.parse_chatbots(a.chatbots) or None
+    say(f"Deleting {n} chats churvey created ({len(left)} run folder(s)), through each chatbot's own delete...")
+    t = I.purge_folders(folders, home.runs_dir() / "_purge" / datetime.now().strftime("%Y-%m-%d_%H%M%S"), a.visible, only)
+    for p, v in t.items():
+        say(f"  {home.LABELS.get(p, p):8} {I.describe(v)}")
+    return 1 if any(v["failed"] for v in t.values()) else 0
+
+
+def purge_everything(a):
+    """Delete EVERY chat in one account. Lists and counts first; the chatbot's name must be typed to go on."""
+    if not a.chatbot:
+        raise SystemExit("--everything needs --chatbot <name> (one account at a time)")
+    pid = home.chatbot_id(a.chatbot)
+    if not interactive():
+        raise SystemExit("--everything asks for a typed confirmation; run it in a terminal")
+    out = home.runs_dir() / "_purge" / datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    listed = (I.maintain({"list": [pid]}, out / "list", a.visible).get("list") or {}).get(pid) or {}
+    if listed.get("error") or "ids" not in listed:
+        raise SystemExit(f"could not list {home.LABELS[pid]}'s chats: {listed.get('error', 'no result')}")
+    n = len(listed["ids"])
+    if not n:
+        say(f"{home.LABELS[pid]} has no chats in its history.")
+        return 0
+    say(f"{home.LABELS[pid]}: {n} chats in this account's history. ALL of them will be deleted, not only churvey's.")
+    if input(f"Type the chatbot name ({pid}) to delete all {n}: ").strip().lower() != pid:
+        raise SystemExit("not deleted")
+    res = I.maintain({"purgeListed": [pid]}, out / "delete", a.visible)
+    v = I.tally(res.get("purge") or {}).get(pid, {"deleted": 0, "not_found": 0, "unsupported": 0, "failed": n})
+    say("  " + I.describe(v))
+    return 1 if v["failed"] else 0
 
 
 # --- remote control ----------------------------------------------------------------------------------------
@@ -429,7 +508,7 @@ def build_parser():
     p = sub.add_parser("login", help="sign in again to one or more chatbots")
     p.add_argument("chatbot", nargs="*", help="chatbot(s) to sign in to (default: all set up)")
     p.set_defaults(fn=cmd_login)
-    p = sub.add_parser("doctor", help="check every chatbot answers (one short question each, no window)")
+    p = sub.add_parser("doctor", help="check every chatbot answers in isolated chats and no account memory is on")
     p.add_argument("--chatbots", help="comma list (default: those set up)")
     p.add_argument("--visible", action="store_true", help="show the Firefox window")
     p.set_defaults(fn=cmd_doctor)
@@ -442,7 +521,18 @@ def build_parser():
     g.add_argument("--headless", dest="visible", action="store_false", help="no Firefox window (default)")
     g.add_argument("--visible", dest="visible", action="store_true", help="show the Firefox window")
     p.add_argument("--timeout", type=int, help="give up after N seconds (default: scales with the run size)")
+    p.add_argument("--keep-chats", action="store_true", help="do not delete this run's chats when it ends")
+    p.add_argument("--allow-memory-unknown", action="store_true", help="run even if an account's memory setting cannot be read")
     p.set_defaults(fn=cmd_run, visible=False)
+
+    p = sub.add_parser("purge", help="delete the chats churvey created (or, with --everything, a whole account's)")
+    p.add_argument("--run", help='run id, "latest", or a run folder: delete the chats that run created')
+    p.add_argument("--all-churvey", action="store_true", help="delete every chat any churvey run or check created")
+    p.add_argument("--everything", action="store_true", help="delete ALL chats in one account (lists, then asks you to type its name)")
+    p.add_argument("--chatbot", help="with --everything: the one account to empty")
+    p.add_argument("--chatbots", help="with --run / --all-churvey: only these (comma list)")
+    p.add_argument("--visible", action="store_true", help="show the Firefox window")
+    p.set_defaults(fn=cmd_purge)
 
     for name, hlp in (("status", "progress of the run going on"), ("pause", "pause one chatbot in the running run"),
                       ("resume", "resume a paused or blocked chatbot"), ("reload", "reload a chatbot's tab"), ("stop", "stop the run")):

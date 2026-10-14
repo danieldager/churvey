@@ -37,7 +37,7 @@
     "next_run": "churvey run my-questions",
     "next_export": "churvey export latest",
     "questions_link": "Edit question sets",
-    "row_note_private": "churvey asks every question in a private / temporary chat where the site has one.",
+    "row_note_private": "churvey asks every question in a new private / temporary chat and checks it on every answer. Account memory must be off by hand (step 2 of each chatbot): churvey doctor reads it, and churvey run refuses to start while it is on.",
     "questions_title": "Question sets",
     "q_new": "New set",
     "q_upload": "Upload .txt / .csv / .json",
@@ -71,37 +71,37 @@
       "chatgpt": {
         "steps": [
           "Sign in (or create an account) and accept or refuse cookies.",
-          "Turn off memory: Settings → Personalization → « Reference saved memories » and « Reference chat history » off.",
+          "Turn off memory: Settings → Personalization → « Enable memory » off (https://chatgpt.com/settings/personalization). It covers saved memories and chat history; temporary chats can use it too.",
           "Clear custom instructions: Settings → Personalization → Custom instructions (leave empty)."
         ],
-        "unsure": "Menu names change often; look under Settings → Personalization.",
+        "unsure": "Checked 14 Oct 2026. churvey doctor reads this switch; churvey run will not start while it is on.",
         "limits": "Free plan: a few messages on the best model every few hours, then a smaller model answers."
       },
       "claude": {
         "steps": [
           "Sign in and accept or refuse cookies.",
-          "Turn off memory: Settings → Capabilities → « Search and reference chats » and « Generate memory from chat history » off.",
+          "Turn off memory: Settings → Memory → « Search and reference chats » and « Generate memory from chats » off (https://claude.ai/settings/memory).",
           "Clear personal preferences: Settings → Profile → « What personal preferences should Claude consider » (leave empty)."
         ],
-        "unsure": "Memory settings may be named differently on the free plan.",
+        "unsure": "Checked 14 Oct 2026. churvey doctor reads this switch; churvey run will not start while it is on.",
         "limits": "Free plan: a small number of messages per session; the limit resets after a few hours."
       },
       "gemini": {
         "steps": [
           "Sign in with a Google account and accept or refuse cookies.",
-          "Turn off personalisation: Settings & help → « Personal context » (or « Saved info ») off and empty.",
+          "Turn off memory: Settings → Personal context (https://gemini.google.com/saved-info) → « Memory » off; leave « Your instructions » empty.",
           "Check Settings & help → Apps / « Gemini Apps Activity »: not required, but turning it off keeps history out of answers."
         ],
-        "unsure": "Google renames these settings often; we are least sure about Gemini.",
+        "unsure": "Checked 14 Oct 2026. churvey doctor reads this switch; churvey run will not start while it is on.",
         "limits": "Free plan: generous for short questions; the strongest model has a daily cap."
       },
       "mistral": {
         "steps": [
           "Sign in and accept or refuse cookies.",
-          "Turn off memory: Settings → « Memories » off (and delete saved memories).",
+          "Turn off memory: profile menu → Settings → Privacy → Personalization → « Knowledge » off.",
           "Clear custom instructions if any (Settings → Instructions / Personalisation)."
         ],
-        "unsure": "Not verified on the current Le Chat interface.",
+        "unsure": "Checked 14 Oct 2026. churvey doctor reads this switch; churvey run will not start while it is on.",
         "limits": "Free plan: about 10 messages, then a wait of a few hours (observed 13 Oct 2026)."
       },
       "grok": {
@@ -110,7 +110,7 @@
           "Turn off memory: Settings → Data controls → « Personalize Grok with your conversation history » / Memory off.",
           "Clear custom instructions: Settings → Customize (leave empty)."
         ],
-        "unsure": "Grok's settings layout changes often.",
+        "unsure": "Memory off is read from the account (enableMemory); the menu path was not re-checked on 14 Oct 2026. churvey run will not start while it is on.",
         "limits": "Free plan: limited messages every two hours; at busy times Grok shows a « high demand » banner."
       }
     }

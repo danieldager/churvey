@@ -48,12 +48,17 @@ answered in seconds yet every item timed out at 90 s):
 The run export (`<runId>.run.json`) carries the extension's 300-line **log ring** under
 `log` — that is where all of the above is visible after the fact.
 
+## Chat isolation (2026-10-14)
+Every question must be asked in a brand-new temporary chat; each record proves it in `isolation`
+{new_chat, temporary, chat_id, evidence} and an item that cannot be proven is an error `[not_isolated]`, never a silent
+answer. Mechanisms, evidence, account memory and chat deletion: [`../docs/isolation.md`](../docs/isolation.md).
+
 ## Per-provider specifics
 | Provider | Private mode | Answer endpoint / format |
 |---|---|---|
-| ChatGPT | `?temporary-chat=true` (URL) | `backend-api/f/conversation` — SSE deltas |
-| Gemini | "Temporary chat" button (single plain click) | `StreamGenerate` — batchexecute arrays (longest `rc_` snapshot) |
-| Grok | Chat (`a[data-testid=new-chat]`) → `a[aria-label="Switch to Private Chat"]` | since 2026-10 a websocket gateway, no HTTP stream: after submit the runner polls `conversations/<id>/response-node` (nothing in flight) then POSTs `load-responses`; the assistant message (`<grok:render>` cards) is fed to capture as a synthetic NDJSON `modelResponse` |
+| ChatGPT | fresh load of `/?temporary-chat=true` for every question | `backend-api/f/conversation` — SSE deltas |
+| Gemini | new chat, then the "Temporary chat" button only if it is not already on (`temp-chat-on`) | `StreamGenerate` — batchexecute arrays (longest `rc_` snapshot) |
+| Grok | Chat (`a[data-testid=new-chat]`) → `a[aria-label="Switch to Private Chat"]` (never by text: the link reads "Private" in both states) | since 2026-10 a websocket gateway, no HTTP stream: after submit the runner polls `conversations/<id>/response-node` (nothing in flight) then POSTs `load-responses`; the assistant message (`<grok:render>` cards) is fed to capture as a synthetic NDJSON `modelResponse` |
 | Claude | `/new?incognito=` (URL) | since 2026-10 `/claudeai-rpc/...` (connect+proto), nothing teeable: after submit the runner polls `GET /api/organizations/<org>/chat_conversations/<id>?tree=True&rendering_mode=messages&render_all_tools=true` from the page (id = last segment of `/chat/<id>`, org from the page's own requests or `/api/organizations`). The assistant message only appears when the turn ends; it is taken when `stop_reason` is final, no block is open, it is identical on two polls and the page agrees (no Stop button, `data-is-streaming="false"`). Text blocks -> responseText (thinking never), text-block `citations` -> v5 citations (`claude_poll`), `web_search` results -> `fetchedUrls` |
 | DeepSeek | none → **deletes all chats before every question** | `api/v0/chat/completion` — SSE patch-stream (initial fragment + content deltas) |
 
@@ -167,7 +172,7 @@ photo. Paths 2 and 3 have never been exercised.
 ## Data format (JSONL, one object per line)
 `runId, provider, questionId, questionText, promptSent, personaId, repIndex,
 itemKey, followupOf, modelLabel, responseText, status (ok|error), errorMessage, timestampStart/End,
-latencyMs, private, captureUrl, capture_method` (schema v6). `capture_method` says how the answer was
+latencyMs, private, captureUrl, capture_method, isolation` (schema v7). `capture_method` says how the answer was
 obtained: `stream` (network body tee'd by capture.js), `poll` (the page read the finished turn back:
 grok, claude) or `dom_fallback` (no stream or poll capture landed but the answer was finished on screen;
 read off the DOM: plain `innerText`, citations = the external links inside the answer, `via: "dom"`).

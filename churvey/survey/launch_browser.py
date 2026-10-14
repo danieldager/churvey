@@ -116,6 +116,8 @@ class State:
         self.written = None
         self.health = {}
         self.seen = {}
+        self.maintenance = None   # results of a {task: "maintenance"} plan (memory / purge / list)
+        self.purge = None         # {provider: {chat_id: result}} from the after-run purge
 
 
 def make_handler(state):
@@ -149,6 +151,11 @@ def make_handler(state):
                 self._send(200, b'{"ok":true}')
                 return
             state.status = msg.get("status", "?")
+            if msg.get("maintenance") is not None:
+                state.maintenance = msg["maintenance"]
+            if msg.get("purge") and state.plan.get("task") != "maintenance":
+                state.purge = msg["purge"]
+                write_purged(state.out_dir, msg["purge"])
             if msg.get("health"):
                 state.health = msg["health"]
             if msg.get("manifest"):
@@ -205,8 +212,20 @@ def write_results(out_dir, msg):
         (out_dir / f"{run_id}.summary.txt").write_text(msg["summaryText"])
     if msg.get("rawCompletions"):  # only on the final post; input for offline re-parsing of citations
         (out_dir / f"{run_id}.raw-completions.json").write_text(json.dumps(msg["rawCompletions"]))
+    if manifest.get("chats") is not None:   # every chat the run created: what `churvey purge --run` deletes
+        (out_dir / "chats.jsonl").write_text("".join(json.dumps(c) + "\n" for c in manifest["chats"]))
     ok = sum(1 for r in records if r.get("status") == "ok")
     return {"run_id": run_id, "records": len(records), "ok": ok, "dir": out_dir}
+
+
+def write_purged(out_dir, purge):
+    """Append one line per chat delete attempt: {provider, chat_id, result, at}."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    at = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+    with open(out_dir / "purged.jsonl", "a") as f:
+        for pid, res in (purge or {}).items():
+            for cid, r in (res or {}).items():
+                f.write(json.dumps({"provider": pid, "chat_id": cid, "result": r, "at": at}) + "\n")
 
 
 def port_free(port):
@@ -383,7 +402,7 @@ def launch(argv=None):
             plan["providers"] = [p for p in args.providers.split(",") if p]
         out_dir = args.out or args.run_plan.parent
         plan_name = str(args.run_plan)
-    if not plan.get("providers") or not plan.get("questions"):
+    if plan.get("task") != "maintenance" and (not plan.get("providers") or not plan.get("questions")):
         raise SystemExit("run plan needs non-empty `providers` and `questions`")
 
     profile = resolve_profile(args.profile)
@@ -402,10 +421,10 @@ def launch(argv=None):
     dbg_port = http_port + 100
     ensure_prefs(profile)
 
-    n_items = len(plan["questions"]) * max(1, plan.get("repetitions", 1)) * max(1, len(plan.get("personas") or []))
-    say(f"plan: {', '.join(plan['providers'])} x {n_items} items -> {out_dir}" + (" [headless]" if args.headless else ""))
+    n_items = len(plan.get("questions") or []) * max(1, plan.get("repetitions", 1)) * max(1, len(plan.get("personas") or []))
+    say(f"plan: {', '.join(plan.get('providers') or [])} x {n_items} items -> {out_dir}" + (" [headless]" if args.headless else ""))
     say(f"serving run plan on 127.0.0.1:{http_port}, profile {profile.name}")
-    say(f"=== {hms()} START {plan_name} {','.join(plan['providers'])} x {n_items} items")
+    say(f"=== {hms()} START {plan_name} {','.join(plan.get('providers') or [])} x {n_items} items")
 
     ff = start_firefox(profile, dbg_port, headless=args.headless)
     try:
@@ -436,6 +455,9 @@ def launch(argv=None):
         say(f"=== {hms()} END preflight {'PASS' if good else 'FAIL'}: " + " ".join(f"{p}={v}" for p, (v, _) in verdicts.items()))
         return (0 if good else 1), state
 
+    if plan.get("task") == "maintenance":
+        say(f"=== {hms()} END maintenance" + ("" if state.maintenance is not None else " - the extension never reported back"))
+        return (0 if state.maintenance is not None else 1), state
     w = state.written
     if not w:
         say(f"=== {hms()} END no results posted - the extension never reported back")

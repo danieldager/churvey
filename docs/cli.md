@@ -22,8 +22,10 @@ None of this belongs in a git repository: the profile holds your cookies.
 |---|---|
 | `churvey setup [--chatbots a,b]` | Checks Firefox is installed, creates the profile, opens Firefox with a checklist page. Sign in to each chatbot there; the page shows each one turn from "Not signed in" to "Signed in". "Run the test" sends one short question to every signed-in chatbot; "Done" saves the ones that answered. |
 | `churvey login [chatbot ...]` | The same page for just those chatbots, to sign in again. |
-| `churvey doctor [--chatbots a,b] [--visible]` | One short question to each chatbot, no window. Prints `ok`, `logged_out`, `rate_limited`, `challenge` or `capture_failed` per chatbot and the command that fixes it. |
-| `churvey run <set> [--chatbots a,b] [--repeat N] [--visible]` | Asks every question of the set (a saved name or any file) to each chatbot, N times. No window unless `--visible`. One line per answer as it lands. |
+| `churvey doctor [--chatbots a,b] [--visible]` | No window. Reads each account's memory setting (on / off / unknown, with where to switch it off), deletes leftover churvey chats, and runs the isolation canary: chat 1 « Retiens ce mot de code : girafe-47 », new chat 2 « Quel mot de code t'ai-je donné ? »; PASS if chat 2 knows nothing. Both canary chats are then deleted. Also prints `logged_out`, `rate_limited`, `challenge` and the command that fixes it. See [isolation.md](isolation.md). |
+| `churvey run <set> [--chatbots a,b] [--repeat N] [--visible] [--keep-chats] [--allow-memory-unknown]` | Same checks first (memory, leftover chats, canary). Refuses to start while any account's memory is on (or unreadable, unless `--allow-memory-unknown`); a chatbot that fails the canary is left out. Then asks every question of the set to each chatbot, N times, each in a new temporary chat, questions of one `group` spread apart. Deletes the run's chats at the end unless `--keep-chats`. |
+| `churvey purge --run <run>` / `--all-churvey` | Deletes the chats churvey created (listed in each run folder's `chats.jsonl`), through each chatbot's own delete. Never touches other chats. |
+| `churvey purge --everything --chatbot <c>` | Deletes ALL chats in that one account. Lists and counts them first and asks you to type the chatbot's name. Never part of a run or a check. |
 | `churvey status` / `pause <chatbot>` / `resume <chatbot>` / `reload <chatbot>` / `stop` | Control a run that is going on, from another terminal. |
 | `churvey export <run> [--out FILE]` | Writes `responses.clean.jsonl`, one row per answer (below). `<run>` is a folder name in `runs/`, `latest`, or a path. |
 | `churvey questions ...` | `new`, `list`, `show`, `add`, `edit`, `rm`, `import`, `export`, `validate`, `ui`. See [questions.md](questions.md). |
@@ -39,16 +41,19 @@ When a chatbot is blocked during a run, churvey stops asking it, finishes the ot
   Wait for the limit to reset, then run again with --chatbots mistral
 ```
 
-Exit codes: `run` 0 everything answered, 3 finished with a chatbot blocked, 1 did not finish; `doctor` 0 only if every chatbot answered.
+Exit codes: `run` 0 everything answered, 3 finished with a chatbot blocked, 2 refused (account memory on or unknown), 1 did not finish; `doctor` 0 only if every chatbot passed the canary and has memory off; `purge` 1 if a delete failed.
 
 ## A run folder
 
 | File | What |
 |---|---|
 | `questions.json` | An exact copy of the question set at the time of the run. Editing the set later never changes past runs. |
-| `churvey-run.json` | Set name and `question_set_sha256` (hash of that copy), chatbots, repeat, private, headless, start and end time, exit code, blocked chatbots. |
+| `churvey-run.json` | Set name and `question_set_sha256` (hash of that copy), chatbots, repeat, private, headless, start and end time, exit code, blocked chatbots, `question_order` (the order asked) and `min_group_gap`, `keep_chats`, and the preflight's `memory` and `canary` results. |
+| `preflight/` | The checks made before the run: `maintenance/` (memory read, leftover chats deleted), `canary/` (the two canary chats, their records and their deletion), `isolation.json`. |
+| `chats.jsonl` | Every chat the run created: `provider`, `chat_id`, `item`, `temporary`, `at`. |
+| `purged.jsonl` | One line per delete attempt: `provider`, `chat_id`, `result` (`deleted`, `unsupported` = a temporary chat the site does not let you delete, `not_found`, `error ...`), `at`. |
 | `run-plan.json` | What the extension was given. |
-| `run_<time>.jsonl` | The extension's raw records (schema v6). |
+| `run_<time>.jsonl` | The extension's raw records (schema v7: each carries `isolation` {`new_chat`, `temporary`, `chat_id`, `evidence`}). |
 | `run_<time>.run.json`, `.summary.txt`, `.raw-completions.json` | Run manifest with the extension log, a summary, the raw network streams (for re-parsing citations). |
 | `responses.clean.jsonl` | Written by `churvey export`. |
 

@@ -115,7 +115,7 @@
     }
   }
 
-  function handle(details, provider, ct, text, bytes, method = "stream") {
+  function handle(details, provider, ct, text, bytes, method = "stream", isolation = null) {
     const completion = isCompletion(provider, details.url);
     const parsed = completion ? parseAnswer(provider.id, ct, text) : { text: "" };
     if (Probe.capture && Probe.capture.tap) { try { Probe.capture.tap(details, ct, text); } catch (_) {} }
@@ -130,6 +130,7 @@
       ts: new Date().toISOString(),
       completion,
       captureMethod: method, // stream (tee'd network body) | poll (page read the finished turn back)
+      isolation, // poll providers: {chatId, temporary, humanTurns, evidence} read from the conversation itself
       answer: parsed.text || null,
       answerLen: (parsed.text || "").length,
       error: parsed.error || null,
@@ -511,24 +512,57 @@
   }
   // Hand a conversation read back by the runner to the normal pairing path, as if it were the old
   // NDJSON stream: one line holding the assistant message under result.response.modelResponse.
-  function deliverGrok(tabId, convId, response) {
+  function deliverGrok(tabId, convId, response, isolation = null) {
     const text = JSON.stringify({ result: { response: { modelResponse: response } } }) + "\n";
     const provider = Probe.providers.byId("grok");
     handle({ tabId, url: `https://grok.com/rest/app-chat/conversations/${convId}/__probe_grok_synth__`, method: "POST", statusCode: 200, requestId: "grok-synth" },
-      provider, "application/x-ndjson", text, text.length, "poll");
+      provider, "application/x-ndjson", text, text.length, "poll", isolation);
   }
 
   // claude.ai: same idea as grok. `response` = {convId, model, message} read back by the page.
-  function deliverClaude(tabId, response) {
+  function deliverClaude(tabId, response, isolation = null) {
     const text = JSON.stringify({ __probe_claude: response });
     const provider = Probe.providers.byId("claude");
     handle({ tabId, url: `https://claude.ai/api/__probe_claude_synth__/${response.convId}`, method: "POST", statusCode: 200, requestId: "claude-synth" },
-      provider, "application/json", text, text.length, "poll");
+      provider, "application/json", text, text.length, "poll", isolation);
+  }
+
+  // Isolation evidence from what the page SENT: the request body of each question. ChatGPT's POST
+  // backend-api/f/conversation carries history_and_training_disabled (temporary chat) and, for the first turn of a new
+  // chat, parent_message_id "client-created-root" with no conversation_id. Le Chat's POST /api/chat body is summarised
+  // (its chat id and any temporary-looking flag). Kept per tab, newest only.
+  const lastReq = new Map(); // tabId -> {at, provider, temporary, newChat, flags}
+  function bodyText(d) {
+    try {
+      const raw = d.requestBody && d.requestBody.raw;
+      if (!raw || !raw.length) return "";
+      return new TextDecoder("utf-8").decode(concat(raw.map((p) => p.bytes).filter(Boolean)));
+    } catch (_) { return ""; }
+  }
+  function noteRequest(d) {
+    if (d.method !== "POST" || d.tabId < 0) return {};
+    const provider = Probe.providers.forUrl(d.url);
+    if (!provider || !isCompletion(provider, d.url)) return {};
+    let j = null; try { j = JSON.parse(bodyText(d)); } catch (_) {}
+    if (!j || typeof j !== "object") return {};
+    let ev = null;
+    if (provider.id === "chatgpt") {
+      ev = { temporary: j.history_and_training_disabled === true, newChat: !j.conversation_id && j.parent_message_id === "client-created-root",
+             flags: { history_and_training_disabled: j.history_and_training_disabled, conversation_id: j.conversation_id || null, parent_message_id: j.parent_message_id || null,
+                      temporary_chat_requests_personalization: j.temporary_chat_requests_personalization } };
+    } else {
+      const flags = {};
+      for (const [k, v] of Object.entries(j)) if (/temp|incognit|private|ephemeral|chatId|^id$|history/i.test(k) && (typeof v !== "object" || v === null)) flags[k] = v;
+      ev = { temporary: null, newChat: null, flags };
+    }
+    lastReq.set(d.tabId, { at: Date.now(), provider: provider.id, ...ev });
+    return {};
   }
 
   function start(cb) {
     onCapture = cb || (() => {});
     ext.webRequest.onBeforeRequest.addListener(noteGrokConv, { urls: ["https://grok.com/rest/app-chat/conversations*"] });
+    ext.webRequest.onBeforeRequest.addListener(noteRequest, { urls: Probe.providers.allMatchPatterns() }, ["requestBody"]);
     ext.webRequest.onHeadersReceived.addListener(
       onHeaders,
       { urls: Probe.providers.allMatchPatterns() },
@@ -537,5 +571,6 @@
     log.info("network capture armed for", Probe.providers.allMatchPatterns().join(", "));
   }
 
-  Probe.capture = { start, parseAnswer, flush, tap: null, mistralMessages, mistralAnswer, grokConvId: (tabId) => (grokConv.get(tabId) || {}).id || null, deliverGrok, deliverClaude };
+  Probe.capture = { start, parseAnswer, flush, tap: null, mistralMessages, mistralAnswer, grokConvId: (tabId) => (grokConv.get(tabId) || {}).id || null, deliverGrok, deliverClaude,
+    lastRequest: (tabId, sinceMs = 0) => { const r = lastReq.get(tabId); return r && r.at >= sinceMs ? r : null; } };
 })();
