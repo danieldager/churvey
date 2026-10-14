@@ -201,5 +201,8 @@ through `cardAttachmentsJson` (`grok_inline`); Le Chat inline links plus the res
 their raw streams with `dashboard/ingest/reparse_raw.py` (writes `responses.clean.v2.jsonl`).
 Capture audit: run config `"auditSources": true` makes the runner also store `record.domSources` (the external
 links the page itself shows as sources, after opening a Sources button) next to the captured citations.
-Gotcha: after editing `manifest.json`, delete `~/Library/Caches/Firefox/Profiles/cn-harvest/startupCache`;
-Firefox keeps loading the old script list from it (a new background script silently does not load).
+Gotcha: Firefox keeps a temporary add-on's script list in the profile's `startupCache` and serves the stale one after
+`manifest.json` changes (a new background script silently does not load). The launcher (`launch_browser.start_firefox`,
+used by every churvey command) deletes it before each launch: `~/Library/Caches/Firefox/Profiles/<profile>/startupCache`
+on macOS, `~/.cache/mozilla/firefox/<profile>/startupCache` on Linux, `<profile>/startupCache` for a profile outside
+Firefox's root. Loading by hand through about:debugging: delete it yourself.

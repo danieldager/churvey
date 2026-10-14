@@ -359,8 +359,27 @@ def preflight_verdicts(state, providers):
     return out
 
 
+def startup_cache_dirs(profile):
+    """Where Firefox keeps `profile`'s startupCache: its local dir, ~/Library/Caches/Firefox/Profiles/<dir> on macOS,
+    ~/.cache/mozilla/firefox/<dir> on Linux, the profile dir itself for a profile outside Firefox's root."""
+    home = pathlib.Path.home()
+    return [d / "startupCache" for d in (home / "Library/Caches/Firefox/Profiles" / profile.name,
+                                         home / ".cache/mozilla/firefox" / profile.name, profile)]
+
+
+def clear_startup_cache(profile):
+    """Firefox keeps a temporary add-on's script list in the startupCache and serves the stale one after manifest.json
+    changes, so a newly added background script silently never loads (2026-10-14: « Probe.probe is undefined » after
+    probe.js was added). It is only a cache: Firefox rebuilds it on start."""
+    import shutil
+    for d in startup_cache_dirs(profile):
+        if d.is_dir():
+            shutil.rmtree(d, ignore_errors=True)
+
+
 def start_firefox(profile, dbg_port, url="about:blank", headless=False):
     """Firefox on `profile` with the debugger server on `dbg_port`, opening `url`."""
+    clear_startup_cache(profile)
     exe = find_firefox()
     if not exe:
         raise SystemExit(f"Firefox not found. Install it:\n  {install_hint()}")
