@@ -131,6 +131,15 @@ known gaps: [`../docs/capture_robustness.md`](../docs/capture_robustness.md). In
   START/END` lines, `--preflight` (1 short question x each provider, ok / logged_out / rate_limited / challenge /
   capture_failed, exit non-zero unless all ok), `--providers a,b`.
 
+## Popups and modals (2026-10-14)
+`src/content/popups.js` finds overlays on every provider page (dialogs, cookie banners, toasts, a fixed layer over the
+composer), classifies them (cookie, announcement, terms, upsell, survey, onboarding, model picker, limit/login/challenge,
+unknown) and dismisses only the safe ones with a closed list of buttons (cookies: reject first, never « Accept all »).
+It never clicks upgrade / buy / subscribe / payment / delete / sign out / share or any link. It runs at chat start, before
+submit, while waiting, and on a stall (no stream after 30 s: dismiss, re-ask once). An unknown overlay in the way pauses
+the provider with status `popup_unknown` (text + screenshot). Every event is in `record.popups` (schema v8) and the run's
+`popups.jsonl`. Details and the never-click list: [`../docs/popups.md`](../docs/popups.md).
+
 ## Tools for maintenance
 - **Capture DOM** (popup): dumps the active tab's buttons/dialogs/top-right region
   → for pinning selectors when a provider's UI changes.

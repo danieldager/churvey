@@ -86,6 +86,8 @@
     switch (msg.type) {
       case Probe.MSG.DRIVER_READY:
         return; // informational
+      case Probe.MSG.POPUP_EVENT:
+        Probe.runner.onPopup(sender && sender.tab && sender.tab.id, msg.provider, msg.event); return;
       case Probe.MSG.START_RUN:
         return Probe.runner.start(msg.runConfig, msg.windowId).then((r) => ({ ok: true, ...r })).catch((e) => ({ ok: false, error: String(e.message || e) }));
       case Probe.MSG.PAUSE_RUN:

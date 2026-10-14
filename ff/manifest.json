@@ -82,6 +82,7 @@
         "src/content/injector.js",
         "src/content/drivers.js",
         "src/content/page-state.js",
+        "src/content/popups.js",
         "src/content/driver.js"
       ]
     }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>syntax</title>
+<script>window.fetch = () => Promise.reject(new Error("no network in the syntax check")); window.__errs = []; window.onerror = (m, src, line) => { if (/SyntaxError/.test(m)) window.__errs.push(m + " " + src + ":" + line); return true; };</script>
+</head><body>
+<!-- Every extension script, parsed: only SyntaxErrors are kept (the scripts' own runtime needs the extension APIs). -->
+<script src="../../ff/src/background/autostart.js"></script>
+<script src="../../ff/src/background/background.js"></script>
+<script src="../../ff/src/background/capture.js"></script>
+<script src="../../ff/src/background/citations.js"></script>
+<script src="../../ff/src/background/isolation.js"></script>
+<script src="../../ff/src/background/probe.js"></script>
+<script src="../../ff/src/background/runner.js"></script>
+<script src="../../ff/src/content/driver.js"></script>
+<script src="../../ff/src/content/drivers.js"></script>
+<script src="../../ff/src/content/injector.js"></script>
+<script src="../../ff/src/content/page-state.js"></script>
+<script src="../../ff/src/content/popups.js"></script>
+<script src="../../ff/src/content/visibility.js"></script>
+<script src="../../ff/src/popup/popup.js"></script>
+<script src="../../ff/src/shared/cadence.js"></script>
+<script src="../../ff/src/shared/ext.js"></script>
+<script src="../../ff/src/shared/logger.js"></script>
+<script src="../../ff/src/shared/messages.js"></script>
+<script src="../../ff/src/shared/namespace.js"></script>
+<script src="../../ff/src/shared/prompt-template.js"></script>
+<script src="../../ff/src/shared/providers.js"></script>
+<script src="../../ff/src/shared/record.js"></script>
+<script src="../../ff/src/shared/run-plan.js"></script>
+<script src="../../ff/src/shared/storage.js"></script>
+<script src="../../ff/src/shared/summary.js"></script>
+</body></html>

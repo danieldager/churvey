@@ -25,6 +25,27 @@ class StartupCache(unittest.TestCase):
             self.assertFalse(lb.clear_startup_cache(profile))   # nothing left: the next start is not slow
 
 
+class Popups(unittest.TestCase):
+    def test_popups_jsonl_and_screenshot(self):
+        import base64
+        import json
+        with tempfile.TemporaryDirectory() as t:
+            out = pathlib.Path(t)
+            shot = "data:image/jpeg;base64," + base64.b64encode(b"\xff\xd8jpeg").decode()
+            lb.write_popups(out, [{"provider": "claude", "class": "cookie", "action": 'clicked "Refuser"'},
+                                  {"provider": "claude", "class": "unknown", "action": "provider_paused", "screenshot": shot}])
+            rows = [json.loads(x) for x in (out / "popups.jsonl").read_text().splitlines()]
+            self.assertEqual(rows[1]["screenshot"], "popup_claude_1.jpg")
+            self.assertEqual((out / "popup_claude_1.jpg").read_bytes(), b"\xff\xd8jpeg")
+            self.assertNotIn("screenshot", rows[0])
+
+    def test_popup_event_line(self):
+        with mock.patch.object(lb, "say") as say:
+            lb.show_event(lb.State({}, None), {"type": "popup", "provider": "claude", "class": "terms", "action": 'clicked "Accept"', "text": "We updated our terms", "prominent": True})
+        self.assertIn("POPUP terms", say.call_args[0][0])
+        self.assertIn("TERMS ACCEPTED", say.call_args[0][0])
+
+
 class InstallAddon(unittest.TestCase):
     def test_silent_firefox_retries_once_then_says_so(self):
         """A debugger port that accepts but never speaks (Firefox still rebuilding its caches)."""

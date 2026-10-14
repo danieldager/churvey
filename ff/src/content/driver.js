@@ -149,6 +149,15 @@
         catch (e) { return { ok: false, error: String(e?.message || e) }; }
       })();
     }
+    if (msg.type === Probe.MSG.POPUPS) {
+      return (async () => {
+        if (!Probe.popups) return { ok: false, error: "no popup handler" };
+        // Escape only before submit / on a stall: while an answer streams some pages read Escape as « stop ».
+        const escape = msg.stage !== "waiting" && !(driver && driver.popupEscape === false);
+        try { return { ok: true, ...(await Probe.popups.handle({ stage: msg.stage, composer: driver && driver.composer, escape })) }; }
+        catch (e) { return { ok: false, error: String(e?.message || e) }; }
+      })();
+    }
     if (msg.type === Probe.MSG.PAGE_STATUS) {
       return Promise.resolve({ ok: true, ...safe(() => Probe.pageState.pageStatus(), { state: "ok", text: "" }) });
     }
@@ -284,6 +293,12 @@
   }
   // Re-arm after navigation if a recording is in progress.
   ext.runtime.sendMessage({ type: Probe.MSG.REC_ACTIVE }).then((r) => { if (r && r.recording) startRec(); }).catch(() => {});
+
+  // Every overlay seen or dismissed goes to the background (record.popups, the run's popups.jsonl).
+  if (Probe.popups) Probe.popups.setOnEvent((ev) => {
+    log.info(`popup ${ev.class} (${ev.kind}) ${ev.action}: ${ev.text_snippet.slice(0, 100)}`);
+    try { ext.runtime.sendMessage({ type: Probe.MSG.POPUP_EVENT, provider: providerId, event: ev }); } catch (_) {}
+  });
 
   // Announce readiness so the background can map tab -> provider.
   try { ext.runtime.sendMessage({ type: Probe.MSG.DRIVER_READY, provider: providerId }); } catch (_) {}

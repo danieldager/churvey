@@ -65,24 +65,10 @@
     if (btn) { realClick(btn); return true; }
     return false;
   }
-  function dismissConsent() {
-    for (const s of ["#onetrust-accept-btn-handler", "#accept-recommended-btn-handler", ".onetrust-close-btn-handler"]) {
-      const el = document.querySelector(s); if (el && el.offsetParent !== null) { realClick(el); return true; }
-    }
-    const re = /^(accept all( cookies)?|accept cookies|accept|i agree|agree|allow all|got it|confirm my choices)$/i;
-    const b = [...document.querySelectorAll('button,[role="button"]')].find((x) => x.offsetParent && re.test((x.innerText || x.getAttribute("aria-label") || "").trim()));
-    if (b) { realClick(b); return true; } return false;
-  }
-  function dismissNotice() {
-    const re = /^(not now|no thanks|maybe later|later|skip|dismiss|got it|continue|stay logged out|close|done)$/i;
-    for (const dlg of document.querySelectorAll('[role="dialog"],[aria-modal="true"],dialog[open]')) {
-      const lbl = (dlg.getAttribute("aria-label") || "") + " " + (dlg.id || "");
-      if (dlg.closest("#onetrust-consent-sdk") || /privacy|cookie|consent|preference/i.test(lbl)) continue;
-      const hit = [...dlg.querySelectorAll('button,a[role="button"],[role="button"]')].find((b) => re.test((b.innerText || b.getAttribute("aria-label") || "").trim()));
-      if (hit) { hit.click(); return true; }
-    }
-    return false;
-  }
+  // Cookie banners and notices: the generic handler (content/popups.js, docs/popups.md). It rejects cookies instead of
+  // accepting them and never clicks an upgrade / payment / delete / sign-out / share button nor a link.
+  function dismissConsent() { return !!(Probe.popups && Probe.popups.sweep({ stage: "start_chat" })); }
+  function dismissNotice() { return !!(Probe.popups && Probe.popups.sweep({ stage: "start_chat" })); }
   function pressKey(key, mods = {}) {
     const isMac = /mac/i.test(navigator.platform || navigator.userAgent || "");
     const o = { key, code: "Key" + key.toUpperCase(), bubbles: true, cancelable: true, metaKey: !!mods.meta && isMac, ctrlKey: (!!mods.meta && !isMac) || !!mods.ctrl, shiftKey: !!mods.shift };
