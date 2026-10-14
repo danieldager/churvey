@@ -92,6 +92,9 @@ PREFS = [
     'user_pref("browser.startup.homepage_override.mstone", "ignore");',
     'user_pref("datareporting.policy.dataSubmissionEnabled", false);',
     'user_pref("app.update.auto", false);',
+    # A Firefox that is killed (Ctrl-C, timeout) counts as a failed startup; after 3 of them Firefox restarts itself
+    # into safe mode WITHOUT our arguments (no debugger server, so no add-on): seen 2026-10-14. Never do that.
+    'user_pref("toolkit.startup.max_resumed_crashes", -1);',
     # Never depend on focus or visibility: a covered, minimised or background window must keep running at full
     # speed. All names verified against Firefox 157 (compiled into XUL / browser/defaults firefox.js).
     'user_pref("dom.min_background_timeout_value", 4);',                                   # was 1000 ms: background setTimeout clamp

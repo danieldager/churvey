@@ -39,6 +39,10 @@ def _launch(plan, out_dir, visible, timeout):
     argv = ["--run-plan", str(p), "--profile", str(home.profile_dir()), "--out", str(out_dir), "--timeout", str(timeout)]
     if not visible:
         argv.append("--headless")
+    for _ in range(30):   # the previous session's Firefox can take a few seconds to release the profile
+        if not lb.profile_in_use(home.profile_dir()):
+            break
+        time.sleep(1)
     return lb.launch(argv)
 
 

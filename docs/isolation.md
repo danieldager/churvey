@@ -83,7 +83,7 @@ fails is left out of the run with a message.
 | ChatGPT | Temporary chat | yes (page + request + new chat id) | ON | PASS (09:44, 09:48) | « Je n'ai pas retrouvé le mot de code … dans nos conversations précédentes » |
 | Claude | Incognito | yes (page + `is_temporary` + 1 turn) | off | PASS (3 times) | « Vous ne m'avez donné aucun mot de code … c'est le premier message » |
 | Gemini | Temporary chat | yes (page + new chat id) | off | PASS (3 times) | « Ce que vous demandez va au-delà de ce que permet ma programmation » |
-| Grok | Private chat | page + chat id | off | GROK_RESULT | GROK_SAID |
+| Grok | Private chat | yes (page + `temporary: true` + 1 turn) | off | **not completed**: chat 1 isolated (10:25), chat 2 hit the free-plan limit (« 2 hours 8 minutes before limit is gone ») | — |
 | Le Chat | Temporary chat | yes (page + chat id in request) | ON | PASS (09:46) | « Vous ne m'avez donné aucun mot de code dans cette conversation — c'est notre premier échange » |
 
 ## Deleting chats
@@ -115,5 +115,9 @@ Measured: the canary chats of every check were deleted this way (Claude, Grok, L
 * Grok, rate limited (« 26 minutes before limit is gone »), was recorded through the DOM fallback with the **prompt** as
   its answer: the fallback read the user's own bubble. `page-state.js` now skips the right-aligned user turn
   (`.items-end`) and treats « before limit is gone » / « much higher limits » as a limit banner.
-* In a private Grok chat `load-responses` returns the assistant message empty, so the poll never delivers and the answer
-  comes from the DOM fallback (`capture_method: dom_fallback`).
+  The two earlier Grok canaries of the morning (09:39, 09:44) were therefore not real passes: both « answers » were
+  the prompts. Rerun `churvey doctor --chatbots grok` once the limit has reset.
+* A Firefox killed during startup counts as a failed start; after several, Firefox restarted itself into safe mode
+  without our arguments (no debugger port, so the add-on never installed: « Firefox never opened its debugger server »).
+  The launcher's `user.js` block now sets `toolkit.startup.max_resumed_crashes = -1`. To unstick the cn-harvest profile
+  once, `toolkit.startup.recent_crashes` was reset to 0 and `InvalidateCaches=1` removed from `compatibility.ini`.
