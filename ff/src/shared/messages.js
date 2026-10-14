@@ -35,6 +35,7 @@
     PAGE_STATUS: "PAGE_STATUS", // -> {ok, state:"ok"|"rate_limited"|"logged_out"|"challenge", text} what the page itself says (limit banner, login wall, captcha)
     READ_ANSWER: "READ_ANSWER", // -> {ok, text, links, generating, finished, len} last answer as rendered (DOM fallback when no capture lands)
     SCRAPE_SOURCES: "SCRAPE_SOURCES", // -> {ok, citations:[{title,url}]} scraped from the answer's source UI
+    POPUPS: "POPUPS", // {stage} -> {ok, events, blocking} dismiss what is safe to dismiss (content/popups.js); blocking = an overlay left in the way
     VISIBLE_SOURCES: "VISIBLE_SOURCES", // -> {ok, links:[{url,title,where}], buttons:[text]} what the page shows as sources (audit of capture; run config.auditSources)
 
     // interaction recorder ("teach me this flow") — popup -> background
@@ -50,5 +51,6 @@
 
     // content -> background
     DRIVER_READY: "DRIVER_READY",
+    POPUP_EVENT: "POPUP_EVENT", // {provider, event:{class, kind, text_snippet, action, stage, ...}} one overlay seen / dismissed
   });
 })();

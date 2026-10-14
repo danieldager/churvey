@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>popups harness</title>
+<style>body{margin:0;font:14px sans-serif;height:100vh}#composer{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);width:600px;height:60px;z-index:1}</style>
+</head><body>
+<p>Fixture test of ff/src/content/popups.js. Open with ?post=1 to POST results to /result (tests/test_popups_js.py).</p>
+<textarea id="composer"></textarea>
+<div id="stage"></div>
+<script src="../../ff/src/content/page-state.js"></script>
+<script src="../../ff/src/content/popups.js"></script>
+<script src="cases.js"></script>
+<script>
+(async () => {
+  const stage = document.getElementById("stage");
+  const out = [];
+  const events = [];
+  Probe.popups.setOnEvent((e) => events.push(e));
+  for (const c of CASES) {
+    window.__clicks = [];
+    events.length = 0;
+    stage.innerHTML = c.html;
+    for (const b of stage.querySelectorAll("button, a, [role=button]")) {
+      b.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        window.__clicks.push(b.dataset.id || b.id);
+        if (b.hasAttribute("data-close")) stage.innerHTML = "";
+      });
+    }
+    const esc = stage.querySelector("[data-escape]");
+    if (esc) document.addEventListener("keydown", function k(ev) { if (ev.key === "Escape") { stage.innerHTML = ""; document.removeEventListener("keydown", k); } });
+    const scanned = Probe.popups.scan({ composer: ["#composer"] }).map((o) => ({ cls: o.cls, kind: o.kind, blocking: o.blocking }));
+    let r;
+    try { r = await Probe.popups.handle({ stage: "test", composer: ["#composer"], waitMs: 60 }); }
+    catch (e) { r = { error: String(e) }; }
+    out.push({ name: c.name, expect: c.expect, scanned, clicks: window.__clicks.slice(), events: events.map((e) => ({ class: e.class, kind: e.kind, action: e.action, prominent: !!e.prominent })), blocking: r.blocking || null, error: r.error || null });
+    stage.innerHTML = "";
+  }
+  // the never-click guard on its own
+  stage.innerHTML = `<button id="g1">Sign out</button><button id="g2">Delete all chats</button><button id="g3">Buy credits</button>
+    <button id="g4">Partager</button><a id="g5" href="https://example.com">Close</a><button id="g6">Passer à Plus</button>
+    <button id="g7">Se déconnecter</button><button id="g8">Start free trial</button><button id="ok1">Plus tard</button><button id="ok2">Fermer</button>`;
+  const guard = {};
+  for (const b of stage.querySelectorAll("button, a")) guard[b.id] = Probe.popups.forbidden(b);
+  stage.innerHTML = "";
+  // every extension script parses (Firefox: no node on this machine)
+  const fr = document.createElement("iframe");
+  fr.src = "syntax.html";
+  await new Promise((r) => { fr.onload = r; document.body.appendChild(fr); });
+  const syntax = fr.contentWindow.__errs.slice();
+  fr.remove();
+  const res = { cases: out, guard, syntax };
+  document.title = "done";
+  window.__result = res;
+  if (/post=1/.test(location.search)) await fetch("/result", { method: "POST", body: JSON.stringify(res) });
+  else document.body.insertAdjacentHTML("beforeend", "<pre>" + JSON.stringify(res, null, 1).replace(/</g, "&lt;") + "</pre>");
+})();
+</script>
+</body></html>

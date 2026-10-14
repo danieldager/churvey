@@ -42,6 +42,7 @@ CHECKS = [
     ("delete_one", "delete one chat (the probe's own)"),
     ("delete_all_available", "list the whole history (what delete-all works from)"),
     ("canary", "isolation canary"),
+    ("popups", "popups and modals seen, and how they were handled (docs/popups.md)"),
 ]
 # How each chatbot's answers are captured today (docs/capture_robustness.md). Grok's private chats are not stored on
 # the server (load-responses returns an empty message), so their answers come off the page.
@@ -50,7 +51,7 @@ CITE_Q = {"id": "probe_cite", "text": "Quelles sont les dernières actualités d
 QUESTIONS = [{"id": "canary1", "text": I.CANARY[0]}, {"id": "canary2", "text": I.CANARY[1]}, CITE_Q]   # at most 3 messages per chatbot
 SUBMIT_ERR = re.compile(r"submit|composer|waitFor|not ready|type", re.I)
 # Where a failed check's picture comes from: a page of the no-message session, or the failed record (None).
-SHOT = {"logged_in": "home", "banner_detection": "home", "delete_all_available": "home", "memory_readable": "settings",
+SHOT = {"popups": "home", "logged_in": "home", "banner_detection": "home", "delete_all_available": "home", "memory_readable": "settings",
         "new_chat": "temporary", "temporary_chat": "temporary", "memory_toggle": "settings"}
 LABEL_CHECK = [(re.compile(r"temporar|incognito|private|priv[ée]", re.I), "temporary_chat"), (re.compile(r"new chat|nouveau", re.I), "new_chat"),
                (re.compile(r"memory|m[ée]moire", re.I), "memory_toggle"), (re.compile(r"delete|supprimer", re.I), "delete_all_available"),
@@ -278,6 +279,28 @@ def assemble(pid, raw, recs, purge, health, canary, destructive=False):
         put("canary", "FAIL", d)
     else:
         put("canary", "SKIP", why or f"{v}: {d}")
+
+    # popups: every overlay seen on the probe's pages and during its messages, and what the handler did with it
+    pages = raw.get("popups")
+    seen = [(p.get("stage"), e) for p in pages or [] for e in p.get("events") or []]
+    seen += [(f"message {r.get('itemKey')}", e) for r in recs for e in r.get("popups") or []]
+    stuck = [(p.get("stage"), p["blocking"]) for p in pages or [] if p.get("blocking")]
+    if (health or {}).get("status") == "popup_unknown":
+        stuck.append(("messages", {"class": "unknown", "text": health.get("text") or "", "reason": "provider paused"}))
+    if pages is not None or recs:
+        fp["popups"]["seen"] = " | ".join(sorted({f"{e.get('class')}: {re.sub(r' [(]still shown[)]$', '', str(e.get('action')))}" for _, e in seen})) or "none"
+    events = [f"{st}: {e.get('class')} {e.get('action')} « {(e.get('text_snippet') or '')[:80]} »" for st, e in seen][:12]
+    if stuck:
+        st, b = stuck[0]
+        put("popups", "FAIL", f"left in the way ({st}): {b.get('class')}, {b.get('reason')}: « {(b.get('text') or '')[:150]} »", events=events)
+    elif seen:
+        prominent = [e for _, e in seen if e.get("prominent")]
+        done = sum(bool(re.match(r"clicked|escape", str(e.get("action")))) for _, e in seen)
+        put("popups", "PASS", f"{len(seen)} seen, {done} dismissed, none left in the way: " + "; ".join(events[:4]) + (" (TERMS ACCEPTED)" if prominent else ""), events=events)
+    elif pages is None and not recs:
+        put("popups", "SKIP", "not observed (the pages did not open)")
+    else:
+        put("popups", "PASS", "no popup or modal seen")
 
     return {"signed_in": signed_in, "account": ls.get("account") if not _err(ls) else None,
             "checks": {n: checks[n] for n, _ in CHECKS}, "fingerprint": {k: v for k, v in fp.items() if v}}

@@ -90,6 +90,38 @@ class Assemble(unittest.TestCase):
         self.assertEqual(r["checks"]["stream_capture"]["status"], "N/A")
 
 
+class Popups(unittest.TestCase):
+    def check(self, popups=None, recs=RECS, health=None):
+        raw = dict(SIGNED_IN, **({"popups": popups} if popups is not None else {}))
+        return P.assemble("claude", raw, recs, {}, health, ("PASS", ""))
+
+    def test_none_seen(self):
+        r = self.check([{"stage": "probe_home", "events": [], "blocking": None}])
+        self.assertEqual(r["checks"]["popups"]["status"], "PASS")
+        self.assertEqual(r["fingerprint"]["popups"]["seen"], "none")
+
+    def test_handled_and_fingerprinted(self):
+        ev = {"class": "cookie", "action": 'clicked "Tout refuser"', "text_snippet": "Nous utilisons des cookies"}
+        recs = [dict(RECS[0], popups=[{"class": "announcement", "action": "escape", "text_snippet": "What's new"}])] + RECS[1:]
+        r = self.check([{"stage": "probe_home", "events": [ev], "blocking": None}], recs)
+        self.assertEqual(r["checks"]["popups"]["status"], "PASS")
+        self.assertEqual(r["fingerprint"]["popups"]["seen"], 'announcement: escape | cookie: clicked "Tout refuser"')
+
+    def test_left_in_the_way_fails(self):
+        b = {"class": "unknown", "text": "Something odd", "reason": "unknown dialog"}
+        r = self.check([{"stage": "probe_temporary", "events": [{"class": "unknown", "action": "paused"}], "blocking": b}])
+        self.assertEqual(r["checks"]["popups"]["status"], "FAIL")
+        self.assertIn("Something odd", r["checks"]["popups"]["detail"])
+        r = self.check([], health={"status": "popup_unknown", "text": "unknown dialog: Hello"})
+        self.assertEqual(r["checks"]["popups"]["status"], "FAIL")
+
+    def test_new_popup_is_a_change(self):
+        old = {"claude": self.check([])}
+        new = {"claude": self.check([{"stage": "probe_home", "events": [{"class": "terms", "action": 'clicked "Accept"'}], "blocking": None}])}
+        ch = P.diff_fingerprints(old, new)
+        self.assertEqual([(c["check"], c["old"]) for c in ch], [("popups", "none")])
+
+
 class Diff(unittest.TestCase):
     def test_changed_selector_and_unobserved_check(self):
         old = {"chatgpt": {"fingerprint": {"temporary_chat": {"home.private": "a[x]", "labels.home": "A"}, "memory_readable": {"endpoint.memory": "200 sunshine:boolean"}}}}

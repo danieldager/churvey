@@ -238,6 +238,7 @@
       fetchedUrls: f.fetchedUrls || [], domSources: f.domSources || null,
       captureMethod: f.status === "ok" ? (f.captureMethod || "stream") : null,
       isolation: f.isolation || null, probe: f.probe || null,
+      popups: RUN.itemPopups[pid + "|" + item.itemKey] || [],
     });
     // churvey probe (config.probe): a picture of the page when a question fails.
     if (rec.status !== "ok" && RUN.cfg.config && RUN.cfg.config.probe && RUN.providers[pid].tabId) {
@@ -474,6 +475,61 @@
     return { state: "ok", text: "" };
   }
 
+  // ---- popups and modals (content/popups.js, docs/popups.md) --------------------------------------------------------
+  // Every overlay the content script sees or dismisses arrives here (POPUP_EVENT): it goes on the item being asked
+  // (record.popups) and on the run's list (manifest.popups -> the launcher's popups.jsonl).
+  function onPopup(tabId, provider, ev) {
+    if (!RUN || !ev) return;
+    const pid = RUN.tabToProvider[tabId] || provider;
+    const prov = RUN.providers[pid];
+    if (!prov) return;
+    const item = (prov.inflight && prov.inflight.item) || prov.current || null;
+    const row = { provider: pid, itemKey: item ? item.itemKey : null, ...ev };
+    RUN.popups.push(row);
+    if (item) (RUN.itemPopups[pid + "|" + item.itemKey] ||= []).push({ class: ev.class, text_snippet: ev.text_snippet, action: ev.action, stage: ev.stage, ...(ev.prominent ? { prominent: true } : {}) });
+    (ev.prominent ? log.warn : log.info)(`[${pid}] popup ${ev.class} ${ev.action}${ev.prominent ? " *** " + ev.note + " ***" : ""}: ${String(ev.text_snippet || "").slice(0, 120)}`);
+    emit({ type: "popup", provider: pid, itemKey: row.itemKey, class: ev.class, action: ev.action, text: String(ev.text_snippet || "").slice(0, 160), prominent: !!ev.prominent });
+  }
+  const acted = (events) => (events || []).some((e) => /^(clicked|escape)/.test(e.action));
+  async function shotOf(tabId) {
+    try {
+      const t = await ext.tabs.get(tabId);
+      return await Promise.race([ext.tabs.captureVisibleTab(t.windowId, { format: "jpeg", quality: 50 }),
+        new Promise((res) => setTimeout(() => res(null), 10000))]);
+    } catch (_) { return null; }
+  }
+  // One pass of the handler on the tab. An overlay left in the way (unknown, or no safe button) pauses the provider
+  // with status popup_unknown, its text and a screenshot, unless `pause` is false. -> {acted, blocked, blocking}
+  async function popupPass(pid, tabId, item, stage, { pause = true } = {}) {
+    let r = null;
+    try { r = await Promise.race([ext.tabs.sendMessage(tabId, { type: Probe.MSG.POPUPS, stage }), new Promise((res) => setTimeout(() => res(null), 15000))]); } catch (_) {}
+    if (!r || !r.ok) return { acted: false, blocked: false, blocking: null };
+    const did = acted(r.events);
+    if (r.blocking && pause) {
+      const b = r.blocking;
+      const text = `${b.class === "unknown" ? "" : b.class + ", "}${b.reason}: ${b.text}`;
+      const screenshot = await shotOf(tabId);
+      RUN.popups.push({ provider: pid, itemKey: item ? item.itemKey : null, class: b.class, action: "provider_paused", text_snippet: String(b.text).slice(0, 300), reason: b.reason, stage, at: new Date().toISOString(), screenshot });
+      blockProvider(pid, item, "popup_unknown", text);
+      return { acted: did, blocked: true, blocking: b };
+    }
+    return { acted: did, blocked: false, blocking: r.blocking || null };
+  }
+  const POPUP_STALL_MS = () => (RUN.cfg.config && RUN.cfg.config.popupStallMs) || 30000;
+  // Stall rule: nothing submitted / no stream started after POPUP_STALL_MS -> run the handler; if it dismissed
+  // something during this item, re-ask the item once (no failure counted).
+  function popupRetry(pid, item, why) {
+    const key = pid + "|" + item.itemKey;
+    if (RUN.popupRetried[key]) return false;
+    RUN.popupRetried[key] = true;
+    const prov = RUN.providers[pid];
+    if (prov.inflight && prov.inflight.item === item) prov.inflight = null;
+    RUN.retryAt[key] = Date.now() + 1000;
+    log.warn(`[${pid}] ${item.itemKey}: ${why} - a popup was dismissed, re-asking once`);
+    scheduleTick();
+    return true;
+  }
+
   // Watches an in-flight item for everything the network cannot tell us, every 2.5s, for every provider:
   //  1. the page shows a limit banner / login wall / captcha (two reads in a row) -> blockProvider;
   //  2. no capture lands but the answer is finished on screen -> read it from the DOM (capture_method "dom_fallback").
@@ -495,11 +551,22 @@
         // An answer that already arrived beats a banner that merely sits on the page.
         if (bad >= 2 && prov.inflight === inf && !inf.claimed) { blockProvider(pid, inf.item, st.state, st.text); return; }
       } else { bad = 0; badState = null; }
+      // A popup that appears while waiting: dismiss what is safe (no Escape, no pause: the answer may still land).
+      const pw = await popupPass(pid, inf.tabId, inf.item, "waiting", { pause: false });
+      if (pw.acted) inf.popupActed = true;
+      if (prov.inflight !== inf || inf.claimed) return;
+      if (!inf.started && !inf.stallChecked && Date.now() - inf.submittedAt > POPUP_STALL_MS()) {
+        inf.stallChecked = true;
+        const ps = await popupPass(pid, inf.tabId, inf.item, "stall");
+        if (ps.blocked) return;
+        if ((ps.acted || inf.popupActed) && popupRetry(pid, inf.item, `no stream after ${Math.round(POPUP_STALL_MS() / 1000)}s`)) return;
+      }
       let a = null;
       try { a = await Promise.race([ext.tabs.sendMessage(inf.tabId, { type: Probe.MSG.READ_ANSWER }), new Promise((res) => setTimeout(() => res(null), 4000))]); } catch (_) {}
       if (!a || !a.ok) continue;
       const now = Date.now();
       if (a.len !== lastLen) { lastLen = a.len; stableSince = now; inf.activityAt = now; }
+      if (a.generating || (a.len && a.len !== inf.lenAtSubmit)) inf.started = true;
       if (a.generating) { inf.activityAt = now; continue; }
       if (!a.len) continue;
       inf.sawAnswer = a.len;
@@ -548,6 +615,7 @@
   async function submitItem(pid, item) {
     const prov = RUN.providers[pid];
     const tabId = await ensureTab(pid);
+    prov.current = item;   // popups seen from here on belong to this item
     const priv = !!(RUN.cfg.config && RUN.cfg.config.private);
     const { promptSent } = compose(item);
 
@@ -559,11 +627,15 @@
     }
 
     // 2) Wait for the (possibly reloaded) content script + composer to be ready.
-    const ready = await waitForReady(tabId);
+    let ready = await waitForReady(tabId);
     // A limit banner / login wall / captcha is the usual reason for "not ready" - and a banner can sit above a working
     // composer too. Either way: say what it is and stop, do not retry blind.
     const pre = await pageStatus(tabId);
     if (pre.state !== "ok") { blockProvider(pid, item, pre.state, pre.text); return; }
+    // A cookie banner, an announcement, a terms update... over the composer: dismiss it, or pause on one we do not know.
+    const pop = await popupPass(pid, tabId, item, "pre_submit");
+    if (pop.blocked) return;
+    if (!ready && pop.acted) ready = await waitForReady(tabId, 8000);
     if (!ready) { bumpAttempt(pid, item, "not ready (login/page/loading)"); return; }
 
     // 2b) Prove the composer sits in a brand-new temporary chat BEFORE anything is typed. One more NEW_CHAT if not;
@@ -609,13 +681,22 @@
     // timeout with its answer visible on screen. Measured 2026-09-15: the follow-up
     // turn's stream closed 3.4s after the click, 1.2s before inflight was armed.
     // Arming before the round-trip closes the window for every provider.
-    prov.inflight = { item, submittedAt: Date.now(), tabId, iso };
+    let lenAtSubmit = 0;   // the page's last answer before this question (a follow-up's parent): not a sign of a new stream
+    try { const a0 = await ext.tabs.sendMessage(tabId, { type: Probe.MSG.READ_ANSWER }); lenAtSubmit = (a0 && a0.len) || 0; } catch (_) {}
+    prov.inflight = { item, submittedAt: Date.now(), tabId, iso, lenAtSubmit, popupActed: pop.acted };
     prov.chatKey = item.itemKey; // last item asked in the tab's current chat
     const mine = () => prov.inflight && prov.inflight.item === item; // still ours? (an answer may already have landed and cleared it)
     let resp;
     try { resp = await ext.tabs.sendMessage(tabId, { type: Probe.MSG.SUBMIT, prompt: promptSent, attachments }); }
     catch (e) { resp = { ok: false, error: String(e?.message || e) }; }
-    if (!resp || !resp.ok) { if (mine()) prov.inflight = null; bumpAttempt(pid, item, resp && resp.error); return; }
+    if (!resp || !resp.ok) {
+      if (mine()) prov.inflight = null;
+      // Not submitted: a popup over the composer is the usual suspect. Dismiss it and re-ask once, uncounted.
+      const ps = await popupPass(pid, tabId, item, "stall");
+      if (ps.blocked) return;
+      if ((ps.acted || pop.acted) && popupRetry(pid, item, `submit failed (${resp && resp.error})`)) return;
+      bumpAttempt(pid, item, resp && resp.error); return;
+    }
     // The content script stamps submittedAt just before the click; prefer it, so
     // latency excludes the typing, but never revive an already-answered item.
     if (mine() && resp.submittedAt) prov.inflight.submittedAt = resp.submittedAt;
@@ -695,7 +776,7 @@
 
   async function boot(cfg, _windowId, label) { // windowId unused since one-window-per-provider
     const items = Probe.runPlan.expand(cfg);
-    RUN = { runId: cfg.runId, cfg, status: "running", startedAt: Date.now(), providers: {}, tabToProvider: {}, retryAt: {}, fails: {}, gaveUp: {}, connRetries: {}, chats: [], chatIds: {} };
+    RUN = { runId: cfg.runId, cfg, status: "running", startedAt: Date.now(), providers: {}, tabToProvider: {}, retryAt: {}, fails: {}, gaveUp: {}, connRetries: {}, chats: [], chatIds: {}, popups: [], itemPopups: {}, popupRetried: {} };
     for (const pid of cfg.providers) RUN.providers[pid] = { items: items.map((x) => ({ ...x })), tabId: null, inflight: null, paused: false, chatKey: null, health: { status: "ok", text: "", at: null } };
     for (const pid of cfg.providers) await ensureTab(pid);
     // DeepSeek deletes all chats before EVERY question (done inside its
@@ -842,7 +923,9 @@
                        // prying storage.local out of the profile's IndexedDB by hand.
                        log: await Probe.log.getRing(),
                        // Every chat this run created (provider, chat_id, item): what `churvey purge --run` deletes.
-                       chats: RUN && RUN.runId === (cfg && cfg.runId) ? RUN.chats : [] };
+                       chats: RUN && RUN.runId === (cfg && cfg.runId) ? RUN.chats : [],
+                       // Every popup / modal seen, dismissed or left alone (the launcher writes popups.jsonl, screenshots aside).
+                       popups: RUN && RUN.runId === (cfg && cfg.runId) ? RUN.popups : [] };
     return { runId, cfg, recs, summary, summaryText: Probe.summary.formatText(summary), manifest, rawCompletions: debugRaw };
   }
 
@@ -893,5 +976,5 @@
   }
 
   const providerHealth = () => Object.fromEntries(Object.entries((RUN && RUN.providers) || {}).map(([pid, p]) => [pid, p.health]));
-  Probe.runner = { providerHealth, setOnEvent: (f) => { onEvent = f; }, start, pause, resume, resumeFromStorage, stop, pauseProvider, resumeProvider, onCapture, overview, buildExport, exportRun, importRun, listRuns, selectRun, clear };
+  Probe.runner = { onPopup, providerHealth, setOnEvent: (f) => { onEvent = f; }, start, pause, resume, resumeFromStorage, stop, pauseProvider, resumeProvider, onCapture, overview, buildExport, exportRun, importRun, listRuns, selectRun, clear };
 })();

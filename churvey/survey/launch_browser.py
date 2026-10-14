@@ -196,6 +196,9 @@ def show_event(state, ev):
         lat = f"{lat / 1000:.1f}s" if isinstance(lat, (int, float)) else "-"
         err = f" {ev['error']}" if ev.get("status") != "ok" and ev.get("error") else ""
         say(f"{hms(ev.get('ts'))} {ev['provider']} {ev['itemKey']} {ev['status']} {ev.get('capture_method') or '-'} {lat}{err}")
+    elif ev.get("type") == "popup":
+        star = "  *** TERMS ACCEPTED ***" if ev.get("prominent") else ""
+        say(f"{hms(ev.get('ts'))} {ev['provider']} POPUP {ev.get('class')} {ev.get('action')} « {(ev.get('text') or '')[:100]} »{star}")
     elif ev.get("type") == "health":
         state.health[ev["provider"]] = {"status": ev["status"], "text": ev.get("text")}
         say(f"{hms(ev.get('ts'))} {ev['provider']} HEALTH {ev['status']} {ev.get('text') or ''}   (provider paused, not retried)")
@@ -215,10 +218,28 @@ def write_results(out_dir, msg):
         (out_dir / f"{run_id}.summary.txt").write_text(msg["summaryText"])
     if msg.get("rawCompletions"):  # only on the final post; input for offline re-parsing of citations
         (out_dir / f"{run_id}.raw-completions.json").write_text(json.dumps(msg["rawCompletions"]))
+    if manifest.get("popups"):   # every popup seen / dismissed / left alone; a paused provider's screenshot goes beside it
+        write_popups(out_dir, manifest["popups"])
     if manifest.get("chats") is not None:   # every chat the run created: what `churvey purge --run` deletes
         (out_dir / "chats.jsonl").write_text("".join(json.dumps(c) + "\n" for c in manifest["chats"]))
     ok = sum(1 for r in records if r.get("status") == "ok")
     return {"run_id": run_id, "records": len(records), "ok": ok, "dir": out_dir}
+
+
+def write_popups(out_dir, popups):
+    """popups.jsonl, one line per popup event; a screenshot (data: URL) is written to popup_<provider>_<n>.jpg and the
+    line keeps its file name."""
+    import base64
+    lines = []
+    for n, p in enumerate(popups):
+        p = dict(p)
+        shot = p.pop("screenshot", None)
+        if isinstance(shot, str) and shot.startswith("data:image"):
+            name = f"popup_{p.get('provider')}_{n}.jpg"
+            (out_dir / name).write_bytes(base64.b64decode(shot.split(",", 1)[1]))
+            p["screenshot"] = name
+        lines.append(json.dumps(p, ensure_ascii=False))
+    (out_dir / "popups.jsonl").write_text("\n".join(lines) + "\n")
 
 
 def write_purged(out_dir, purge):
@@ -257,13 +278,14 @@ class RDP:
     """Minimal client for Firefox's devtools protocol: length-prefixed JSON
     packets, `<byteLength>:<json>`, over a plain TCP socket."""
 
-    def __init__(self, port, timeout=60):
+    def __init__(self, port, timeout=60, read_timeout=10):
         self.buf = b""
         self.sock = None
         deadline = time.time() + timeout
         while time.time() < deadline:
             try:
                 self.sock = socket.create_connection(("127.0.0.1", port), timeout=10)
+                self.sock.settimeout(read_timeout)
                 break
             except OSError:
                 time.sleep(0.5)
@@ -288,18 +310,40 @@ class RDP:
             self.buf += chunk
 
 
-def install_addon(port, addon_path):
-    c = RDP(port)
-    c.read()  # server hello
-    c.send({"to": "root", "type": "getRoot"})
-    actor = c.read().get("addonsActor")
-    if not actor:
-        raise SystemExit("no addonsActor — is this a devtools-enabled Firefox?")
-    c.send({"to": actor, "type": "installTemporaryAddon", "addonPath": str(addon_path)})
-    reply = c.read()
+def _install_once(port, addon_path, connect_timeout, read_timeout):
+    c = RDP(port, timeout=connect_timeout, read_timeout=read_timeout)
+    try:
+        c.read()  # server hello
+        c.send({"to": "root", "type": "getRoot"})
+        actor = c.read().get("addonsActor")
+        if not actor:
+            raise SystemExit("no addonsActor — is this a devtools-enabled Firefox?")
+        c.send({"to": actor, "type": "installTemporaryAddon", "addonPath": str(addon_path)})
+        reply = c.read()
+    finally:
+        c.sock.close()
     if "error" in reply:
         raise SystemExit(f"add-on install failed: {reply}")
     return reply.get("addon", {}).get("id")
+
+
+def install_addon(port, addon_path, slow=False):
+    """Install the add-on over the debugger server; one retry. `slow`: the first start after the startupCache was
+    cleared (start_firefox), when Firefox rebuilds its caches and answers late: longer timeouts."""
+    connect_timeout, read_timeout = (180, 90) if slow else (60, 30)
+    last = None
+    for attempt in (1, 2):
+        try:
+            return _install_once(port, addon_path, connect_timeout, read_timeout)
+        except (OSError, SystemExit) as e:   # socket.timeout is an OSError; RDP raises SystemExit on a closed connection
+            if isinstance(e, SystemExit) and "add-on install failed" in str(e):
+                raise
+            last = e
+            if attempt == 1:
+                say(f"add-on install: no answer from Firefox on port {port} ({e or type(e).__name__}); retrying once...")
+                time.sleep(5)
+    raise SystemExit(f"Could not install the churvey add-on: Firefox did not answer on its debugger port {port} "
+                     f"({last or type(last).__name__}). Is another Firefox starting on this profile? Close it and run the command again.")
 
 
 # --- profile ----------------------------------------------------------------
@@ -359,8 +403,30 @@ def preflight_verdicts(state, providers):
     return out
 
 
+def startup_cache_dirs(profile):
+    """Where Firefox keeps `profile`'s startupCache: its local dir, ~/Library/Caches/Firefox/Profiles/<dir> on macOS,
+    ~/.cache/mozilla/firefox/<dir> on Linux, the profile dir itself for a profile outside Firefox's root."""
+    home = pathlib.Path.home()
+    return [d / "startupCache" for d in (home / "Library/Caches/Firefox/Profiles" / profile.name,
+                                         home / ".cache/mozilla/firefox" / profile.name, profile)]
+
+
+def clear_startup_cache(profile):   # -> True if a cache was deleted (the next start is slow)
+    """Firefox keeps a temporary add-on's script list in the startupCache and serves the stale one after manifest.json
+    changes, so a newly added background script silently never loads (2026-10-14: « Probe.probe is undefined » after
+    probe.js was added). It is only a cache: Firefox rebuilds it on start."""
+    import shutil
+    cleared = False
+    for d in startup_cache_dirs(profile):
+        if d.is_dir():
+            shutil.rmtree(d, ignore_errors=True)
+            cleared = True
+    return cleared
+
+
 def start_firefox(profile, dbg_port, url="about:blank", headless=False):
     """Firefox on `profile` with the debugger server on `dbg_port`, opening `url`."""
+    slow = clear_startup_cache(profile)
     exe = find_firefox()
     if not exe:
         raise SystemExit(f"Firefox not found. Install it:\n  {install_hint()}")
@@ -368,7 +434,9 @@ def start_firefox(profile, dbg_port, url="about:blank", headless=False):
     if headless:
         cmd.append("--headless")
     cmd += ["--start-debugger-server", str(dbg_port), url]
-    return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    proc = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    proc.slow_start = slow   # install_addon(..., slow=proc.slow_start)
+    return proc
 
 
 def main(argv=None):
@@ -431,7 +499,7 @@ def launch(argv=None):
 
     ff = start_firefox(profile, dbg_port, headless=args.headless)
     try:
-        addon_id = install_addon(dbg_port, find_ext_dir())
+        addon_id = install_addon(dbg_port, find_ext_dir(), slow=ff.slow_start)
         say(f"installed {addon_id}; waiting up to {args.timeout}s for the run")
         done = state.finished.wait(args.timeout)
         # Give the final POST a moment to land before we tear the server down.

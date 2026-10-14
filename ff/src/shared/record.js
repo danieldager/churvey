@@ -3,7 +3,7 @@
 (() => {
   const Probe = (globalThis.Probe ||= {});
   const ext = globalThis.ext;
-  const SCHEMA_VERSION = 7; // v7: +isolation {new_chat, temporary, followup, chat_id, evidence}. v6: +capture_method (stream|poll|dom_fallback; null on error records). v5: citations = DISPLAYED only, with anchor_text/offsets/marker (Probe.citations), +fetchedUrls (v4: +followupOf, v3: +citations[])
+  const SCHEMA_VERSION = 8; // v8: +popups [{class, text_snippet, action, stage}] (content/popups.js). v7: +isolation {new_chat, temporary, followup, chat_id, evidence}. v6: +capture_method (stream|poll|dom_fallback; null on error records). v5: citations = DISPLAYED only, with anchor_text/offsets/marker (Probe.citations), +fetchedUrls (v4: +followupOf, v3: +citations[])
 
   const extVersion = () => { try { return ext.runtime.getManifest().version; } catch (_) { return null; } };
   const uuid = () => (globalThis.crypto && crypto.randomUUID ? crypto.randomUUID() : "id-" + Date.now() + "-" + Math.floor(Math.random() * 1e9));
@@ -38,6 +38,7 @@
       isolation: f.isolation || null, // was this question asked in a brand-new temporary chat, and what showed it (runner.js isolationFor)
       domSources: f.domSources || null, // audit only (run config.auditSources): what the page itself shows as sources
       probe: f.probe || null, // churvey probe only (run config.probe): {dom: the answer as the DOM fallback reads it, screenshot on error}
+      popups: Array.isArray(f.popups) ? f.popups : [], // every popup / modal seen while this item was asked, and what was done: docs/popups.md
       userAgent: (globalThis.navigator && navigator.userAgent) || null,
       extensionVersion: extVersion(),
     };

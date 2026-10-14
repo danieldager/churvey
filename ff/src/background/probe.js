@@ -33,6 +33,11 @@
     const send = async (msg, t = 20000) => { try { return await I.ask(tabId, msg, t); } catch (e) { return err(e); } };
     const where = async () => { try { return (await ext.tabs.get(tabId)).url; } catch (_) { return null; } };
 
+    // Popups / modals on each page the probe opens, and what the handler did with them (content/popups.js).
+    raw.popups = [];
+    const popups = async (stage) => { const r = await send({ type: Probe.MSG.POPUPS, stage }, 20000); raw.popups.push({ stage, events: (r && r.events) || [], blocking: (r && r.blocking) || null, ...(r && r.error ? { error: r.error } : {}) }); };
+    await popups("probe_home");
+
     // The home page: who is signed in, what the page says, the selectors, the endpoints, the banner detector.
     raw.login = { state: await call("loginState"), page: await send({ type: Probe.MSG.PAGE_STATUS }) };
     raw.home = { url: await where(), fingerprint: await call("fingerprint") };
@@ -50,6 +55,7 @@
       await sleep(1500);
       if (!(await I.ready(tabId))) { raw[key] = { error: "page never became ready after starting the chat" }; continue; }
       await sleep(1500);
+      await popups("probe_" + key);
       raw[key] = { url: await where(), state: await send({ type: Probe.MSG.ISOLATION_STATE }), fingerprint: await call("fingerprint") };
     }
     raw.shots.temporary = await shot(tabId);
