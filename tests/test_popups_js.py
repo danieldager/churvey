@@ -94,6 +94,9 @@ class PopupFixtures(unittest.TestCase):
         self.assertEqual(m["labels"], ["Generate memory from chat history"])
         self.assertNotIn("needs", m)
 
+    def test_mistral_dom_skips_reasoning(self):
+        self.assertEqual(RESULT["answer"], "OK")
+
     def test_never_click_guard(self):
         g = RESULT["guard"]
         for k in ("g1", "g2", "g3", "g4", "g5", "g6", "g7", "g8"):

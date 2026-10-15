@@ -191,7 +191,8 @@ def assemble(pid, raw, recs, purge, health, canary, destructive=False):
             scores = [round(overlap(d.get("text"), r.get("responseText")), 2) for d, r in doms]
             good = [s for s in scores if s >= 0.6]
             put("dom_fallback", "PASS" if len(good) == len(scores) else "FAIL",
-                f"page text vs captured answer, word overlap {scores} (pass >= 0.6)", dom_chars=[d.get("len") for d, _ in doms])
+                f"page text vs captured answer, word overlap {scores} (pass >= 0.6)", dom_chars=[d.get("len") for d, _ in doms],
+                dom_blocks=[d.get("blocks") for d, _ in doms] if any(d.get("blocks") for d, _ in doms) else None)
         cite = next((r for r in recs if r.get("questionId") == CITE_Q["id"]), None)
         if not cite or cite.get("status") != "ok":
             put("citations", "SKIP" if why else "FAIL", why or ("the source question got no answer: " + ((cite or {}).get("errorMessage") or "not asked"))[:200])
@@ -243,7 +244,9 @@ def assemble(pid, raw, recs, purge, health, canary, destructive=False):
     elif _err(ctl):
         put("memory_toggle", "FAIL", "settings page: " + ctl["error"])
     elif ctl.get("needs"):
-        put("memory_toggle", "FAIL", f"the settings page {ctl['needs']} did not open (redirected elsewhere)")
+        seen = "; ".join(ctl.get("seen") or []) or "nothing naming memory"
+        put("memory_toggle", "FAIL", f"the settings page {ctl['needs']} did not open, nor its menu entry"
+            + (f" (on {ctl['at']}: {seen})" if ctl.get("at") else " (redirected elsewhere)"))
     elif sw is None:   # no settings page: the toggle is an API call (grok)
         f = fp["memory_readable"].get("endpoint.memory", "")
         put("memory_toggle", "PASS" if ":boolean" in f else "FAIL", f"API toggle (dry run, not called): setting field {f or 'not seen'}")

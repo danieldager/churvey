@@ -39,6 +39,8 @@
     await popups("probe_home");
 
     // The home page: who is signed in, what the page says, the selectors, the endpoints, the banner detector.
+    // The selectors are read once the composer is there: on 2026-10-14_5 Le Chat's home was read before it rendered.
+    await I.ready(tabId, 15000, true);
     raw.login = { state: await call("loginState"), page: await send({ type: Probe.MSG.PAGE_STATUS }) };
     raw.home = { url: await where(), fingerprint: await call("fingerprint") };
     raw.shapes = await call("endpointShapes");

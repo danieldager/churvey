@@ -366,7 +366,7 @@
       // churvey probe (config.probe): would the DOM fallback have read the same answer off the page?
       let probe = null;
       if (!isError && RUN.cfg.config && RUN.cfg.config.probe) {
-        try { const a = await ext.tabs.sendMessage(inf.tabId, { type: Probe.MSG.READ_ANSWER }); probe = { dom: a && a.ok ? { text: (a.text || "").slice(0, 4000), len: a.len, finished: a.finished, links: (a.links || []).length } : { error: "no reply" } }; }
+        try { const a = await ext.tabs.sendMessage(inf.tabId, { type: Probe.MSG.READ_ANSWER }); probe = { dom: a && a.ok ? { text: (a.text || "").slice(0, 4000), len: a.len, finished: a.finished, links: (a.links || []).length, ...(a.blocks ? { blocks: a.blocks } : {}) } : { error: "no reply" } }; }
         catch (e) { probe = { dom: { error: String(e?.message || e) } }; }
       }
       const isolation = await isolationFor(pid, inf, cap);

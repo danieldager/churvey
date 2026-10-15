@@ -183,15 +183,24 @@
   // off=true every checked one is clicked (and a confirm dialog accepted) before reading them again.
   // A settings section's entry in a settings menu (exact text; never a switch): Claude's settings are a dialog whose
   // « Memory » entry has to be clicked (2026-10-14: /settings/memory opens the dialog on General).
-  const navItem = (re) => [...document.querySelectorAll('a, button, [role="tab"], [role="menuitem"]')]
-    .find((e) => visible(e) && e.getAttribute("role") !== "switch" && !e.hasAttribute("aria-checked") && re.test((e.innerText || "").trim()));
+  // Any tag (2026-10-14_5: the entry was in the dialog's list but matched none of a/button/tab/menuitem), the innermost
+  // match (the click bubbles up to the entry's handler), never inside a switch, a checkbox or a <label>.
+  const NOT_NAV = '[role="switch"], [role="checkbox"], button[aria-checked], input, label';
+  const navItem = (re) => {
+    const hits = [...document.querySelectorAll("body *")].filter((e) => re.test((e.innerText || "").trim()) && visible(e) && !e.closest(NOT_NAV));
+    return hits.find((e) => !hits.some((o) => o !== e && e.contains(o))) || null;
+  };
+  // What the page showed when the entry was not found (for the probe report): its URL and the short texts naming memory.
+  const navSeen = () => ({ at: location.href, seen: [...document.querySelectorAll("body *")]
+    .filter((e) => visible(e) && e.children.length < 4 && /memory|m[ée]moire/i.test((e.innerText || "").trim()) && (e.innerText || "").trim().length < 40)
+    .slice(0, 8).map((e) => `${e.tagName.toLowerCase()}${e.getAttribute("role") ? `[role=${e.getAttribute("role")}]` : ""} « ${(e.innerText || "").trim()} »`) });
   async function memoryControls(drv, off) {
     if (!drv.memoryPage) return { switches: null, detail: "no settings page known; the toggle goes through the API" };
     // A settings dialog renders after the page loads, and /settings/memory may redirect to the chat with the dialog
     // open on « General »: give the menu entry time to appear before sending the tab (again) to the settings page.
     let nav = drv.memoryNav ? navItem(drv.memoryNav) : null;
     for (let t0 = Date.now(); drv.memoryNav && !nav && Date.now() - t0 < 10000; await sleep(500)) nav = navItem(drv.memoryNav);
-    if (location.href.split(/[?#]/)[0] !== drv.memoryPage && !nav) return { needs: drv.memoryPage };
+    if (location.href.split(/[?#]/)[0] !== drv.memoryPage && !nav) return { needs: drv.memoryPage, ...(drv.memoryNav ? navSeen() : {}) };
     let found = await waitSwitches(drv.memorySwitches, nav ? 3000 : 15000);
     if (!found.length && nav) { realClick(nav); found = await waitSwitches(drv.memorySwitches); }
     if (off) for (const s of found.filter((x) => x.checked)) {

@@ -8,7 +8,9 @@
 (() => {
   const Probe = (globalThis.Probe ||= {});
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-  const norm = (s) => String(s || "").replace(/\s+/g, " ").trim();
+  // Icon-font glyphs (private use area) and zero-width characters are no text: Claude's notify toast closes with a
+  // button whose only « text » is U+E10F (logged as clicked "\ue10f" on 2026-10-14_5).
+  const norm = (s) => String(s || "").replace(/[\uE000-\uF8FF\u200B-\u200D\uFEFF]/g, "").replace(/\s+/g, " ").trim();
   const q = (sel, root = document) => { try { return [...root.querySelectorAll(sel)]; } catch (_) { return []; } };
   const isVisible = (el) => {
     if (!el || !el.isConnected) return false;
@@ -67,7 +69,7 @@
   ];
   const STATUS_CLASSES = new Set(["challenge", "limit", "login"]);   // pageStatus pauses with rate_limited / logged_out / challenge
 
-  const label = (b) => norm(b.innerText || b.value || b.getAttribute("aria-label") || b.getAttribute("title") || "");
+  const label = (b) => norm(b.innerText) || norm(b.value) || norm(b.getAttribute("aria-label")) || norm(b.getAttribute("title"));
   const buttonsOf = (el) => q('button, [role="button"], a, input[type="button"], input[type="submit"], .didomi-continue-without-agreeing', el).filter(isVisible);
 
   function classify(el, text) {
@@ -225,7 +227,7 @@
         }
         const b = chooseButton(o);
         if (b) {
-          const lab = label(b) || norm(b.getAttribute("aria-label")) || "(icon)";
+          const lab = label(b) || norm(b.getAttribute("aria-label")) || norm(b.getAttribute("title")) || (b.getAttribute("data-testid") ? "testid " + b.getAttribute("data-testid") : "(icon)");
           realClick(b);
           await sleep(waitMs);
           const ok = gone(o.el);

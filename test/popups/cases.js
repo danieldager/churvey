@@ -95,6 +95,10 @@ window.CASES = [
   { name: "notify_prompt_only_notify", expect: { class: "notify_prompt", clicked: null, never: ["notify"], blocking: false, action: "ignored" },
     html: `<div role="dialog" style="position:fixed;top:10px;right:10px;width:300px;background:#eee;z-index:999">
       Want to be notified when Claude responds? <button id="notify" data-close>Notify</button></div>` },
+  // Claude, 2026-10-14_5: the toast's close button shows only an icon-font glyph (U+E10F); logged by its aria-label.
+  { name: "notify_prompt_icon_close", expect: { class: "notify_prompt", clicked: "x", never: ["notify"], blocking: false, action: 'clicked "Dismiss"' },
+    html: `<div class="toast" style="position:fixed;top:10px;right:10px;width:300px;background:#eee;z-index:999">
+      Want to be notified when Claude responds? <button id="notify" data-close>Notify</button><button data-id="x" aria-label="Dismiss" data-close>\ue10f</button></div>` },
   { name: "unknown_empty_not_blocking", expect: { class: "unknown", clicked: null, never: ["b"], blocking: false, silent: true },
     html: `<div role="dialog" style="position:absolute;top:10px;left:10px;width:40px;height:40px;background:#fff"><button id="b" aria-label="Valider" style="width:20px;height:20px"></button></div>` },
 ];

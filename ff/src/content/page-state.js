@@ -89,7 +89,9 @@
     grok: { msgs: '[id^="response-"]:not([id*="user"]):not(.items-end)', body: ".response-content-markdown, [class*='markdown']", stop: 'button[aria-label*="Stop" i]', done: 'button[aria-label*="Copy" i], button[aria-label*="Regenerate" i]' },
     claude: { msgs: "[data-is-streaming]", body: ".standard-markdown, .progressive-markdown", stop: 'button[aria-label*="Stop" i]', done: '[data-is-streaming="false"], button[data-testid="action-bar-retry"]' },
     deepseek: { msgs: ".ds-markdown", body: null, stop: 'div[role="button"][aria-label*="stop" i], button[aria-label*="stop" i]', done: ".ds-icon-button, .ds-markdown + div" },
-    mistral: { msgs: '[data-message-author-role="assistant"], [data-testid*="assistant" i], [class*="assistant" i]', body: "[class*='markdown'], [class*='prose']", stop: 'button[aria-label*="Stop" i], button[aria-label*="Arrêter" i]', done: 'button[aria-label*="Copy" i], button[aria-label*="Copier" i]' },
+    // Le Chat shows its reasoning trace in the turn, in the same prose markup as the answer (2026-10-14_5: « Code word
+    // remembered. » read instead of « OK »): blocks inside `skip`, or inside a collapsible a button controls, are not the answer.
+    mistral: { msgs: '[data-message-author-role="assistant"], [data-testid*="assistant" i], [class*="assistant" i]', body: "[class*='markdown'], [class*='prose']", skip: 'details, [class*="reason" i], [class*="think" i], [class*="thought" i]', stop: 'button[aria-label*="Stop" i], button[aria-label*="Arrêter" i]', done: 'button[aria-label*="Copy" i], button[aria-label*="Copier" i]' },
   };
 
   function readAnswer(providerId) {
@@ -99,14 +101,22 @@
     let last = turns[turns.length - 1];
     let generating = anyVisible(cfg.stop);
     if (!last) return { text: "", len: 0, generating, finished: false, links: [], turns: 0 };
-    let text;
+    let text, blocks;
     if (cfg.turn) {   // an answer made of several blocks inside one turn container: read them all, in order
       const box = last.closest(cfg.turn) || last;
       if (cfg.turnState) { const st = box.getAttribute(cfg.turnState[0]); if (st && st !== cfg.turnState[1]) generating = true; }
       text = q(cfg.msgs, box).filter((t) => !t.parentElement.closest(cfg.msgs)).map((t) => (t.innerText || "").trim()).filter(Boolean).join("\n\n");
       last = box;
     } else {
-      const body = (cfg.body && q(cfg.body, last).filter((b) => b.innerText).sort((a, b) => b.innerText.length - a.innerText.length)[0]) || last;
+      let bodies = cfg.body ? q(cfg.body, last).filter((b) => b.innerText) : [];
+      if (cfg.skip) {
+        const trace = (b) => { for (let n = b; n && n !== last; n = n.parentElement) if (n.matches(cfg.skip) || (n.id && last.querySelector(`[aria-controls="${CSS.escape(n.id)}"]`))) return true; return false; };
+        blocks = bodies.filter((b) => !bodies.some((o) => o !== b && o.contains(b)))
+          .map((b) => `${trace(b) ? "skipped " : ""}${String(b.className && b.className.baseVal !== undefined ? b.className.baseVal : b.className).slice(0, 80)} (${b.innerText.trim().length})`).slice(0, 8);
+        const kept = bodies.filter((b) => !trace(b));
+        if (kept.length) bodies = kept;
+      }
+      const body = bodies.sort((a, b) => b.innerText.length - a.innerText.length)[0] || last;
       text = (body.innerText || "").trim();
     }
     const own = location.hostname.replace(/^www\./, "");
@@ -119,7 +129,7 @@
       links.push({ url: a.href, title: norm(a.innerText || a.getAttribute("aria-label") || a.title).slice(0, 200) || null });
     }
     const marker = !cfg.done || last.matches(cfg.done) || q(cfg.done, last).some(isVisible) || (turns.length <= 1 && q(cfg.done).some(isVisible));
-    return { text, len: text.length, generating, finished: !generating && text.length > 0 && marker, marker, links, turns: turns.length };
+    return { text, len: text.length, generating, finished: !generating && text.length > 0 && marker, marker, links, turns: turns.length, ...(blocks ? { blocks } : {}) };
   }
 
   Probe.pageState = { pageStatus, limitBanner, readAnswer, LIMIT_RE };

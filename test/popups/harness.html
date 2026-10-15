@@ -49,12 +49,14 @@
   // Claude's settings dialog: opens on « General »; the « Memory » entry shows up late and has to be clicked, the
   // switches are only read (memoryControls with off=false never clicks one).
   stage.innerHTML = `<div role="dialog" style="position:fixed;inset:10%;background:#fff;z-index:999"><div id="menu">
-    <button data-id="nav_general">General</button></div><div id="pane">General settings</div></div>`;
+    <button data-id="nav_general">General</button></div><div id="pane">General settings
+    <label><span>Memory</span><button data-id="sw_general" role="switch" aria-checked="true" style="width:30px;height:16px"></button></label></div></div>`;
   window.__clicks = [];
   setTimeout(() => {
     const menu = document.getElementById("menu");
-    menu.insertAdjacentHTML("beforeend", `<button data-id="nav_memory_settings">Memory settings</button><button data-id="nav_memory">Memory</button>`);
-    for (const b of menu.querySelectorAll("button")) b.addEventListener("click", () => {
+    // The entry as on 2026-10-14_5: not an a/button/tab/menuitem (a list option with an icon and a <span>).
+    menu.insertAdjacentHTML("beforeend", `<button data-id="nav_memory_settings">Memory settings</button><div role="option" data-id="nav_memory"><svg width="10" height="10"></svg><span>Memory</span></div>`);
+    for (const b of menu.querySelectorAll("[data-id]")) b.addEventListener("click", () => {
       window.__clicks.push(b.dataset.id);
       if (b.dataset.id === "nav_memory") document.getElementById("pane").innerHTML = `<div><span>Generate memory from chat history</span><button data-id="sw" role="switch" aria-checked="true" style="width:30px;height:16px"></button></div>`;
     });
@@ -63,13 +65,18 @@
   const mem = await Probe.drivers.B.memoryControls({ memoryPage: "https://claude.ai/settings/memory", memoryNav: /^memory$/i, memorySwitches: [/generate memory/i] }, false);
   const memory = { clicks: window.__clicks.slice(), labels: (mem.switches || []).map((s) => s.label), ...(mem.needs ? { needs: mem.needs } : {}) };
   stage.innerHTML = "";
+  // Le Chat's DOM fallback: the reasoning trace (a collapsible a button controls) sits in the turn in the same prose markup.
+  stage.innerHTML = `<div class="assistant-message"><button aria-expanded="true" aria-controls="trace1">Thought for 1s</button>
+    <div id="trace1"><div class="prose">Code word remembered.</div></div><div class="prose">OK</div><button aria-label="Copy">c</button></div>`;
+  const answer = Probe.pageState.readAnswer("mistral").text;
+  stage.innerHTML = "";
   // every extension script parses (Firefox: no node on this machine)
   const fr = document.createElement("iframe");
   fr.src = "syntax.html";
   await new Promise((r) => { fr.onload = r; document.body.appendChild(fr); });
   const syntax = fr.contentWindow.__errs.slice();
   fr.remove();
-  const res = { cases: out, guard, syntax, memory };
+  const res = { cases: out, guard, syntax, memory, answer };
   document.title = "done";
   window.__result = res;
   if (/post=1/.test(location.search)) await fetch("/result", { method: "POST", body: JSON.stringify(res) });
